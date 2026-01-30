@@ -119,12 +119,26 @@
 
   /* Article styles */
   .dropcap::first-letter {
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    float: left;
-    margin-right: 1rem;
-    line-height: 1;
-    color: #C5A070;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 5rem !important;
+    float: left !important;
+    margin-right: 1.2rem !important;
+    margin-top: 0.2rem !important;
+    line-height: 0.8 !important;
+    color: #C5A070 !important;
+    font-weight: 700 !important;
+    display: block !important;
+  }
+  
+  p.dropcap::first-letter {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 5rem !important;
+    float: left !important;
+    margin-right: 1.2rem !important;
+    margin-top: 0.2rem !important;
+    line-height: 0.8 !important;
+    color: #C5A070 !important;
+    font-weight: 700 !important;
   }
 
   blockquote {
@@ -226,20 +240,22 @@
     font-style: italic;
     font-size: 2.5rem;
     line-height: 1.2;
-    padding: 3rem 0;
+    padding: 4rem 0;
     border-top: 1px solid rgba(0,0,0,0.05);
     border-bottom: 1px solid rgba(0,0,0,0.05);
-    margin: 3rem 0;
+    margin: 4rem 0;
     text-align: center;
   }
 
   .article-content .dropcap::first-letter {
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    float: left;
-    margin-right: 1rem;
-    line-height: 1;
-    color: #C5A070;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 5rem !important;
+    float: left !important;
+    margin-right: 1.2rem !important;
+    margin-top: 0.2rem !important;
+    line-height: 0.8 !important;
+    color: #C5A070 !important;
+    font-weight: 700 !important;
   }
 
   .article-content .article-header {
@@ -255,12 +271,11 @@
   }
 
   .article-color-block-blue {
-    background-color: rgba(215, 229, 229, 0.1);
+    background-color: color-mix(in srgb, var(--color-sage-blue) 10%, transparent);
   }
 
   .article-color-block-clay {
-    background-color: rgba(229, 186, 173, 0.1);
-    border-left: 4px solid #E5BAAD;
+    background-color: color-mix(in srgb, var(--color-clay) 10%, transparent);
   }
 
   /* Article specific color classes */
@@ -270,6 +285,10 @@
 
   .text-clay {
     color: #E5BAAD;
+  }
+
+  .text-sand {
+    color: #C5A070;
   }
 
   .bg-sand {
@@ -284,12 +303,40 @@
     background-color: rgba(215, 229, 229, 0.2);
   }
 
-  /* Article blob positioning */
+  .bg-clay {
+    background-color: #E5BAAD;
+  }
+
+  .bg-blue {
+    background-color: #D7E5E5;
+  }
+
+  .border-sand {
+    border-color: #C5A070;
+  }
+
+  .border-clay {
+    border-color: #E5BAAD;
+  }
+
+  .border-blue {
+    border-color: #D7E5E5;
+  }
+
+  /* Article blob positioning (match static layout) */
   .blob-article-small {
     width: 300px;
     height: 300px;
+  }
+
+  .blob-article-clay {
     top: 20%;
     right: 10%;
+  }
+
+  .blob-article-blue {
+    bottom: 10%;
+    left: 10%;
   }
 
   .blob-article-large {

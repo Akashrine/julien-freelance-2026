@@ -8,9 +8,11 @@ const { number, title } = Astro.props;
 ---
 
 <div class="flex gap-8 items-start">
-  <span class="font-mono text-brand-sand text-lg font-bold">{number}</span>
-  <p class="text-xl text-gray-700 leading-relaxed font-light">
-    <span class="font-bold">{title}</span>
-    <slot />
-  </p>
+  <span class="text-2xl font-sans text-gray-700 font-medium tracking-tight flex-shrink-0">{number}</span>
+  <div class="flex-1">
+    <p class="text-xl text-gray-900 leading-relaxed font-normal mb-0">
+      <span class="font-bold text-gray-900">{title}</span>
+      <span class="text-gray-600 font-normal"> <slot /></span>
+    </p>
+  </div>
 </div>

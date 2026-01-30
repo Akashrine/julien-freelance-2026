@@ -1,0 +1,15 @@
+---
+interface Props {
+  title?: string;
+  borderColor?: 'sand' | 'blue' | 'clay';
+  className?: string;
+}
+
+const { title, borderColor = 'sand', className = '' } = Astro.props;
+const borderClass = borderColor === 'sand' ? 'border-[#C5A070]' : borderColor === 'blue' ? 'border-[#D7E5E5]' : 'border-[#E5BAAD]';
+---
+
+<div class={`border-l-4 ${borderClass} bg-gray-50/50 pl-8 py-6 reveal ${className}`}>
+  {title && <div class="font-mono mb-4 text-gray-600 text-xs uppercase tracking-wider">{title}</div>}
+  <slot />
+</div>

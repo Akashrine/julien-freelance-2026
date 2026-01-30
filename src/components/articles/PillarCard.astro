@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  blobColor?: 'blue' | 'clay' | 'sand';
+  className?: string;
+}
+
+const { title, description, blobColor = 'blue', className = '' } = Astro.props;
+const blobBgClass = blobColor === 'clay' ? 'bg-[#E5BAAD]/10' : blobColor === 'sand' ? 'bg-[#F2E9E1]/10' : 'bg-[#D7E5E5]/10';
+---
+
+<div class={`bg-white border border-gray-100 p-8 relative overflow-hidden reveal ${className}`}>
+  <div class={`absolute -bottom-8 -right-8 w-24 h-24 ${blobBgClass} organic-shape opacity-30 -z-10`}></div>
+  <h3 class="text-2xl font-serif mb-4 text-gray-900">{title}</h3>
+  <p class="text-lg text-gray-700 font-light leading-relaxed">{description}</p>
+</div>

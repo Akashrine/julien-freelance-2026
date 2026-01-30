@@ -1,0 +1,13 @@
+---
+interface Props {
+  title?: string;
+  className?: string;
+}
+
+const { title, className = '' } = Astro.props;
+---
+
+<div class={`bg-[#D7E5E5]/20 p-8 reveal ${className}`} style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;">
+  {title && <div class="font-mono mb-4 text-gray-600 text-xs uppercase tracking-wider">{title}</div>}
+  <slot />
+</div>

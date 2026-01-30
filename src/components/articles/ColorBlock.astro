@@ -10,12 +10,13 @@ const { bgColor = 'blue', label, title, className = '' } = Astro.props;
 
 const bgClass = bgColor === 'clay' ? 'article-color-block-clay' : 'article-color-block-blue';
 const labelColorClass = bgColor === 'clay' ? 'text-clay' : 'text-gray-400';
-const paddingClass = bgColor === 'clay' ? 'py-24 p-12' : 'py-32';
+const blobPositionClass = bgColor === 'clay' ? 'blob-article-clay' : 'blob-article-blue';
+const blobBgClass = bgColor === 'clay' ? 'bg-[rgba(229,186,173,0.2)]' : 'bg-blue-light';
 ---
 
-<section class={`full-width-section ${bgClass} ${paddingClass} mb-32 relative overflow-hidden reveal ${className}`}>
-  {bgColor === 'blue' && <div class="blob-article blob-article-small bg-blue-light organic-shape"></div>}
-  <div class="max-w-2xl mx-auto">
+<section class={`full-width-section ${bgClass} py-32 mb-32 relative overflow-hidden reveal ${className}`}>
+  <div class={`blob-article blob-article-small organic-shape ${blobPositionClass} ${blobBgClass}`}></div>
+  <div class="max-w-2xl mx-auto relative z-10">
     {label && <div class={`font-mono mb-8 ${labelColorClass} article-label`}>{label}</div>}
     {title && <h2 class="text-4xl mb-10 font-serif italic">{title}</h2>}
     <slot />

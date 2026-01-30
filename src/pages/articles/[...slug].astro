@@ -2,6 +2,16 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
+import Section from '../../components/articles/Section.astro';
+import SectionIntro from '../../components/articles/SectionIntro.astro';
+import ColorBlock from '../../components/articles/ColorBlock.astro';
+import DecisionItem from '../../components/articles/DecisionItem.astro';
+import ClosingBlock from '../../components/articles/ClosingBlock.astro';
+import SidebarBox from '../../components/articles/SidebarBox.astro';
+import PillarCard from '../../components/articles/PillarCard.astro';
+import Callout from '../../components/articles/Callout.astro';
+import KeyPoint from '../../components/articles/KeyPoint.astro';
+import CodeBlock from '../../components/articles/CodeBlock.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -34,23 +44,21 @@ function getCategoryLabel(category: string): string {
   <Navbar currentPage="articles" />
   <main>
     <article class="max-w-[1150px] mx-auto px-8 py-20">
-      <div class="max-w-3xl mx-auto">
-        <div class="mb-8">
-          <div class="flex items-center gap-3 mb-6">
-            <time class="font-mono text-[#C5A070] text-sm">{formatDate(article.data.date)}</time>
-            <span class="font-mono text-[9px] text-gray-300">/ {getCategoryLabel(article.data.category)}</span>
-          </div>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
-            {article.data.title}
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed font-light italic">
-            {article.data.excerpt}
-          </p>
+      <div class="max-w-3xl mx-auto mb-8">
+        <div class="flex items-center gap-3 mb-6">
+          <time class="font-mono text-[#C5A070] text-sm">{formatDate(article.data.date)}</time>
+          <span class="font-mono text-[9px] text-gray-300">/ {getCategoryLabel(article.data.category)}</span>
         </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
+          {article.data.title}
+        </h1>
+        <p class="text-xl text-gray-600 leading-relaxed font-light italic">
+          {article.data.excerpt}
+        </p>
       </div>
 
-      <div class="prose prose-lg max-w-none pt-8 border-t border-black/5 article-content">
-        <Content />
+      <div class="pt-8 border-t border-black/5">
+        <Content components={{ Section, SectionIntro, ColorBlock, DecisionItem, ClosingBlock, SidebarBox, PillarCard, Callout, KeyPoint, CodeBlock }} />
       </div>
 
       <div class="max-w-3xl mx-auto mt-16 pt-8 border-t border-black/5">

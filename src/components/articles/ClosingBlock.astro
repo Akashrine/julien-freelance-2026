@@ -1,0 +1,14 @@
+---
+interface Props {
+  title?: string;
+  className?: string;
+}
+
+const { title, className = '' } = Astro.props;
+---
+
+<section class={`text-center max-w-2xl mx-auto reveal ${className}`}>
+  <div class="w-12 h-12 bg-sand organic-shape mx-auto mb-10 opacity-40"></div>
+  {title && <h2 class="text-4xl font-serif mb-8 italic">{title}</h2>}
+  <slot />
+</section>

@@ -1,0 +1,41 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<section class={`max-w-3xl mx-auto mb-32 reveal ${className}`}>
+  <slot />
+</section>
+
+<style>
+  section :global(p:first-child) {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.75;
+    color: #374151;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  section :global(p:first-child::first-letter) {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    float: left;
+    margin-right: 1.2rem;
+    margin-top: 0.2rem;
+    line-height: 0.8;
+    color: #C5A070;
+    font-weight: 700;
+  }
+
+  section :global(p:not(:first-child)) {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.75;
+    color: #374151;
+    font-weight: 300;
+  }
+</style>
