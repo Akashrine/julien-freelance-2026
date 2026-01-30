@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SituationsIntro from '../components/SituationsIntro.astro';
+import SituationsObservables from '../components/SituationsObservables.astro';
+import SituationsAnalysis from '../components/SituationsAnalysis.astro';
+import SituationsIntervention from '../components/SituationsIntervention.astro';
+import SituationsFooter from '../components/SituationsFooter.astro';
+---
+
+<Layout title="Situations — Julien Brionne">
+  <Navbar currentPage="situations" />
+  <main>
+    <SituationsIntro />
+    <SituationsObservables />
+    <SituationsAnalysis />
+    <SituationsIntervention />
+    <SituationsFooter />
+  </main>
+</Layout>

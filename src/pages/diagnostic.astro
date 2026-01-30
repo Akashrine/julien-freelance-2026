@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import DiagnosticIntro from '../components/DiagnosticIntro.astro';
+import DiagnosticDefinition from '../components/DiagnosticDefinition.astro';
+import DiagnosticLimits from '../components/DiagnosticLimits.astro';
+import DiagnosticMethod from '../components/DiagnosticMethod.astro';
+import DiagnosticResults from '../components/DiagnosticResults.astro';
+import DiagnosticFooter from '../components/DiagnosticFooter.astro';
+---
+
+<Layout title="Diagnostic de situation — Julien Brionne">
+  <Navbar currentPage="diagnostic" />
+  <main>
+    <DiagnosticIntro />
+    <DiagnosticDefinition />
+    <DiagnosticLimits />
+    <DiagnosticMethod />
+    <DiagnosticResults />
+    <DiagnosticFooter />
+  </main>
+</Layout>

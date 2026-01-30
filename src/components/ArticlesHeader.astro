@@ -1,0 +1,41 @@
+---
+---
+
+<header class="relative pt-20 pb-16 overflow-hidden">
+  <div class="blob w-[500px] h-[500px] bg-[#F2E9E1] top-[-10%] left-[-10%] organic-shape"></div>
+  <div class="max-w-[1150px] mx-auto px-8 relative z-10">
+    <div class="max-w-2xl reveal">
+      <div class="font-mono mb-8 text-gray-400 tracking-[0.2em]">[ RÉFLEXIONS & ANALYSES ]</div>
+      <h1 class="text-5xl md:text-6xl lg:text-8xl leading-tight mb-12 font-serif">
+        L'écrit comme <br>
+        <span class="italic text-gray-800">outil de lecture.</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 leading-relaxed font-light mb-12">
+        Ces textes ne sont pas des guides méthodologiques. Ce sont des réflexions sur des situations rencontrées, pour clarifier le raisonnement avant d'agir.
+      </p>
+
+      <!-- FILTRES MINIMALISTES -->
+      <div class="flex flex-wrap gap-8 font-mono pt-8 border-t border-black/5">
+        <button class="filter-btn active text-[10px] transition-all duration-300" data-filter="all">Toute la lecture</button>
+        <button class="filter-btn text-[10px] transition-all duration-300 opacity-40" data-filter="reflexion">Réflexions</button>
+        <button class="filter-btn text-[10px] transition-all duration-300 opacity-40" data-filter="analyse">Analyses de cas</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .filter-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .filter-btn.active {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: #E5BAAD;
+  }
+  .filter-btn:hover {
+    opacity: 1;
+  }
+</style>

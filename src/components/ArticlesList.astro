@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Trier par date décroissante
+const sortedArticles = articles.sort((a, b) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+// Formater la date en français
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+function getCategoryLabel(category: string): string {
+  return category === 'reflexion' ? 'Réflexion' : 'Analyse';
+}
+
+// Couleurs pour les vignettes abstraites (alternance)
+const thumbnailColors = [
+  { bg: '#D7E5E5', shape: '60% 40% 30% 70% / 60% 30% 70% 40%' }, // Blue
+  { bg: '#E5BAAD', shape: '30% 70% 70% 30% / 30% 30% 70% 70%' }, // Clay
+  { bg: '#F2E9E1', shape: '50% 50% 20% 80% / 25% 80% 20% 75%' }, // Sand
+  { bg: '#D7E5E5', shape: '60% 40% 30% 70% / 60% 30% 70% 40%' }, // Blue
+];
+---
+
+<section class="max-w-[1150px] mx-auto px-8 pb-40">
+  <div class="space-y-48" id="articles-grid">
+    {sortedArticles.length === 0 ? (
+      <p class="text-gray-500">Aucun article disponible pour le moment.</p>
+    ) : (
+      sortedArticles.map((article, index) => {
+        const thumbnailColor = thumbnailColors[index % thumbnailColors.length];
+        const isEven = index % 2 === 1;
+        
+        return (
+          <article 
+            class="article-item relative reveal active"
+            data-category={article.data.category}
+            style={`--index: ${index}; transition-delay: ${index * 0.1}s;`}
+          >
+            <a href={`/articles/${article.slug}`} class="article-card block group">
+              <div class={`flex-container flex flex-col md:flex-row items-center gap-12 md:gap-20 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+                <div class="flex-1 relative">
+                  <span class="index-number">{String(index + 1).padStart(2, '0')}</span>
+                  <div class="flex items-center gap-3 mb-4">
+                    <time class="font-mono text-[#C5A070] block">{formatDate(article.data.date)}</time>
+                    <span class="font-mono text-[9px] text-gray-300">/ {getCategoryLabel(article.data.category)}</span>
+                  </div>
+                  <h2 class="text-3xl md:text-4xl lg:text-5xl mb-6 font-serif group-hover:italic transition-all duration-500 leading-tight">
+                    {article.data.title}
+                  </h2>
+                  <p class="text-xl text-gray-600 leading-relaxed font-light mb-8">
+                    {article.data.excerpt}
+                  </p>
+                  <div class="w-12 h-[1px] bg-gray-300 group-hover:w-24 group-hover:bg-[#E5BAAD] transition-all duration-500"></div>
+                </div>
+                <div class="w-full md:w-[400px]">
+                  <div 
+                    class="thumbnail-box organic-shape relative overflow-hidden"
+                    style={`--thumbnail-bg: ${thumbnailColor.bg}; --thumbnail-radius: ${thumbnailColor.shape};`}
+                  >
+                    {article.data.thumbnail ? (
+                      <img 
+                        src={article.data.thumbnail} 
+                        alt="" 
+                        class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                      />
+                    ) : null}
+                    <div class="grain"></div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </article>
+        );
+      })
+    )}
+  </div>
+</section>
+
+<script>
+  // Logique de filtrage
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll<HTMLElement>('.filter-btn');
+    const articles = document.querySelectorAll<HTMLElement>('.article-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Mise à jour de l'état visuel des boutons
+        filterButtons.forEach(b => {
+          b.classList.remove('active');
+          b.classList.add('opacity-40');
+        });
+        btn.classList.add('active');
+        btn.classList.remove('opacity-40');
+
+        // Filtrage des articles
+        articles.forEach((article) => {
+          const category = article.getAttribute('data-category');
+          
+          if (filter === 'all' || category === filter) {
+            article.classList.remove('hidden');
+            setTimeout(() => {
+              article.style.opacity = "1";
+            }, 10);
+          } else {
+            article.style.opacity = "0";
+            setTimeout(() => {
+              article.classList.add('hidden');
+            }, 400);
+          }
+        });
+      });
+    });
+  });
+</script>

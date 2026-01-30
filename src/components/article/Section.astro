@@ -1,0 +1,21 @@
+---
+interface Props {
+  label?: string;
+  title?: string;
+  quote?: string;
+  maxWidth?: string;
+}
+
+const { label, title, quote, maxWidth = '3xl' } = Astro.props;
+---
+
+<div class={`max-w-${maxWidth} mx-auto mb-16 md:mb-24`}>
+  {label && <div class="font-mono text-[10px] text-gray-400 mb-8">{label}</div>}
+  {quote && (
+    <p class="text-2xl leading-relaxed text-gray-800 font-serif italic mb-12">
+      "{quote}"
+    </p>
+  )}
+  {title && <h2 class="text-3xl md:text-4xl mb-12 font-serif italic">{title}</h2>}
+  <slot />
+</div>

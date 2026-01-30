@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Intro from '../components/Intro.astro';
+import Situations from '../components/Situations.astro';
+import Approach from '../components/Approach.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Navbar currentPage="home" />
+  <main>
+    <Hero />
+    <Intro />
+    <Situations />
+    <Approach />
+    <Footer />
+  </main>
+</Layout>

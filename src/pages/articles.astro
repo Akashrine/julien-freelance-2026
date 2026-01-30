@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ArticlesHeader from '../components/ArticlesHeader.astro';
+import ArticlesList from '../components/ArticlesList.astro';
+import ArticlesFooter from '../components/ArticlesFooter.astro';
+---
+
+<Layout title="Articles — Julien Brionne">
+  <Navbar currentPage="articles" />
+  <main>
+    <ArticlesHeader />
+    <ArticlesList />
+    <ArticlesFooter />
+  </main>
+</Layout>
