@@ -3,9 +3,46 @@ import '../styles/global.css';
 
 interface Props {
   title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  ogUrl?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  twitterTitle?: string;
+  twitterDescription?: string;
+  articleSchema?: object;
+  personSchema?: object;
+  websiteSchema?: object;
+  webPageSchema?: object;
+  breadcrumbSchema?: object;
 }
 
-const { title = 'Julien Brionne — Product Lead Indépendant' } = Astro.props;
+const {
+  title = 'Julien Brionne — Product Lead Indépendant',
+  description = 'Product Lead indépendant. J\'interviens auprès de fondateurs et Heads of Product (Series A/B) quand le système produit a grandi plus vite que sa capacité à trancher.',
+  ogTitle,
+  ogDescription,
+  ogType = 'website',
+  ogImage,
+  ogUrl,
+  twitterCard = 'summary',
+  twitterTitle,
+  twitterDescription,
+  articleSchema,
+  personSchema,
+  websiteSchema,
+  webPageSchema,
+  breadcrumbSchema
+} = Astro.props;
+
+const siteUrl = 'https://julien-brionne.fr';
+const finalOgTitle = ogTitle || title;
+const finalOgDescription = ogDescription || description;
+const finalOgUrl = ogUrl || Astro.url.href;
+const finalTwitterTitle = twitterTitle || finalOgTitle;
+const finalTwitterDescription = twitterDescription || finalOgDescription;
 ---
 
 <!doctype html>
@@ -16,8 +53,40 @@ const { title = 'Julien Brionne — Product Lead Indépendant' } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta -->
     <title>{title}</title>
-    <meta name="description" content="Product Lead Indépendant. J'accompagne les fondateurs et Heads of Product (Series A/B) pour redonner de la lisibilité aux décisions et de la force à l'exécution des équipes." />
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={finalOgTitle} />
+    <meta property="og:description" content={finalOgDescription} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={finalOgUrl} />
+    {ogImage && <meta property="og:image" content={`${siteUrl}${ogImage}`} />}
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={finalTwitterTitle} />
+    <meta name="twitter:description" content={finalTwitterDescription} />
+    {ogImage && <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />}
+    
+    <!-- Schema.org JSON-LD -->
+    {personSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    )}
+    {websiteSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    )}
+    {webPageSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+    )}
+    {articleSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    )}
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
   </head>
   <body class="bg-[#FDFCFB] text-gray-900 antialiased relative">
     <div class="relative z-10">
@@ -41,6 +110,43 @@ const { title = 'Julien Brionne — Product Lead Indépendant' } = Astro.props;
 
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => observer.observe(el));
+
+        // Observer pour les sections avec fade-in progressif
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        const sectionFadeElements = document.querySelectorAll('.section-fade');
+        sectionFadeElements.forEach(el => sectionObserver.observe(el));
+
+        // Parallaxe sur les blobs (léger effet au scroll)
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+          const parallaxBlobs = document.querySelectorAll('.blob-parallax');
+          
+          let ticking = false;
+          function updateParallax() {
+            const scrolled = window.pageYOffset;
+            parallaxBlobs.forEach((blob, index) => {
+              const speed = (index % 2 === 0 ? 0.3 : 0.5);
+              const yPos = -(scrolled * speed);
+              (blob as HTMLElement).style.transform = `translateY(${yPos}px)`;
+            });
+            ticking = false;
+          }
+
+          function requestTick() {
+            if (!ticking) {
+              window.requestAnimationFrame(updateParallax);
+              ticking = true;
+            }
+          }
+
+          window.addEventListener('scroll', requestTick);
+        }
       });
     </script>
   </body>

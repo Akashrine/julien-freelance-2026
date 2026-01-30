@@ -4,9 +4,35 @@ import Navbar from '../components/Navbar.astro';
 import ArticlesHeader from '../components/ArticlesHeader.astro';
 import ArticlesList from '../components/ArticlesList.astro';
 import ArticlesFooter from '../components/ArticlesFooter.astro';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+const siteUrl = 'https://julien-brionne.fr';
+const pageUrl = `${siteUrl}/articles`;
+const webPageSchema = getWebPageSchema(
+  pageUrl,
+  'Articles',
+  'Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d\'agir, pas des guides méthodologiques.',
+  ['réflexions produit', 'analyses de cas', 'décision produit']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.articles,
+]);
 ---
 
-<Layout title="Articles — Julien Brionne">
+<Layout
+  title="Articles — Julien Brionne"
+  description="Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques."
+  ogTitle="L'écrit comme outil de lecture"
+  ogDescription="Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques."
+  ogType="website"
+  ogUrl="https://julien-brionne.fr/articles"
+  twitterCard="summary"
+  twitterTitle="L'écrit comme outil de lecture"
+  twitterDescription="Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
   <Navbar currentPage="articles" />
   <main>
     <ArticlesHeader />

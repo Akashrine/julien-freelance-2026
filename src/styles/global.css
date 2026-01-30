@@ -61,6 +61,53 @@
     transform: translateY(0);
   }
 
+  /* Hero animations */
+  @keyframes heroFadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-label {
+    animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  }
+
+  .hero-title {
+    animation: heroFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+  }
+
+  .hero-text-1 {
+    animation: heroFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+  }
+
+  .hero-text-2 {
+    animation: heroFadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+  }
+
+  .hero-cta {
+    animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.3s forwards;
+  }
+
+  @keyframes heroImageFadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(40px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  .hero-image {
+    animation: heroImageFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  }
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0px);
@@ -450,5 +497,215 @@
       left: -1rem;
       font-size: 5rem;
     }
+  }
+
+  /* ============================================
+     MICRO-INTERACTIONS & ANIMATIONS SUBTILES
+     ============================================ */
+
+  /* 1. Navigation - Soulignement animé */
+  .nav-link {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nav-link:not(.active)::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link.active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Logo glow effect */
+  .logo-link {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .logo-link:hover {
+    filter: drop-shadow(0 0 8px rgba(197, 160, 112, 0.3));
+  }
+
+
+  /* 2. Parallaxe sur les blobs */
+  @media (prefers-reduced-motion: no-preference) {
+    .blob-parallax {
+      will-change: transform;
+    }
+  }
+
+  /* 3. Animation des numéros d'index */
+  .index-number {
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .article-item:hover .index-number {
+    opacity: 0.08;
+    transform: scale(1.05);
+  }
+
+  /* 4. Hover raffiné sur les cartes d'articles */
+  .article-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .article-card:hover .thumbnail-box {
+    transform: scale(1.03);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Animation de la flèche retour */
+  .back-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .back-link::before {
+    content: '←';
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block;
+  }
+
+  .back-link:hover::before {
+    transform: translateX(-4px);
+  }
+
+  .back-link:hover {
+    gap: 0.75rem;
+  }
+
+  /* Lift effect sur les boutons CTA */
+  .btn-cta {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+  }
+
+  .btn-cta:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .btn-cta:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-cta:active {
+    transform: translateY(0);
+  }
+
+  /* 5. Animation des filtres */
+  .filter-btn {
+    position: relative;
+    transform-origin: center;
+  }
+
+  .filter-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .filter-btn.active {
+    animation: filterActivate 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes filterActivate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.08);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* 6. Focus amélioré pour accessibilité */
+  *:focus-visible {
+    outline: 2px solid #C5A070;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #C5A070;
+    outline-offset: 2px;
+  }
+
+  /* 7. Animation des vignettes */
+  .thumbnail-box img {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+
+  .article-card:hover .thumbnail-box img {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+
+  /* 8. Fade-in progressif des sections */
+  .section-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 9. Transition de page */
+  @keyframes pageFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  main {
+    animation: pageFadeIn 0.5s ease-out;
+  }
+
+  /* 10. Animation subtile des titres d'articles */
+  .article-title-hover {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .article-card:hover .article-title-hover {
+    transform: translateX(4px);
   }
 }

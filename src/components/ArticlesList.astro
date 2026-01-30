@@ -53,7 +53,7 @@ const thumbnailColors = [
                     <time class="font-mono text-[#C5A070] block">{formatDate(article.data.date)}</time>
                     <span class="font-mono text-[9px] text-gray-300">/ {getCategoryLabel(article.data.category)}</span>
                   </div>
-                  <h2 class="text-3xl md:text-4xl lg:text-5xl mb-6 font-serif group-hover:italic transition-all duration-500 leading-tight">
+                  <h2 class="article-title-hover text-3xl md:text-4xl lg:text-5xl mb-6 font-serif group-hover:italic transition-all duration-500 leading-tight">
                     {article.data.title}
                   </h2>
                   <p class="text-xl text-gray-600 leading-relaxed font-light mb-8">
@@ -95,13 +95,17 @@ const thumbnailColors = [
       btn.addEventListener('click', () => {
         const filter = btn.getAttribute('data-filter');
 
-        // Mise à jour de l'état visuel des boutons
+        // Mise à jour de l'état visuel des boutons avec animation
         filterButtons.forEach(b => {
           b.classList.remove('active');
-          b.classList.add('opacity-40');
+          b.setAttribute('aria-pressed', 'false');
+          if (b !== btn) {
+            b.classList.add('opacity-40');
+          }
         });
         btn.classList.add('active');
         btn.classList.remove('opacity-40');
+        btn.setAttribute('aria-pressed', 'true');
 
         // Filtrage des articles
         articles.forEach((article) => {

@@ -6,9 +6,35 @@ import SituationsObservables from '../components/SituationsObservables.astro';
 import SituationsAnalysis from '../components/SituationsAnalysis.astro';
 import SituationsIntervention from '../components/SituationsIntervention.astro';
 import SituationsFooter from '../components/SituationsFooter.astro';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+const siteUrl = 'https://julien-brionne.fr';
+const pageUrl = `${siteUrl}/situations`;
+const webPageSchema = getWebPageSchema(
+  pageUrl,
+  'Vos situations',
+  'Reconnaître le moment critique. Quand l\'effort augmente plus vite que l\'impact, quand chaque avancée coûte deux fois plus d\'énergie. Symptôme de saturation du système décisionnel.',
+  ['situations d\'intervention', 'problèmes récurrents produit', 'saturation système décisionnel']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.situations,
+]);
 ---
 
-<Layout title="Situations — Julien Brionne">
+<Layout
+  title="Situations — Julien Brionne"
+  description="Reconnaître le moment critique. Quand l'effort augmente plus vite que l'impact, quand chaque avancée coûte deux fois plus d'énergie. Symptôme de saturation du système décisionnel."
+  ogTitle="Reconnaître le moment critique"
+  ogDescription="Quand l'effort augmente plus vite que l'impact, quand chaque avancée coûte deux fois plus d'énergie. Symptôme de saturation du système décisionnel."
+  ogType="website"
+  ogUrl="https://julien-brionne.fr/situations"
+  twitterCard="summary"
+  twitterTitle="Reconnaître le moment critique"
+  twitterDescription="Quand l'effort augmente plus vite que l'impact, quand chaque avancée coûte deux fois plus d'énergie. Symptôme de saturation du système décisionnel."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
   <Navbar currentPage="situations" />
   <main>
     <SituationsIntro />

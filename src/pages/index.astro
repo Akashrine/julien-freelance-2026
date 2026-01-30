@@ -6,9 +6,25 @@ import Intro from '../components/Intro.astro';
 import Situations from '../components/Situations.astro';
 import Approach from '../components/Approach.astro';
 import Footer from '../components/Footer.astro';
+import { getPersonSchema, getWebsiteSchema } from '../utils/schema';
+
+const personSchema = getPersonSchema();
+const websiteSchema = getWebsiteSchema();
 ---
 
-<Layout>
+<Layout
+  title="Julien Brionne — Product Lead Indépendant"
+  description="Product Lead indépendant. J'interviens auprès de fondateurs et Heads of Product (Series A/B) quand le système produit a grandi plus vite que sa capacité à trancher."
+  ogTitle="Simplifier pour retrouver de l'impact"
+  ogDescription="Quand le produit avance, que la roadmap se remplit, mais que chaque décision coûte plus cher que la précédente. Le problème n'est pas l'exécution. C'est la dette de décision."
+  ogType="website"
+  ogUrl="https://julien-brionne.fr/"
+  twitterCard="summary_large_image"
+  twitterTitle="Simplifier pour retrouver de l'impact"
+  twitterDescription="Quand le produit avance, que la roadmap se remplit, mais que chaque décision coûte plus cher que la précédente. Le problème n'est pas l'exécution. C'est la dette de décision."
+  personSchema={personSchema}
+  websiteSchema={websiteSchema}
+>
   <Navbar currentPage="home" />
   <main>
     <Hero />

@@ -7,9 +7,35 @@ import ApproachActions from '../components/ApproachActions.astro';
 import ApproachLimits from '../components/ApproachLimits.astro';
 import ApproachPrisms from '../components/ApproachPrisms.astro';
 import ApproachFooter from '../components/ApproachFooter.astro';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+const siteUrl = 'https://julien-brionne.fr';
+const pageUrl = `${siteUrl}/approche`;
+const webPageSchema = getWebPageSchema(
+  pageUrl,
+  'Mon approche',
+  'Leadership opérationnel. Une approche d\'intervention, pas une méthode. Restaurer la clarté et la capacité de décision là où le système est devenu trop bruyant.',
+  ['leadership opérationnel', 'approche d\'intervention', 'système produit']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.approche,
+]);
 ---
 
-<Layout title="Approche — Julien Brionne">
+<Layout
+  title="Approche — Julien Brionne"
+  description="Leadership opérationnel. Une approche d'intervention, pas une méthode. Restaurer la clarté et la capacité de décision là où le système est devenu trop bruyant."
+  ogTitle="Leadership opérationnel"
+  ogDescription="Une approche d'intervention, pas une méthode. Restaurer la clarté et la capacité de décision là où le système est devenu trop bruyant."
+  ogType="website"
+  ogUrl="https://julien-brionne.fr/approche"
+  twitterCard="summary"
+  twitterTitle="Leadership opérationnel"
+  twitterDescription="Une approche d'intervention, pas une méthode. Restaurer la clarté et la capacité de décision là où le système est devenu trop bruyant."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
   <Navbar currentPage="approche" />
   <main>
     <ApproachIntro />

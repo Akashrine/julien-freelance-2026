@@ -12,6 +12,7 @@ import PillarCard from '../../components/articles/PillarCard.astro';
 import Callout from '../../components/articles/Callout.astro';
 import KeyPoint from '../../components/articles/KeyPoint.astro';
 import CodeBlock from '../../components/articles/CodeBlock.astro';
+import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -38,9 +39,45 @@ function formatDate(dateString: string): string {
 function getCategoryLabel(category: string): string {
   return category === 'reflexion' ? 'Réflexion' : 'Analyse';
 }
+
+const siteUrl = 'https://julien-brionne.fr';
+const articleUrl = `${siteUrl}/articles/${article.slug}`;
+const ogImage = article.data.thumbnail ? article.data.thumbnail : undefined;
+const twitterCard = ogImage ? 'summary_large_image' : 'summary';
+
+// Generate article schema using utility function
+const articleSchema = getArticleSchema(
+  articleUrl,
+  article.data.title,
+  article.data.excerpt,
+  article.data.date,
+  article.data.date, // dateModified defaults to datePublished
+  undefined, // about - can be added per article if needed
+  article.data.thumbnail
+);
+
+// Generate breadcrumb schema
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.articles,
+  BreadcrumbItems.article(article.data.title, articleUrl),
+]);
 ---
 
-<Layout title={`${article.data.title} — Julien Brionne`}>
+<Layout
+  title={`${article.data.title} — Julien Brionne`}
+  description={article.data.excerpt}
+  ogTitle={article.data.title}
+  ogDescription={article.data.excerpt}
+  ogType="article"
+  ogImage={ogImage}
+  ogUrl={articleUrl}
+  twitterCard={twitterCard}
+  twitterTitle={article.data.title}
+  twitterDescription={article.data.excerpt}
+  articleSchema={articleSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
   <Navbar currentPage="articles" />
   <main>
     <article class="max-w-[1150px] mx-auto px-8 py-20">
@@ -52,8 +89,11 @@ function getCategoryLabel(category: string): string {
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
           {article.data.title}
         </h1>
-        <p class="text-xl text-gray-600 leading-relaxed font-light italic">
+        <p class="text-xl text-gray-600 leading-relaxed font-light italic mb-4">
           {article.data.excerpt}
+        </p>
+        <p class="text-sm text-gray-500 font-light italic">
+          Pour comprendre la posture d'intervention, voir <a href="/approche" class="underline hover:text-gray-700 transition-colors">Mon approche</a>.
         </p>
       </div>
 
@@ -62,8 +102,8 @@ function getCategoryLabel(category: string): string {
       </div>
 
       <div class="max-w-3xl mx-auto mt-16 pt-8 border-t border-black/5">
-        <a href="/articles" class="font-mono text-sm text-gray-500 hover:text-black transition-colors">
-          ← Retour aux articles
+        <a href="/articles" class="back-link font-mono text-sm text-gray-500 hover:text-black transition-colors">
+          Retour aux articles
         </a>
       </div>
     </article>

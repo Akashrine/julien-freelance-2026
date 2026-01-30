@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /articles/
+Allow: /approche
+Allow: /situations
+Allow: /diagnostic
+
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*?*
+
+Sitemap: https://julien-brionne.fr/sitemap.xml

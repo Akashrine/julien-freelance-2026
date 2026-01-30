@@ -7,9 +7,35 @@ import DiagnosticLimits from '../components/DiagnosticLimits.astro';
 import DiagnosticMethod from '../components/DiagnosticMethod.astro';
 import DiagnosticResults from '../components/DiagnosticResults.astro';
 import DiagnosticFooter from '../components/DiagnosticFooter.astro';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+const siteUrl = 'https://julien-brionne.fr';
+const pageUrl = `${siteUrl}/diagnostic`;
+const webPageSchema = getWebPageSchema(
+  pageUrl,
+  'Diagnostic de situation',
+  'Une pause pour vérifier le cap. Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels.',
+  ['diagnostic de situation produit', 'blocages structurels', 'organisation produit']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.diagnostic,
+]);
 ---
 
-<Layout title="Diagnostic de situation — Julien Brionne">
+<Layout
+  title="Diagnostic de situation — Julien Brionne"
+  description="Une pause pour vérifier le cap. Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels."
+  ogTitle="Une pause pour vérifier le cap"
+  ogDescription="Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels."
+  ogType="website"
+  ogUrl="https://julien-brionne.fr/diagnostic"
+  twitterCard="summary"
+  twitterTitle="Une pause pour vérifier le cap"
+  twitterDescription="Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
   <Navbar currentPage="diagnostic" />
   <main>
     <DiagnosticIntro />

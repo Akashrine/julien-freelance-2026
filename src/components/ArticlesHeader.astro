@@ -5,7 +5,7 @@
   <div class="blob w-[500px] h-[500px] bg-[#F2E9E1] top-[-10%] left-[-10%] organic-shape"></div>
   <div class="max-w-[1150px] mx-auto px-8 relative z-10">
     <div class="max-w-2xl reveal">
-      <div class="font-mono mb-8 text-gray-400 tracking-[0.2em]">[ RÉFLEXIONS & ANALYSES ]</div>
+      <div class="font-mono mb-8 text-gray-500 tracking-[0.2em]">[ RÉFLEXIONS & ANALYSES ]</div>
       <h1 class="text-5xl md:text-6xl lg:text-8xl leading-tight mb-12 font-serif">
         L'écrit comme <br>
         <span class="italic text-gray-800">outil de lecture.</span>
@@ -15,10 +15,10 @@
       </p>
 
       <!-- FILTRES MINIMALISTES -->
-      <div class="flex flex-wrap gap-8 font-mono pt-8 border-t border-black/5">
-        <button class="filter-btn active text-[10px] transition-all duration-300" data-filter="all">Toute la lecture</button>
-        <button class="filter-btn text-[10px] transition-all duration-300 opacity-40" data-filter="reflexion">Réflexions</button>
-        <button class="filter-btn text-[10px] transition-all duration-300 opacity-40" data-filter="analyse">Analyses de cas</button>
+      <div class="flex flex-wrap gap-8 font-mono pt-8 border-t border-black/5" role="tablist" aria-label="Filtrer les articles">
+        <button class="filter-btn active text-[10px] transition-all duration-300" data-filter="all" aria-pressed="true" role="tab" aria-controls="articles-grid">Toute la lecture</button>
+        <button class="filter-btn text-[10px] transition-all duration-300 opacity-40 hover:opacity-100" data-filter="reflexion" aria-pressed="false" role="tab" aria-controls="articles-grid">Réflexions</button>
+        <button class="filter-btn text-[10px] transition-all duration-300 opacity-40 hover:opacity-100" data-filter="analyse" aria-pressed="false" role="tab" aria-controls="articles-grid">Analyses de cas</button>
       </div>
     </div>
   </div>
