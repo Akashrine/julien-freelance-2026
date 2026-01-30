@@ -356,7 +356,7 @@ Le SEO sert à rendre le site **trouvable par les bonnes personnes au bon moment
 - "protéger cadre décisions produit"
 - "exceptions permanentes produit"
 
-#### "Quand le problème devient l'organisation" (/articles/yubo-organisation)
+#### "Quand le problème devient l'organisation" (/articles/probleme-organisation)
 
 **Intentions de recherche naturelles** :
 1. Informationnelle diagnostique : "organisation produit désalignée", "squads autonomes mais désalignées", "décisions réouvertes"

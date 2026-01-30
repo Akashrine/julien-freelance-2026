@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { GA4_MEASUREMENT_ID, GA4_ENABLED } from '../utils/analytics';
 
 interface Props {
   title?: string;
@@ -50,8 +51,8 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     
     <!-- SEO Meta -->
@@ -86,6 +87,22 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     )}
     {breadcrumbSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+    
+    <!-- Google Analytics 4 -->
+    {GA4_ENABLED && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}></script>
+        <script is:inline define:vars={{ GA4_MEASUREMENT_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', GA4_MEASUREMENT_ID, {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+          });
+        </script>
+      </>
     )}
   </head>
   <body class="bg-[#FDFCFB] text-gray-900 antialiased relative">

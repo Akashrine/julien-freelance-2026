@@ -237,7 +237,7 @@ Le site positionne Julien Brionne comme un **Product Lead indépendant, senior, 
 ### Liens discrets à ajouter
 
 **Home → Articles** :
-- Dans la section Situations, après chaque situation, ajouter : "→ [Voir un cas concret](/articles/yubo-organisation)" (lien vers l'article le plus pertinent)
+- Dans la section Situations, après chaque situation, ajouter : "→ [Voir un cas concret](/articles/probleme-organisation)" (lien vers l'article le plus pertinent)
 
 **Articles → Diagnostic** :
 - Dans chaque article d'analyse, avant la conclusion, ajouter : "Si cette situation résonne avec votre contexte, le [diagnostic de situation](/diagnostic) permet de vérifier la pertinence d'une intervention."

@@ -16,7 +16,7 @@
 | **Articles** (`/articles`) | Articles — Julien Brionne | Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques. | Reformulation fidèle. Renforce "pas des guides méthodologiques". Aucun mot interdit. |
 | **Diagnostic** (`/diagnostic`) | Diagnostic de situation — Julien Brionne | Une pause pour vérifier le cap. Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels. | Reformulation fidèle. Intègre "blocages structurels" et décrit sans promesse. Aucun mot interdit. |
 | **L'Art du Non** (`/articles/art-du-non`) | L'Art du Non — Julien Brionne | Dire non n'a rien d'un acte autoritaire. C'est un acte de pilotage lucide. Un CPO ne protège pas un backlog. Il protège un cadre. Une architecture de décisions. | Utilise l'excerpt existant. Reformulation fidèle du concept central. Aucun mot interdit. |
-| **Quand le problème devient l'organisation** (`/articles/yubo-organisation`) | Quand le problème devient l'organisation — Julien Brionne | Chez Yubo, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider. | Utilise l'excerpt existant. Intègre "système" et "capacité à décider". Aucun mot interdit. |
+| **Quand le problème devient l'organisation** (`/articles/probleme-organisation`) | Quand le problème devient l'organisation — Julien Brionne | Dans cette organisation, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider. | Utilise l'excerpt existant. Intègre "système" et "capacité à décider". Aucun mot interdit. |
 | **L'illusion du mouvement** (`/articles/illusion-mouvement`) | L'illusion du mouvement — Julien Brionne | Le produit avançait. Les équipes livraient. La roadmap se remplissait. Et pourtant, chaque décision semblait coûter plus cher que la précédente. | Utilise l'excerpt existant. Intègre "décision" et décrit le symptôme. Aucun mot interdit. |
 | **Quand l'activation ne libère pas de valeur** (`/articles/activation-sequence`) | Quand l'activation ne libère pas de valeur — Julien Brionne | Dans un produit SaaS B2B bien conçu, l'acquisition fonctionnait. Les inscriptions arrivaient. Les équipes livraient. Et pourtant, le seuil d'utilité restait infranchissable. | Utilise l'excerpt existant. Décrit le symptôme sans promesse. Aucun mot interdit. |
 | **Le poids des décisions déléguées** (`/articles/poids-decisions-deleguees`) | Le poids des décisions déléguées — Julien Brionne | Dans une marketplace à haut volume, la plateforme de Customer Care finit souvent par absorber tout ce que le produit n'a pas su trancher. | Utilise l'excerpt existant. Intègre "trancher" et décrit le mécanisme. Aucun mot interdit. |
@@ -33,7 +33,7 @@
 | **Articles** | L'écrit comme outil de lecture | Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques. | website | https://julienbrionne.com/articles | (Pas d'image spécifique) |
 | **Diagnostic** | Une pause pour vérifier le cap | Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels. | website | https://julienbrionne.com/diagnostic | (Pas d'image spécifique) |
 | **L'Art du Non** | L'Art du Non | Dire non n'a rien d'un acte autoritaire. C'est un acte de pilotage lucide. Un CPO ne protège pas un backlog. Il protège un cadre. Une architecture de décisions. | article | https://julienbrionne.com/articles/art-du-non | /art-du-non-thumbnail.png |
-| **Quand le problème devient l'organisation** | Quand le problème devient l'organisation | Chez Yubo, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider. | article | https://julienbrionne.com/articles/yubo-organisation | (Pas d'image spécifique) |
+| **Quand le problème devient l'organisation** | Quand le problème devient l'organisation | Dans cette organisation, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider. | article | https://julien-brionne.fr/articles/probleme-organisation | (Pas d'image spécifique) |
 | **L'illusion du mouvement** | L'illusion du mouvement | Le produit avançait. Les équipes livraient. La roadmap se remplissait. Et pourtant, chaque décision semblait coûter plus cher que la précédente. | article | https://julienbrionne.com/articles/illusion-mouvement | (Pas d'image spécifique) |
 | **Quand l'activation ne libère pas de valeur** | Quand l'activation ne libère pas de valeur | Dans un produit SaaS B2B bien conçu, l'acquisition fonctionnait. Les inscriptions arrivaient. Les équipes livraient. Et pourtant, le seuil d'utilité restait infranchissable. | article | https://julienbrionne.com/articles/activation-sequence | (Pas d'image spécifique) |
 | **Le poids des décisions déléguées** | Le poids des décisions déléguées | Dans une marketplace à haut volume, la plateforme de Customer Care finit souvent par absorber tout ce que le produit n'a pas su trancher. | article | https://julienbrionne.com/articles/poids-decisions-deleguees | (Pas d'image spécifique) |
@@ -52,7 +52,7 @@
 | **Articles** | summary | L'écrit comme outil de lecture | Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques. |
 | **Diagnostic** | summary | Une pause pour vérifier le cap | Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels. |
 | **L'Art du Non** | summary_large_image | L'Art du Non | Dire non n'a rien d'un acte autoritaire. C'est un acte de pilotage lucide. Un CPO ne protège pas un backlog. Il protège un cadre. Une architecture de décisions. |
-| **Quand le problème devient l'organisation** | summary | Quand le problème devient l'organisation | Chez Yubo, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider. |
+| **Quand le problème devient l'organisation** | summary | Quand le problème devient l'organisation | Dans cette organisation, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider. |
 | **L'illusion du mouvement** | summary | L'illusion du mouvement | Le produit avançait. Les équipes livraient. La roadmap se remplissait. Et pourtant, chaque décision semblait coûter plus cher que la précédente. |
 | **Quand l'activation ne libère pas de valeur** | summary | Quand l'activation ne libère pas de valeur | Dans un produit SaaS B2B bien conçu, l'acquisition fonctionnait. Les inscriptions arrivaient. Les équipes livraient. Et pourtant, le seuil d'utilité restait infranchissable. |
 | **Le poids des décisions déléguées** | summary | Le poids des décisions déléguées | Dans une marketplace à haut volume, la plateforme de Customer Care finit souvent par absorber tout ce que le produit n'a pas su trancher. |
@@ -106,7 +106,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://julienbrionne.com/articles/yubo-organisation</loc>
+    <loc>https://julien-brionne.fr/articles/probleme-organisation</loc>
     <lastmod>2025-11-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
@@ -210,7 +210,7 @@ Sitemap: https://julienbrionne.com/sitemap.xml
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Quand le problème devient l'organisation",
-  "description": "Chez Yubo, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider.",
+  "description": "Dans cette organisation, la croissance était là. Les squads aussi. Mais ce qui se cassait n'était pas l'exécution. C'était la capacité du système à décider.",
   "author": {
     "@type": "Person",
     "name": "Julien Brionne",
@@ -224,7 +224,7 @@ Sitemap: https://julienbrionne.com/sitemap.xml
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://julienbrionne.com/articles/yubo-organisation"
+    "@id": "https://julien-brionne.fr/articles/probleme-organisation"
   }
 }
 ```
