@@ -12,6 +12,7 @@ import PillarCard from '../../components/articles/PillarCard.astro';
 import Callout from '../../components/articles/Callout.astro';
 import KeyPoint from '../../components/articles/KeyPoint.astro';
 import CodeBlock from '../../components/articles/CodeBlock.astro';
+import Footer from '../../components/Footer.astro';
 import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
 
 export async function getStaticPaths() {
@@ -107,5 +108,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
         </a>
       </div>
     </article>
+    <Footer />
   </main>
 </Layout>

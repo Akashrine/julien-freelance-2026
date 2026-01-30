@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ArticlesHeader from '../components/ArticlesHeader.astro';
 import ArticlesList from '../components/ArticlesList.astro';
-import ArticlesFooter from '../components/ArticlesFooter.astro';
+import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
 const siteUrl = 'https://julien-brionne.fr';
@@ -37,6 +37,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <main>
     <ArticlesHeader />
     <ArticlesList />
-    <ArticlesFooter />
+    <Footer />
   </main>
 </Layout>

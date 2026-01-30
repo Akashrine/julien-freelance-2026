@@ -6,7 +6,7 @@ import DiagnosticDefinition from '../components/DiagnosticDefinition.astro';
 import DiagnosticLimits from '../components/DiagnosticLimits.astro';
 import DiagnosticMethod from '../components/DiagnosticMethod.astro';
 import DiagnosticResults from '../components/DiagnosticResults.astro';
-import DiagnosticFooter from '../components/DiagnosticFooter.astro';
+import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
 const siteUrl = 'https://julien-brionne.fr';
@@ -43,6 +43,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <DiagnosticLimits />
     <DiagnosticMethod />
     <DiagnosticResults />
-    <DiagnosticFooter />
+    <Footer />
   </main>
 </Layout>

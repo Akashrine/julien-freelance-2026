@@ -5,7 +5,7 @@ import SituationsIntro from '../components/SituationsIntro.astro';
 import SituationsObservables from '../components/SituationsObservables.astro';
 import SituationsAnalysis from '../components/SituationsAnalysis.astro';
 import SituationsIntervention from '../components/SituationsIntervention.astro';
-import SituationsFooter from '../components/SituationsFooter.astro';
+import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
 const siteUrl = 'https://julien-brionne.fr';
@@ -41,6 +41,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <SituationsObservables />
     <SituationsAnalysis />
     <SituationsIntervention />
-    <SituationsFooter />
+    <Footer />
   </main>
 </Layout>

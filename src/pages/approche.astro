@@ -6,7 +6,7 @@ import ApproachTriggers from '../components/ApproachTriggers.astro';
 import ApproachActions from '../components/ApproachActions.astro';
 import ApproachLimits from '../components/ApproachLimits.astro';
 import ApproachPrisms from '../components/ApproachPrisms.astro';
-import ApproachFooter from '../components/ApproachFooter.astro';
+import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
 const siteUrl = 'https://julien-brionne.fr';
@@ -43,6 +43,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <ApproachActions />
     <ApproachLimits />
     <ApproachPrisms />
-    <ApproachFooter />
+    <Footer />
   </main>
 </Layout>
