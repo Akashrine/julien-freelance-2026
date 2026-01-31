@@ -6,12 +6,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "og:convert": "node scripts/generate-og-images.js --all",
+    "og:convert:single": "node scripts/generate-og-images.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
+    "astro-og-canvas": "^0.10.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
