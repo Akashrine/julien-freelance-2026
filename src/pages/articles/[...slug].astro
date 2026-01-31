@@ -12,6 +12,7 @@ import PillarCard from '../../components/articles/PillarCard.astro';
 import Callout from '../../components/articles/Callout.astro';
 import KeyPoint from '../../components/articles/KeyPoint.astro';
 import CodeBlock from '../../components/articles/CodeBlock.astro';
+import ArticleNavigation from '../../components/articles/ArticleNavigation.astro';
 import Footer from '../../components/Footer.astro';
 import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
 
@@ -28,6 +29,30 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 
+// Récupérer tous les articles pour la navigation
+const allArticles = await getCollection('articles', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Trier par date décroissante
+const sortedArticles = allArticles.sort((a, b) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+// Trouver l'index de l'article actuel
+const currentIndex = sortedArticles.findIndex(a => a.slug === article.slug);
+
+// Trouver l'article précédent et suivant
+const previousArticle = currentIndex > 0 ? {
+  slug: sortedArticles[currentIndex - 1].slug,
+  title: sortedArticles[currentIndex - 1].data.title
+} : null;
+
+const nextArticle = currentIndex < sortedArticles.length - 1 ? {
+  slug: sortedArticles[currentIndex + 1].slug,
+  title: sortedArticles[currentIndex + 1].data.title
+} : null;
+
 // Render the MDX content
 const { Content, remarkPluginFrontmatter } = await article.render();
 
@@ -41,10 +66,23 @@ function getCategoryLabel(category: string): string {
   return category === 'reflexion' ? 'Réflexion' : 'Analyse';
 }
 
+// Calculer le temps de lecture estimé
+function calculateReadingTime(content: string): number {
+  // Compter les mots (séparés par espaces)
+  const words = content.trim().split(/\s+/).length;
+  // Temps de lecture : 200 mots par minute (moyenne standard)
+  const minutes = Math.ceil(words / 200);
+  return minutes;
+}
+
+// Obtenir le contenu texte brut pour calculer le temps de lecture
+const readingTime = calculateReadingTime(article.body || '');
+
 const siteUrl = 'https://julien-brionne.fr';
 const articleUrl = `${siteUrl}/articles/${article.slug}`;
-const ogImage = article.data.thumbnail ? article.data.thumbnail : undefined;
-const twitterCard = ogImage ? 'summary_large_image' : 'summary';
+// Utiliser l'image OG générée dynamiquement
+const ogImage = `/og/article-${article.slug}.webp`;
+const twitterCard = 'summary_large_image';
 
 // Generate article schema using utility function
 const articleSchema = getArticleSchema(
@@ -83,9 +121,10 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <main>
     <article class="max-w-[1150px] mx-auto px-8 py-20">
       <div class="max-w-3xl mx-auto mb-8">
-        <div class="flex items-center gap-3 mb-6">
+        <div class="flex items-center gap-3 mb-6 flex-wrap">
           <time class="font-mono text-[#C5A070] text-sm">{formatDate(article.data.date)}</time>
           <span class="font-mono text-[9px] text-gray-300">/ {getCategoryLabel(article.data.category)}</span>
+          <span class="font-mono text-[9px] text-gray-400">· ~{readingTime} min de lecture</span>
         </div>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
           {article.data.title}
@@ -102,10 +141,14 @@ const breadcrumbSchema = getBreadcrumbSchema([
         <Content components={{ Section, SectionIntro, ColorBlock, DecisionItem, ClosingBlock, SidebarBox, PillarCard, Callout, KeyPoint, CodeBlock }} />
       </div>
 
-      <div class="max-w-3xl mx-auto mt-16 pt-8 border-t border-black/5">
-        <a href="/articles" class="back-link font-mono text-sm text-gray-500 hover:text-black transition-colors">
-          Retour aux articles
-        </a>
+      <div class="max-w-3xl mx-auto">
+        <ArticleNavigation previousArticle={previousArticle} nextArticle={nextArticle} />
+        
+        <div class="mt-8 pt-8 border-t border-black/5">
+          <a href="/articles" class="back-link font-mono text-sm text-gray-500 hover:text-black transition-colors">
+            Retour aux articles
+          </a>
+        </div>
       </div>
     </article>
     <Footer />

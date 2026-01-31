@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { GA4_MEASUREMENT_ID, GA4_ENABLED } from '../utils/analytics';
+import ReadingProgress from '../components/ReadingProgress.astro';
 
 interface Props {
   title?: string;
@@ -55,6 +56,13 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     
+    <!-- Preload des polices critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" as="style" />
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtY.woff2" as="font" type="font/woff2" crossorigin />
+    
     <!-- SEO Meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -106,6 +114,7 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     )}
   </head>
   <body class="bg-[#FDFCFB] text-gray-900 antialiased relative">
+    <ReadingProgress />
     <div class="relative z-10">
       <slot />
     </div>
