@@ -12,9 +12,12 @@ import PillarCard from '../../components/articles/PillarCard.astro';
 import Callout from '../../components/articles/Callout.astro';
 import KeyPoint from '../../components/articles/KeyPoint.astro';
 import CodeBlock from '../../components/articles/CodeBlock.astro';
+import Tooltip from '../../components/Tooltip.astro';
 import ArticleNavigation from '../../components/articles/ArticleNavigation.astro';
+import ArticleMetadata from '../../components/articles/ArticleMetadata.astro';
 import Footer from '../../components/Footer.astro';
 import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
+import { calculateReadingTime } from '../../utils/articles';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -55,25 +58,6 @@ const nextArticle = currentIndex < sortedArticles.length - 1 ? {
 
 // Render the MDX content
 const { Content, remarkPluginFrontmatter } = await article.render();
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-}
-
-function getCategoryLabel(category: string): string {
-  return category === 'reflexion' ? 'Réflexion' : 'Analyse';
-}
-
-// Calculer le temps de lecture estimé
-function calculateReadingTime(content: string): number {
-  // Compter les mots (séparés par espaces)
-  const words = content.trim().split(/\s+/).length;
-  // Temps de lecture : 200 mots par minute (moyenne standard)
-  const minutes = Math.ceil(words / 200);
-  return minutes;
-}
 
 // Obtenir le contenu texte brut pour calculer le temps de lecture
 const readingTime = calculateReadingTime(article.body || '');
@@ -121,10 +105,13 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <main>
     <article class="max-w-[1150px] mx-auto px-8 py-20">
       <div class="max-w-3xl mx-auto mb-8">
-        <div class="flex items-center gap-3 mb-6 flex-wrap">
-          <time class="font-mono text-[#C5A070] text-sm">{formatDate(article.data.date)}</time>
-          <span class="font-mono text-[9px] text-gray-300">/ {getCategoryLabel(article.data.category)}</span>
-          <span class="font-mono text-[9px] text-gray-400">· ~{readingTime} min de lecture</span>
+        <div class="mb-6">
+          <ArticleMetadata 
+            date={article.data.date}
+            category={article.data.category}
+            readingTime={readingTime}
+            variant="page"
+          />
         </div>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
           {article.data.title}
@@ -138,7 +125,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
       </div>
 
       <div class="pt-8 border-t border-black/5">
-        <Content components={{ Section, SectionIntro, ColorBlock, DecisionItem, ClosingBlock, SidebarBox, PillarCard, Callout, KeyPoint, CodeBlock }} />
+        <Content components={{ Section, SectionIntro, ColorBlock, DecisionItem, ClosingBlock, SidebarBox, PillarCard, Callout, KeyPoint, CodeBlock, Tooltip }} />
       </div>
 
       <div class="max-w-3xl mx-auto">

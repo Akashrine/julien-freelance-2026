@@ -1,6 +1,8 @@
 import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
 import sharp from 'sharp';
+import { formatDate } from '../../utils/date';
+import { getCategoryLabel } from '../../utils/articles';
 
 // Configuration des couleurs du site
 const colors = {
@@ -55,17 +57,6 @@ export async function getStaticPaths() {
   return paths;
 }
 
-// Fonction pour formater la date en français
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-}
-
-// Fonction pour obtenir le label de catégorie
-function getCategoryLabel(category: string): string {
-  return category === 'reflexion' ? 'Réflexion' : 'Analyse';
-}
 
 // Fonction pour échapper le texte pour SVG
 function escapeXml(text: string): string {

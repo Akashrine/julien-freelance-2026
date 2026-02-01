@@ -7,7 +7,7 @@ interface Props {
 const { code, className = '' } = Astro.props;
 ---
 
-<div class={`bg-[#1A1A1A] text-[#D4D4D4] p-10 rounded-xl font-mono text-sm leading-relaxed my-14 overflow-x-auto reveal ${className}`} style="font-family: 'JetBrains Mono', monospace;">
+<div class={`bg-[#1A1A1A] text-[#D4D4D4] p-10 rounded-xl font-mono text-sm leading-relaxed my-14 overflow-x-auto reveal ${className}`}>
   {code ? (
     <div set:html={code} />
   ) : (

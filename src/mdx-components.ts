@@ -9,6 +9,7 @@ import PillarCard from './components/articles/PillarCard.astro';
 import Callout from './components/articles/Callout.astro';
 import KeyPoint from './components/articles/KeyPoint.astro';
 import CodeBlock from './components/articles/CodeBlock.astro';
+import Tooltip from './components/Tooltip.astro';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
 	return {
@@ -22,6 +23,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 		Callout,
 		KeyPoint,
 		CodeBlock,
+		Tooltip,
 		...components,
 	};
 }
