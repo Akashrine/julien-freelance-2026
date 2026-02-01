@@ -1,0 +1,91 @@
+---
+interface Props {
+  text: string;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  className?: string;
+}
+
+const { text, position = 'top', className = '' } = Astro.props;
+---
+
+<span class={`tooltip-wrapper inline-block ${className}`} data-tooltip={text} data-position={position}>
+  <slot />
+</span>
+
+<style>
+  .tooltip-wrapper {
+    position: relative;
+    cursor: help;
+  }
+
+  .tooltip-wrapper::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: #1A1A1A;
+    color: #FDFCFB;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1000;
+    max-width: 200px;
+    white-space: normal;
+    text-align: left;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Position top */
+  .tooltip-wrapper[data-position="top"]::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    margin-bottom: 8px;
+  }
+
+  /* Position bottom */
+  .tooltip-wrapper[data-position="bottom"]::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    margin-top: 8px;
+  }
+
+  /* Position left */
+  .tooltip-wrapper[data-position="left"]::after {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+    margin-right: 8px;
+  }
+
+  /* Position right */
+  .tooltip-wrapper[data-position="right"]::after {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(4px);
+    margin-left: 8px;
+  }
+
+  /* Show on hover */
+  .tooltip-wrapper:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .tooltip-wrapper[data-position="bottom"]:hover::after {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .tooltip-wrapper[data-position="left"]:hover::after {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .tooltip-wrapper[data-position="right"]:hover::after {
+    transform: translateY(-50%) translateX(0);
+  }
+</style>

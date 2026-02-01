@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import ArticleMetadata from './articles/ArticleMetadata.astro';
 
 const articles = await getCollection('articles', ({ data }) => {
   return data.draft !== true;
@@ -9,24 +10,6 @@ const articles = await getCollection('articles', ({ data }) => {
 const sortedArticles = articles.sort((a, b) => {
   return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
 });
-
-// Formater la date en français
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
-}
-
-function getCategoryLabel(category: string): string {
-  return category === 'reflexion' ? 'Réflexion' : 'Analyse';
-}
-
-// Calculer le temps de lecture estimé
-function calculateReadingTime(content: string): number {
-  const words = content.trim().split(/\s+/).length;
-  const minutes = Math.ceil(words / 200);
-  return minutes;
-}
 
 // Couleurs pour les vignettes abstraites (alternance)
 const thumbnailColors = [
@@ -56,10 +39,13 @@ const thumbnailColors = [
               <div class={`flex-container flex flex-col md:flex-row items-center gap-12 md:gap-20 ${isEven ? 'md:flex-row-reverse' : ''}`}>
                 <div class="flex-1 relative">
                   <span class="index-number">{String(index + 1).padStart(2, '0')}</span>
-                  <div class="flex items-center gap-3 mb-4 flex-wrap">
-                    <time class="font-mono text-[#C5A070] block">{formatDate(article.data.date)}</time>
-                    <span class="font-mono text-[9px] text-gray-300">/ {getCategoryLabel(article.data.category)}</span>
-                    <span class="font-mono text-[9px] text-gray-400">· ~{calculateReadingTime(article.body || '')} min</span>
+                  <div class="mb-4">
+                    <ArticleMetadata 
+                      date={article.data.date}
+                      category={article.data.category}
+                      content={article.body}
+                      variant="list"
+                    />
                   </div>
                   <h2 class="article-title-hover text-3xl md:text-4xl lg:text-5xl mb-6 font-serif group-hover:italic transition-all duration-500 leading-tight">
                     {article.data.title}
@@ -97,8 +83,8 @@ const thumbnailColors = [
 <script>
   // Logique de filtrage
   document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll<HTMLElement>('.filter-btn');
-    const articles = document.querySelectorAll<HTMLElement>('.article-item');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const articles = document.querySelectorAll('.article-item');
 
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {

@@ -43,9 +43,9 @@ const { currentPage = 'home' } = Astro.props;
 <script>
   // Mobile menu toggle
   document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('mobile-menu-button') as HTMLButtonElement;
-    const menu = document.getElementById('mobile-menu') as HTMLElement;
-    const firstLink = menu?.querySelector('a') as HTMLAnchorElement;
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const firstLink = menu?.querySelector('a');
     
     if (button && menu) {
       button.addEventListener('click', () => {
