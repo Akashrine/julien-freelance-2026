@@ -63,8 +63,10 @@ const thumbnailColors = [
                     {article.data.thumbnail ? (
                       <img 
                         src={article.data.thumbnail} 
-                        alt="" 
+                        alt={`Illustration de l'article : ${article.data.title}`}
                         loading="lazy"
+                        width="400"
+                        height="350"
                         class="w-full h-full object-cover opacity-80 mix-blend-multiply"
                       />
                     ) : null}

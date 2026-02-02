@@ -64,6 +64,8 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <!-- SEO Meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={finalOgUrl} />
     
     <!-- Open Graph -->
     <meta property="og:title" content={finalOgTitle} />
