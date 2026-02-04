@@ -21,19 +21,19 @@ const staticPages: Record<string, { title: string; description: string }> = {
   },
   'page-approche': {
     title: 'Leadership opérationnel',
-    description: "Une approche d'intervention, pas une méthode. Restaurer la clarté et la capacité de décision là où le système est devenu trop bruyant.",
+    description: "Une approche d'intervention, pas une méthode. Fermer ce qui devrait l'être. Participer aux arbitrages, assumer les décisions impopulaires.",
   },
   'page-situations': {
     title: 'Reconnaître le moment critique',
-    description: "Quand l'effort augmente plus vite que l'impact, quand chaque avancée coûte deux fois plus d'énergie. Symptôme de saturation du système décisionnel.",
+    description: "Quand l'effort augmente plus vite que l'impact et que personne n'ose plus trancher. Fermer les options, trancher les arbitrages.",
   },
   'page-diagnostic': {
     title: 'Une pause pour vérifier le cap',
-    description: 'Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels.',
+    description: 'Intervention courte pour mettre sur la table les tensions et trancher en connaissance de cause. Aucune garantie de suite.',
   },
   'page-articles': {
     title: "L'écrit comme outil de lecture",
-    description: "Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques.",
+    description: "Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques.",
   },
 };
 
