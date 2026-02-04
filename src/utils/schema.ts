@@ -26,7 +26,7 @@ export function getPersonSchema(): object {
     name: AUTHOR_NAME,
     jobTitle: AUTHOR_JOB_TITLE,
     url: SITE_URL,
-    description: 'Product Lead indépendant. J\'interviens auprès de fondateurs et Heads of Product (Series A/B) quand le système produit a grandi plus vite que sa capacité à trancher.',
+    description: 'Product Lead indépendant. J\'interviens auprès de fondateurs et Heads of Product (Series A/B) quand le système produit n\'arrive plus à trancher : je participe aux arbitrages, j\'assume les décisions impopulaires, je ferme les options.',
     sameAs: [
       'https://www.linkedin.com/in/julienbrionne',
       'https://substack.com/@productcopilot',
@@ -44,7 +44,7 @@ export function getWebsiteSchema(): object {
     '@type': 'WebSite',
     name: 'Julien Brionne',
     url: SITE_URL,
-    description: 'Réflexions et analyses de cas sur le produit, la décision et l\'organisation.',
+    description: 'Intervention produit quand l\'organisation n\'arrive plus à décider. Réflexions, situations de terrain, diagnostic. Trancher, fermer, assumer.',
     author: {
       '@type': 'Person',
       name: AUTHOR_NAME,

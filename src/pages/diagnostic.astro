@@ -14,8 +14,8 @@ const pageUrl = `${siteUrl}/diagnostic`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
   'Diagnostic de situation',
-  'Une pause pour vérifier le cap. Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels.',
-  ['diagnostic de situation produit', 'blocages structurels', 'organisation produit']
+  'Intervention courte (2–3 semaines) pour identifier pourquoi les décisions ne tiennent pas. Mettre sur la table les tensions que personne n\'osait nommer, trancher en connaissance de cause. Aucune garantie de suite.',
+  ['diagnostic de situation produit', 'trancher', 'décisions qui ne tiennent pas']
 );
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
@@ -25,15 +25,15 @@ const breadcrumbSchema = getBreadcrumbSchema([
 
 <Layout
   title="Diagnostic de situation — Julien Brionne"
-  description="Une pause pour vérifier le cap. Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels."
+  description="Intervention courte (2–3 semaines) pour identifier pourquoi les décisions ne tiennent pas. Mettre sur la table les tensions que personne n'osait nommer, trancher en connaissance de cause. Aucune garantie de suite."
   ogTitle="Une pause pour vérifier le cap"
-  ogDescription="Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels."
+  ogDescription="Intervention courte pour mettre sur la table les tensions et trancher en connaissance de cause. Aucune garantie de suite."
   ogType="website"
   ogImage="/og/page-diagnostic.webp"
   ogUrl="https://julien-brionne.fr/diagnostic"
   twitterCard="summary_large_image"
   twitterTitle="Une pause pour vérifier le cap"
-  twitterDescription="Intervention courte pour comprendre ce qui se passe réellement dans votre organisation produit. Regard extérieur sur les blocages structurels."
+  twitterDescription="Intervention courte pour mettre sur la table les tensions et trancher en connaissance de cause. Aucune garantie de suite."
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >

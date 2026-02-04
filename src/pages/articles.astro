@@ -11,8 +11,8 @@ const pageUrl = `${siteUrl}/articles`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
   'Articles',
-  'Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d\'agir, pas des guides méthodologiques.',
-  ['réflexions produit', 'analyses de cas', 'décision produit']
+  'Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d\'agir, pas des guides méthodologiques.',
+  ['réflexions produit', 'analyses de cas', 'décision produit', 'trancher']
 );
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
@@ -22,15 +22,15 @@ const breadcrumbSchema = getBreadcrumbSchema([
 
 <Layout
   title="Articles — Julien Brionne"
-  description="Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques."
+  description="Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques."
   ogTitle="L'écrit comme outil de lecture"
-  ogDescription="Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques."
+  ogDescription="Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques."
   ogType="website"
   ogImage="/og/page-articles.webp"
   ogUrl="https://julien-brionne.fr/articles"
   twitterCard="summary_large_image"
   twitterTitle="L'écrit comme outil de lecture"
-  twitterDescription="Réflexions et analyses de cas. Des textes pour clarifier le raisonnement avant d'agir, pas des guides méthodologiques."
+  twitterDescription="Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques."
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
