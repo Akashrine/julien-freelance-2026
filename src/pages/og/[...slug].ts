@@ -39,6 +39,10 @@ const staticPages: Record<string, { title: string; description: string }> = {
     title: '4 scale-ups structurées',
     description: 'Heetch (4 ans), Waalaxy, Wizville, Back Market. Ce que j\'ai fait, les résultats chiffrés.',
   },
+  'page-contact': {
+    title: 'Discuter d\'une situation produit',
+    description: '30 minutes pour exposer ta situation. Sans engagement. On voit si j\'interviens — ou pas.',
+  },
 };
 
 export async function getStaticPaths() {

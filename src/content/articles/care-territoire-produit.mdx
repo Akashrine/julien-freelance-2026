@@ -1,0 +1,114 @@
+---
+title: "Le care comme territoire produit : pourquoi ton support client est un problème de PM"
+date: "2026-04-11"
+category: "reflexion"
+excerpt: "Le care est le dernier sujet à recevoir un PM dédié. C'est aussi celui qui coûte le plus cher quand personne ne le pilote. Retour terrain."
+draft: false
+---
+
+<SectionIntro>
+  <p>Dans ta scale-up, le care est géré par les ops. Les agents traitent des tickets. Le Head of Ops optimise les SLAs. Quand ça déborde, on recrute. Quand ça coûte trop cher, on automatise.</p>
+  <p>Personne dans l'équipe produit ne touche au care. Pourquoi ? Parce que le care, "c'est de l'opérationnel". C'est du volume. C'est du support. Ce n'est pas du produit.</p>
+  <p>C'est la pire erreur de structuration que font les scale-ups en croissance.</p>
+</SectionIntro>
+
+<ColorBlock bgColor="blue" label="L'ESSENTIEL À RETENIR" title="Le care est un territoire produit. Pas un centre de coûts.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Le <strong>care</strong> est le point de contact le plus fréquent entre ton entreprise et tes utilisateurs. Chaque ticket est un signal produit. Chaque workaround d'agent est un besoin non couvert par le produit. Chaque escalade est un arbitrage que personne n'a pris. Tant que le care n'a pas de <strong>PM dédié</strong>, ces signaux se perdent. Et l'entreprise paie — en temps humain, en insatisfaction client, en turnover ops.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="LE CONSTAT" title="Pourquoi le care est le dernier sujet à recevoir un PM." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>J'ai traversé 4 scale-ups. Le pattern est identique partout.</p>
+    <p>Quand l'équipe produit grandit, les premiers PMs sont affectés au produit client : l'app, le checkout, le search, l'onboarding. Le produit qui génère du revenu. Le produit visible.</p>
+    <p>Le care — les outils internes, la console agent, les workflows de traitement, les règles d'escalade — reste sans owner. Il vit dans un angle mort entre les ops (qui l'utilisent) et l'engineering (qui le maintient à contrecœur).</p>
+    <p>Résultat : le care absorbe tout ce que le produit n'a pas su trancher. Chaque edge case non géré dans le produit devient une règle manuelle dans la console agent. Chaque exception non prévue dans le workflow devient un copier-coller entre deux écrans.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="CE QUE ÇA COÛTE">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Du temps humain, à grande échelle.">
+      Un agent qui passe 12 minutes sur un ticket au lieu de 4, ça ne se voit pas sur un cas isolé. Sur 500 tickets/jour, c'est 70 heures/jour de temps perdu. L'équivalent de 9 agents à temps plein qui ne font que compenser les manques de l'outil.
+    </DecisionItem>
+    <DecisionItem number="02" title="Des signaux produit ignorés.">
+      Le care reçoit les plaintes avant tout le monde. Il voit les frictions du produit en temps réel. Mais sans PM pour capter ces signaux et les transformer en specs, le care remonte des tickets qui atterrissent en bas du backlog. Le produit client évolue sans tenir compte de ce que le support observe chaque jour.
+    </DecisionItem>
+    <DecisionItem number="03" title="Un turnover ops silencieux.">
+      Les agents care sont les premiers à subir un outil mal pensé. Ils le subissent 8 heures par jour. Quand l'outil est pénible, les bons partent. Restent ceux qui n'ont pas d'alternative. La qualité du care se dégrade. Le NPS baisse. Et personne ne fait le lien entre le turnover et l'outil.
+    </DecisionItem>
+  </div>
+</Section>
+
+<blockquote class="reveal">
+  Le care n'est pas un centre de coûts. C'est le proxy des décisions non prises par le produit.
+</blockquote>
+
+<ColorBlock bgColor="clay" label="LE TERRAIN" title="Ce que j'ai fait chez Heetch.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Quand je suis arrivé chez Heetch, le care n'avait pas de PM. La console agent datait de 2017. Les agents utilisaient 4 outils différents pour traiter un ticket. Personne dans l'équipe produit ne connaissait le quotidien d'un agent.</p>
+    <p>J'ai créé le <strong>Care Product Team</strong> from scratch. Voici ce que ça a impliqué.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="ÉTAPE 1" title="Comprendre le terrain avant de décider.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Première semaine : shadow. Assis à côté des agents à Casablanca, j'ai observé comment ils traitaient les tickets. Pas en réunion. Pas via un rapport. En regardant leurs écrans.</p>
+    <p>Ce que j'ai vu : des agents qui ouvraient 4 onglets pour traiter un litige. Qui copiaient un ID de trajet dans un outil, puis les coordonnées du chauffeur dans un autre, puis le montant du remboursement dans un troisième. Chaque ticket nécessitait entre 8 et 15 clics. La plupart des clics étaient de la navigation, pas du traitement.</p>
+    <p>Le problème n'était pas les agents. Le problème était l'outil.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="ÉTAPE 2" title="Refondre par workflow, pas par écran.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>L'erreur classique : redesigner l'interface de la console. Mettre de jolies couleurs. Réorganiser les menus. Ça ne résout rien si le workflow sous-jacent est cassé.</p>
+    <p>J'ai identifié les 3 workflows qui couvraient 80% du volume : litiges passager, litiges chauffeur, et changements de statut de compte. Pour chaque workflow, j'ai reconstruit le parcours agent de zéro. Un écran = une décision. Pas de navigation entre onglets. Pas de copier-coller.</p>
+    <p>L'objectif n'était pas de faire un bel outil. L'objectif était de réduire le nombre de décisions par ticket.</p>
+  </div>
+</Section>
+
+<Callout title="Résultats — Heetch, 6 mois" borderColor="sand">
+  <p>Efficacité Care : +8%. NPS drivers : de 3.5 à 4.1. Temps moyen de traitement litige : -35%. Ces résultats ne viennent pas d'une optimisation technique. Ils viennent du fait qu'un PM a pris le care comme un vrai territoire produit, avec des utilisateurs (les agents), des métriques, et des arbitrages.</p>
+</Callout>
+
+<Section maxWidth="3xl" label="LE CADRE" title="Comment structurer le care comme territoire produit." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Ce que j'ai appris en structurant le care chez Heetch — puis en observant le même pattern chez Back Market — tient en quatre principes.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Un PM dédié, pas un PM à temps partiel.">
+      Le care n'est pas un side project. C'est un produit interne avec des utilisateurs, des contraintes, et des arbitrages quotidiens. Un PM qui gère le care à 20% de son temps ne fait pas du produit care. Il fait du dispatching de tickets engineering. Dès que le volume care dépasse 200 tickets/jour, un PM à temps plein est nécessaire.
+    </DecisionItem>
+    <DecisionItem number="02" title="Les agents sont tes utilisateurs.">
+      Le PM care fait de la discovery comme n'importe quel PM. Interviews utilisateurs (les agents). Tests utilisateurs (observation en shadow). Métriques d'usage (temps par ticket, taux de navigation, actions les plus fréquentes). La différence : les utilisateurs sont internes. Les contraintes sont les mêmes.
+    </DecisionItem>
+    <DecisionItem number="03" title="Le care est une source de specs, pas une source de tickets.">
+      Chaque pattern récurrent dans les tickets care est un signal produit. "Les clients demandent comment annuler" → le parcours d'annulation n'est pas clair. "Les agents escaladent les remboursements au-dessus de 50€" → la règle de remboursement n'est pas automatisée. Le PM care traduit ces patterns en specs pour l'équipe produit client. C'est le lien entre le terrain et la roadmap.
+    </DecisionItem>
+    <DecisionItem number="04" title="Automatiser les décisions, pas les interactions.">
+      L'erreur classique : automatiser le contact client (chatbots, FAQ dynamiques, réponses pré-écrites). Ça dégrade l'expérience sans réduire le vrai coût. Ce qu'il faut automatiser, ce sont les <strong>décisions</strong> que les agents prennent de façon répétitive. Si un agent applique la même règle 200 fois par jour (rembourser si le retard dépasse 15 minutes), cette règle doit être dans le code, pas dans la tête de l'agent.
+    </DecisionItem>
+  </div>
+</Section>
+
+<ColorBlock bgColor="blue" label="POURQUOI PERSONNE NE LE FAIT" title="Le care n'a pas de sponsor naturel.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Le CPO veut des features client. Le CTO veut réduire la dette technique. Le COO veut baisser les coûts ops. Personne ne dit : "investissons dans l'outillage care comme on investit dans le produit client."</p>
+    <p>C'est pour ça que le care est systématiquement le dernier territoire à recevoir un <a href="/articles/ownership-produit" class="underline hover:text-gray-700 transition-colors">PM owner</a>. Et c'est pour ça que les scale-ups finissent par dépenser 3x plus en compensation humaine qu'elles n'auraient dépensé en structuration produit du care.</p>
+    <p>En français, aucun concurrent ne couvre ce sujet. Les articles parlent de "customer success" ou de "support client". Personne ne parle du care comme d'un <strong>territoire produit</strong> avec des specs, une roadmap, et un PM. C'est un angle mort de l'industrie. Et c'est l'angle mort le plus cher.</p>
+  </div>
+</ColorBlock>
+
+<section class="max-w-2xl mx-auto mb-12 reveal">
+  <p class="text-sm text-gray-500 font-light italic text-center">
+    Tu vis ça ? Voir <a href="/approche" class="underline hover:text-gray-700 transition-colors">ce que je fais concrètement</a>.
+  </p>
+</section>
+
+<ClosingBlock title="Le care est le dernier territoire. C'est aussi le plus rentable.">
+  <p class="text-xl text-gray-500 font-light leading-relaxed italic">Chaque scale-up finit par réaliser que le care est un produit. La question est : quand ? Avant que les agents partent et que le NPS s'effondre ? Ou après, quand la dette est devenue trop lourde pour être résorbée en un trimestre ? Le care n'attend pas la roadmap. Il absorbe tout ce que le produit n'a pas tranché. La seule question : qui en est owner ?</p>
+</ClosingBlock>
