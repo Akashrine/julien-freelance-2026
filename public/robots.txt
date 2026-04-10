@@ -3,6 +3,7 @@ Allow: /
 Allow: /articles/
 Allow: /approche
 Allow: /references
+Allow: /contact
 
 Disallow: /api/
 Disallow: /_astro/

@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+const siteUrl = 'https://julien-brionne.fr';
+const webPageSchema = getWebPageSchema(
+  `${siteUrl}/contact`,
+  'Contact — Julien Brionne',
+  'Discuter d\'une situation produit. 30 minutes, sans engagement. Julien Brionne, Senior PM Freelance.',
+  ['contact', 'prise de rendez-vous', 'PM freelance']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.contact,
+]);
+---
+
+<Layout
+  title="Contact — Julien Brionne, Senior PM Freelance"
+  description="Discuter d'une situation produit. 30 minutes, sans engagement. Tu exposes ton contexte, on voit si j'interviens — ou pas."
+  ogTitle="Contact — Julien Brionne"
+  ogDescription="30 minutes pour exposer ta situation produit. Sans engagement."
+  ogType="website"
+  ogImage="/og/page-contact.webp"
+  ogUrl="https://julien-brionne.fr/contact"
+  twitterCard="summary_large_image"
+  twitterTitle="Contact — Julien Brionne"
+  twitterDescription="30 minutes pour exposer ta situation produit. Sans engagement."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
+  <Navbar />
+  <main>
+    <section class="max-w-[1150px] mx-auto px-8 pt-32 pb-16">
+      <div class="reveal">
+        <div class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-8">CONTACT</div>
+        <h1 class="text-5xl md:text-7xl font-serif mb-8">
+          Discuter d'une <span class="italic text-gray-600">situation produit.</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 font-light leading-relaxed max-w-2xl mb-4">
+          Tu exposes ton contexte. Aucun engagement. On voit si j'interviens — ou pas.
+        </p>
+        <p class="text-lg text-gray-500 font-light max-w-2xl">
+          30 minutes. Pas de pitch. Pas de deck. On parle de ta situation, de ce qui coince, et de ce qui a déjà été tenté.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-[1150px] mx-auto px-8 pb-16">
+      <div class="reveal grid md:grid-cols-3 gap-12">
+        <!-- Lemcal embed -->
+        <div class="md:col-span-2">
+          <div class="border border-gray-200 rounded-lg overflow-hidden bg-white" style="min-height: 600px;">
+            <iframe
+              src="https://app.lemcal.com/@julienbrionne/decouverte"
+              width="100%"
+              height="600"
+              frameborder="0"
+              title="Réserver un créneau avec Julien Brionne"
+              loading="lazy"
+              style="border: none;"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Coordonnées -->
+        <div class="space-y-10">
+          <div>
+            <h2 class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-4">QUI</h2>
+            <p class="text-lg font-medium">Julien Brionne</p>
+            <p class="text-gray-500 font-light">Senior PM Freelance</p>
+            <p class="text-gray-500 font-light">10+ ans · 4 scale-ups structurées</p>
+          </div>
+
+          <div>
+            <h2 class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-4">OÙ</h2>
+            <p class="text-gray-500 font-light">Paris, France</p>
+            <p class="text-gray-500 font-light">Intervention remote ou sur site</p>
+          </div>
+
+          <div>
+            <h2 class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-4">LIENS</h2>
+            <div class="space-y-2">
+              <a href="https://www.linkedin.com/in/julienbrionne" target="_blank" rel="noopener noreferrer" class="block text-gray-600 hover:text-black transition-colors font-light">LinkedIn</a>
+              <a href="https://produitsansfiltre.substack.com" target="_blank" rel="noopener noreferrer" class="block text-gray-600 hover:text-black transition-colors font-light">Newsletter</a>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-gray-200">
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              Pas de formulaire. Pas de "on vous recontacte". Tu réserves un créneau, on se parle.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

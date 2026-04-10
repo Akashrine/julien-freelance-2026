@@ -1,0 +1,136 @@
+---
+title: "Aligner Product, Ops et Engineering : le triptyque que personne ne pilote"
+date: "2026-04-11"
+category: "reflexion"
+excerpt: "Product décide. Engineering construit. Ops subit. Ce triangle dysfonctionnel ralentit chaque scale-up. Voici comment le casser."
+draft: false
+---
+
+<SectionIntro>
+  <p>Product définit la roadmap. Engineering développe. Ops exécute. Sur le papier, c'est clair. En pratique, c'est un désastre silencieux.</p>
+  <p>Product priorise sans parler aux ops. Engineering livre des features que les ops ne savent pas utiliser. Les ops remontent des problèmes que personne n'écoute. Chaque équipe optimise son propre périmètre. Le système global se dégrade.</p>
+  <p>Ce n'est pas un problème de personnes. C'est un problème de <strong>structure</strong>.</p>
+</SectionIntro>
+
+<ColorBlock bgColor="blue" label="L'ESSENTIEL À RETENIR" title="Le désalignement Product-Ops-Engineering est structurel.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Dans une scale-up en croissance, <strong>Product, Ops et Engineering</strong> divergent naturellement. Pas par incompétence. Parce que leurs incentives, leurs horizons de temps et leurs métriques ne sont pas les mêmes. L'alignement ne vient pas d'une réunion mensuelle. Il vient d'un <strong>cadre de décision partagé</strong> qui force les arbitrages au bon niveau.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="LE DIAGNOSTIC" title="Comment le désalignement s'installe." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>À 30 personnes, tout le monde se parle. Le PM déjeune avec le lead dev. Les ops remontent un bug en criant dans l'open space. Les décisions se prennent en temps réel, de façon informelle.</p>
+    <p>À 100 personnes, ces canaux informels disparaissent. Et rien ne les remplace.</p>
+    <p>Product adopte un framework de priorisation (RICE, ICE, whatever). Engineering passe en squads avec des sprints. Ops met en place des SLAs et des dashboards. Chaque équipe se professionnalise — dans son silo.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="TROIS FRACTURES">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="La fracture Product-Ops.">
+      Product priorise les features qui servent l'acquisition et la conversion. Les outils internes, le backoffice, les workflows ops atterrissent en bas de la roadmap. Les ops compensent en créant des workarounds, des Google Sheets, des process manuels. Le produit interne diverge du produit externe. Personne ne mesure le coût.
+    </DecisionItem>
+    <DecisionItem number="02" title="La fracture Product-Engineering.">
+      Product spécifie. Engineering implémente. Mais le PM ne comprend pas les contraintes techniques. L'engineering ne comprend pas les contraintes métier. Résultat : des specs qui ne tiennent pas la prod. Des estimations qui explosent. Des features livrées qui ne résolvent pas le vrai problème. C'est le pattern classique de la "feature factory" : on livre, mais on ne résout rien.
+    </DecisionItem>
+    <DecisionItem number="03" title="La fracture Ops-Engineering.">
+      Les ops remontent des bugs et des demandes d'amélioration. Engineering les traite comme des tickets de support, pas comme des signaux produit. Les bugs ops sont rarement priorisés face aux features client. La dette opérationnelle s'accumule. Un jour, ça casse en prod et tout le monde découvre que le système tenait avec du scotch depuis 8 mois.
+    </DecisionItem>
+  </div>
+</Section>
+
+<blockquote class="reveal">
+  Le désalignement ne se voit pas dans les dashboards. Il se voit dans les workarounds.
+</blockquote>
+
+<ColorBlock bgColor="clay" label="LA CAUSE RACINE" title="Trois incentives, trois horizons, zéro arbitrage commun.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p><strong>Product</strong> raisonne en quarters. Son incentive : les métriques produit (activation, rétention, revenue). Son horizon : 3 à 6 mois.</p>
+    <p><strong>Engineering</strong> raisonne en sprints. Son incentive : la vélocité, la qualité du code, la dette technique. Son horizon : 2 à 4 semaines.</p>
+    <p><strong>Ops</strong> raisonne en temps réel. Son incentive : le volume traité, le SLA, la satisfaction client. Son horizon : la journée.</p>
+    <p>Personne n'a tort. Mais personne ne regarde dans la même direction. Et il n'existe aucun mécanisme pour trancher quand ces trois logiques entrent en conflit.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="LE CADRE" title="Comment poser l'alignement." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>L'alignement ne se décrète pas. Il se construit sur trois mécanismes concrets.</p>
+  </div>
+</Section>
+
+<ColorBlock bgColor="blue" label="MÉCANISME 1" title="Un objectif commun, pas trois objectifs parallèles.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Choisis un objectif que les trois équipes partagent. Pas un OKR product. Pas un KPI ops. Un objectif qui ne tient que si les trois bougent ensemble.</p>
+    <p>Exemple : "Réduire le temps de résolution d'un litige de 48h à 12h." Ça demande du produit (refondre le workflow), de l'engineering (automatiser les étapes répétitives), et des ops (changer le process de traitement). Si une seule équipe bouge, rien ne change.</p>
+    <p>Cet objectif commun force les arbitrages. Quand le PM hésite entre une feature client et une amélioration du workflow litige, l'objectif tranche. Quand l'engineering hésite entre refacto et automatisation ops, l'objectif tranche.</p>
+  </div>
+</ColorBlock>
+
+<ColorBlock bgColor="clay" label="MÉCANISME 2" title="Un rituel de friction, pas de synchronisation.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Les réunions de synchronisation ne servent à rien. Chacun présente son avancement. Personne ne tranche. Tout le monde repart avec ses propres priorités.</p>
+    <p>Remplace ça par un rituel de friction. Une fois par semaine, 30 minutes. Trois questions seulement :</p>
+    <p><em>"Quel sujet est bloqué entre deux équipes ?"</em></p>
+    <p><em>"Quel arbitrage attend une décision ?"</em></p>
+    <p><em>"Qu'est-ce que les ops contournent cette semaine que le produit devrait résoudre ?"</em></p>
+    <p>Ce rituel expose les tensions au lieu de les masquer. C'est inconfortable. C'est le but.</p>
+  </div>
+</ColorBlock>
+
+<Callout title="Terrain — Back Market" borderColor="sand">
+  <p>L'équipe Care Product et l'engineering Care partageaient un rituel hebdomadaire de 20 minutes focalisé sur les frictions ops-produit. En 3 mois, le backlog de demandes ops bloquées est passé de 47 tickets à 12. Non pas parce qu'on a traité tout le backlog, mais parce qu'on a arrêté de créer des tickets pour des sujets qui se réglaient en conversation directe.</p>
+</Callout>
+
+<ColorBlock bgColor="blue" label="MÉCANISME 3" title="Un PM à l'intersection.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Le rôle le plus sous-estimé dans une scale-up, c'est le PM qui fait le lien entre Product, Ops et Engineering. Pas un PM "interne" relégué aux sujets que personne ne veut. Un PM senior, avec du poids dans les arbitrages, qui comprend les trois logiques.</p>
+    <p>Ce PM traduit les besoins ops en specs engineering. Il traduit les contraintes engineering en renoncements produit. Il porte les sujets transverses qui n'appartiennent à aucun périmètre — le <a href="/articles/backoffice-legacy-scale-up" class="underline hover:text-gray-700 transition-colors">backoffice legacy</a>, les outils internes, les workflows d'exception.</p>
+    <p>Sans ce rôle, les sujets transverses vivent entre les équipes sans <a href="/articles/ownership-produit" class="underline hover:text-gray-700 transition-colors">ownership clair</a>. C'est exactement là que la coordination explose.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="RÉSULTATS" title="Ce que ça change concrètement.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>L'alignement Product-Ops-Engineering ne produit pas de résultats spectaculaires en semaine 1. Il produit des résultats cumulatifs sur 3 mois.</p>
+    <p>Les signaux que j'observe quand le triptyque commence à fonctionner :</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Les workarounds ops diminuent.">
+      Les ops arrêtent de créer des Google Sheets parallèles. Le produit absorbe les besoins que les ops compensaient manuellement. C'est le signal le plus fiable.
+    </DecisionItem>
+    <DecisionItem number="02" title="Les estimations engineering se stabilisent.">
+      Quand le PM comprend les contraintes techniques et que l'engineering comprend le contexte métier, les estimations explosent moins. Les sprints tiennent.
+    </DecisionItem>
+    <DecisionItem number="03" title="Les bugs ops sont priorisés comme des bugs produit.">
+      Plus de distinction artificielle entre "bug client" et "bug interne". Un bug qui fait perdre 2 heures/jour aux ops est traité avec la même urgence qu'un bug qui touche 1% des utilisateurs.
+    </DecisionItem>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="ERREURS" title="Ce qui ne marche pas.">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Créer un rôle de 'coordination' sans autorité.">
+      Un Project Manager ou un Program Manager qui "facilite" sans décider ne résout rien. Le problème n'est pas la coordination. C'est l'absence d'arbitrage. Il faut quelqu'un qui tranche, pas quelqu'un qui organise des réunions.
+    </DecisionItem>
+    <DecisionItem number="02" title="Multiplier les rituels sans réduire les réunions.">
+      Ajouter un weekly Product-Ops sans supprimer le weekly Product et le weekly Ops, c'est ajouter du temps de réunion sans supprimer du temps de coordination. Avant d'ajouter un rituel, supprime celui qu'il remplace.
+    </DecisionItem>
+    <DecisionItem number="03" title="Aligner les métriques sans aligner les incentives.">
+      Mettre le même dashboard devant trois équipes ne crée pas l'alignement. Si le PM est évalué sur le nombre de features livrées et que les ops sont évaluées sur le SLA, le dashboard ne changera rien au comportement.
+    </DecisionItem>
+  </div>
+</Section>
+
+<section class="max-w-2xl mx-auto mb-12 reveal">
+  <p class="text-sm text-gray-500 font-light italic text-center">
+    Tu vis ça ? Voir <a href="/approche" class="underline hover:text-gray-700 transition-colors">ce que je fais concrètement</a>.
+  </p>
+</section>
+
+<ClosingBlock title="L'alignement n'est pas un état. C'est une discipline.">
+  <p class="text-xl text-gray-500 font-light leading-relaxed italic">Product, Ops et Engineering divergent naturellement. C'est normal. Ce qui n'est pas normal, c'est de ne pas avoir de mécanisme pour recoller les morceaux. Un objectif commun. Un rituel de friction. Un PM à l'intersection. Trois leviers simples. Le reste, c'est de l'exécution.</p>
+</ClosingBlock>
