@@ -52,18 +52,27 @@ const breadcrumbSchema = getBreadcrumbSchema([
 
     <section class="max-w-[1150px] mx-auto px-8 pb-16">
       <div class="reveal grid md:grid-cols-3 gap-12">
-        <!-- Lemcal embed -->
-        <div class="md:col-span-2">
-          <div class="border border-gray-200 rounded-lg overflow-hidden bg-white" style="min-height: 600px;">
-            <iframe
-              src="https://app.lemcal.com/@julienbrionne/decouverte"
-              width="100%"
-              height="600"
-              frameborder="0"
-              title="Réserver un créneau avec Julien Brionne"
-              loading="lazy"
-              style="border: none;"
-            ></iframe>
+        <!-- CTA Lemcal -->
+        <div class="md:col-span-2 flex items-center">
+          <div class="w-full bg-white/80 backdrop-blur-sm border border-gray-100/60 shadow-lg shadow-black/[0.03] p-12 md:p-16 intro-card relative">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#D7E5E5]/25 -z-10 organic-shape glow-blue"></div>
+            <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-[#E5BAAD]/15 -z-10 organic-shape"></div>
+            <h2 class="text-3xl md:text-4xl font-serif italic mb-6">Réserver un créneau.</h2>
+            <p class="text-lg text-gray-600 font-light leading-relaxed mb-4">
+              Tu choisis un créneau de 30 minutes. On se retrouve en visio. Tu exposes ta situation — ownership flou, outils internes bricolés, coordination qui bouffe l'exécution. On voit si j'interviens.
+            </p>
+            <p class="text-gray-500 font-light mb-10">
+              Pas de questionnaire. Pas de qualification. Une conversation.
+            </p>
+            <a
+              href="https://app.lemcal.com/@julienbrionne/decouverte"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cta font-mono tracking-widest text-[10px]"
+            >
+              Choisir un créneau
+            </a>
+            <p class="mt-4 text-sm text-gray-400 font-light">30 min · Sans engagement</p>
           </div>
         </div>
 
