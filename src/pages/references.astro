@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import ReferencesHeader from '../components/ReferencesHeader.astro';
 import ReferenceCard from '../components/ReferenceCard.astro';
 import ReferencesFooter from '../components/ReferencesFooter.astro';
@@ -99,6 +100,7 @@ const missions = [
   itemListSchema={itemListSchema}
 >
   <Navbar currentPage="references" />
+  <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Références' }]} />
   <main>
     <ReferencesHeader />
     <div class="max-w-[1150px] mx-auto px-8 pb-16">

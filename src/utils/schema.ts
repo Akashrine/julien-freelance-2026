@@ -241,6 +241,129 @@ export function getFAQSchema(
 }
 
 /**
+ * HowTo schema for step-by-step articles
+ */
+export function getHowToSchema(
+  name: string,
+  description: string,
+  steps: Array<{ name: string; text: string }>
+): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}
+
+/**
+ * Returns FAQ and HowTo schemas for specific articles
+ * Called from the article page template based on slug
+ */
+export function getArticleExtraSchemas(slug: string): { faqSchema?: object; howToSchema?: object } {
+  const schemas: Record<string, { faqSchema?: object; howToSchema?: object }> = {
+    'ownership-produit': {
+      faqSchema: getFAQSchema([
+        {
+          question: "Comment savoir si l'ownership est flou dans mon équipe ?",
+          answer: "Trois indicateurs : les décisions produit prennent plus d'une semaine sans raison technique, des sujets importants (backoffice, outils internes, care) n'ont pas de PM identifié, et les stakeholders ne savent pas qui contacter pour une question produit.",
+        },
+        {
+          question: "Faut-il un PM dédié aux outils internes ?",
+          answer: "Si les outils internes occupent moins de 20% du temps d'un PM existant, un ownership partagé suffit. Au-delà, un PM dédié est nécessaire. Dans la plupart des scale-ups au-delà de 80 personnes, les outils internes justifient un PM à temps plein.",
+        },
+        {
+          question: "À quelle fréquence revoir la matrice d'ownership ?",
+          answer: "Chaque trimestre au minimum. Et à chaque changement structurel : arrivée ou départ d'un PM, réorganisation des squads engineering, lancement d'un nouveau produit.",
+        },
+        {
+          question: "L'ownership produit, c'est pareil que l'organigramme ?",
+          answer: "Non. L'organigramme dit qui reporte à qui. L'ownership dit qui décide quoi. Un PM IC est owner d'un périmètre stratégique sans avoir de report direct.",
+        },
+      ]),
+      howToSchema: getHowToSchema(
+        "Comment poser l'ownership produit en scale-up",
+        "Méthode en 3 étapes pour clarifier qui décide quoi dans une équipe produit en croissance.",
+        [
+          { name: "Cartographier ce qui existe", text: "Réunir l'équipe et poser deux questions : 'explique ton périmètre à un nouveau PM' et 'quel sujet n'est dans le périmètre de personne'. La première révèle les chevauchements, la deuxième les angles morts." },
+          { name: "Poser les périmètres par outcome", text: "Remplacer les périmètres par feature (PM Search, PM Checkout) par des périmètres par parcours utilisateur (PM Discovery to Purchase, PM Post-Purchase Experience). Ce recadrage force à couvrir les zones grises." },
+          { name: "Rendre l'ownership visible", text: "Créer un tableau simple avec trois colonnes : périmètre, PM owner, stakeholders principaux. Le partager à toute l'entreprise. Le critère de succès : n'importe qui sait qui contacter en moins de 30 secondes." },
+        ]
+      ),
+    },
+    'backoffice-legacy-scale-up': {
+      faqSchema: getFAQSchema([
+        {
+          question: "Comment savoir s'il faut refondre ou patcher un backoffice legacy ?",
+          answer: "Trois critères : le modèle de données est-il encore viable, combien de process critiques dépendent de l'outil, et as-tu un PM owner dédié. Si le modèle est dépassé et que 15+ process passent par l'outil, la refonte a du sens.",
+        },
+        {
+          question: "Combien de temps prend une refonte de backoffice ?",
+          answer: "Une refonte big-bang prend 6+ mois et échoue souvent. L'approche par workflow (shadow 2 semaines + MVP sur le workflow critique en 2 semaines) donne des résultats mesurables en 1 mois.",
+        },
+        {
+          question: "Faut-il un PM dédié pour refondre un backoffice ?",
+          answer: "Oui. Une refonte de backoffice sans PM owner dédié échoue systématiquement. Ce n'est pas un side project. C'est un produit interne avec des utilisateurs et des arbitrages quotidiens.",
+        },
+      ]),
+      howToSchema: getHowToSchema(
+        "Comment mener une refonte de backoffice sans y passer 6 mois",
+        "Méthode terrain pour refondre un backoffice legacy par workflow, en commençant par le plus coûteux.",
+        [
+          { name: "Shadow et cartographie (semaine 1-2)", text: "Passer 2 jours à observer les ops utiliser l'outil. Noter chaque clic inutile, chaque copier-coller. Identifier les 5 actions les plus fréquentes et mesurer le temps réel. Cartographier les workarounds." },
+          { name: "MVP interne sur le workflow critique (semaine 3-4)", text: "Choisir le workflow qui coûte le plus cher en temps humain. Refondre uniquement celui-là. Livrer un premier écran en 2 semaines à côté de l'ancien outil. Mesurer le delta de temps." },
+          { name: "Itérer par workflow", text: "Utiliser les résultats du premier workflow comme business case pour prioriser les suivants. Chaque itération suit le même cycle : observer, refondre un workflow, mesurer." },
+        ]
+      ),
+    },
+    'aligner-product-ops-engineering': {
+      faqSchema: getFAQSchema([
+        {
+          question: "Comment aligner Product, Ops et Engineering en scale-up ?",
+          answer: "Trois mécanismes : un objectif commun que les trois équipes partagent, un rituel hebdomadaire de friction (pas de synchronisation) qui expose les blocages, et un PM senior à l'intersection qui traduit entre les trois logiques.",
+        },
+        {
+          question: "Pourquoi Product et Ops se désalignent en croissance ?",
+          answer: "Parce que leurs incentives divergent. Product raisonne en quarters et métriques produit, Ops raisonne en temps réel et SLAs. Sans mécanisme d'arbitrage commun, chaque équipe optimise son silo.",
+        },
+        {
+          question: "Un Project Manager suffit-il pour aligner les équipes ?",
+          answer: "Non. Un PM ou Program Manager qui facilite sans autorité de décision ne résout rien. Le problème n'est pas la coordination, c'est l'absence d'arbitrage. Il faut quelqu'un qui tranche.",
+        },
+      ]),
+    },
+    'care-territoire-produit': {
+      faqSchema: getFAQSchema([
+        {
+          question: "Pourquoi le care a besoin d'un PM dédié ?",
+          answer: "Le care absorbe tout ce que le produit n'a pas tranché. Chaque edge case non géré devient une règle manuelle. Sans PM pour capter ces signaux et les transformer en specs, le care accumule de la dette silencieuse qui coûte en temps humain et en turnover.",
+        },
+        {
+          question: "À partir de quel volume faut-il un PM care ?",
+          answer: "Dès que le volume dépasse 200 tickets/jour, un PM à temps plein est nécessaire. En dessous, un ownership partagé avec du temps explicitement alloué suffit.",
+        },
+        {
+          question: "Que faut-il automatiser dans le care ?",
+          answer: "Les décisions répétitives des agents, pas les interactions client. Si un agent applique la même règle 200 fois par jour (rembourser si retard > 15 min), cette règle doit être dans le code, pas dans la tête de l'agent.",
+        },
+        {
+          question: "Le care est-il un centre de coûts ou un territoire produit ?",
+          answer: "C'est un territoire produit. Chaque ticket est un signal. Chaque workaround d'agent est un besoin non couvert. Traiter le care comme un centre de coûts revient à payer 3x plus en compensation humaine qu'en structuration produit.",
+        },
+      ]),
+    },
+  };
+
+  return schemas[slug] || {};
+}
+
+/**
  * ItemList schema for structured lists (e.g. references)
  */
 export function getItemListSchema(

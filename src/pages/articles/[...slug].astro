@@ -18,7 +18,8 @@ import ArticleMetadata from '../../components/articles/ArticleMetadata.astro';
 import TableOfContents from '../../components/articles/TableOfContents.astro';
 import ArticleConversionGate from '../../components/articles/ArticleConversionGate.astro';
 import Footer from '../../components/Footer.astro';
-import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems, getArticleExtraSchemas } from '../../utils/schema';
 import { calculateReadingTime, extractHeadingsFromMDX } from '../../utils/articles';
 
 export async function getStaticPaths() {
@@ -87,6 +88,9 @@ const articleSchema = getArticleSchema(
   article.data.thumbnail
 );
 
+// Generate extra schemas (FAQ, HowTo) for specific articles
+const { faqSchema, howToSchema } = getArticleExtraSchemas(article.slug);
+
 // Generate breadcrumb schema
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
@@ -108,8 +112,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
   twitterDescription={metaDescription}
   articleSchema={articleSchema}
   breadcrumbSchema={breadcrumbSchema}
+  faqSchema={faqSchema}
+  howToSchema={howToSchema}
 >
   <Navbar currentPage="articles" />
+  <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Articles', url: '/articles' }, { name: article.data.title }]} />
   <main>
     <article class="max-w-[1150px] mx-auto px-8 py-20">
       <div class="max-w-3xl mx-auto mb-8">

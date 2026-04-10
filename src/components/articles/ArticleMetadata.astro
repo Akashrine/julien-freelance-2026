@@ -28,7 +28,7 @@ const readingTimeClasses = variant === 'list'
 ---
 
 <div class="flex items-center gap-3 flex-wrap">
-  <time class={timeClasses}>{formatDate(date)}</time>
+  <time datetime={date} class={timeClasses}>{formatDate(date)}</time>
   <span class={categoryClasses}>/ {getCategoryLabel(category)}</span>
   {finalReadingTime && (
     <span class={readingTimeClasses}>· ~{finalReadingTime} min{variant === 'page' ? ' de lecture' : ''}</span>
