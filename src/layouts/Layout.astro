@@ -23,6 +23,7 @@ interface Props {
   serviceSchemas?: object[];
   faqSchema?: object;
   itemListSchema?: object;
+  howToSchema?: object;
 }
 
 const {
@@ -44,7 +45,8 @@ const {
   breadcrumbSchema,
   serviceSchemas,
   faqSchema,
-  itemListSchema
+  itemListSchema,
+  howToSchema
 } = Astro.props;
 
 const siteUrl = 'https://julien-brionne.fr';
@@ -77,6 +79,8 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <meta name="author" content="Julien Brionne" />
     <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
     <link rel="canonical" href={finalOgUrl} />
+    <link rel="alternate" hreflang="fr" href={finalOgUrl} />
+    <meta name="theme-color" content="#FDFCFB" />
     
     <!-- Open Graph -->
     <meta property="og:title" content={finalOgTitle} />
@@ -117,6 +121,9 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     {itemListSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
     )}
+    {howToSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+    )}
     
     <!-- Google Analytics 4 -->
     {GA4_ENABLED && (
@@ -140,6 +147,48 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
       <slot />
     </div>
     
+    <script is:inline>
+      // GA4 conversion tracking
+      (function() {
+        if (typeof gtag !== 'function') return;
+
+        // Track CTA clicks (Lemcal + /contact links)
+        document.addEventListener('click', function(e) {
+          var link = e.target.closest('a');
+          if (!link) return;
+          var href = link.getAttribute('href') || '';
+          if (href.includes('lemcal.com') || href.includes('/contact')) {
+            gtag('event', 'cta_click', {
+              event_category: 'conversion',
+              event_label: href,
+              link_text: link.textContent.trim().substring(0, 50)
+            });
+          }
+        });
+
+        // Track scroll depth on articles
+        if (window.location.pathname.startsWith('/articles/') && window.location.pathname !== '/articles') {
+          var scrollMilestones = { 50: false, 100: false };
+          window.addEventListener('scroll', function() {
+            var scrollPct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+            if (scrollPct >= 50 && !scrollMilestones[50]) {
+              scrollMilestones[50] = true;
+              gtag('event', 'scroll_depth', { event_category: 'engagement', event_label: '50%', page_path: window.location.pathname });
+            }
+            if (scrollPct >= 95 && !scrollMilestones[100]) {
+              scrollMilestones[100] = true;
+              gtag('event', 'scroll_depth', { event_category: 'engagement', event_label: '100%', page_path: window.location.pathname });
+            }
+          }, { passive: true });
+        }
+
+        // Track /contact page view as conversion
+        if (window.location.pathname === '/contact') {
+          gtag('event', 'contact_page_view', { event_category: 'conversion' });
+        }
+      })();
+    </script>
+
     <script>
       // IntersectionObserver pour les animations reveal
       document.addEventListener('DOMContentLoaded', () => {

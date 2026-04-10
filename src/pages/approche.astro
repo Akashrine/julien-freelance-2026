@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import ApproachIntro from '../components/ApproachIntro.astro';
 import ApproachTriggers from '../components/ApproachTriggers.astro';
 import ApproachActions from '../components/ApproachActions.astro';
@@ -52,6 +53,7 @@ const faqSchema = getFAQSchema([
   faqSchema={faqSchema}
 >
   <Navbar currentPage="approche" />
+  <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Ce que je fais' }]} />
   <main>
     <ApproachIntro />
     <ApproachTriggers />
