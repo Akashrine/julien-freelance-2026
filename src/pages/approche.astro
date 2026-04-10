@@ -5,37 +5,51 @@ import ApproachIntro from '../components/ApproachIntro.astro';
 import ApproachTriggers from '../components/ApproachTriggers.astro';
 import ApproachActions from '../components/ApproachActions.astro';
 import ApproachLimits from '../components/ApproachLimits.astro';
-import ApproachPrisms from '../components/ApproachPrisms.astro';
+import ReferencesFooter from '../components/ReferencesFooter.astro';
 import Footer from '../components/Footer.astro';
-import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems, getFAQSchema } from '../utils/schema';
 
 const siteUrl = 'https://julien-brionne.fr';
-const pageUrl = `${siteUrl}/approche`;
 const webPageSchema = getWebPageSchema(
-  pageUrl,
-  'Mon approche',
-  'Leadership opérationnel. Une approche d\'intervention, pas une méthode. Fermer ce qui devrait l\'être, participer aux arbitrages, assumer les décisions impopulaires : déprioriser des clients, supprimer des features, dire non à Sales.',
-  ['leadership opérationnel', 'arbitrage produit', 'décisions impopulaires', 'trancher']
+  `${siteUrl}/approche`,
+  'Ce que je fais — Julien Brionne',
+  'Je m\'immerge dans l\'équipe pour remettre de l\'ordre. Ownership, outils internes, coordination, process. Senior PM, 10+ ans, 4 scale-ups structurées.',
+  ['intervention produit', 'organisation scale-up', 'ownership produit', 'PM freelance']
 );
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
   BreadcrumbItems.approche,
 ]);
+const faqSchema = getFAQSchema([
+  {
+    question: "Julien Brionne utilise-t-il une méthode clés en main ?",
+    answer: "Non. Chaque organisation est un système vivant. Je tranche en fonction du terrain, pas d'un playbook."
+  },
+  {
+    question: "Est-ce du coaching théorique ?",
+    answer: "Non. Je m'implique dans les arbitrages et je partage la responsabilité des résultats avec l'équipe."
+  },
+  {
+    question: "Quand intervient Julien Brionne ?",
+    answer: "Quand la croissance a dépassé la structure : ownership flou, outils internes bricolés, coordination qui bouffe l'exécution."
+  },
+]);
 ---
 
 <Layout
-  title="Approche — Julien Brionne"
-  description="Leadership opérationnel. Une approche d'intervention, pas une méthode. Fermer ce qui devrait l'être, participer aux arbitrages, assumer les décisions impopulaires : déprioriser des clients, supprimer des features, dire non à Sales."
-  ogTitle="Leadership opérationnel"
-  ogDescription="Une approche d'intervention, pas une méthode. Fermer ce qui devrait l'être. Participer aux arbitrages, assumer les décisions impopulaires."
+  title="Ce que je fais — Julien Brionne, Senior PM Freelance"
+  description="Je m'immerge dans l'équipe pour remettre de l'ordre. Ownership, outils internes, coordination, process. Senior PM, 10+ ans, 4 scale-ups structurées."
+  ogTitle="Ce que je fais — Julien Brionne"
+  ogDescription="Je m'immerge dans l'équipe pour remettre de l'ordre. Ownership, outils internes, coordination, process."
   ogType="website"
   ogImage="/og/page-approche.webp"
   ogUrl="https://julien-brionne.fr/approche"
   twitterCard="summary_large_image"
-  twitterTitle="Leadership opérationnel"
-  twitterDescription="Une approche d'intervention, pas une méthode. Fermer ce qui devrait l'être. Participer aux arbitrages, assumer les décisions impopulaires."
+  twitterTitle="Ce que je fais — Julien Brionne"
+  twitterDescription="Je m'immerge dans l'équipe pour remettre de l'ordre. Ownership, outils internes, coordination, process."
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
+  faqSchema={faqSchema}
 >
   <Navbar currentPage="approche" />
   <main>
@@ -43,7 +57,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <ApproachTriggers />
     <ApproachActions />
     <ApproachLimits />
-    <ApproachPrisms />
+    <ReferencesFooter />
     <Footer />
   </main>
 </Layout>

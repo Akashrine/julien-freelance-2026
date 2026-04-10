@@ -15,9 +15,11 @@ import CodeBlock from '../../components/articles/CodeBlock.astro';
 import Tooltip from '../../components/Tooltip.astro';
 import ArticleNavigation from '../../components/articles/ArticleNavigation.astro';
 import ArticleMetadata from '../../components/articles/ArticleMetadata.astro';
+import TableOfContents from '../../components/articles/TableOfContents.astro';
+import ArticleConversionGate from '../../components/articles/ArticleConversionGate.astro';
 import Footer from '../../components/Footer.astro';
 import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
-import { calculateReadingTime } from '../../utils/articles';
+import { calculateReadingTime, extractHeadingsFromMDX } from '../../utils/articles';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -59,12 +61,18 @@ const nextArticle = currentIndex < sortedArticles.length - 1 ? {
 // Render the MDX content
 const { Content, remarkPluginFrontmatter } = await article.render();
 
-// Obtenir le contenu texte brut pour calculer le temps de lecture
 const readingTime = calculateReadingTime(article.body || '');
+const wordCount = (article.body || '').trim().split(/\s+/).length;
+const tocHeadings = wordCount > 1500 ? extractHeadingsFromMDX(article.body || '') : [];
 
 const siteUrl = 'https://julien-brionne.fr';
 const articleUrl = `${siteUrl}/articles/${article.slug}`;
-// Utiliser l'image OG générée dynamiquement
+
+const rawExcerpt = article.data.excerpt || '';
+const metaDescription = rawExcerpt.length > 155
+  ? rawExcerpt.slice(0, 155).replace(/\s+\S*$/, '') + '\u2026'
+  : rawExcerpt;
+
 const ogImage = `/og/article-${article.slug}.webp`;
 const twitterCard = 'summary_large_image';
 
@@ -89,15 +97,15 @@ const breadcrumbSchema = getBreadcrumbSchema([
 
 <Layout
   title={`${article.data.title} — Julien Brionne`}
-  description={article.data.excerpt}
+  description={metaDescription}
   ogTitle={article.data.title}
-  ogDescription={article.data.excerpt}
+  ogDescription={metaDescription}
   ogType="article"
   ogImage={ogImage}
   ogUrl={articleUrl}
   twitterCard={twitterCard}
   twitterTitle={article.data.title}
-  twitterDescription={article.data.excerpt}
+  twitterDescription={metaDescription}
   articleSchema={articleSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
@@ -113,9 +121,12 @@ const breadcrumbSchema = getBreadcrumbSchema([
             variant="page"
           />
         </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-4">
           {article.data.title}
         </h1>
+        <p class="font-mono text-[10px] text-gray-400 tracking-widest mb-8">
+          Par Julien Brionne — Senior PM Freelance
+        </p>
         <p class="text-xl text-gray-600 leading-relaxed font-light italic mb-4">
           {article.data.excerpt}
         </p>
@@ -124,9 +135,17 @@ const breadcrumbSchema = getBreadcrumbSchema([
         </p>
       </div>
 
+      {tocHeadings.length > 0 && (
+        <div class="max-w-3xl mx-auto">
+          <TableOfContents headings={tocHeadings} />
+        </div>
+      )}
+
       <div class="pt-8 border-t border-black/5">
         <Content components={{ Section, SectionIntro, ColorBlock, DecisionItem, ClosingBlock, SidebarBox, PillarCard, Callout, KeyPoint, CodeBlock, Tooltip }} />
       </div>
+
+      <ArticleConversionGate />
 
       <div class="max-w-3xl mx-auto">
         <ArticleNavigation previousArticle={previousArticle} nextArticle={nextArticle} />

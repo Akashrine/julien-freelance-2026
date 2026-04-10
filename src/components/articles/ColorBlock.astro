@@ -1,4 +1,6 @@
 ---
+import { slugify } from '../../utils/articles';
+
 interface Props {
   bgColor?: 'blue' | 'clay';
   label?: string;
@@ -12,9 +14,10 @@ const bgClass = bgColor === 'clay' ? 'article-color-block-clay' : 'article-color
 const labelColorClass = bgColor === 'clay' ? 'text-clay' : 'text-gray-400';
 const blobPositionClass = bgColor === 'clay' ? 'blob-article-clay' : 'blob-article-blue';
 const blobBgClass = bgColor === 'clay' ? 'bg-[rgba(229,186,173,0.2)]' : 'bg-blue-light';
+const sectionId = slugify(label || title || '');
 ---
 
-<section class={`full-width-section ${bgClass} py-32 mb-32 relative overflow-hidden reveal ${className}`}>
+<section id={sectionId || undefined} class={`full-width-section ${bgClass} py-32 mb-32 relative overflow-hidden reveal ${className}`}>
   <div class={`blob-article blob-article-small organic-shape ${blobPositionClass} ${blobBgClass}`}></div>
   <div class="max-w-2xl mx-auto relative z-10">
     {label && <div class={`font-mono mb-8 ${labelColorClass} article-label`}>{label}</div>}

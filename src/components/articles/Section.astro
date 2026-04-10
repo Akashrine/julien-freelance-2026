@@ -1,4 +1,6 @@
 ---
+import { slugify } from '../../utils/articles';
+
 interface Props {
   label?: string;
   title?: string;
@@ -13,9 +15,10 @@ const maxWidthClass = maxWidth === '3xl' ? 'max-w-3xl' : 'max-w-2xl';
 const titleClass = titleSize === 'large'
   ? 'text-5xl mb-12 font-serif font-bold'
   : 'text-3xl md:text-4xl mb-12 font-serif italic';
+const sectionId = slugify(label || title || '');
 ---
 
-<section class={`${maxWidthClass} mx-auto mb-32 reveal ${className}`}>
+<section id={sectionId || undefined} class={`${maxWidthClass} mx-auto mb-32 reveal ${className}`}>
   {label && <div class="font-mono mb-8 text-gray-400 article-label">{label}</div>}
   {quote && (
     <p class="text-2xl leading-relaxed text-gray-800 font-serif italic mb-12">

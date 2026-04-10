@@ -1,0 +1,161 @@
+---
+title: "Ownership produit : pourquoi personne ne sait qui décide quoi dans ton équipe"
+date: "2026-04-11"
+category: "reflexion"
+excerpt: "Le flou d'ownership est le symptôme n°1 des scale-ups en croissance. Comment le diagnostiquer, pourquoi il s'installe, et comment poser un cadre qui tient."
+draft: false
+---
+
+<SectionIntro>
+  <p>Ton équipe produit livre. Les sprints tournent. Les features sortent.</p>
+  <p>Pourtant, chaque décision prend trois fois trop de temps. Une question simple — "qui est responsable du Help Center ?" — génère un thread Slack de 47 messages. Un bug critique en prod attend 4 heures parce que deux équipes pensent que c'est l'autre qui gère.</p>
+  <p>Le problème n'est pas la compétence de tes PMs. Le problème, c'est que <strong>personne ne sait qui est owner de quoi</strong>.</p>
+</SectionIntro>
+
+<ColorBlock bgColor="blue" label="L'ESSENTIEL À RETENIR" title="Le flou d'ownership, c'est le vrai frein.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Le <strong>flou d'ownership</strong> est le symptôme n°1 des équipes produit qui grandissent plus vite que leur organisation. Il ralentit chaque décision, génère du travail en double et transforme les PMs seniors en dispatchers. La solution n'est pas un nouvel organigramme. C'est une <strong>matrice de décision</strong> explicite, visible par toute l'entreprise, qui se pose en une semaine et se revoit chaque trimestre.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="LE SYMPTÔME" title="Le flou d'ownership ne se voit pas. Il se ressent." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Dans une startup de 15 personnes, l'<strong>ownership</strong> est implicite. Le fondateur tranche. Les PMs couvrent tout. Pas besoin de matrice de responsabilités : tout le monde sait qui fait quoi parce que tout le monde est dans la même pièce.</p>
+    <p>À 80 personnes, ça ne fonctionne plus.</p>
+    <p>L'<strong>ownership flou</strong> s'installe progressivement. Il s'infiltre quand l'entreprise grandit plus vite que son organisation. Et il se manifeste toujours de la même façon.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="TROIS SIGNAUX CONCRETS">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="La décision fantôme.">
+      Un sujet important — refonte du backoffice, migration d'outil, changement de process — traine depuis des mois. Tout le monde en parle en réunion. Personne ne prend la décision. Parce que personne ne sait si c'est à lui de la prendre.
+    </DecisionItem>
+    <DecisionItem number="02" title="Le chevauchement silencieux.">
+      Deux PMs travaillent sur des périmètres qui se recoupent sans le savoir. L'un construit un workflow de ticketing dans l'admin. L'autre fait la même chose côté support. Quand ils s'en rendent compte, il y a 3 semaines de travail en double.
+    </DecisionItem>
+    <DecisionItem number="03" title="Le PM pompier.">
+      Un PM senior passe 60% de son temps à répondre à des questions qui ne devraient pas atterrir chez lui. Il est devenu le point de passage par défaut parce que personne d'autre n'a la réponse. Il ne fait plus de produit. Il fait du dispatching.
+    </DecisionItem>
+  </div>
+</Section>
+
+<ColorBlock bgColor="clay" label="LA CAUSE" title="Pourquoi l'ownership disparait en croissance.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>L'explication est structurelle. Pas humaine.</p>
+    <p>Quand une <strong>équipe produit</strong> passe de 2 à 8 PMs en 18 mois, les périmètres sont découpés à la hâte. Un PM arrive, on lui donne "le search". Un autre prend "le checkout". Un troisième hérite "des outils internes".</p>
+    <p>Ces périmètres ont trois défauts récurrents.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="LES TROIS DÉFAUTS">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Définis par feature, pas par outcome.">
+      "Le search" n'est pas un périmètre. C'est une fonctionnalité. Qui est owner de l'expérience de découverte produit ? Du taux de conversion entre la recherche et l'achat ? Personne. Parce que le périmètre s'arrête à la barre de recherche.
+    </DecisionItem>
+    <DecisionItem number="02" title="Les zones grises ne sont assignées à personne.">
+      Le backoffice, les outils ops, le care, la facturation, l'admin. Ces sujets n'ont pas de PM dédié. Ils vivent entre les équipes. Tout le monde y touche. Personne n'en est responsable. C'est un pattern que j'ai observé dans chacune des 4 scale-ups où je suis intervenu (Heetch, Back Market, Waalaxy, Wizville) : les <strong>outils internes</strong> et le care sont systématiquement les derniers sujets à recevoir un owner produit dédié.
+    </DecisionItem>
+    <DecisionItem number="03" title="Le découpage n'évolue pas avec la croissance.">
+      Le périmètre défini quand l'équipe comptait 3 PMs est le même à 8. Les responsabilités n'ont jamais été redistribuées. Les nouveaux arrivants ont hérité des morceaux restants, pas d'un périmètre pensé.
+    </DecisionItem>
+  </div>
+</Section>
+
+<blockquote class="reveal">
+  L'ownership n'est pas un organigramme. C'est une matrice de décision.
+</blockquote>
+
+<Section maxWidth="3xl" label="LE CADRE" title="L'ownership se pose sur quatre dimensions." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>La première erreur que font les Head of Product face au flou, c'est de redessiner l'organigramme. Nouvelle structure. Nouvelles squads. Nouveau Notion. Ça ne résout rien. Parce que l'organigramme dit qui reporte à qui. Il ne dit pas <strong>qui décide quoi</strong>.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Vision.">
+      Qui définit où on va sur 6 mois, quels problèmes on résout et dans quel ordre ?
+    </DecisionItem>
+    <DecisionItem number="02" title="Priorisation.">
+      Quand un sujet entre en conflit avec un autre, qui arbitre au quotidien ?
+    </DecisionItem>
+    <DecisionItem number="03" title="Point de contact stakeholders.">
+      Quand le Head of Ops a une question sur le workflow de remboursement, il appelle qui ?
+    </DecisionItem>
+    <DecisionItem number="04" title="Accountability du résultat.">
+      Si le taux de résolution first contact stagne, c'est dans l'assiette de qui ?
+    </DecisionItem>
+  </div>
+</Section>
+
+<SidebarBox title="Ces quatre dimensions ne sont pas toujours portées par la même personne. Et c'est normal. Mais elles doivent être explicites.">
+</SidebarBox>
+
+<Section maxWidth="3xl" label="LA MÉTHODE" title="Comment poser l'ownership en pratique." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Le process que j'ai appliqué sur plusieurs missions repose sur trois étapes. Pas besoin de framework sophistiqué. Besoin de clarté.</p>
+  </div>
+</Section>
+
+<ColorBlock bgColor="blue" label="ÉTAPE 1" title="Cartographier ce qui existe.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Prends une heure avec ton équipe. Pose deux questions.</p>
+    <p>La première : <em>"si tu devais expliquer ton périmètre à un PM qui arrive lundi, tu dirais quoi ?"</em></p>
+    <p>La deuxième : <em>"quel sujet produit n'est dans le périmètre de personne ?"</em></p>
+    <p>La première question révèle les <strong>chevauchements</strong>. Deux PMs vont décrire le même territoire avec des mots différents.</p>
+    <p>La deuxième question révèle les <strong>angles morts</strong>. Les sujets que personne ne porte. C'est là que les problèmes s'accumulent en silence : les outils internes, le care, le backoffice, les intégrations, la documentation.</p>
+  </div>
+</ColorBlock>
+
+<ColorBlock bgColor="clay" label="ÉTAPE 2" title="Poser les périmètres par outcome, pas par feature.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Au lieu de "PM Search" et "PM Checkout", pose "PM Discovery to Purchase" et "PM Post-Purchase Experience". Le périmètre couvre un <strong>parcours utilisateur</strong>, pas un composant technique.</p>
+    <p>Ce recadrage force à répondre aux zones grises. Si un PM est owner du parcours post-achat, il est owner du remboursement, du retour, du contact support. Plus de flou.</p>
+    <p>Pour les <strong>sujets transverses</strong> (admin, backoffice, outils internes), deux options. Soit un PM dédié. Soit un ownership explicite attribué à un PM existant avec du temps alloué. La deuxième option fonctionne si le sujet est petit. Dès qu'il prend de l'ampleur, il faut un PM à temps plein.</p>
+  </div>
+</ColorBlock>
+
+<Callout title="Terrain — Heetch" borderColor="sand">
+  <p>Le care n'avait pas de PM. J'ai créé le Care Product Team from scratch. En 6 mois, l'efficacité Care a progressé de 8% et le NPS drivers est passé de 3.5 à 4.1.</p>
+</Callout>
+
+<ColorBlock bgColor="blue" label="ÉTAPE 3" title="Rendre l'ownership visible.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>L'ownership qui vit dans la tête du Head of Product ne sert à rien. Il doit être <strong>accessible à toute l'entreprise</strong>.</p>
+    <p>Un document simple suffit. Pas un Notion de 40 pages. Un tableau avec trois colonnes : <strong>périmètre, PM owner, stakeholders principaux</strong>. Partagé à l'engineering, aux ops, au support, au management.</p>
+    <p>Le critère de succès : quand quelqu'un dans l'entreprise a une question produit, il sait qui contacter en moins de 30 secondes. Si ce n'est pas le cas, l'ownership n'est pas posé.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="RÉSULTATS" title="Ce que ça change concrètement." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Sur une mission que j'ai menée en 2023 dans une marketplace de 120 personnes, le résultat a été visible en 3 semaines.</p>
+    <p>Le <strong>temps moyen de décision</strong> sur les sujets transverses est passé de 5 jours à 2. Les PMs ont arrêté de se marcher dessus sur les sujets ops. L'engineering a arrêté de poser les mêmes questions à trois personnes différentes.</p>
+    <p>Le gain n'est pas spectaculaire sur le papier. Mais il est <strong>cumulatif</strong>. Chaque semaine, l'équipe récupère des heures de coordination inutile. Ces heures vont dans le produit. Dans la discovery. Dans l'exécution.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="ERREURS FRÉQUENTES" title="Trois erreurs à éviter.">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Vouloir un cadre parfait du premier coup.">
+      L'ownership est un document vivant. Il évolue chaque trimestre. Poser une V1 imparfaite vaut mieux que chercher la V1 parfaite pendant 3 mois.
+    </DecisionItem>
+    <DecisionItem number="02" title="Confondre ownership et hiérarchie.">
+      Être owner d'un périmètre ne veut pas dire manager les gens qui y travaillent. Un PM IC est owner d'un périmètre stratégique sans avoir de report direct. L'ownership est une responsabilité sur le résultat, pas sur les personnes.
+    </DecisionItem>
+    <DecisionItem number="03" title="Ne pas recouper avec l'engineering.">
+      L'ownership produit qui ne s'aligne pas avec l'organisation engineering crée plus de friction qu'il n'en résout. Si un PM est owner du parcours post-achat mais que trois squads engineering y travaillent sans coordination, le problème change de forme. Il ne disparait pas.
+    </DecisionItem>
+  </div>
+</Section>
+
+<section class="max-w-2xl mx-auto mb-12 reveal">
+  <p class="text-sm text-gray-500 font-light italic text-center">
+    Tu vis ça ? Voir <a href="/approche" class="underline hover:text-gray-700 transition-colors">ce que je fais concrètement</a>.
+  </p>
+</section>
+
+<ClosingBlock title="Ce qu'il faut retenir.">
+  <p class="text-xl text-gray-500 font-light leading-relaxed italic">Le flou d'ownership est le symptôme le plus courant de la croissance produit mal structurée. Il n'est pas causé par des PMs incompétents. Il est causé par une organisation qui n'a pas rattrapé sa propre croissance. La solution n'est pas un organigramme. C'est une matrice de décision claire, visible, et actualisée. Ça prend une semaine à poser. Et ça change la vitesse d'exécution de l'équipe pour les mois qui suivent.</p>
+</ClosingBlock>

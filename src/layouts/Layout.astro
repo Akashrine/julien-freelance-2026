@@ -14,16 +14,20 @@ interface Props {
   twitterCard?: 'summary' | 'summary_large_image';
   twitterTitle?: string;
   twitterDescription?: string;
+  noindex?: boolean;
   articleSchema?: object;
   personSchema?: object;
   websiteSchema?: object;
   webPageSchema?: object;
   breadcrumbSchema?: object;
+  serviceSchemas?: object[];
+  faqSchema?: object;
+  itemListSchema?: object;
 }
 
 const {
-  title = 'Julien Brionne — Product Lead Indépendant',
-  description = 'Product Lead indépendant. J\'interviens auprès de fondateurs et Heads of Product (Series A/B) quand le système produit a grandi plus vite que sa capacité à trancher.',
+  title = 'Julien Brionne — Je transforme le care et les ops en produit',
+  description = 'Senior PM Freelance. Je transforme le care, le support et les ops internes en systèmes produit mesurables. En mission chez Back Market.',
   ogTitle,
   ogDescription,
   ogType = 'website',
@@ -32,11 +36,15 @@ const {
   twitterCard = 'summary',
   twitterTitle,
   twitterDescription,
+  noindex = false,
   articleSchema,
   personSchema,
   websiteSchema,
   webPageSchema,
-  breadcrumbSchema
+  breadcrumbSchema,
+  serviceSchemas,
+  faqSchema,
+  itemListSchema
 } = Astro.props;
 
 const siteUrl = 'https://julien-brionne.fr';
@@ -56,15 +64,18 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Preload des polices critiques -->
+    <!-- Preload des polices critiques (non-bloquant) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" /></noscript>
     
     <!-- SEO Meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Julien Brionne" />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
     <link rel="canonical" href={finalOgUrl} />
     
     <!-- Open Graph -->
@@ -73,7 +84,8 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={finalOgUrl} />
     {ogImage && <meta property="og:image" content={`${siteUrl}${ogImage}`} />}
-    
+    <meta property="og:locale" content="fr_FR" />
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content={twitterCard} />
     <meta name="twitter:title" content={finalTwitterTitle} />
@@ -95,6 +107,15 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     )}
     {breadcrumbSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+    {serviceSchemas && serviceSchemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+    {faqSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    )}
+    {itemListSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
     )}
     
     <!-- Google Analytics 4 -->
@@ -126,10 +147,11 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
           threshold: 0.1
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('active');
+              obs.unobserve(entry.target);
             }
           });
         }, observerOptions);
@@ -138,10 +160,11 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
         revealElements.forEach(el => observer.observe(el));
 
         // Observer pour les sections avec fade-in progressif
-        const sectionObserver = new IntersectionObserver((entries) => {
+        const sectionObserver = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
             }
           });
         }, { threshold: 0.1 });

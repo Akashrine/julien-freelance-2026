@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -12,22 +11,6 @@
   --color-text-primary: #1A1A1A;
   --color-text-code: #D4D4D4;
   --color-bg-light: #FAFAF9;
-}
-
-/* Font display swap pour éviter le FOIT */
-@font-face {
-  font-family: 'Inter';
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Playfair Display';
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-display: swap;
 }
 
 @layer base {
@@ -175,6 +158,7 @@
     background-color: #1A1A1A;
     color: #FDFCFB;
     padding: 1.1rem 2.2rem;
+    min-height: 48px;
     display: inline-block;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     border-radius: 50px;
@@ -419,6 +403,60 @@
   /* Intro section */
   .intro-card {
     border-radius: 40px 100px 40px 80px;
+  }
+
+  /* Halos lumineux */
+  .glow-sand {
+    box-shadow: 0 0 80px 20px rgba(242, 233, 225, 0.5),
+                0 0 160px 60px rgba(242, 233, 225, 0.2);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 80px 20px rgba(215, 229, 229, 0.5),
+                0 0 160px 60px rgba(215, 229, 229, 0.2);
+  }
+
+  .glow-clay {
+    box-shadow: 0 0 60px 15px rgba(229, 186, 173, 0.4),
+                0 0 120px 40px rgba(229, 186, 173, 0.15);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 60px 15px rgba(197, 160, 112, 0.3),
+                0 0 120px 40px rgba(197, 160, 112, 0.1);
+  }
+
+  /* Halo radial en background */
+  .halo-sand {
+    background: radial-gradient(ellipse at center, rgba(242, 233, 225, 0.6) 0%, transparent 70%);
+  }
+
+  .halo-blue {
+    background: radial-gradient(ellipse at center, rgba(215, 229, 229, 0.5) 0%, transparent 70%);
+  }
+
+  .halo-clay {
+    background: radial-gradient(ellipse at center, rgba(229, 186, 173, 0.4) 0%, transparent 70%);
+  }
+
+  /* Accent éditorial — lettrine décorative */
+  .editorial-accent {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #C5A070;
+  }
+
+  /* Séparateur éditorial */
+  .editorial-rule {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #C5A070, transparent);
+  }
+
+  /* Numéros lumineux */
+  .number-glow {
+    text-shadow: 0 0 30px rgba(242, 233, 225, 0.8),
+                 0 0 60px rgba(242, 233, 225, 0.4);
   }
 
   /* Article list styles */

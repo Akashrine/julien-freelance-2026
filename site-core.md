@@ -1,8 +1,8 @@
 # Contenu site — Julien Brionne
 
-Posture : **Leadership produit par substitution quand l'organisation n'arrive plus à décider.**
+Posture : **Je transforme le care, le support et les ops internes en systèmes produit mesurables.**
 
-Ce document regroupe le contenu textuel des pages Home, Approche et Diagnostic. Chaque paragraphe doit prouver une capacité à agir dans le réel : reprendre la responsabilité de décisions que personne n'ose prendre, fermer des options, supprimer des features, trancher des conflits. Pas de vente de clarté, d'analyse, de méthode ou d'accompagnement.
+Ce document regroupe le contenu textuel des pages Home, Approche et Diagnostic. Chaque paragraphe doit prouver une capacité à prendre un domaine opérationnel (care, support, outils internes) et à le transformer en produit : automatisation ciblée, parcours repensés, métriques qui comptent. Pas de vente de méthode, d'accompagnement générique ou de conseil théorique.
 
 ---
 
@@ -10,16 +10,19 @@ Ce document regroupe le contenu textuel des pages Home, Approche et Diagnostic. 
 
 ### Hero
 
-**Titre (H1)**  
-Simplifier pour retrouver de l'impact.
+**Label**
+[ CARE. SUPPORT. OPS. J'EN FAIS DU PRODUIT. ]
 
-**Sous-titre 1**  
-Quand le produit avance, que la roadmap se remplit, mais que chaque décision coûte plus cher que la précédente. Quand l'impact baisse non par manque d'effort, mais par accumulation de décisions jamais refermées.
+**Titre (H1)**
+Quand vos opérations coûtent plus cher que votre produit.
 
-**Sous-titre 2**  
-J'interviens auprès de fondateurs et Heads of Product (Series A/B, produits critiques, équipes de 15–50 personnes) quand le système produit a grandi plus vite que sa capacité à trancher.
+**Sous-titre 1**
+Le care, le support, les outils internes. Dans la plupart des boites, ces domaines grandissent en ajoutant des process et des agents. Pas de la product intelligence. Les coûts montent. La satisfaction stagne. L'équipe produit regarde ailleurs parce que "c'est de l'ops".
 
-**CTA**  
+**Sous-titre 2**
+J'entre dans ces zones. Je les transforme en systèmes produit mesurables : automatisation ciblée, parcours repensés, les bonnes métriques au bon endroit. En mission chez Back Market. Ex-Heetch, Wizville, Waalaxy.
+
+**CTA**
 Ouvrir l'échange.
 
 ---
@@ -29,11 +32,11 @@ Ouvrir l'échange.
 **Label**  
 01 / CONTEXTE
 
-**Texte principal**  
-Les équipes livrent. Les rituels tournent. La roadmap s'épaissit. Mais le produit devient plus difficile à piloter. Les décisions s'empilent, restent actives trop longtemps, et l'organisation compense par de l'urgence, de la coordination ou des exceptions devenues permanentes. Le problème n'est pas l'exécution. C'est la dette de décision.
+**Texte principal**
+Les tickets s'empilent. L'équipe support compense. Les coûts grimpent avec le volume. Tout le monde sait que "ça devrait être un produit", mais personne n'a le temps, le scope, ou le mandat pour s'y attaquer. Le care reste un centre de coûts. Le support reste réactif. Les outils internes restent du duct tape.
 
-**Suite**  
-La dette de décision, c'est l'accumulation de choix restés ouverts, de priorités jamais tranchées, qui finissent par alourdir chaque nouvelle décision.
+**Suite**
+Ce n'est pas un problème de budget. C'est un problème de product thinking appliqué au mauvais endroit.
 
 ---
 
@@ -117,8 +120,12 @@ L'impact ne vient pas d'en faire plus, mais de décider moins, mieux, et jusqu'a
 **Label**  
 EXPÉRIENCE
 
-**Texte**  
-Depuis 2012, j'ai été confronté à des situations où les équipes produit livrent mais l'impact stagne. J'interviens dans des contextes SaaS B2B et B2C, sur des produits et plateformes critiques (admin, care, internal tools, parcours d'activation). J'ai occupé des rôles de Head of Product et Product Lead, avec la responsabilité directe de décisions qui ont créé de la tension : arrêter des features, déprioriser des clients, renoncer à des opportunités.
+**Texte**
+Chez Heetch (4 ans), j'ai construit l'intégralité du produit Care : expérience post-ride, sécurité in-ride, help center, résolution automatisée. +8% d'efficacité agent. Driver NPS de 3.5 à 4.1. J'ai reconstruit l'admin interne en plateforme partagée Product/Ops/Support.
+
+Chez Wizville (CPO), j'ai repositionné le produit, lancé un canal PLG, et contribué à faire passer l'ARR de 8 à 10M. Chez Waalaxy (Head of Product), j'ai transformé l'organisation d'output-driven à outcome-driven. ARR de 7 à 8.5M.
+
+Actuellement en mission chez Back Market comme Principal PM sur la plateforme Care.
 
 ---
 
@@ -169,17 +176,17 @@ Discuter d'une situation produit — 30 min
 
 ### En-tête
 
-**Label**  
-[ MOMENT DE CLARTÉ ]
+**Label**
+[ DIAGNOSTIC ]
 
-**Titre (H1)**  
-Le diagnostic de situation produit.
+**Titre (H1)**
+Vos ops absorbent sans progresser ?
 
-**Chapeau 1**  
-Ce diagnostic intervient lorsque l'effort fourni par les équipes est élevé, mais que l'adoption stagne, que la rétention ne bouge plus, ou que chaque nouvelle décision coûte plus cher que la précédente. Les signaux sont là, mais ils sont contradictoires : le produit avance, mais l'impact recule.
+**Chapeau 1**
+Ce diagnostic intervient quand le care, le support ou les outils internes absorbent de plus en plus de ressources sans que la satisfaction ou l'efficacité progresse. L'équipe grossit. Les process s'empilent. Les coûts grimpent. L'impact ne suit pas.
 
-**Chapeau 2**  
-La pression augmente, les feuilles de route s'alourdissent et chaque décision pèse plus lourd que la précédente. C'est le moment où le système sature et où l'on perd de vue le signal au milieu du bruit.
+**Chapeau 2**
+Le problème n'est pas le manque de moyens. C'est l'absence de vision produit sur un domaine que tout le monde traite comme de l'opérationnel.
 
 ---
 
