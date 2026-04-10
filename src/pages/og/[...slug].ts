@@ -35,6 +35,10 @@ const staticPages: Record<string, { title: string; description: string }> = {
     title: "L'écrit comme outil de lecture",
     description: "Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques.",
   },
+  'page-references': {
+    title: '4 scale-ups structurées',
+    description: 'Heetch (4 ans), Waalaxy, Wizville, Back Market. Ce que j\'ai fait, les résultats chiffrés.',
+  },
 };
 
 export async function getStaticPaths() {

@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ReferencesHeader from '../components/ReferencesHeader.astro';
+import ReferenceCard from '../components/ReferenceCard.astro';
+import ReferencesFooter from '../components/ReferencesFooter.astro';
+import Footer from '../components/Footer.astro';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems, getItemListSchema } from '../utils/schema';
+
+const siteUrl = 'https://julien-brionne.fr';
+const webPageSchema = getWebPageSchema(
+  `${siteUrl}/references`,
+  'Références — Julien Brionne',
+  'Heetch, Waalaxy, Wizville, Back Market : 4 scale-ups structurées par un Senior PM Freelance. Contextes, actions concrètes et résultats mesurables.',
+  ['références client', 'missions PM freelance', 'scale-up produit']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.references,
+]);
+const itemListSchema = getItemListSchema([
+  { position: 1, name: 'Heetch — Head of Product (4 ans)', description: 'Care Product Team from scratch, admin reconstruite en plateforme. +8% efficacité Care.' },
+  { position: 2, name: 'Waalaxy — Head of Product', description: 'Shift output → outcome-driven delivery. ARR de 7M à 8.5M.' },
+  { position: 3, name: 'Wizville — CPO', description: 'Fonction Product de zéro. Repositionnement produit. Lancement PLG.' },
+  { position: 4, name: 'Back Market — Senior PM Care Platform', description: 'Restructuration Care Platform. Migration Help Center.' },
+]);
+
+const missions = [
+  {
+    company: 'Heetch',
+    role: 'Head of Product — 4 ans',
+    context: "App de VTC, forte croissance, volumétrie élevée. Le care et les outils internes étaient des angles morts produit. Aucune équipe ne les portait. Le support compensait à la main.",
+    actions: [
+      "Créé la Care Product Team from scratch (mission, scope, KPIs)",
+      "Construit le produit care customer-facing : post-ride, help center, résolution automatisée",
+      "Reconstruit l'admin interne en plateforme cross-fonctionnelle Product/Ops/Support",
+      "Lancé les paiements cashless et wallet au Sénégal",
+      "Adapté le produit pour une offre B2B en Algérie",
+    ],
+    results: "+8% d'efficacité Care. +0.6 rides/passager/mois. Driver NPS de 3.5 à 4.1.",
+    quote: {
+      text: "Julien sait emmener la squad dans la bonne direction en terme de choix et priorités stratégiques. Il a une bonne vision sur les évolutions du produit sur le long terme.",
+      author: "Elodie Mermet",
+      title: "Principal Designer, Back Market (ex-Heetch)",
+    },
+  },
+  {
+    company: 'Waalaxy',
+    role: 'Head of Product',
+    context: "SaaS B2B, produit adopté mais dont la complexité ne cessait de croître. L'équipe livrait beaucoup. L'activation et le time-to-value devenaient des problèmes. L'orga était centrée output, pas outcome.",
+    actions: [
+      "Shift de l'orga de feature output vers outcome-driven delivery",
+      "Recentrage sur l'activation, l'adoption et les usages réels",
+      "Coaching de 3 PMs, 2 Designers, 1 Data Analyst",
+      "Mise en place de boucles post-release pour détecter les frictions",
+    ],
+    results: "ARR de 7M à 8.5M.",
+  },
+  {
+    company: 'Wizville',
+    role: 'CPO — Comité exécutif',
+    context: "SaaS B2B, outil expert puissant mais complexe. L'adoption était freinée par la complexité perçue. Pas de fonction produit structurée. Les CSM compensaient le manque d'autonomie client.",
+    actions: [
+      "Monté la fonction Product de zéro (hiring, rituels, discovery, delivery)",
+      "Posé les process et la stratégie produit",
+      "Repositionné le produit (outil expert → plateforme d'insights)",
+      "Renforcé l'autonomie client pour soulager les CSM",
+      "Structuré la data team et les capacités AI/NLP",
+      "Lancé un canal PLG",
+    ],
+  },
+  {
+    company: 'Back Market',
+    role: 'Senior PM — Care Platform',
+    context: "Marketplace, plateforme Care qui porte l'expérience client sur un volume massif. Logiques d'objets, requêtes clients, outillage agnostique. Le défi : mesurer l'impact quand on n'est pas propriétaire du dernier kilomètre.",
+    actions: [
+      "Restructuration de la Care Platform",
+      "Migration Help Center (Zendesk → Intercom)",
+      "Architecture Help Request lifecycle",
+      "Intégration omnicanale",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Références missions PM — Julien Brionne"
+  description="Heetch (4 ans), Waalaxy, Wizville, Back Market. 4 scale-ups. Ce que j'ai fait, les résultats chiffrés, un verbatim. Senior PM Freelance, 10+ ans."
+  ogTitle="Références missions PM — Julien Brionne"
+  ogDescription="Heetch, Waalaxy, Wizville, Back Market : 4 scale-ups structurées. Contextes, actions et résultats."
+  ogType="website"
+  ogImage="/og/page-references.webp"
+  ogUrl="https://julien-brionne.fr/references"
+  twitterCard="summary_large_image"
+  twitterTitle="Références missions PM — Julien Brionne"
+  twitterDescription="Heetch, Waalaxy, Wizville, Back Market : 4 scale-ups structurées. Contextes, actions et résultats."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+  itemListSchema={itemListSchema}
+>
+  <Navbar currentPage="references" />
+  <main>
+    <ReferencesHeader />
+    <div class="max-w-[1150px] mx-auto px-8 pb-16">
+      {missions.map((mission) => (
+        <ReferenceCard
+          company={mission.company}
+          role={mission.role}
+          context={mission.context}
+          actions={mission.actions}
+          results={mission.results}
+          quote={mission.quote}
+        />
+      ))}
+    </div>
+    <ReferencesFooter />
+    <Footer />
+  </main>
+</Layout>

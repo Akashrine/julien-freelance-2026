@@ -1,0 +1,69 @@
+---
+interface Quote {
+  text: string;
+  author: string;
+  title: string;
+}
+
+interface Props {
+  company: string;
+  role: string;
+  context: string;
+  actions: string[];
+  results?: string;
+  quote?: Quote;
+}
+
+const { company, role, context, actions, results, quote } = Astro.props;
+---
+
+<article class="relative py-20 border-t border-gray-100 reveal">
+  <div class="grid md:grid-cols-12 gap-8 md:gap-16">
+
+    <!-- Left column: company name + role -->
+    <div class="md:col-span-3">
+      <h2 class="text-3xl md:text-4xl font-serif text-gray-900 mb-2">{company}</h2>
+      <p class="font-mono text-[10px] text-gray-400 tracking-widest leading-relaxed">{role}</p>
+    </div>
+
+    <!-- Right column: content -->
+    <div class="md:col-span-9 space-y-8">
+
+      <!-- Context -->
+      <p class="text-base md:text-lg text-gray-600 font-light leading-relaxed">
+        {context}
+      </p>
+
+      <!-- Actions -->
+      <ul class="space-y-2">
+        {actions.map((action) => (
+          <li class="flex gap-3 text-base text-gray-700 font-light">
+            <span class="text-[#C5A070] shrink-0 mt-[3px]">—</span>
+            <span>{action}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Results (highlighted) -->
+      {results && (
+        <div class="bg-[#F2E9E1]/40 border-l-2 border-[#C5A070] pl-6 py-4">
+          <p class="font-mono text-[10px] text-gray-400 tracking-widest mb-2">RÉSULTATS</p>
+          <p class="text-base md:text-lg font-medium text-gray-900">{results}</p>
+        </div>
+      )}
+
+      <!-- Verbatim -->
+      {quote && (
+        <blockquote class="border-l-2 border-gray-200 pl-6 space-y-3">
+          <p class="text-base text-gray-600 font-light italic leading-relaxed">
+            "{quote.text}"
+          </p>
+          <footer class="font-mono text-[10px] text-gray-400 tracking-widest">
+            {quote.author} — {quote.title}
+          </footer>
+        </blockquote>
+      )}
+
+    </div>
+  </div>
+</article>

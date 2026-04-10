@@ -3,35 +3,39 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Intro from '../components/Intro.astro';
+import Posture from '../components/Posture.astro';
 import Situations from '../components/Situations.astro';
-import Approach from '../components/Approach.astro';
+import HomeCTA from '../components/HomeCTA.astro';
 import Footer from '../components/Footer.astro';
-import { getPersonSchema, getWebsiteSchema } from '../utils/schema';
+import { getPersonSchema, getWebsiteSchema, getServiceSchemas } from '../utils/schema';
 
 const personSchema = getPersonSchema();
 const websiteSchema = getWebsiteSchema();
+const serviceSchemas = getServiceSchemas();
 ---
 
 <Layout
-  title="Julien Brionne — Product Lead Indépendant"
-  description="Product Lead indépendant. J'interviens auprès de fondateurs et Heads of Product (Series A/B) quand le système produit a grandi plus vite que sa capacité à trancher."
-  ogTitle="Simplifier pour retrouver de l'impact"
-  ogDescription="Quand le produit avance, que la roadmap se remplit, mais que chaque décision coûte plus cher que la précédente. Le problème n'est pas l'exécution. C'est la dette de décision."
+  title="Senior PM Freelance — Julien Brionne | Orga Produit"
+  description="Senior PM Freelance, 10+ ans. J'interviens quand l'orga produit ne suit plus la croissance. 4 scale-ups structurées : Heetch, Back Market, Waalaxy, Wizville."
+  ogTitle="Senior PM Freelance — Julien Brionne | Orga Produit"
+  ogDescription="Senior PM Freelance, 10+ ans. J'interviens quand l'orga produit ne suit plus la croissance. 4 scale-ups structurées : Heetch, Back Market, Waalaxy, Wizville."
   ogType="website"
   ogImage="/og/page-home.webp"
-  ogUrl="https://julien-brionne.fr/"
+  ogUrl="https://julien-brionne.fr"
   twitterCard="summary_large_image"
-  twitterTitle="Simplifier pour retrouver de l'impact"
-  twitterDescription="Quand le produit avance, que la roadmap se remplit, mais que chaque décision coûte plus cher que la précédente. Le problème n'est pas l'exécution. C'est la dette de décision."
+  twitterTitle="Senior PM Freelance — Julien Brionne | Orga Produit"
+  twitterDescription="Senior PM Freelance, 10+ ans. J'interviens quand l'orga produit ne suit plus la croissance. Ex-Heetch, Back Market, Waalaxy, Wizville."
   personSchema={personSchema}
   websiteSchema={websiteSchema}
+  serviceSchemas={serviceSchemas}
 >
   <Navbar currentPage="home" />
   <main>
     <Hero />
     <Intro />
+    <Posture />
     <Situations />
-    <Approach />
+    <HomeCTA />
     <Footer />
   </main>
 </Layout>

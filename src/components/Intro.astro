@@ -1,19 +1,43 @@
 ---
 ---
 
-<section id="intro" class="max-w-[1150px] mx-auto px-8 py-32 section-fade">
+<section id="pain-points" class="relative max-w-[1150px] mx-auto px-8 py-32 section-fade">
+  <!-- Halo lumineux derrière la carte -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] halo-blue -z-10 pointer-events-none opacity-60"></div>
+
   <div class="grid md:grid-cols-12 gap-8">
-    <div class="md:col-start-2 md:col-span-10 bg-white p-12 md:p-24 border border-gray-50 shadow-sm relative reveal intro-card">
-      <!-- Rappel bleu organique -->
-      <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#D7E5E5]/20 -z-10 organic-shape"></div>
-      
-      <div class="font-mono mb-8 text-gray-500">01 / CONTEXTE</div>
-      <p class="text-2xl md:text-3xl leading-snug text-gray-800 font-serif italic">
-        Les équipes livrent. Les rituels tournent. La roadmap s'épaissit. Mais le produit devient plus difficile à piloter. Les décisions s'empilent, restent actives trop longtemps, et l'organisation compense par de l'urgence, de la coordination ou des exceptions devenues permanentes. Le problème n'est pas l'exécution. C'est la dette de décision.
-      </p>
-      <p class="text-lg md:text-xl text-gray-600 font-light leading-relaxed mt-8">
-        La dette de décision, c'est l'accumulation de choix restés ouverts, de priorités jamais tranchées, qui finissent par alourdir chaque nouvelle décision.
-      </p>
+    <div class="md:col-start-2 md:col-span-10 bg-white/80 backdrop-blur-sm p-12 md:p-24 border border-gray-100/60 shadow-lg shadow-black/[0.03] relative reveal intro-card">
+      <!-- Rappel bleu organique avec glow -->
+      <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#D7E5E5]/25 -z-10 organic-shape glow-blue"></div>
+      <!-- Accent clay en bas à gauche -->
+      <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-[#E5BAAD]/15 -z-10 organic-shape"></div>
+
+      <div class="font-mono mb-4 text-gray-500">01 / ÇA TE PARLE&nbsp;?</div>
+      <div class="editorial-rule mb-16"></div>
+
+      <div class="space-y-10">
+        <p class="pain-point text-2xl md:text-3xl leading-snug text-gray-800 font-serif italic border-l-2 border-[#E5BAAD] pl-8">
+          "Personne ne sait qui est owner de quoi dans l'équipe produit."
+        </p>
+        <p class="pain-point text-2xl md:text-3xl leading-snug text-gray-800 font-serif italic border-l-2 border-[#D7E5E5] pl-8">
+          "Vos outils internes sont un patchwork. Chaque équipe a bricolé le sien."
+        </p>
+        <p class="pain-point text-2xl md:text-3xl leading-snug text-gray-800 font-serif italic border-l-2 border-[#E5BAAD] pl-8">
+          "Vous avez grandi trop vite. Les process n'ont pas suivi."
+        </p>
+        <p class="pain-point text-2xl md:text-3xl leading-snug text-gray-800 font-serif italic border-l-2 border-[#D7E5E5] pl-8">
+          "Le care et le support sont un angle mort produit. Personne ne s'en occupe côté product."
+        </p>
+        <p class="pain-point text-2xl md:text-3xl leading-snug text-gray-800 font-serif italic border-l-2 border-[#E5BAAD] pl-8">
+          "L'équipe passe plus de temps à se coordonner qu'à exécuter."
+        </p>
+      </div>
+
+      <div class="mt-16 pt-10 border-t border-gray-100">
+        <p class="text-lg md:text-xl text-gray-600 font-light leading-relaxed max-w-2xl">
+          Ce n'est pas un problème d'exécution. C'est une <strong class="font-medium text-gray-800">orga produit qui a grandi plus vite que sa capacité à trancher.</strong>
+        </p>
+      </div>
     </div>
   </div>
 </section>

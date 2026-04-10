@@ -14,8 +14,8 @@ const pageUrl = `${siteUrl}/diagnostic`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
   'Diagnostic de situation',
-  'Intervention courte (2–3 semaines) pour identifier pourquoi les décisions ne tiennent pas. Mettre sur la table les tensions que personne n\'osait nommer, trancher en connaissance de cause. Aucune garantie de suite.',
-  ['diagnostic de situation produit', 'trancher', 'décisions qui ne tiennent pas']
+  'Intervention courte (2–3 semaines) pour identifier pourquoi le care, le support ou les ops internes absorbent des ressources sans que la satisfaction ou l\'efficacité progresse. Aucune garantie de suite.',
+  ['diagnostic ops', 'care produit', 'support efficiency', 'ops internes']
 );
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
@@ -24,16 +24,17 @@ const breadcrumbSchema = getBreadcrumbSchema([
 ---
 
 <Layout
-  title="Diagnostic de situation — Julien Brionne"
-  description="Intervention courte (2–3 semaines) pour identifier pourquoi les décisions ne tiennent pas. Mettre sur la table les tensions que personne n'osait nommer, trancher en connaissance de cause. Aucune garantie de suite."
-  ogTitle="Une pause pour vérifier le cap"
-  ogDescription="Intervention courte pour mettre sur la table les tensions et trancher en connaissance de cause. Aucune garantie de suite."
+  title="Diagnostic care & ops — Julien Brionne"
+  description="Intervention courte 2–3 semaines : pourquoi le care ou les ops absorbent des ressources sans progression. Diagnostic terrain, pas de conseil théorique."
+  ogTitle="Diagnostic care & ops — Julien Brionne"
+  ogDescription="Intervention courte 2–3 semaines : pourquoi le care ou les ops absorbent des ressources sans progression. Diagnostic terrain."
   ogType="website"
   ogImage="/og/page-diagnostic.webp"
   ogUrl="https://julien-brionne.fr/diagnostic"
   twitterCard="summary_large_image"
-  twitterTitle="Une pause pour vérifier le cap"
-  twitterDescription="Intervention courte pour mettre sur la table les tensions et trancher en connaissance de cause. Aucune garantie de suite."
+  twitterTitle="Diagnostic care & ops — Julien Brionne"
+  twitterDescription="Intervention courte 2–3 semaines : pourquoi le care ou les ops absorbent des ressources sans progression. Diagnostic terrain."
+  noindex={true}
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
