@@ -28,8 +28,8 @@ const staticPages: Record<string, { title: string; description: string }> = {
     description: "Quand l'effort augmente plus vite que l'impact et que personne n'ose plus trancher. Fermer les options, trancher les arbitrages.",
   },
   'page-diagnostic': {
-    title: 'Une pause pour vérifier le cap',
-    description: 'Intervention courte pour mettre sur la table les tensions et trancher en connaissance de cause. Aucune garantie de suite.',
+    title: "L'effort augmente, l'impact ne suit plus ?",
+    description: 'Intervention courte pour identifier pourquoi les décisions ne tiennent pas. Aucune garantie de suite.',
   },
   'page-articles': {
     title: "L'écrit comme outil de lecture",
