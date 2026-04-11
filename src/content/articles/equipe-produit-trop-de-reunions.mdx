@@ -1,0 +1,102 @@
+---
+title: "Ton équipe produit passe plus de temps à se coordonner qu'à livrer. Voici pourquoi."
+date: "2026-04-11"
+category: "reflexion"
+excerpt: "Le problème n'est pas les réunions. C'est l'absence de décisions claires entre les réunions. Diagnostic et méthode concrète pour débloquer une équipe produit."
+draft: false
+---
+
+<SectionIntro>
+  <p>Le problème n'est pas les réunions. C'est ce qui ne se passe pas entre les réunions.</p>
+</SectionIntro>
+
+<ColorBlock bgColor="blue" label="LE SYMPTÔME" title="Des réunions partout, de l'impact nulle part.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Le schéma est toujours le même. L'équipe produit grandit. On passe de 2 PMs à 5, puis à 8. On ajoute des squads. On recrute des designers, des data analysts. Sur le papier, la capacité augmente.</p>
+    <p>En pratique, tout ralentit.</p>
+    <p>Les calendriers se remplissent. Weekly produit. Synchro cross-squad. Point stakeholders. Review hebdo. Grooming. Refinement. Rétro. Et entre chaque réunion, des Slack threads qui reprennent les mêmes sujets.</p>
+    <p>Les PMs passent leurs journées en visio. Le soir, ils rattrapent le vrai travail : specs, analyses, arbitrages. Sauf qu'ils n'ont plus l'énergie ni le temps de les faire correctement.</p>
+    <p>L'équipe livre moins. Les décisions traînent. Tout le monde est occupé. Personne n'avance.</p>
+    <p>Le réflexe classique : ajouter une réunion pour résoudre le problème de coordination. Un point hebdo de plus. Un Slack channel dédié. Un dashboard de suivi. Ça ne marche jamais. Parce que le problème n'est pas là.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="LE CERCLE VICIEUX" title="Ajouter des réunions aggrave le problème." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Chaque réunion ajoutée consomme du temps. Mais le vrai coût n'est pas le temps. C'est le signal que ça envoie à l'équipe.</p>
+    <p>Quand tu ajoutes une synchro pour "aligner les squads", tu dis implicitement : les squads ne sont pas capables de s'aligner seules. Quand tu ajoutes un point de validation hebdo, tu dis : les décisions prises en autonomie ne tiennent pas. Quand tu ajoutes un canal Slack "décisions", tu dis : personne ne sait où sont les décisions.</p>
+    <p>L'équipe comprend le message. Elle attend la prochaine réunion pour trancher. Elle attend la validation du Head of pour avancer. Elle attend que quelqu'un d'autre prenne la décision.</p>
+    <p>Plus tu compenses par de la coordination, moins l'équipe décide par elle-même. C'est un cercle vicieux. Et il s'accélère avec la croissance.</p>
+  </div>
+</Section>
+
+<ColorBlock bgColor="clay" label="LE VRAI DIAGNOSTIC" title="Pas un problème de coordination. Un problème d'ownership.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>J'ai vu ce schéma dans chaque scale-up où je suis intervenu. Les symptômes varient. Le fond est toujours le même.</p>
+    <p>Personne ne sait qui est owner de quoi.</p>
+    <p>Pas "qui travaille sur quoi". Ça, tout le monde le sait. Mais qui tranche. Qui a le dernier mot sur cette décision. Qui assume le résultat.</p>
+    <p>Quand l'<a href="/articles/ownership-produit" class="underline hover:text-gray-700 transition-colors">ownership est flou</a>, les réunions deviennent le seul endroit où les décisions se prennent. Parce que c'est le seul moment où les bonnes personnes sont dans la même pièce. Résultat : tout dépend du synchrone. Si la réunion est annulée, la décision attend une semaine. Si la bonne personne n'est pas là, on reporte.</p>
+    <p>Et les comptes-rendus de réunion ? Soit ils n'existent pas. Soit ils listent ce qui a été "discuté" sans dire ce qui a été décidé, par qui, avec quelle deadline.</p>
+    <p>Le problème n'est pas que l'équipe se coordonne mal. C'est qu'elle n'a pas de cadre qui lui permette de décider sans se coordonner en permanence.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="CE QUE J'AI CHANGÉ" title="Concrètement. En 3 semaines." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed mb-12">
+    <p>Sur une mission récente, l'équipe produit avait 6 PMs, 3 squads, et une moyenne de 14 heures de réunions par semaine par personne. L'équipe livrait, mais les décisions inter-squads traînaient des semaines. Les mêmes sujets revenaient en boucle. Tout le monde sentait que ça ne fonctionnait pas. Personne ne savait par où commencer.</p>
+    <p>Voici ce que j'ai posé en 3 semaines.</p>
+  </div>
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Async par défaut, synchrone pour trancher.">
+      Toute discussion qui est de l'ordre de l'information ou de la proposition passe en écrit. Notion, Slack, peu importe le support. L'important c'est que la réflexion soit documentée avant la réunion, pas pendant. Le synchrone est réservé à un seul usage : trancher quand il y a un désaccord. Si tout le monde est d'accord, pas besoin de réunion. On valide en async et on avance. Résultat : on a supprimé 6 rituels hebdomadaires sur 11 en 2 semaines. Les PMs ont récupéré en moyenne 7 heures par semaine. L'équipe n'a pas livré moins. Elle a livré plus.
+    </DecisionItem>
+    <DecisionItem number="02" title="Un one-pager par initiative, rattaché à un objectif clair.">
+      Chaque initiative produit tient sur une page. Le problème qu'on résout. L'hypothèse. Les métriques de succès. Les dépendances. Le lien avec les objectifs du trimestre. Pas un PRD de 15 pages que personne ne lit. Un document court qui force la clarté. Si tu n'arrives pas à expliquer ton initiative en une page, c'est que le cadrage n'est pas terminé. Ce one-pager devient la référence. En réunion, on ne re-présente pas le contexte. Tout le monde a lu le document. On va direct aux questions ouvertes.
+    </DecisionItem>
+    <DecisionItem number="03" title="Chaque réunion produit un CR avec trois éléments : décision, owner, deadline.">
+      Pas de compte-rendu narratif. Trois colonnes. Qu'est-ce qu'on a décidé. Qui porte la suite. Pour quand. Si la réunion ne produit aucune décision, c'est qu'elle n'aurait pas dû avoir lieu. Ce format a changé la culture en quelques semaines. Les gens venaient préparés. Les réunions duraient 20 minutes au lieu de 45. Et surtout : les décisions tenaient. Parce qu'elles étaient écrites, assignées, et visibles.
+    </DecisionItem>
+    <DecisionItem number="04" title="Ownership explicite sur chaque périmètre.">
+      On a cartographié qui tranche quoi. Pas qui "participe" ou "contribue". Qui décide. Pour chaque zone de friction (priorisation inter-squads, choix techniques avec impact produit, escalades clients), un owner nommé. Quand l'ownership est clair, les gens arrêtent de demander la permission. Ils agissent, informent, et ajustent. Le nombre de messages Slack de type "qui gère ça ?" a chuté de façon visible.
+    </DecisionItem>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="AUTODIAGNOSTIC" title="Comment savoir si ton équipe a ce problème." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed mb-12">
+    <p>Cinq signaux. Si tu en coches trois, le problème est structurel.</p>
+  </div>
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Tes PMs passent plus de 10 heures par semaine en réunions récurrentes.">
+      Ce n'est pas un signe d'alignement. C'est un signe que l'alignement ne tient pas entre les réunions.
+    </DecisionItem>
+    <DecisionItem number="02" title="Les mêmes sujets reviennent d'une semaine à l'autre.">
+      Si un sujet revient trois fois en réunion sans être fermé, ce n'est pas un problème de réunion. C'est un problème de décision.
+    </DecisionItem>
+    <DecisionItem number="03" title="Personne ne lit les comptes-rendus (ou il n'y en a pas).">
+      Si les CR n'existent pas, les décisions n'existent pas non plus. Elles flottent. Et elles changent à la prochaine réunion.
+    </DecisionItem>
+    <DecisionItem number="04" title="Les décisions inter-squads prennent plus de deux semaines.">
+      C'est le signe que le circuit décisionnel est implicite. Personne ne sait qui doit trancher, alors tout le monde attend.
+    </DecisionItem>
+    <DecisionItem number="05" title="L'équipe demande souvent « qui gère ça ? ».">
+      La question la plus révélatrice. Si elle revient régulièrement, l'ownership n'est pas posé. Ajouter une réunion ne résoudra rien. Poser un cadre, si.
+    </DecisionItem>
+  </div>
+</Section>
+
+<section class="max-w-2xl mx-auto mb-12 reveal">
+  <p class="text-sm text-gray-500 font-light italic text-center">
+    Ces situations reviennent dans chaque scale-up en croissance. <a href="/situations" class="underline hover:text-gray-700 transition-colors">Reconnaître les signaux</a>.
+  </p>
+</section>
+
+<section class="max-w-2xl mx-auto mb-12 reveal">
+  <p class="text-sm text-gray-500 font-light italic text-center">
+    Un scope produit qui coince ? <a href="/contact" class="underline hover:text-gray-700 transition-colors">On en parle</a>.
+  </p>
+</section>
+
+<ClosingBlock title="Ce qu'il faut retenir.">
+  <p class="text-xl text-gray-500 font-light leading-relaxed italic">Le problème n'est jamais les réunions. C'est l'absence de décisions claires entre les réunions. Quand l'ownership est flou, l'équipe compense par de la coordination. Plus elle compense, moins elle décide. Le cercle se referme. La solution n'est pas d'optimiser les réunions. C'est de poser un cadre où les décisions se prennent sans elles : async par défaut, ownership explicite, et chaque réunion qui survit produit une décision écrite avec un owner et une deadline.</p>
+</ClosingBlock>
