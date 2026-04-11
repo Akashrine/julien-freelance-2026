@@ -24,6 +24,7 @@ interface Props {
   faqSchema?: object;
   itemListSchema?: object;
   howToSchema?: object;
+  articleDate?: string;
 }
 
 const {
@@ -46,7 +47,8 @@ const {
   serviceSchemas,
   faqSchema,
   itemListSchema,
-  howToSchema
+  howToSchema,
+  articleDate
 } = Astro.props;
 
 const siteUrl = 'https://julien-brionne.fr';
@@ -81,14 +83,22 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <link rel="canonical" href={finalOgUrl} />
     <link rel="alternate" hreflang="fr" href={finalOgUrl} />
     <meta name="theme-color" content="#FDFCFB" />
-    
+    <link rel="alternate" type="application/rss+xml" title="Julien Brionne — Articles" href="/rss.xml" />
+
     <!-- Open Graph -->
+    <meta property="og:site_name" content="Julien Brionne" />
     <meta property="og:title" content={finalOgTitle} />
     <meta property="og:description" content={finalOgDescription} />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={finalOgUrl} />
     {ogImage && <meta property="og:image" content={`${siteUrl}${ogImage}`} />}
     <meta property="og:locale" content="fr_FR" />
+    {ogType === 'article' && articleDate && (
+      <>
+        <meta property="article:published_time" content={articleDate} />
+        <meta property="article:author" content="Julien Brionne" />
+      </>
+    )}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content={twitterCard} />

@@ -9,7 +9,7 @@ export const GET: APIRoute = async () => {
   const siteUrl = 'https://julien-brionne.fr';
   const currentDate = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
 
-  // Pages statiques
+  // Pages statiques indexées
   const staticPages = [
     {
       url: `${siteUrl}/`,
@@ -27,7 +27,7 @@ export const GET: APIRoute = async () => {
       url: `${siteUrl}/situations`,
       lastmod: currentDate,
       changefreq: 'monthly',
-      priority: '0.9',
+      priority: '0.8',
     },
     {
       url: `${siteUrl}/articles`,
@@ -40,6 +40,18 @@ export const GET: APIRoute = async () => {
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: '0.8',
+    },
+    {
+      url: `${siteUrl}/references`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: '0.8',
+    },
+    {
+      url: `${siteUrl}/contact`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: '0.7',
     },
   ];
 

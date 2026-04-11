@@ -5,6 +5,7 @@ import SituationsIntro from '../components/SituationsIntro.astro';
 import SituationsObservables from '../components/SituationsObservables.astro';
 import SituationsAnalysis from '../components/SituationsAnalysis.astro';
 import SituationsIntervention from '../components/SituationsIntervention.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
@@ -33,11 +34,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
   twitterCard="summary_large_image"
   twitterTitle="Situations produit — Moment critique"
   twitterDescription="Quand l'effort dépasse l'impact et que personne n'ose trancher. Vision décorative, roadmap réactive, PMs éponges."
-  noindex={true}
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
   <Navbar currentPage="situations" />
+  <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Situations' }]} />
   <main>
     <SituationsIntro />
     <SituationsObservables />

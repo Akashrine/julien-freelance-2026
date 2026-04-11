@@ -6,6 +6,7 @@ import DiagnosticDefinition from '../components/DiagnosticDefinition.astro';
 import DiagnosticLimits from '../components/DiagnosticLimits.astro';
 import DiagnosticMethod from '../components/DiagnosticMethod.astro';
 import DiagnosticResults from '../components/DiagnosticResults.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
@@ -34,11 +35,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
   twitterCard="summary_large_image"
   twitterTitle="Diagnostic care & ops — Julien Brionne"
   twitterDescription="Intervention courte 2–3 semaines : pourquoi le care ou les ops absorbent des ressources sans progression. Diagnostic terrain."
-  noindex={true}
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
   <Navbar currentPage="diagnostic" />
+  <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Diagnostic' }]} />
   <main>
     <DiagnosticIntro />
     <DiagnosticDefinition />

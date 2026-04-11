@@ -358,6 +358,26 @@ export function getArticleExtraSchemas(slug: string): { faqSchema?: object; howT
         },
       ]),
     },
+    'art-du-non': {
+      faqSchema: getFAQSchema([
+        {
+          question: "C'est quoi l'Art du Non en produit ?",
+          answer: "C'est la capacité d'un CPO ou Head of Product à refuser les demandes qui ne servent pas la stratégie, même sous pression commerciale. Dire non protège la cohérence du système, pas le backlog.",
+        },
+        {
+          question: "Quels sont les trois types de non en produit ?",
+          answer: "Le non stratégique (l'idée ne sert pas la trajectoire définie), le non opportuniste (la demande vient d'un cas ponctuel, pas d'un problème récurrent), et le non structurel (l'équipe est saturée, dire oui détruirait même les bonnes idées).",
+        },
+        {
+          question: "Qu'est-ce qu'un Kill Meeting ?",
+          answer: "Un rituel où l'équipe produit décide quoi arrêter : projets stagnants, features inutilisées, paris jamais assumés. L'objectif n'est pas de critiquer, mais de clarifier ce qui ne sert plus la vision pour libérer de l'énergie sur ce qui compte.",
+        },
+        {
+          question: "Comment dire non à un deal commercial sans bloquer le business ?",
+          answer: "En reformulant la question : 'Oui, c'est faisable. Pour le faire maintenant, il faudra déprioriser X qui sert 80% de nos clients. Souhaitons-nous réellement faire passer l'ensemble de la base après une demande unique ?' Ça oblige l'organisation à regarder ses propres priorités.",
+        },
+      ]),
+    },
   };
 
   return schemas[slug] || {};
