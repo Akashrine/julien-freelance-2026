@@ -15,8 +15,8 @@ const pageUrl = `${siteUrl}/diagnostic`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
   'Diagnostic de situation',
-  'Intervention courte (2–3 semaines) pour identifier pourquoi le care, le support ou les ops internes absorbent des ressources sans que la satisfaction ou l\'efficacité progresse. Aucune garantie de suite.',
-  ['diagnostic ops', 'care produit', 'support efficiency', 'ops internes']
+  'Intervention courte (2 à 3 semaines) pour identifier pourquoi les décisions ne tiennent pas, l\'adoption stagne et l\'impact recule malgré l\'effort. Aucune garantie de suite.',
+  ['diagnostic produit', 'adoption stagne', 'décisions produit', 'impact produit']
 );
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
@@ -25,16 +25,16 @@ const breadcrumbSchema = getBreadcrumbSchema([
 ---
 
 <Layout
-  title="Diagnostic care & ops — Julien Brionne"
-  description="Intervention courte 2–3 semaines : pourquoi le care ou les ops absorbent des ressources sans progression. Diagnostic terrain, pas de conseil théorique."
-  ogTitle="Diagnostic care & ops — Julien Brionne"
-  ogDescription="Intervention courte 2–3 semaines : pourquoi le care ou les ops absorbent des ressources sans progression. Diagnostic terrain."
+  title="Diagnostic produit — Julien Brionne"
+  description="L'effort augmente, l'impact ne suit plus ? Intervention courte 2 à 3 semaines pour identifier pourquoi les décisions ne tiennent pas. Diagnostic terrain."
+  ogTitle="Diagnostic produit — Julien Brionne"
+  ogDescription="L'effort augmente, l'impact ne suit plus ? Intervention courte pour identifier pourquoi les décisions ne tiennent pas."
   ogType="website"
   ogImage="/og/page-diagnostic.webp"
   ogUrl="https://julien-brionne.fr/diagnostic"
   twitterCard="summary_large_image"
-  twitterTitle="Diagnostic care & ops — Julien Brionne"
-  twitterDescription="Intervention courte 2–3 semaines : pourquoi le care ou les ops absorbent des ressources sans progression. Diagnostic terrain."
+  twitterTitle="Diagnostic produit — Julien Brionne"
+  twitterDescription="L'effort augmente, l'impact ne suit plus ? Intervention courte pour identifier pourquoi les décisions ne tiennent pas."
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
@@ -46,6 +46,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <DiagnosticLimits />
     <DiagnosticMethod />
     <DiagnosticResults />
+    <section class="py-16 text-center">
+      <p class="text-base text-gray-500 font-light">
+        Prêt à en parler ? <a href="/contact" class="underline hover:text-gray-700 transition-colors">Prendre contact directement</a>.
+      </p>
+    </section>
     <Footer />
   </main>
 </Layout>

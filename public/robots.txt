@@ -4,6 +4,8 @@ Allow: /articles/
 Allow: /approche
 Allow: /references
 Allow: /contact
+Allow: /situations
+Allow: /diagnostic
 
 Disallow: /api/
 Disallow: /_astro/

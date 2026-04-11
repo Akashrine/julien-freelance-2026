@@ -21,7 +21,7 @@ export default defineConfig({
     },
   },
   integrations: [mdx(), sitemap({
-    filter: (page) => !page.includes('/situations') && !page.includes('/diagnostic'),
+    filter: (page) => !page.includes('/mentions-legales'),
   })],
   compressHTML: true,
   build: {
