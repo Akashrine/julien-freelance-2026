@@ -114,6 +114,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
   breadcrumbSchema={breadcrumbSchema}
   faqSchema={faqSchema}
   howToSchema={howToSchema}
+  articleDate={article.data.date}
 >
   <Navbar currentPage="articles" />
   <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Articles', url: '/articles' }, { name: article.data.title }]} />
