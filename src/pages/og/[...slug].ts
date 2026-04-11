@@ -41,7 +41,7 @@ const staticPages: Record<string, { title: string; description: string }> = {
   },
   'page-contact': {
     title: 'Discuter d\'une situation produit',
-    description: '30 minutes pour exposer ta situation. Sans engagement. On voit si j\'interviens — ou pas.',
+    description: '30 minutes pour exposer ta situation. Sans engagement. On voit si j\'interviens.',
   },
 };
 

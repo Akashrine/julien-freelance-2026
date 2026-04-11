@@ -2,13 +2,13 @@
 title: "Backoffice legacy : quand refondre, quand patcher, et comment trancher"
 date: "2026-04-11"
 category: "reflexion"
-excerpt: "Ton backoffice tient avec du scotch. Tout le monde le sait. Personne ne tranche. Voici comment décider entre refonte et itération — sans y laisser 6 mois."
+excerpt: "Ton backoffice tient avec du scotch. Tout le monde le sait. Personne ne tranche. Voici comment décider entre refonte et itération, sans y laisser 6 mois."
 draft: false
 ---
 
 <SectionIntro>
   <p>Ton backoffice a été construit il y a trois ans. Par un dev, un soir, pour débloquer un process urgent. Depuis, il a grossi. Des champs se sont ajoutés. Des workflows se sont greffés. Des règles métier vivent dans des if/else que personne ne comprend.</p>
-  <p>Aujourd'hui, les ops passent 40% de leur temps à contourner l'outil. Les PMs reçoivent un ticket "refonte backoffice" toutes les deux semaines. Et personne ne tranche. Parce que personne ne sait si c'est le bon moment pour refondre — ou si un patch suffit.</p>
+  <p>Aujourd'hui, les ops passent 40% de leur temps à contourner l'outil. Les PMs reçoivent un ticket "refonte backoffice" toutes les deux semaines. Et personne ne tranche. Parce que personne ne sait si c'est le bon moment pour refondre. Ou si un patch suffit.</p>
 </SectionIntro>
 
 <ColorBlock bgColor="blue" label="L'ESSENTIEL À RETENIR" title="La question n'est pas technique. Elle est décisionnelle.">
@@ -19,7 +19,7 @@ draft: false
 
 <Section maxWidth="3xl" label="LE PIÈGE" title="Pourquoi le backoffice devient le sujet que personne ne tranche." titleSize="large">
   <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
-    <p>Le backoffice est un sujet ingrat. Il ne génère pas de revenu direct. Il n'a pas de sponsor naturel. Il vit entre le produit, l'engineering et les ops — et chacun considère que c'est le problème de l'autre.</p>
+    <p>Le backoffice est un sujet ingrat. Il ne génère pas de revenu direct. Il n'a pas de sponsor naturel. Il vit entre le produit, l'engineering et les ops. Chacun considère que c'est le problème de l'autre.</p>
     <p>Dans les scale-ups que j'ai traversées, le pattern est toujours le même. Le backoffice démarre comme un outil interne bricolé. Il fonctionne. Puis l'entreprise grandit. Les volumes augmentent. Les process se complexifient. L'outil ne suit plus. Mais comme il "marche encore", personne ne prend la décision de le refaire.</p>
     <p>Le coût réel est invisible. Il se cache dans le temps que les ops passent à copier-coller des données entre deux onglets. Dans les erreurs de saisie qui génèrent des tickets support. Dans les workarounds que chaque nouvel arrivant doit apprendre de son voisin parce que rien n'est documenté.</p>
   </div>
@@ -34,7 +34,7 @@ draft: false
       Tu veux automatiser un workflow. Tu veux changer une règle métier. Tu veux absorber un nouveau volume. Et à chaque fois, la réponse engineering est : "ça demande 3 semaines parce que le backoffice n'est pas prévu pour ça." Quand l'outil empêche l'organisation d'évoluer, le patch ne suffit plus.
     </DecisionItem>
     <DecisionItem number="03" title="Le turnover ops augmente.">
-      Les gens partent parce que l'outil est pénible. Pas parce que le salaire est bas. Pas parce que le management est mauvais. Parce qu'ils passent leur journée à se battre contre un écran. C'est un signal faible que les Head of Ops remontent rarement — mais qui coûte cher en recrutement et en formation.
+      Les gens partent parce que l'outil est pénible. Pas parce que le salaire est bas. Pas parce que le management est mauvais. Parce qu'ils passent leur journée à se battre contre un écran. C'est un signal faible que les Head of Ops remontent rarement. Il coûte cher en recrutement et en formation.
     </DecisionItem>
   </div>
 </Section>
@@ -52,10 +52,10 @@ draft: false
 <Section maxWidth="3xl">
   <div class="space-y-12">
     <DecisionItem number="01" title="Le modèle de données est-il encore viable ?">
-      Si le modèle sous-jacent (les entités, les relations, les états) correspond encore à la réalité métier, tu patches. Tu améliores l'interface, tu ajoutes des raccourcis, tu automatises les actions répétitives. Si le modèle est dépassé — si les entités du backoffice ne correspondent plus à ce que font réellement les équipes — il faut refondre le modèle, pas l'écran.
+      Si le modèle sous-jacent (les entités, les relations, les états) correspond encore à la réalité métier, tu patches. Tu améliores l'interface, tu ajoutes des raccourcis, tu automatises les actions répétitives. Si le modèle est dépassé, si les entités du backoffice ne correspondent plus à ce que font réellement les équipes, il faut refondre le modèle. Pas l'écran.
     </DecisionItem>
     <DecisionItem number="02" title="Combien de process critiques dépendent de l'outil ?">
-      Si le backoffice sert 2-3 workflows bien identifiés, le patch est gérable. Si 15 process différents passent par le même outil avec des logiques incompatibles, le patch crée de la dette à chaque itération. Plus le nombre de process est élevé, plus la refonte a du sens — mais plus elle est risquée.
+      Si le backoffice sert 2-3 workflows bien identifiés, le patch est gérable. Si 15 process différents passent par le même outil avec des logiques incompatibles, le patch crée de la dette à chaque itération. Plus le nombre de process est élevé, plus la refonte a du sens. Et plus elle est risquée.
     </DecisionItem>
     <DecisionItem number="03" title="As-tu un owner produit dédié ?">
       Une refonte de backoffice sans <a href="/articles/ownership-produit" class="underline hover:text-gray-700 transition-colors">PM owner dédié</a> échoue systématiquement. Ce n'est pas un side project. C'est un produit interne avec des utilisateurs, des contraintes, et des arbitrages à faire chaque semaine. Si tu n'as pas la bande passante produit pour porter la refonte, patche et revois la question dans 6 mois.
