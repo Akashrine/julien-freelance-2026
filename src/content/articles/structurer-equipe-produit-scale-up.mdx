@@ -1,0 +1,164 @@
+---
+title: "Structurer une équipe produit en scale-up : par où commencer quand tout est urgent"
+date: "2026-04-15"
+category: "reflexion"
+excerpt: "Ownership flou, process bricolés, outils internes en ruine. Tout est urgent. Rien n'avance. Voici la séquence qui fonctionne pour poser une structure produit en 90 jours."
+draft: false
+---
+
+<SectionIntro>
+  <p>Tu viens d'être nommé Head of Product. Ou tu es founder et tu portes encore la casquette produit à 80 personnes. Ou tu es CPO et tu as hérité d'une équipe qui a grandi sans toi.</p>
+  <p>Le constat est le même partout. L'ownership est flou. Les outils internes tiennent avec du scotch. Les PMs passent plus de temps en réunions qu'à réfléchir. L'engineering livre, mais personne ne sait mesurer l'impact. Tout semble urgent. Rien n'avance vraiment.</p>
+  <p>La tentation : tout attaquer en même temps. Refondre les rituels. Redessiner l'organigramme. Lancer un chantier backoffice. Recruter trois PMs. C'est la pire erreur possible.</p>
+</SectionIntro>
+
+<ColorBlock bgColor="blue" label="L'ESSENTIEL À RETENIR" title="Structurer une équipe produit, c'est une séquence. Pas un big bang.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Chaque scale-up qui grandit plus vite que son organisation produit finit avec les mêmes symptômes : <a href="/articles/ownership-produit" class="underline hover:text-gray-700 transition-colors">ownership flou</a>, coordination excessive, outils bricolés. La réponse n'est pas de tout refondre. C'est de poser les choses dans le bon ordre. <strong>D'abord comprendre ce qui casse. Ensuite poser qui décide quoi. Enfin installer les mécanismes de décision.</strong> 90 jours. Trois phases. Le reste vient après.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl" label="LE PIÈGE" title="Vouloir tout fixer en même temps." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>J'ai traversé 4 scale-ups (Heetch, Back Market, Waalaxy, Wizville). Le pattern est identique. Le nouveau Head of arrive, voit le chaos, et lance 5 chantiers en parallèle. Nouveaux rituels. Nouvelle roadmap. Nouveau framework de priorisation. Nouveau Notion. Nouveau tout.</p>
+    <p>En 3 mois, rien n'a bougé. L'équipe est fatiguée du changement. Les anciens process n'ont pas été remplacés, ils se sont empilés. Les PMs ont un rituel de plus, un template de plus, un canal Slack de plus. Et le problème de fond est intact.</p>
+    <p>Le problème de fond, c'est que personne ne sait quel problème résoudre en premier. Faute de diagnostic, on traite les symptômes visibles (trop de réunions, backlog chaotique, engineering frustrée) au lieu de la cause. La cause, c'est presque toujours la même : <strong>l'organisation a grandi plus vite que sa capacité à décider.</strong></p>
+    <p>C'est l'<a href="/articles/illusion-mouvement" class="underline hover:text-gray-700 transition-colors">illusion du mouvement</a> : l'effort masque l'absence de décision. Et structurer sans avoir compris ce qui casse revient à construire un cadre autour du vide.</p>
+  </div>
+</Section>
+
+<blockquote class="reveal">
+  Structurer, c'est décider dans quel ordre on règle les problèmes. Pas les régler tous en même temps.
+</blockquote>
+
+<Section maxWidth="3xl" label="PHASE 1 — SEMAINES 1 À 3" title="Écouter. Observer. Nommer." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Les trois premières semaines ne servent pas à changer quoi que ce soit. Elles servent à comprendre ce qui casse réellement. Pas ce que les gens disent qui casse. Ce qui casse.</p>
+    <p>La différence est importante. En one-on-one, le PM te dira "on a trop de réunions". C'est un symptôme. La cause, c'est que <a href="/articles/equipe-produit-trop-de-reunions" class="underline hover:text-gray-700 transition-colors">personne ne tranche entre les réunions</a>. Le Head of Ops te dira "le backoffice est nul". C'est un symptôme. La cause, c'est que <a href="/articles/backoffice-legacy-scale-up" class="underline hover:text-gray-700 transition-colors">personne n'est owner du backoffice</a>.</p>
+  </div>
+</Section>
+
+<Section maxWidth="3xl">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="One-on-ones, pas réunions d'équipe.">
+      Rencontre chaque PM, chaque lead engineering, chaque stakeholder clé (ops, support, sales). Pose deux questions. La première : "quel sujet revient en boucle sans jamais être tranché ?". La deuxième : "si tu pouvais changer une seule chose dans l'orga produit, ce serait quoi ?". Les réponses se recoupent toujours. C'est là que se cache le vrai problème.
+    </DecisionItem>
+    <DecisionItem number="02" title="Shadow, pas audit.">
+      Assiste aux rituels existants sans les juger. Weekly produit, grooming, rétro, synchro cross-squad. Note ce qui se passe réellement. Qui parle. Qui décide. Qui attend. Combien de sujets sont "discutés" sans jamais être fermés. C'est le diagnostic le plus fiable qui existe.
+    </DecisionItem>
+    <DecisionItem number="03" title="Cartographie des zones mortes.">
+      Identifie les sujets sans owner. Pas les sujets assignés dans un Notion que personne ne lit. Les sujets réels que personne ne porte. Dans chaque scale-up où je suis intervenu, la liste est la même : outils internes, backoffice, <a href="/articles/care-territoire-produit" class="underline hover:text-gray-700 transition-colors">care</a>, intégrations, documentation. Ce sont les zones où la dette s'accumule en silence.
+    </DecisionItem>
+  </div>
+</Section>
+
+<Callout title="Ce que ça donne en pratique" borderColor="sand">
+  <p>Chez Waalaxy, les 3 premières semaines m'ont permis d'identifier que le problème n'était pas la roadmap (qui était correcte sur le papier) mais le mode de fonctionnement. L'équipe livrait des features sans mesurer si elles changeaient quoi que ce soit. Le shift output vers outcome est parti de là. ARR de 7M à 8.5M.</p>
+</Callout>
+
+<ColorBlock bgColor="clay" label="PHASE 2 — SEMAINES 4 À 8" title="Poser l'ownership. Point.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>La phase 2 ne porte que sur un seul sujet : <strong>qui décide quoi</strong>.</p>
+    <p>Pas les rituels. Pas les outils. Pas la roadmap. L'ownership. Parce que tout le reste en découle. Si l'ownership est clair, les rituels se simplifient naturellement (plus besoin de se synchroniser quand tu sais qui tranche). Si l'ownership est flou, aucun rituel ne compensera.</p>
+    <p>J'ai détaillé la méthode complète dans l'article sur <a href="/articles/ownership-produit" class="underline hover:text-gray-700 transition-colors">l'ownership produit</a>. Voici ce qui compte dans le contexte d'une structuration globale.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Redécouper par outcome, pas par feature.">
+      Les périmètres "PM Search", "PM Checkout", "PM Dashboard" sont des découpages par composant technique. Ils créent des zones grises à chaque intersection. Découpe par parcours utilisateur ou par objectif business. "PM Discovery to Purchase", "PM Post-Purchase Experience", "PM Internal Operations". Chaque zone grise disparait parce qu'elle appartient à un parcours.
+    </DecisionItem>
+    <DecisionItem number="02" title="Nommer les angles morts.">
+      Les sujets identifiés en phase 1 (outils internes, care, backoffice) reçoivent un owner explicite. Si tu n'as pas assez de PMs, un ownership partagé avec du temps alloué fonctionne temporairement. Mais un sujet sans owner reste un sujet sans décision. Le care chez Heetch n'avait pas de PM. J'ai créé le Care Product Team from scratch. C'est ce qui a produit les résultats les plus tangibles de ma carrière (+8% efficacité, NPS de 3.5 à 4.1).
+    </DecisionItem>
+    <DecisionItem number="03" title="Rendre l'ownership visible à toute l'entreprise.">
+      Un tableau. Trois colonnes. Périmètre, PM owner, stakeholders principaux. Partagé à l'engineering, aux ops, au support. Le test : n'importe qui dans l'entreprise sait qui contacter en 30 secondes pour un sujet produit donné. Si ce n'est pas le cas, l'ownership n'est pas posé. Il est écrit dans un doc que personne ne consulte.
+    </DecisionItem>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="PHASE 3 — SEMAINES 9 À 12" title="Installer les mécanismes de décision." titleSize="large">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>L'ownership est posé. Chaque PM sait ce qu'il porte. Les stakeholders savent qui appeler. C'est maintenant que tu installes les mécanismes qui font que les décisions se prennent, tiennent, et ne reviennent pas en boucle.</p>
+    <p>Pas 15 rituels. Trois mécanismes.</p>
+  </div>
+</Section>
+
+<ColorBlock bgColor="blue" label="MÉCANISME 1" title="Async par défaut, synchrone pour trancher.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Toute discussion qui relève de l'information ou de la proposition passe en écrit. Le synchrone est réservé à un seul usage : trancher quand il y a un désaccord. Si tout le monde est d'accord, pas besoin de réunion. On valide en async et on avance.</p>
+    <p>Le format d'écrit qui fonctionne : un one-pager par initiative. Le problème. L'hypothèse. Les métriques de succès. Les dépendances. Pas un PRD de 15 pages. Un document court qui force la clarté.</p>
+    <p>Résultat concret sur une mission récente : 6 rituels hebdomadaires supprimés sur 11 en 2 semaines. Les PMs ont récupéré 7 heures par semaine en moyenne.</p>
+  </div>
+</ColorBlock>
+
+<ColorBlock bgColor="clay" label="MÉCANISME 2" title="Chaque réunion produit une décision écrite.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>Pas de compte-rendu narratif. Trois colonnes : décision, owner, deadline. Si la réunion ne produit aucune décision, c'est qu'elle n'aurait pas dû avoir lieu.</p>
+    <p>Ce format change la culture en quelques semaines. Les gens viennent préparés. Les réunions durent 20 minutes au lieu de 45. Les décisions tiennent parce qu'elles sont écrites, assignées, et visibles.</p>
+  </div>
+</ColorBlock>
+
+<Section maxWidth="3xl">
+  <div class="space-y-12">
+    <DecisionItem number="03" title="Un rituel de friction, pas de synchronisation.">
+      Une fois par semaine. 30 minutes. Trois questions : "quel sujet est bloqué entre deux équipes ?", "quel arbitrage attend une décision ?", "qu'est-ce que les ops contournent cette semaine que le produit devrait résoudre ?". Ce rituel expose les tensions au lieu de les masquer. C'est le mécanisme qui fait le lien entre Product, Ops et Engineering. Sans lui, <a href="/articles/aligner-product-ops-engineering" class="underline hover:text-gray-700 transition-colors">le triptyque se casse</a> en silence.
+    </DecisionItem>
+  </div>
+</Section>
+
+<Callout title="Terrain — Heetch + Wizville" borderColor="sand">
+  <p>Chez Heetch (4 ans), j'ai structuré l'équipe produit care from scratch avec ces trois mécanismes. Chez Wizville (CPO), j'ai monté la fonction Product de zéro : hiring, rituels, discovery, delivery. Dans les deux cas, le séquençage était le même : comprendre, poser l'ownership, installer les mécanismes. Pas l'inverse.</p>
+</Callout>
+
+<Section maxWidth="3xl" label="CE QUI VIENT APRÈS" title="Les 90 jours ne résolvent pas tout.">
+  <div class="space-y-6 text-lg text-gray-700 font-light leading-relaxed">
+    <p>En 90 jours, tu poses le socle. L'ownership est clair. Les mécanismes de décision fonctionnent. L'équipe sait qui tranche quoi et comment.</p>
+    <p>Ce que tu n'as pas encore résolu :</p>
+  </div>
+  <div class="space-y-12 mt-8">
+    <DecisionItem number="01" title="Le backoffice legacy.">
+      Il tient encore avec du scotch. Mais maintenant il a un owner. La décision patcher vs refondre viendra dans le trimestre suivant. Tu as les éléments pour <a href="/articles/backoffice-legacy-scale-up" class="underline hover:text-gray-700 transition-colors">trancher</a>.
+    </DecisionItem>
+    <DecisionItem number="02" title="La stratégie produit à 12 mois.">
+      Les 90 premiers jours ne sont pas le moment de réécrire la vision. C'est le moment de poser les conditions pour que la vision se traduise en décisions. Une fois le cadre posé, tu as l'espace pour penser stratégie.
+    </DecisionItem>
+    <DecisionItem number="03" title="Le recrutement.">
+      Tu sais maintenant quels périmètres sont sous-staffés. Tu sais quel profil il te faut : mid-level pour dépiler un backlog clair, ou senior pour porter un scope structurant. Le recrutement devient une décision informée, pas un réflexe.
+    </DecisionItem>
+  </div>
+</Section>
+
+<Section maxWidth="3xl" label="ERREURS FRÉQUENTES" title="Quatre erreurs que je vois dans chaque scale-up.">
+  <div class="space-y-12">
+    <DecisionItem number="01" title="Commencer par les rituels.">
+      "On va mettre en place un Product Review bi-mensuel." Sans ownership clair, le Product Review devient une énième réunion où personne ne tranche. Les rituels sont les derniers à poser, pas les premiers.
+    </DecisionItem>
+    <DecisionItem number="02" title="Importer un framework sans adapter.">
+      Scrum, Shape Up, dual-track, OKRs. Chacun a sa valeur. Aucun ne fonctionne en copier-coller. Le framework est un outil de lecture, pas une recette. Si tu plaques Shape Up sur une équipe qui n'a pas d'ownership clair, tu auras du Shape Up avec un ownership flou.
+    </DecisionItem>
+    <DecisionItem number="03" title="Restructurer l'organigramme.">
+      Nouvelles squads, nouveaux noms, nouveau Notion. L'organigramme dit qui reporte à qui. Il ne dit pas qui décide quoi. Changer l'organigramme sans poser l'ownership crée un chaos neuf. Pas de la clarté.
+    </DecisionItem>
+    <DecisionItem number="04" title="Attendre le cadre parfait pour agir.">
+      La V1 est toujours imparfaite. Un ownership posé en une semaine avec des zones grises identifiées vaut mieux qu'un ownership parfait jamais finalisé. Le cadre se revoit chaque trimestre. C'est un document vivant, pas une constitution.
+    </DecisionItem>
+  </div>
+</Section>
+
+<section class="max-w-2xl mx-auto mb-12 reveal">
+  <p class="text-sm text-gray-500 font-light italic text-center">
+    Tu vis ça ? Voir <a href="/approche" class="underline hover:text-gray-700 transition-colors">ce que je fais concrètement</a>. Ou <a href="/references" class="underline hover:text-gray-700 transition-colors">les missions passées</a>.
+  </p>
+</section>
+
+<section class="max-w-2xl mx-auto mb-12 reveal">
+  <p class="text-sm text-gray-500 font-light italic text-center">
+    Un scope produit qui coince ? <a href="/contact" class="underline hover:text-gray-700 transition-colors">On en parle</a>.
+  </p>
+</section>
+
+<ClosingBlock title="La séquence avant la structure.">
+  <p class="text-xl text-gray-500 font-light leading-relaxed italic">Structurer une équipe produit en scale-up ne commence pas par un framework, un organigramme ou un nouveau rituel. Ça commence par comprendre ce qui casse. Puis poser qui décide quoi. Puis installer les mécanismes qui font que les décisions tiennent. 90 jours. Trois phases. Le bon ordre compte plus que la bonne méthode.</p>
+</ClosingBlock>
