@@ -20,13 +20,24 @@ const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.references,
 ]);
 const itemListSchema = getItemListSchema([
-  { position: 1, name: 'Heetch — Head of Product (4 ans)', description: 'Care Product Team from scratch, admin reconstruite en plateforme. +8% efficacité Care.' },
-  { position: 2, name: 'Waalaxy — Head of Product', description: 'Shift output → outcome-driven delivery. ARR de 7M à 8.5M.' },
-  { position: 3, name: 'Wizville — CPO', description: 'Fonction Product de zéro. Repositionnement produit. Lancement PLG.' },
-  { position: 4, name: 'Back Market — Senior PM Care Platform', description: 'Restructuration Care Platform. Migration Help Center.' },
+  { position: 1, name: 'Back Market — Senior PM Care Platform', description: 'Restructuration Care Platform. Migration Help Center.' },
+  { position: 2, name: 'Heetch — Head of Product (4 ans)', description: 'Care Product Team from scratch, admin reconstruite en plateforme. +8% efficacité Care.' },
+  { position: 3, name: 'Waalaxy — Head of Product', description: 'Shift output → outcome-driven delivery. ARR de 7M à 8.5M.' },
+  { position: 4, name: 'Wizville — CPO', description: 'Fonction Product de zéro. Repositionnement produit. Lancement PLG.' },
 ]);
 
 const missions = [
+  {
+    company: 'Back Market',
+    role: 'Senior PM — Care Platform',
+    context: "Marketplace, plateforme Care qui porte l'expérience client sur un volume massif. Logiques d'objets, requêtes clients, outillage agnostique. Le défi : mesurer l'impact quand on n'est pas propriétaire du dernier kilomètre.",
+    actions: [
+      "Restructuration de la Care Platform",
+      "Migration Help Center (Zendesk → Intercom)",
+      "Architecture Help Request lifecycle",
+      "Intégration omnicanale",
+    ],
+  },
   {
     company: 'Heetch',
     role: 'Head of Product — 4 ans',
@@ -68,17 +79,6 @@ const missions = [
       "Renforcé l'autonomie client pour soulager les CSM",
       "Structuré la data team et les capacités AI/NLP",
       "Lancé un canal PLG",
-    ],
-  },
-  {
-    company: 'Back Market',
-    role: 'Senior PM — Care Platform',
-    context: "Marketplace, plateforme Care qui porte l'expérience client sur un volume massif. Logiques d'objets, requêtes clients, outillage agnostique. Le défi : mesurer l'impact quand on n'est pas propriétaire du dernier kilomètre.",
-    actions: [
-      "Restructuration de la Care Platform",
-      "Migration Help Center (Zendesk → Intercom)",
-      "Architecture Help Request lifecycle",
-      "Intégration omnicanale",
     ],
   },
 ];
