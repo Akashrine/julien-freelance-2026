@@ -378,6 +378,35 @@ export function getArticleExtraSchemas(slug: string): { faqSchema?: object; howT
         },
       ]),
     },
+    'structurer-equipe-produit-scale-up': {
+      faqSchema: getFAQSchema([
+        {
+          question: "Par où commencer pour structurer une équipe produit en scale-up ?",
+          answer: "Par l'écoute. Les 3 premières semaines servent à comprendre ce qui casse réellement via des one-on-ones, du shadow des rituels existants, et une cartographie des sujets sans owner. Ensuite seulement on pose l'ownership, puis les mécanismes de décision.",
+        },
+        {
+          question: "Combien de temps faut-il pour structurer une équipe produit ?",
+          answer: "Le socle se pose en 90 jours : 3 semaines de diagnostic, 5 semaines pour poser l'ownership, 4 semaines pour installer les mécanismes de décision. C'est le minimum pour que les décisions tiennent. L'optimisation vient après.",
+        },
+        {
+          question: "Faut-il changer l'organigramme pour structurer l'équipe produit ?",
+          answer: "Non. L'organigramme dit qui reporte à qui. Ce qui manque, c'est une matrice d'ownership : qui décide quoi. Changer l'organigramme sans poser l'ownership crée un chaos neuf, pas de la clarté.",
+        },
+        {
+          question: "Quel framework produit utiliser en scale-up ?",
+          answer: "Aucun en copier-coller. Scrum, Shape Up, OKRs ont chacun leur valeur, mais aucun ne fonctionne si l'ownership n'est pas clair. Le framework est un outil de lecture, pas une recette. La priorité est le cadre de décision, pas la méthodologie.",
+        },
+      ]),
+      howToSchema: getHowToSchema(
+        "Comment structurer une équipe produit en scale-up en 90 jours",
+        "Séquence en 3 phases pour poser une structure produit quand la croissance a dépassé l'organisation.",
+        [
+          { name: "Écouter et cartographier (semaines 1-3)", text: "One-on-ones avec chaque PM, lead engineering et stakeholder clé. Shadow des rituels existants. Cartographie des sujets sans owner (outils internes, care, backoffice)." },
+          { name: "Poser l'ownership (semaines 4-8)", text: "Redécouper les périmètres par outcome (pas par feature). Nommer un owner explicite sur chaque zone morte identifiée. Rendre l'ownership visible à toute l'entreprise via un tableau simple." },
+          { name: "Installer les mécanismes de décision (semaines 9-12)", text: "Async par défaut (one-pager par initiative). Chaque réunion produit une décision écrite (décision, owner, deadline). Un rituel de friction hebdomadaire pour exposer les blocages inter-équipes." },
+        ]
+      ),
+    },
   };
 
   return schemas[slug] || {};
