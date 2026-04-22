@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PRDGenerator from '../../components/react/PRDGenerator';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
+
+const webPageSchema = getWebPageSchema(
+  'https://julien-brionne.fr/ressources/generateur-prd',
+  'Générateur de PRD IA — Julien Brionne',
+  'Réponds à 7 questions, récupère un prompt expert qui génère un PRD structuré en 7 sections. Gratuit.',
+  ['template PRD IA', 'générateur PRD', 'PRD product manager', 'PRD gratuit']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.ressources,
+  { name: 'Générateur de PRD IA', url: 'https://julien-brionne.fr/ressources/generateur-prd' },
+]);
+---
+
+<Layout
+  title="Générateur de PRD IA — Julien Brionne"
+  description="Réponds à 7 questions, récupère un prompt expert qui génère un PRD structuré en 7 sections. Gratuit."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
+  <Navbar currentPage="ressources" />
+
+  <main>
+    <!-- Header -->
+    <header class="relative max-w-[1150px] mx-auto px-8 pt-24 pb-20">
+      <div class="max-w-3xl reveal">
+        <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-6">[ OUTIL GRATUIT ]</p>
+        <div class="w-12 border-b border-gray-200 mb-10"></div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 mb-8 leading-tight">
+          Génère un PRD structuré<br />
+          <span class="italic text-gray-600">en 5 minutes.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl">
+          Réponds à 7 questions. Récupère un prompt expert calibré avec ton contexte.
+          Colle-le dans Claude ou ChatGPT.
+        </p>
+      </div>
+    </header>
+
+    <!-- Générateur -->
+    <section class="max-w-[1150px] mx-auto px-8 pb-20 reveal">
+      <PRDGenerator client:load />
+    </section>
+
+    <!-- Comment ça marche -->
+    <section class="max-w-[1150px] mx-auto px-8 py-20 border-t border-gray-100 reveal">
+      <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-12">COMMENT ÇA MARCHE</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {[
+          { n: "01", title: "Décris ton initiative", desc: "7 champs contextuels : nom, problème, contexte produit, hypothèse, métrique cible, contraintes, OKR." },
+          { n: "02", title: "Copie le prompt généré", desc: "L'outil assemble un prompt expert calibré avec tes données. Chaque phrase est spécifique à ton contexte." },
+          { n: "03", title: "Colle dans Claude ou ChatGPT", desc: "Récupère ton PRD en 7 sections : problème, opportunité, hypothèse, non-goals, métriques, expé, risques." },
+        ].map((step) => (
+          <div>
+            <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-4">{step.n}</p>
+            <h3 class="text-lg font-serif text-gray-900 mb-3">{step.title}</h3>
+            <p class="text-gray-500 font-light leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Signature -->
+    <section class="max-w-[1150px] mx-auto px-8 py-16 border-t border-gray-100 reveal">
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-8">
+        <div>
+          <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-3">PAR JULIEN BRIONNE</p>
+          <p class="text-gray-500 font-light max-w-md leading-relaxed">
+            Product Lead indépendant. J'interviens auprès de fondateurs et Heads of Product
+            quand le système produit a grandi plus vite que sa capacité à trancher.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3 font-mono text-[10px] tracking-widest">
+          <a href="https://productcopilot.fr/blog" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900 transition-colors">
+            Articles PM →
+          </a>
+          <a href="/ressources/prompts-discovery" class="text-gray-500 hover:text-gray-900 transition-colors">
+            10 Prompts Discovery →
+          </a>
+          <a href="/ressources" class="text-gray-500 hover:text-gray-900 transition-colors">
+            Toutes les ressources →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

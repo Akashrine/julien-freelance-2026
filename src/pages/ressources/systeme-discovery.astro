@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PackSystemeForm from '../../components/react/PackSystemeForm';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
+
+const webPageSchema = getWebPageSchema(
+  'https://julien-brionne.fr/ressources/systeme-discovery',
+  'Pack Système Discovery — Julien Brionne',
+  'Le workflow complet : 10 prompts chaînés + templates Notion + guide pas-à-pas + exemples annotés. Bientôt disponible.',
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.ressources,
+  { name: 'Pack Système Discovery', url: 'https://julien-brionne.fr/ressources/systeme-discovery' },
+]);
+
+const faqItems = [
+  { q: "Quand est-ce que le pack sort ?", a: "Courant 2026. Les inscrits seront prévenus en premier." },
+  { q: "Les prompts gratuits vont rester gratuits ?", a: "Oui. Les 10 prompts restent accessibles contre un email. Le Pack Système est un niveau au-dessus." },
+  { q: "Ça marche avec ChatGPT ?", a: "Oui. Optimisé pour Claude (Sonnet/Opus) mais compatible GPT-4o." },
+];
+---
+
+<Layout
+  title="Pack Système Discovery — Julien Brionne"
+  description="Le workflow complet : 10 prompts chaînés + templates Notion + guide pas-à-pas + exemples annotés. Bientôt disponible."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
+  <Navbar currentPage="ressources" />
+
+  <main>
+    <!-- Header -->
+    <header class="relative max-w-[1150px] mx-auto px-8 pt-24 pb-20">
+      <div class="max-w-3xl reveal">
+        <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-6">[ PACK · BIENTÔT DISPONIBLE ]</p>
+        <div class="w-12 border-b border-gray-200 mb-10"></div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 mb-8 leading-tight">
+          Le système complet<br />
+          <span class="italic text-gray-600">pour ton discovery.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl">
+          Les prompts, c'est le début. Le Pack Système ajoute les templates,
+          le workflow structuré et les exemples réels.
+        </p>
+      </div>
+    </header>
+
+    <!-- Ce que le pack inclut -->
+    <section class="max-w-[1150px] mx-auto px-8 py-20 border-t border-gray-100 reveal">
+      <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-12">CE QUE LE PACK SYSTÈME INCLUT</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          { badge: "INCLUS", title: "Les 10 prompts chaînés", desc: "Déjà disponibles gratuitement. Le pack les intègre dans un workflow complet avec les connexions entre chaque étape documentées." },
+          { badge: "NOUVEAU", title: "Templates Notion pré-remplis", desc: "Fiche interview, opportunity map, PRD, mémo d'alignement. Prêts à dupliquer dans ton workspace." },
+          { badge: "NOUVEAU", title: "Guide de workflow pas-à-pas", desc: "Quel prompt utiliser quand, comment chaîner les sorties, pièges à éviter. Le mode d'emploi qui manque aux prompts seuls." },
+          { badge: "NOUVEAU", title: "Exemples réels annotés", desc: "Sorties complètes sur un cas de discovery fictif mais réaliste, du transcript au PRD. Chaque étape commentée." },
+        ].map((item) => (
+          <div class="border border-gray-200 rounded-2xl p-6">
+            <p class={`font-mono text-[10px] tracking-[0.3em] mb-4 ${item.badge === 'NOUVEAU' ? 'text-[#C5A070]' : 'text-gray-400'}`}>
+              {item.badge}
+            </p>
+            <h3 class="font-serif text-lg text-gray-900 mb-3">{item.title}</h3>
+            <p class="text-gray-500 font-light leading-relaxed text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Gratuit vs Pack -->
+    <section class="max-w-[1150px] mx-auto px-8 py-20 border-t border-gray-100 reveal">
+      <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-12">PROMPTS GRATUITS VS PACK SYSTÈME</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="border border-gray-200 rounded-2xl p-6">
+          <h3 class="font-serif text-lg text-gray-500 mb-3">Les prompts gratuits</h3>
+          <p class="text-gray-400 font-light leading-relaxed">
+            Les outils. 10 prompts structurés que tu copies dans Claude ou ChatGPT.
+            Tu as les briques, tu te débrouilles pour les assembler.
+          </p>
+        </div>
+        <div class="border border-[#E5BAAD] rounded-2xl p-6 bg-[#F2E9E1]/20">
+          <h3 class="font-serif text-lg text-gray-900 mb-3">Le Pack Système</h3>
+          <p class="text-gray-500 font-light leading-relaxed">
+            Les outils + le mode d'emploi + l'atelier monté. Templates, workflow documenté,
+            exemples annotés. Tu dupliques et tu lances.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pour qui -->
+    <section class="max-w-[1150px] mx-auto px-8 py-20 border-t border-gray-100 reveal">
+      <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-8">POUR QUI</p>
+      <ul class="space-y-4 text-gray-500 font-light max-w-xl">
+        {[
+          "PM IC ou Lead avec au moins 2 ans d'expérience",
+          "Tu utilises déjà les prompts gratuits et tu veux aller plus loin",
+          "Tu veux un workflow reproductible, pas juste des one-shots",
+        ].map((item) => (
+          <li class="flex items-start gap-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#C5A070] mt-2 shrink-0"></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Prix + Formulaire -->
+    <section class="max-w-[1150px] mx-auto px-8 py-20 border-t border-gray-100 reveal">
+      <div class="max-w-md">
+        <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-4">PAIEMENT UNIQUE · BIENTÔT DISPONIBLE</p>
+        <p class="text-6xl font-serif text-gray-900 mb-2">49 €</p>
+        <p class="text-gray-400 font-light mb-10">Inscris-toi pour être prévenu(e) au lancement.</p>
+        <PackSystemeForm client:load />
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-[1150px] mx-auto px-8 py-20 border-t border-gray-100 reveal">
+      <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-12">QUESTIONS FRÉQUENTES</p>
+      <div class="max-w-3xl space-y-0">
+        {faqItems.map((item) => (
+          <details class="group border-b border-gray-100 py-5">
+            <summary class="font-medium text-gray-900 flex items-center justify-between cursor-pointer list-none">
+              {item.q}
+              <svg viewBox="0 0 16 16" fill="none" class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform shrink-0 ml-4" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-gray-500 font-light leading-relaxed">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

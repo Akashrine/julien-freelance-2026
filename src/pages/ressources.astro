@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+const webPageSchema = getWebPageSchema(
+  'https://julien-brionne.fr/ressources',
+  'Ressources PM — Julien Brionne',
+  'Outils, prompts et packs pour les Product Managers. Testés en mission, augmentés par l\'IA.',
+  ['outils PM', 'prompts product management', 'templates PM', 'formation produit']
+);
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.ressources,
+]);
+---
+
+<Layout
+  title="Ressources PM — Julien Brionne"
+  description="Outils, prompts et packs pour les Product Managers. Testés en mission, augmentés par l'IA."
+  ogType="website"
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
+  <Navbar currentPage="ressources" />
+
+  <main class="max-w-[1150px] mx-auto px-8 pb-32">
+
+    <!-- Hero -->
+    <section class="pt-20 pb-24 reveal">
+      <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-8">[ RESSOURCES ]</p>
+      <h1 class="text-5xl md:text-7xl font-serif mb-6">
+        Des outils pour les PMs<br />
+        <span class="italic text-gray-400">qui construisent.</span>
+      </h1>
+      <p class="text-xl text-gray-500 font-light max-w-2xl leading-relaxed">
+        Prompts, templates et packs que j'utilise en mission. Gratuits ou payants.
+        Testés sur des vrais produits, pas sur des cas d'école.
+      </p>
+    </section>
+
+    <!-- Section 01 — Outils gratuits -->
+    <section class="mb-24 reveal">
+      <div class="flex items-baseline gap-4 mb-10 border-b border-gray-100 pb-4">
+        <span class="font-mono text-[10px] tracking-[0.2em] text-gray-400">01</span>
+        <h2 class="font-mono text-[10px] tracking-[0.2em] text-gray-800">OUTILS GRATUITS</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Générateur PRD -->
+        <a href="/ressources/generateur-prd" class="group block border border-gray-100 rounded-2xl p-8 hover:border-gray-300 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-mono text-[10px] tracking-[0.2em] text-gray-400">OUTIL 01</span>
+            <span class="text-xs font-mono text-gray-400 bg-gray-50 px-2.5 py-1 rounded-full">Gratuit</span>
+          </div>
+          <h3 class="text-2xl font-serif mb-3 group-hover:text-gray-600 transition-colors">Générateur de PRD IA</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-8">
+            7 questions. Un prompt expert. Un PRD structuré en 7 sections, prêt à coller dans Claude ou ChatGPT.
+          </p>
+          <span class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-800 group-hover:gap-3 transition-all">
+            Utiliser l'outil
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+
+        <!-- 10 Prompts Discovery -->
+        <a href="/ressources/prompts-discovery" class="group block border border-gray-100 rounded-2xl p-8 hover:border-gray-300 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-mono text-[10px] tracking-[0.2em] text-gray-400">OUTIL 02</span>
+            <span class="text-xs font-mono text-gray-400 bg-gray-50 px-2.5 py-1 rounded-full">Gratuit (email)</span>
+          </div>
+          <h3 class="text-2xl font-serif mb-3 group-hover:text-gray-600 transition-colors">10 Prompts Discovery</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-8">
+            Les prompts de discovery product. Interview, synthèse, décision. 3 gratuits, 7 débloqués après email.
+          </p>
+          <span class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-800 group-hover:gap-3 transition-all">
+            Accéder aux prompts
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 02 — Packs -->
+    <section class="mb-24 reveal">
+      <div class="flex items-baseline gap-4 mb-10 border-b border-gray-100 pb-4">
+        <span class="font-mono text-[10px] tracking-[0.2em] text-gray-400">02</span>
+        <h2 class="font-mono text-[10px] tracking-[0.2em] text-gray-800">PACKS</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pack Vibe Coding -->
+        <a href="/ressources/vibe-coding-pm" class="group block border border-gray-100 rounded-2xl p-8 hover:border-gray-300 transition-all duration-300 hover:-translate-y-1">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-mono text-[10px] tracking-[0.2em] text-gray-400">PACK 01</span>
+            <span class="text-xs font-mono font-semibold text-gray-800 bg-gray-100 px-2.5 py-1 rounded-full">29 €</span>
+          </div>
+          <h3 class="text-2xl font-serif mb-3 group-hover:text-gray-600 transition-colors">Pack Vibe Coding for PMs</h3>
+          <p class="text-gray-500 text-sm leading-relaxed mb-8">
+            De l'idée au produit qui tourne. 12 prompts, 4 phases : clarifier, designer, construire, vérifier.
+          </p>
+          <span class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-800 group-hover:gap-3 transition-all">
+            Découvrir le pack
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+
+        <!-- Pack Système Discovery -->
+        <a href="/ressources/systeme-discovery" class="group block border border-gray-100 rounded-2xl p-8 hover:border-gray-200 transition-all duration-300 relative overflow-hidden">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-mono text-[10px] tracking-[0.2em] text-gray-400">PACK 02</span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-semibold text-gray-800 bg-gray-100 px-2.5 py-1 rounded-full">49 €</span>
+              <span class="text-xs font-mono text-gray-400 bg-[#F2E9E1] px-2.5 py-1 rounded-full">Bientôt</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-serif mb-3 text-gray-400">Pack Système Discovery</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-8">
+            Le workflow complet. Prompts + templates Notion + guide + exemples réels annotés.
+          </p>
+          <span class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-500 group-hover:gap-3 transition-all">
+            En savoir plus
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Bas de page -->
+    <section class="reveal border-t border-gray-100 pt-16 flex flex-col sm:flex-row items-start justify-between gap-8">
+      <div>
+        <p class="text-sm text-gray-500 mb-2">Plus d'articles et de méthodes PM</p>
+        <a
+          href="https://productcopilot.fr/blog"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-700 hover:text-black transition-colors group"
+        >
+          Product Copilot Blog
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+      <div>
+        <p class="text-sm text-gray-500 mb-2">Discuter d'une situation produit</p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-700 hover:text-black transition-colors group"
+        >
+          Prendre contact
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
