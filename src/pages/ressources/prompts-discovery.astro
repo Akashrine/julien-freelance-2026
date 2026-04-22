@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PackDiscovery from '../../components/react/PackDiscovery';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
+
+const webPageSchema = getWebPageSchema(
+  'https://julien-brionne.fr/ressources/prompts-discovery',
+  '10 Prompts Discovery — Julien Brionne',
+  'Les prompts de discovery product. Interview, synthèse, décision. 3 gratuits, 7 débloqués après email.',
+  ['prompts discovery', 'product discovery', 'interview utilisateur', 'prompts PM']
+);
+const breadcrumbSchema = getBreadcrumbSchema([
+  BreadcrumbItems.home,
+  BreadcrumbItems.ressources,
+  { name: '10 Prompts Discovery', url: 'https://julien-brionne.fr/ressources/prompts-discovery' },
+]);
+---
+
+<Layout
+  title="10 Prompts Discovery — Julien Brionne"
+  description="Les prompts de discovery product. Interview, synthèse, décision. 3 gratuits, 7 débloqués après email."
+  webPageSchema={webPageSchema}
+  breadcrumbSchema={breadcrumbSchema}
+>
+  <Navbar currentPage="ressources" />
+
+  <main>
+    <!-- Header -->
+    <header class="relative max-w-[1150px] mx-auto px-8 pt-24 pb-20">
+      <div class="max-w-3xl reveal">
+        <p class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-6">[ PROMPTS DISCOVERY ]</p>
+        <div class="w-12 border-b border-gray-200 mb-10"></div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 mb-8 leading-tight">
+          10 prompts pour structurer<br />
+          <span class="italic text-gray-600">ton discovery.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl">
+          Interview, synthèse, décision. Les 3 premiers sont gratuits.
+          Les 7 suivants se débloquent avec ton email.
+        </p>
+      </div>
+    </header>
+
+    <!-- Explorer interactif -->
+    <section class="border-t border-gray-100 reveal">
+      <PackDiscovery client:load />
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

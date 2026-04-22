@@ -17,6 +17,7 @@ const { currentPage = 'home' } = Astro.props;
     <a href="/approche" class={`nav-link transition-colors ${currentPage === 'approche' ? 'text-black active' : 'hover:text-black'}`}>Ce que je fais</a>
     <a href="/references" class={`nav-link transition-colors ${currentPage === 'references' ? 'text-black active' : 'hover:text-black'}`}>Références</a>
     <a href="/articles" class={`nav-link transition-colors ${currentPage === 'articles' ? 'text-black active decoration-[#E5BAAD]' : 'hover:text-black'}`}>Articles</a>
+    <a href="/ressources" class={`nav-link transition-colors ${currentPage === 'ressources' ? 'text-black active' : 'hover:text-black'}`}>Ressources</a>
     <a href="/contact" class={`nav-link transition-colors ${currentPage === 'contact' ? 'text-black active' : 'hover:text-black'}`}>Contact</a>
   </div>
 
@@ -37,6 +38,7 @@ const { currentPage = 'home' } = Astro.props;
       <a href="/approche" class={`font-mono transition-colors ${currentPage === 'approche' ? 'text-black' : 'text-gray-600 hover:text-black'}`}>Ce que je fais</a>
       <a href="/references" class={`font-mono transition-colors ${currentPage === 'references' ? 'text-black underline underline-offset-4' : 'text-gray-600 hover:text-black'}`}>Références</a>
       <a href="/articles" class={`font-mono transition-colors ${currentPage === 'articles' ? 'text-black underline underline-offset-4 decoration-[#E5BAAD]' : 'text-gray-600 hover:text-black'}`}>Articles</a>
+      <a href="/ressources" class={`font-mono transition-colors ${currentPage === 'ressources' ? 'text-black underline underline-offset-4' : 'text-gray-600 hover:text-black'}`}>Ressources</a>
       <a href="/contact" class={`font-mono transition-colors ${currentPage === 'contact' ? 'text-black underline underline-offset-4' : 'text-gray-600 hover:text-black'}`}>Contact</a>
     </div>
   </div>

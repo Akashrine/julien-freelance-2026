@@ -216,6 +216,7 @@ export const BreadcrumbItems = {
   situations: { name: 'Situations', url: `${SITE_URL}/situations` },
   articles: { name: 'Articles', url: `${SITE_URL}/articles` },
   diagnostic: { name: 'Diagnostic', url: `${SITE_URL}/diagnostic` },
+  ressources: { name: 'Ressources', url: `${SITE_URL}/ressources` },
   contact: { name: 'Contact', url: `${SITE_URL}/contact` },
   article: (title: string, url: string) => ({ name: title, url }),
 };
