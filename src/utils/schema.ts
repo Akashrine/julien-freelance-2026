@@ -213,10 +213,10 @@ export const BreadcrumbItems = {
   home: { name: 'Accueil', url: SITE_URL },
   approche: { name: 'Mon approche', url: `${SITE_URL}/approche` },
   references: { name: 'Références', url: `${SITE_URL}/references` },
+  ressources: { name: 'Ressources', url: `${SITE_URL}/ressources` },
   situations: { name: 'Situations', url: `${SITE_URL}/situations` },
   articles: { name: 'Articles', url: `${SITE_URL}/articles` },
   diagnostic: { name: 'Diagnostic', url: `${SITE_URL}/diagnostic` },
-  ressources: { name: 'Ressources', url: `${SITE_URL}/ressources` },
   contact: { name: 'Contact', url: `${SITE_URL}/contact` },
   article: (title: string, url: string) => ({ name: title, url }),
 };
