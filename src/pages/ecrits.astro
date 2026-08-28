@@ -9,18 +9,22 @@ import { getWebPageSchema } from '../utils/schema';
 const SUBSTACK = 'https://produitsansfiltre.substack.com';
 const LINKEDIN = 'https://www.linkedin.com/in/julienbrionne';
 
-// Section 3. Les quatre numéros. Les URLs précises manquent au contexte :
-// tant qu'elles ne sont pas fournies, aucun lien n'est posé plutôt qu'inventé.
+// Section 3. Les quatre numéros.
+// Deux URLs fournies le 28/08 correspondent au titre de la copy, elles sont posées.
+// Les deux autres slugs désignent d'autres sujets : rien n'est deviné, le lien
+// reste absent tant que la correspondance n'est pas tranchée.
 const numeros = [
   {
     titre: 'Le jour où on a tué les étoiles chez Heetch.',
     resume:
       'Comment on retire à un produit grand public la mesure que tout le secteur utilise, et ce qu’on met à la place.',
+    href: 'https://produitsansfiltre.substack.com/p/le-jour-ou-on-a-tue-les-etoiles-chez-heetch',
   },
   {
     titre: 'Le churn ne ment pas.',
     resume:
       'Ce que les clients qui partent disent de votre produit, et pourquoi personne ne l’écoute.',
+    href: 'https://produitsansfiltre.substack.com/p/le-churn-ne-ment-pas',
   },
   {
     titre: 'Vous avez recruté un bon PM, mais pas pour votre contexte.',
@@ -118,7 +122,13 @@ const aLire = [
         <ul class="max-w-2xl space-y-10">
           {numeros.map((n) => (
             <li class="space-y-2">
-              <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
+              {n.href ? (
+                <a href={n.href} rel="noopener" class="link-inline font-serif text-xl leading-snug sm:text-2xl">
+                  {n.titre}
+                </a>
+              ) : (
+                <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
+              )}
               <p class="leading-relaxed text-dim">{n.resume}</p>
             </li>
           ))}

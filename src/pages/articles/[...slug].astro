@@ -16,7 +16,6 @@ import Tooltip from '../../components/Tooltip.astro';
 import ArticleNavigation from '../../components/articles/ArticleNavigation.astro';
 import ArticleMetadata from '../../components/articles/ArticleMetadata.astro';
 import TableOfContents from '../../components/articles/TableOfContents.astro';
-import ArticleConversionGate from '../../components/articles/ArticleConversionGate.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems, getArticleExtraSchemas } from '../../utils/schema';
@@ -133,13 +132,10 @@ const breadcrumbSchema = getBreadcrumbSchema([
           {article.data.title}
         </h1>
         <p class="font-mono text-[10px] text-gray-400 tracking-widest mb-8">
-          Par Julien Brionne — Senior PM Freelance
+          Par Julien Brionne — Senior Product Manager freelance
         </p>
         <p class="text-xl text-gray-600 leading-relaxed font-light italic mb-4">
           {article.data.excerpt}
-        </p>
-        <p class="text-sm text-gray-500 font-light italic">
-          Pour comprendre la posture d'intervention, voir <a href="/approche" class="underline hover:text-gray-700 transition-colors">Mon approche</a>.
         </p>
       </div>
 
@@ -152,8 +148,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
       <div class="pt-8 border-t border-black/5">
         <Content components={{ Section, SectionIntro, ColorBlock, DecisionItem, ClosingBlock, SidebarBox, PillarCard, Callout, KeyPoint, CodeBlock, Tooltip }} />
       </div>
-
-      <ArticleConversionGate />
 
       <div class="max-w-3xl mx-auto">
         <ArticleNavigation previousArticle={previousArticle} nextArticle={nextArticle} />
