@@ -13,7 +13,7 @@
 
 const SITE_URL = 'https://julien-brionne.fr';
 const AUTHOR_NAME = 'Julien Brionne';
-const AUTHOR_JOB_TITLE = 'Senior PM Freelance';
+const AUTHOR_JOB_TITLE = 'Senior Product Manager freelance';
 
 /**
  * Person schema for the author
@@ -27,7 +27,7 @@ export function getPersonSchema(): object {
     name: AUTHOR_NAME,
     jobTitle: AUTHOR_JOB_TITLE,
     url: SITE_URL,
-    description: 'Senior PM Freelance. Je transforme le care, le support et les ops internes en systèmes produit mesurables. En mission chez Back Market. Ex-Heetch, Wizville, Waalaxy.',
+    description: "Senior Product Manager freelance. Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production.",
     sameAs: [
       'https://www.linkedin.com/in/julienbrionne',
       'https://produitsansfiltre.substack.com',
@@ -44,21 +44,21 @@ export function getServiceSchemas(): object[] {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: 'Diagnostic care & ops',
-      description: '2–3 semaines pour identifier pourquoi le care, le support ou les ops internes absorbent des ressources sans résultat. Diagnostic terrain, pas du conseil théorique.',
+      name: 'La Mise au clair',
+      description: "Six demi-journées sur trois semaines. Une décision prise avec vous, le cadre écrit, les trois prochains mois séquencés.",
       provider: { '@id': `${SITE_URL}/#person` },
-      url: `${SITE_URL}/approche`,
-      serviceType: 'Consulting',
+      url: `${SITE_URL}/ce-que-je-fais#la-mise-au-clair`,
+      serviceType: 'Product management',
       areaServed: 'FR',
     },
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: 'Échange 30 min',
-      description: '30 minutes pour exposer ta situation care, support ou ops. On voit si une intervention a du sens. Sans engagement.',
+      name: 'Le Copilote',
+      description: 'Un jour par semaine, trois mois. Un jalon produit en production, choisi avec vous avant de commencer.',
       provider: { '@id': `${SITE_URL}/#person` },
-      url: SITE_URL,
-      serviceType: 'Consulting',
+      url: `${SITE_URL}/ce-que-je-fais#le-copilote`,
+      serviceType: 'Product management',
       areaServed: 'FR',
     },
   ];
