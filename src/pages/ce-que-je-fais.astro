@@ -8,8 +8,9 @@ import Footer from '../components/Footer.astro';
 import { getWebPageSchema } from '../utils/schema';
 
 const EMAIL = 'julien.brionne@gmail.com';
-const mailto = (sujet?: string) =>
-  sujet ? `mailto:${EMAIL}?subject=${encodeURIComponent(sujet)}` : `mailto:${EMAIL}`;
+// Objet générique arbitré par Julien le 28/08 ; objets par offre pour les trois ancres.
+const mailto = (sujet: string = "Un sujet qui n'avance pas") =>
+  `mailto:${EMAIL}?subject=${encodeURIComponent(sujet)}`;
 
 const demiJournees = [
   'Vous et moi. Votre activité, vos chiffres, ce que vous voulez dans trois ans, ce que vous ne voulez plus faire.',

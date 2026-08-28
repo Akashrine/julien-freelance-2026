@@ -8,6 +8,9 @@ import Footer from '../components/Footer.astro';
 import { getPersonSchema, getWebsiteSchema, getServiceSchemas } from '../utils/schema';
 
 const EMAIL = 'julien.brionne@gmail.com';
+// Objet générique, arbitré par Julien le 28/08. Les objets par offre vivent
+// sur /ce-que-je-fais : ils sont la seule mesure de conversion par offre.
+const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent("Un sujet qui n'avance pas")}`;
 
 // Les six phrases de prospects. Nues : aucun titre, aucune introduction,
 // aucun commentaire après. Accueil v4, section 2.
@@ -49,7 +52,7 @@ const phrases = [
         </div>
 
         <p>
-          <a href={`mailto:${EMAIL}`} class="door text-base sm:text-lg">
+          <a href={MAILTO} class="door text-base sm:text-lg">
             <span>Écrire à Julien</span>
             <span class="door-arrow" aria-hidden="true">&rarr;</span>
           </a>
@@ -192,7 +195,7 @@ const phrases = [
 
         <div class="space-y-3 pt-2">
           <p>
-            <a href={`mailto:${EMAIL}`} class="door font-serif text-xl sm:text-2xl">
+            <a href={MAILTO} class="door font-serif text-xl sm:text-2xl">
               <span>Écrire à Julien</span>
               <span class="door-arrow" aria-hidden="true">&rarr;</span>
             </a>
