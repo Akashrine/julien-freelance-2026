@@ -11,6 +11,14 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://julien-brionne.fr',
   output: 'static',
+  // Migration des routes, catégorie A, 28/08/2026.
+  // Successeur fonctionnel direct, aucune donnée ne peut changer la destination.
+  // Les catégories B et C attendent la Search Console : ne rien ajouter ici sans elle.
+  redirects: {
+    '/approche': { status: 301, destination: '/ce-que-je-fais' },
+    '/contact': { status: 301, destination: '/ce-que-je-fais' },
+    '/references': { status: 301, destination: '/ce-que-je-fais' },
+  },
   adapter: vercel(),
   trailingSlash: 'never',
   prefetch: {
