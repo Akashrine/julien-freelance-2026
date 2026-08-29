@@ -160,6 +160,18 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <script is:inline>
       // Marque la présence du JS. Sans cette classe, aucun contenu n'est masqué.
       document.documentElement.classList.add('js');
+
+      // Le filet vit ici, dans le script même qui masque, et pas dans le module
+      // qui anime : les deux doivent partager le même sort. Si le module ne
+      // s'exécute pas — navigateur sans modules, erreur à l'intérieur — c'est
+      // ce délai qui rend le contenu, sinon la page resterait vide sous le hero.
+      // Écrit en syntaxe ancienne à dessein : il doit tourner là où le module échoue.
+      setTimeout(function () {
+        var caches = document.querySelectorAll('.reveal:not(.active)');
+        for (var i = 0; i < caches.length; i++) {
+          caches[i].classList.add('active');
+        }
+      }, 2500);
     </script>
     <ReadingProgress />
     <div class="relative z-10">
@@ -227,14 +239,6 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
 
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => observer.observe(el));
-
-        // Filet de sécurité. L'animation masque du contenu tant qu'elle n'a pas
-        // joué : si l'observateur ne se déclenche pas — onglet en arrière-plan,
-        // navigateur qui ne compose pas, API absente — le texte doit apparaître
-        // quand même. Une page éditoriale ne reste jamais invisible.
-        setTimeout(() => {
-          document.querySelectorAll('.reveal:not(.active)').forEach(el => el.classList.add('active'));
-        }, 2500);
 
         // Observer pour les sections avec fade-in progressif
         const sectionObserver = new IntersectionObserver((entries, obs) => {
