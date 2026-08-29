@@ -90,10 +90,8 @@ const aLire = [
     </section>
 
     <!-- 2. Produits Sans Filtres. Action principale. -->
-    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell split">
-        <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
-        <div class="space-y-8">
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-8">
           <h2 class="t-title text-ink">Produits Sans Filtres</h2>
 
           <div class="space-y-5 text-lg leading-relaxed text-dim">
@@ -115,33 +113,26 @@ const aLire = [
             <p class="text-sm text-dim">
               Gratuit. Désabonnement en un clic, en bas de chaque numéro.
             </p>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- 3. Par où commencer. Registre. -->
-    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell space-y-10 sm:space-y-12">
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
-          <h2 class="t-sub text-ink">Par où commencer</h2>
-        </div>
+        <h2 class="t-sub text-ink">Par où commencer</h2>
 
-        <ul class="ledger">
-          {numeros.map((n, i) => (
-            <li class="ledger-row reveal" style={`--index:${i}`}>
-              <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
-              <div class="space-y-2">
-                {n.href ? (
-                  <a href={n.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
-                    {n.titre}
-                  </a>
-                ) : (
-                  <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
-                )}
-                <p class="leading-relaxed text-dim">{n.resume}</p>
-              </div>
+        <ul class="max-w-[42rem] space-y-7">
+          {numeros.map((n) => (
+            <li class="space-y-1.5">
+              {n.href ? (
+                <a href={n.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
+                  {n.titre}
+                </a>
+              ) : (
+                <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
+              )}
+              <p class="leading-relaxed text-dim">{n.resume}</p>
             </li>
           ))}
         </ul>
@@ -149,20 +140,16 @@ const aLire = [
     </section>
 
     <!-- 4. À lire. Registre de la bibliothèque. -->
-    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell space-y-10 sm:space-y-12">
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
-          <div class="space-y-3">
-            <h2 class="t-sub text-ink">À lire</h2>
-            <p class="leading-relaxed text-dim">Des textes de fond, plus longs que la newsletter.</p>
-          </div>
+        <div class="space-y-3">
+          <h2 class="t-sub text-ink">À lire</h2>
+          <p class="leading-relaxed text-dim">Des textes de fond, plus longs que la newsletter.</p>
         </div>
 
-        <ul class="ledger">
-          {aLire.map((a, i) => (
-            <li class="ledger-row reveal" style={`--index:${i}`}>
-              <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
+        <ul class="max-w-[42rem] space-y-4">
+          {aLire.map((a) => (
+            <li>
               <a href={a.href} class="link-inline font-serif text-xl leading-snug sm:text-2xl">
                 {a.titre}
               </a>
@@ -170,23 +157,18 @@ const aLire = [
           ))}
         </ul>
 
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"></div>
-          <p>
-            <a href="/articles" class="door text-base">
-              <span>Tous les textes</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-        </div>
+        <p>
+          <a href="/articles" class="door text-base">
+            <span>Tous les textes</span>
+            <span class="door-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </p>
       </div>
     </section>
 
     <!-- 5. Sur LinkedIn -->
-    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell split">
-        <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
-        <div class="space-y-6">
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-6">
           <h2 class="t-sub text-ink">Sur LinkedIn</h2>
 
           <p class="text-lg leading-relaxed text-dim">
@@ -201,15 +183,13 @@ const aLire = [
               <span class="door-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </p>
-        </div>
       </div>
     </section>
 
     <!-- 6. La ligne commerciale. En texte, jamais en bouton. -->
-    <section class="reveal border-t border-line px-6 py-12 sm:px-10 sm:py-14">
-      <div class="shell split">
-        <div class="split-aside" aria-hidden="true"></div>
-        <p class="text-sm leading-relaxed text-dim sm:text-base">
+    <section class="reveal px-6 py-12 sm:px-10 sm:py-14">
+      <div class="shell">
+        <p class="max-w-[42rem] text-sm leading-relaxed text-dim sm:text-base">
           Si un de ces textes décrit votre situation, écrivez-moi. Ce que je vends est
           <a href="/ce-que-je-fais" class="link-inline">ici</a>.
         </p>

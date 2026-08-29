@@ -131,10 +131,10 @@ const copilote = [
     </section>
 
     <!-- 2. Le routeur. Deux questions au même poids, deux lignes identiques. -->
-    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell space-y-12 sm:space-y-16">
         <div class="split">
-          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+          <div class="split-aside" aria-hidden="true"></div>
           <div class="space-y-3">
             <p class="t-sub text-ink">Vous ne savez plus quoi décider.</p>
             <p class="leading-relaxed text-dim">
@@ -150,7 +150,7 @@ const copilote = [
         </div>
 
         <div class="split">
-          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+          <div class="split-aside" aria-hidden="true"></div>
           <div class="space-y-3">
             <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
             <p class="leading-relaxed text-dim">
@@ -166,7 +166,7 @@ const copilote = [
           </div>
         </div>
 
-        <div class="split border-t border-line pt-8">
+        <div class="split pt-2">
           <div class="split-aside" aria-hidden="true"></div>
           <p class="text-sm leading-relaxed text-dim">
             Vous décidez du produit seul et personne ne vous contredit utilement.
@@ -177,7 +177,7 @@ const copilote = [
     </section>
 
     <!-- La Mise au clair -->
-    <section id="la-mise-au-clair" class="border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+    <section id="la-mise-au-clair" class="px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell space-y-12 sm:space-y-16">
         <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="t-title text-ink">La Mise au clair</h2>
@@ -194,18 +194,21 @@ const copilote = [
         </div>
 
         <div class="split border-t border-line pt-10">
-          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+          <div class="split-aside" aria-hidden="true"></div>
           <h3 class="t-sub text-ink">Les six demi-journées</h3>
         </div>
 
-        <ol class="ledger">
-          {demiJournees.map((item, i) => (
-            <li class="ledger-row reveal" style={`--index:${i}`}>
-              <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
-              <span class="block text-lg leading-relaxed text-dim">{item}</span>
-            </li>
-          ))}
-        </ol>
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <ol class="ledger">
+            {demiJournees.map((item, i) => (
+              <li class="ledger-row">
+                <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="block text-lg leading-relaxed text-dim">{item}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
 
         <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
@@ -220,7 +223,7 @@ const copilote = [
     </section>
 
     <!-- Le Copilote -->
-    <section id="le-copilote" class="border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+    <section id="le-copilote" class="px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell space-y-12 sm:space-y-16">
         <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="t-title text-ink">Le Copilote</h2>
@@ -237,7 +240,7 @@ const copilote = [
         </div>
 
         <div class="split border-t border-line pt-10">
-          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+          <div class="split-aside" aria-hidden="true"></div>
           <h3 class="t-sub text-ink">Ce que ça a donné</h3>
         </div>
 
@@ -259,7 +262,7 @@ const copilote = [
         </div>
 
         <figure class="split border-t border-line pt-10">
-          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+          <div class="split-aside" aria-hidden="true"></div>
           <div class="space-y-4">
             <blockquote class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
               “Julien was the Product Manager on our Platform team during my time as
@@ -289,9 +292,9 @@ const copilote = [
     </section>
 
     <!-- Le Rendez-vous produit. Cinq lignes, jamais plus. -->
-    <section id="le-rendez-vous-produit" class="border-t border-line px-6 py-16 sm:px-10 sm:py-20">
+    <section id="le-rendez-vous-produit" class="px-6 py-16 sm:px-10 sm:py-20">
       <div class="shell split">
-        <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+        <div class="split-aside" aria-hidden="true"></div>
         <div class="space-y-5">
           <h2 class="t-sub text-ink">Le Rendez-vous produit</h2>
 
@@ -316,9 +319,9 @@ const copilote = [
     </section>
 
     <!-- Comment ça commence -->
-    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell split">
-        <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+        <div class="split-aside" aria-hidden="true"></div>
         <div class="space-y-8">
           <h2 class="t-title text-ink">Comment ça commence<span class="stop">.</span></h2>
 

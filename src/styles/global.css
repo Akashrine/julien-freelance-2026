@@ -44,7 +44,11 @@
   --color-ink: #121316;
   --color-dim: #5E5C56;
   --color-line: #E3DFD5;
-  --color-ochre: #B0582A;
+  /* À l'essai depuis le 30/08 : vermillon #E84A2A à la place de l'ocre.
+     3,61:1 sur le crème — grands caractères, flèches et états seulement,
+     jamais du texte courant. Extrêmement rare : le point du logo, quelques
+     flèches, « Il sort. », les soulignés au survol. */
+  --color-ochre: #E84A2A;
 
   /* Alias conservés pour les composants d'articles, à retirer au lot 4 */
   --color-background: #FBF7F1;
@@ -67,7 +71,7 @@
 
 @layer base {
   :root {
-    --color-accent: #B0582A;
+    --color-accent: #E84A2A;
     --color-secondary: #5E5C56;
   }
 
@@ -244,7 +248,9 @@
     display: block !important;
   }
 
-  blockquote {
+  /* Style d'article hérité. Scopé aux articles le 30/08 : nu, il s'appliquait
+     à toutes les citations du site et gonflait les blocs de 4rem de chaque côté. */
+  .article-content blockquote {
     font-family: var(--font-serif);
     font-style: italic;
     font-size: 2.5rem;
@@ -948,7 +954,7 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
   .door:hover {
-    color: var(--color-ochre);
+    color: var(--color-ink);
     text-decoration-color: var(--color-ochre);
   }
   .door-arrow {
@@ -967,7 +973,7 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
   .link-inline:hover {
-    color: var(--color-ochre);
+    color: var(--color-ink);
     text-decoration-color: var(--color-ochre);
   }
 
@@ -996,16 +1002,6 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
       align-items: start;
     }
     .split > .split-aside { position: sticky; top: 6rem; }
-  }
-
-  /* Rail vide : un court filet d'encre marque la colonne. Même geste que
-     le filet de l'eyebrow — c'est l'unique ponctuation du rail. */
-  .rule-stub {
-    display: block;
-    width: 3rem;
-    height: 1px;
-    background: var(--color-ink);
-    margin-top: 0.9em;
   }
 
   /* L'échelle typographique. Quatre tailles, pas une de plus.
@@ -1054,51 +1050,27 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     line-height: 1.35;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-ochre);
+    color: var(--color-dim);
   }
 
-  .eyebrow::before {
-    content: '';
-    display: block;
-    width: 3rem;
-    height: 1px;
-    margin-bottom: 0.75rem;
-    background: var(--color-ink);
-  }
-
-  /* Le registre. Toute liste du site passe par lui : un numéro, un filet,
-     le texte. Aucun fond, aucun carré, aucune carte. */
-  .ledger { border-top: 1px solid var(--color-line); }
+  /* Le registre. Une liste dense de document de travail : un numéro
+     discret dans une gouttière étroite, le texte à côté. Aucun filet,
+     aucun fond, aucune carte. La densité vient du rapprochement. */
+  .ledger { display: grid; gap: 0.875rem; }
 
   .ledger-row {
     display: grid;
-    grid-template-columns: 3.5rem minmax(0, 1fr);
-    gap: 1.25rem;
-    padding-block: 1.5rem;
-    border-bottom: 1px solid var(--color-line);
-  }
-
-  @media (min-width: 640px) {
-    .ledger-row { padding-block: 2rem; }
-  }
-
-  /* Sur grand écran, le registre prend la géométrie de la grille :
-     le numéro occupe le rail, le texte tombe sur la colonne de lecture.
-     Tout le site partage ainsi la même ligne de gauche. */
-  @media (min-width: 1024px) {
-    .ledger-row {
-      grid-template-columns: minmax(0, 13rem) minmax(0, 42rem);
-      gap: 5rem;
-    }
+    grid-template-columns: 2.25rem minmax(0, 42rem);
+    gap: 1rem;
+    align-items: baseline;
   }
 
   .ledger-num {
     font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     color: var(--color-dim);
-    padding-top: 0.5em;
   }
 }
 
