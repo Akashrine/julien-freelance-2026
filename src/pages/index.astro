@@ -39,28 +39,41 @@ const phrases = [
   <Navbar current="accueil" />
 
   <main>
-    <!-- 1. Hero. Pleine largeur : premier moment serif. -->
+    <!-- 1. Hero. Le texte à gauche, le portrait en haut à droite.
+         L'image ne rogne rien : elle garde son rapport natif de 2:3. -->
     <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
-      <div class="shell space-y-12 sm:space-y-16">
-        <h1 class="t-display max-w-[19ch] text-ink">
-          Plusieurs personnes travaillent dessus.
-          <span class="text-dim italic">Personne ne le porte jusqu’au bout.</span>
-        </h1>
+      <div class="shell grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
+        <div class="space-y-12 sm:space-y-16">
+          <h1 class="t-display max-w-[19ch] text-ink">
+            Plusieurs personnes travaillent dessus.
+            <span class="text-dim italic">Personne ne le porte jusqu’au bout.</span>
+          </h1>
 
-        <div class="measure-wide space-y-5 text-lg leading-relaxed text-ink sm:text-xl">
+          <div class="measure-wide space-y-5 text-lg leading-relaxed text-ink sm:text-xl">
+            <p>
+              Je suis Senior Product Manager freelance. Je reprends les sujets produit qui
+              n’avancent plus et je les mène jusqu’à une mise en production.
+            </p>
+            <p class="text-dim">Pas un plan pour y arriver. Une mise en production.</p>
+          </div>
+
           <p>
-            Je suis Senior Product Manager freelance. Je reprends les sujets produit qui
-            n’avancent plus et je les mène jusqu’à une mise en production.
+            <a href={MAILTO} class="door text-base sm:text-lg">
+              <span>Écrire à Julien</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
           </p>
-          <p class="text-dim">Pas un plan pour y arriver. Une mise en production.</p>
         </div>
 
-        <p>
-          <a href={MAILTO} class="door text-base sm:text-lg">
-            <span>Écrire à Julien</span>
-            <span class="door-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </p>
+        <img
+          src="/portrait-640.webp"
+          alt="Julien Brionne"
+          width="427"
+          height="640"
+          fetchpriority="high"
+          decoding="async"
+          class="w-48 sm:w-56 lg:w-full"
+        />
       </div>
     </section>
 
@@ -193,17 +206,7 @@ const phrases = [
     <!-- 7. Comment ça commence. Le portrait tient le rail. -->
     <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell split">
-        <div class="split-aside space-y-3">
-          <img
-            src="/_WOL6954-min.webp"
-            alt="Portrait de Julien Brionne"
-            width="208"
-            height="260"
-            loading="lazy"
-            decoding="async"
-            class="w-40 object-cover lg:w-full"
-            style="aspect-ratio: 4 / 5"
-          />
+        <div class="split-aside">
           <p class="eyebrow">Julien Brionne</p>
         </div>
 
