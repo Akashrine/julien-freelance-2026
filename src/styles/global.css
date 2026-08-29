@@ -61,6 +61,8 @@
   /* Typographie */
   --font-sans: 'Nohemi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* Inter n'existe plus que pour le logotype. Tout le reste est en Nohemi. */
+  --font-mark: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer base {
@@ -915,12 +917,24 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 @layer components {
   /* Le logotype. Le point est le seul endroit où l'ocre est permanent. */
   .wordmark {
-    font-family: var(--font-sans);
-    letter-spacing: -0.02em;
+    font-family: var(--font-mark);
+    letter-spacing: -1px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.28em;
   }
-  .wordmark .wordmark-given { font-weight: 400; color: var(--color-dim); }
-  .wordmark .wordmark-family { font-weight: 700; color: var(--color-ink); }
-  .wordmark .wordmark-dot { font-weight: 700; color: var(--color-ochre); }
+  .wordmark .wordmark-given { font-weight: 500; color: var(--color-ink); }
+  .wordmark .wordmark-family { font-weight: 900; color: var(--color-ink); }
+  .wordmark .wordmark-dot {
+    font-weight: 400;
+    font-size: 1.5em;
+    line-height: 0;
+    letter-spacing: normal;
+    color: var(--color-ochre);
+    transform-origin: bottom;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .wordmark:hover .wordmark-dot { transform: scale(1.15); }
 
   /* Lien de navigation : sobre, souligné à l'ocre au survol. */
   .link-nav {
@@ -969,6 +983,30 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 
   /* Le point ocre, en fin de titre. */
   .stop { color: var(--color-ochre); }
+
+  /* La coque de page. Large, pour laisser respirer, jamais pour élargir le texte. */
+  .shell {
+    width: 100%;
+    max-width: 68rem;
+    margin-inline: auto;
+  }
+
+  /* La colonne de lecture. Elle ne dépasse jamais une mesure confortable,
+     quelle que soit la largeur de la coque. */
+  .measure { max-width: 34rem; }
+  .measure-wide { max-width: 42rem; }
+
+  /* Le partage éditorial : le label et le titre à gauche, la prose à droite.
+     Repris des blocs deux colonnes de Getharvest, sans carte ni image. */
+  .split { display: grid; gap: 1.5rem; }
+  @media (min-width: 1024px) {
+    .split {
+      grid-template-columns: minmax(0, 15rem) minmax(0, 38rem);
+      gap: 5rem;
+      align-items: start;
+    }
+    .split > .split-aside { position: sticky; top: 5rem; }
+  }
 
   /* La serif garde son crénage d'origine : le tracking de la sans ne la concerne pas. */
   .font-serif { letter-spacing: normal; }

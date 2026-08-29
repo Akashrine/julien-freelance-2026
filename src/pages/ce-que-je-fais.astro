@@ -36,13 +36,13 @@ const demiJournees = [
   <main>
     <!-- 1. Hero -->
     <section class="px-6 pt-24 sm:px-10 sm:pt-36">
-      <div class="mx-auto max-w-3xl space-y-12 sm:space-y-16">
+      <div class="shell space-y-12 sm:space-y-16">
         <h1 class="max-w-[20ch] font-serif text-4xl font-normal leading-[1.1] tracking-tight text-ink sm:text-6xl">
           Un sujet produit important n’avance plus. Vos équipes sont bonnes.
           <span class="text-dim italic">Le résultat ne bouge pas.</span>
         </h1>
 
-        <div class="max-w-xl space-y-5 text-lg leading-relaxed sm:text-xl">
+        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl">
           <p class="text-ink">
             Je reprends ce sujet et je le mène jusqu’à une mise en production.
           </p>
@@ -57,8 +57,8 @@ const demiJournees = [
 
     <!-- 2. Le routeur. Deux questions au même poids. -->
     <section class="mt-28 border-t border-line px-6 py-24 sm:mt-40 sm:px-10 sm:py-32">
-      <div class="mx-auto max-w-3xl space-y-14">
-        <div class="max-w-xl space-y-3">
+      <div class="shell space-y-14">
+        <div class="measure space-y-3">
           <p class="font-serif text-2xl leading-snug text-ink sm:text-3xl">
             Vous ne savez plus quoi décider.
           </p>
@@ -73,7 +73,7 @@ const demiJournees = [
           </p>
         </div>
 
-        <div class="max-w-xl space-y-3 sm:ml-auto sm:pl-12">
+        <div class="measure space-y-3 lg:ml-[20rem]">
           <p class="font-serif text-2xl leading-snug text-ink sm:text-3xl">
             Vous savez quoi faire, mais ça ne sort pas.
           </p>
@@ -98,65 +98,71 @@ const demiJournees = [
 
     <!-- La Mise au clair -->
     <section id="la-mise-au-clair" class="border-t border-line px-6 py-28 sm:px-10 sm:py-40">
-      <div class="mx-auto max-w-3xl space-y-14">
+      <div class="shell space-y-14">
         <header class="flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="font-serif text-3xl font-normal text-ink sm:text-5xl">La Mise au clair</h2>
           <p class="text-sm text-dim sm:text-base">6 demi-journées · 3 semaines</p>
         </header>
 
-        <div class="max-w-xl space-y-10 text-lg leading-relaxed text-dim">
-          <div class="space-y-3">
+        <div class="space-y-12 text-lg leading-relaxed text-dim">
+          <div class="split">
             <p class="font-semibold text-ink">Le problème.</p>
-            <p>
+            <div>            <p>
               Vous construisez un produit. Chaque client demande autre chose et vous dites
               oui à tout. Vos devs attendent que vous décidiez. Vous ne savez pas si vous
               construisez la bonne chose, ni dans quel ordre.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Ce que je fais.</p>
-            <p>
+            <div>            <p>
               Six demi-journées sur trois semaines. Je parle à vos équipes et à vos clients.
               Puis on s’assoit et on tranche : ce que le produit doit résoudre, pour qui,
               dans quel ordre, et ce qu’on arrête.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Ce que vous avez à la fin.</p>
-            <p>
+            <div>            <p>
               Une décision prise, en salle, avec vous. Le cadre écrit. Les trois prochains
               mois séquencés. Vous savez sur quoi vos devs travaillent lundi, et pourquoi.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Pour qui.</p>
-            <p>
+            <div>            <p>
               Vous construisez déjà, vous avez des clients. Personne chez vous ne s’appelle
               Product Manager, et c’est vous qui tranchez.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Pas pour qui.</p>
-            <p>
+            <div>            <p>
               Vous n’avez ni produit ni clients. Ou vous cherchez quelqu’un pour dérouler
               une roadmap déjà écrite.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Ce que ce n’est pas.</p>
-            <p>
+            <div>            <p>
               Ce n’est pas un audit. Vous ne recevez pas soixante slides trois semaines plus
               tard. La décision se prend devant vous, pendant les trois semaines.
             </p>
+            </div>
           </div>
         </div>
 
-        <div class="max-w-xl space-y-6 border-t border-line pt-10">
+        <div class="measure-wide space-y-6 border-t border-line pt-10">
           <h3 class="font-serif text-xl text-ink sm:text-2xl">Les six demi-journées</h3>
           <ol class="space-y-5">
             {demiJournees.map((item, i) => (
@@ -179,74 +185,81 @@ const demiJournees = [
 
     <!-- Le Copilote -->
     <section id="le-copilote" class="border-t border-line px-6 py-28 sm:px-10 sm:py-40">
-      <div class="mx-auto max-w-3xl space-y-14">
+      <div class="shell space-y-14">
         <header class="flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="font-serif text-3xl font-normal text-ink sm:text-5xl">Le Copilote</h2>
           <p class="text-sm text-dim sm:text-base">1 jour / semaine · 3 mois</p>
         </header>
 
-        <div class="max-w-xl space-y-10 text-lg leading-relaxed text-dim">
-          <div class="space-y-3">
+        <div class="space-y-12 text-lg leading-relaxed text-dim">
+          <div class="split">
             <p class="font-semibold text-ink">Le problème.</p>
-            <p>
+            <div>            <p>
               Un sujet traverse trois équipes. Chacune livre sa partie. Le résultat ne bouge
               pas. Ça dure depuis des mois, le responsable a changé deux fois, et personne ne
               peut vous dire quand ce sera en production. Vos équipes sont compétentes. Ce
               n’est pas un problème de compétence.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Ce que je fais.</p>
-            <p>
+            <div>            <p>
               Un jour par semaine, je tiens le sujet. Je mets sur la table ce qui bloque
               entre les équipes, je prépare les arbitrages et je les fais prendre. Vos
               équipes gardent le clavier. Je ne code pas à leur place, et je ne décide pas à
               la vôtre.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Ce que vous avez à la fin.</p>
-            <p>
+            <div>            <p>
               Un jalon produit observable, choisi avec vous avant de commencer. Une mise en
               production, une étape de migration franchie, un parcours qui remarche. Pas un
               plan pour y arriver.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Le format.</p>
-            <p>Un jour par semaine, trois mois. Renouvelable sur un nouveau jalon.</p>
+            <div>            <p>Un jour par semaine, trois mois. Renouvelable sur un nouveau jalon.</p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Pour qui.</p>
-            <p>
+            <div>            <p>
               Le sujet existe et il porte un nom. Un sponsor est identifié. Une équipe peut
               exécuter. Quelqu’un pourra trancher quand la décision sera posée.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Pas pour qui.</p>
-            <p>
+            <div>            <p>
               Vous voulez un avis. Personne n’est prêt à décider. Ou vous cherchez une paire
               de mains sur une roadmap existante.
             </p>
+            </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="split">
             <p class="font-semibold text-ink">Ce que ce n’est pas.</p>
-            <p>
+            <div>            <p>
               Ce n’est pas un Product Manager à temps plein en moins cher, et ce n’est pas du
               conseil. Je suis dans les réunions où ça se décide, et mon nom est sur le
               jalon.
             </p>
+            </div>
           </div>
         </div>
 
-        <div class="max-w-xl space-y-6 border-t border-line pt-10">
+        <div class="measure-wide space-y-6 border-t border-line pt-10">
           <h3 class="font-serif text-xl text-ink sm:text-2xl">Ce que ça a donné</h3>
 
           <div class="space-y-5 text-lg leading-relaxed text-dim">
@@ -291,10 +304,10 @@ const demiJournees = [
 
     <!-- Le Rendez-vous produit. Cinq lignes, jamais plus. -->
     <section id="le-rendez-vous-produit" class="border-t border-line px-6 py-20 sm:px-10 sm:py-24">
-      <div class="mx-auto max-w-3xl space-y-6">
+      <div class="shell space-y-6">
         <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">Le Rendez-vous produit</h2>
 
-        <div class="max-w-xl space-y-4 leading-relaxed text-dim">
+        <div class="measure space-y-4 leading-relaxed text-dim">
           <p>Pour les dirigeants qui prennent seuls les décisions produit.</p>
           <p>
             Une demi-journée par mois pendant six mois. On regarde les décisions qui arrivent,
@@ -315,12 +328,12 @@ const demiJournees = [
 
     <!-- Comment ça commence -->
     <section class="border-t border-line px-6 py-28 sm:px-10 sm:py-40">
-      <div class="mx-auto max-w-3xl space-y-8">
+      <div class="shell space-y-8">
         <h2 class="font-serif text-3xl font-normal leading-snug text-ink sm:text-5xl">
           Comment ça commence<span class="stop">.</span>
         </h2>
 
-        <div class="max-w-xl space-y-5 text-lg leading-relaxed text-dim">
+        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
           <p>
             Écrivez-moi. Trois choses suffisent : ce qui n’avance pas, depuis combien de
             temps, et qui peut trancher chez vous.
