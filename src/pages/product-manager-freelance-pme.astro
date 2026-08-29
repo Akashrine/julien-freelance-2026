@@ -17,13 +17,15 @@ import { getWebPageSchema } from '../utils/schema';
 const TITLE = 'Product Manager freelance en PME : intervenir ou recruter';
 const DESCRIPTION =
   "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un Product Manager senior freelance, et quand recruter.";
-const URL = 'https://julien-brionne.fr/product-manager-freelance-pme';
+const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
 ---
 
 <Layout
   title={`${TITLE} — Julien Brionne`}
   description={DESCRIPTION}
   webPageSchema={getWebPageSchema(URL, TITLE, DESCRIPTION)}
+  ogImage="/og/page-product-manager-freelance-pme.webp"
+  twitterCard="summary_large_image"
 >
   <Navbar />
 

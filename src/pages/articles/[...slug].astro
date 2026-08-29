@@ -18,7 +18,7 @@ import ArticleMetadata from '../../components/articles/ArticleMetadata.astro';
 import TableOfContents from '../../components/articles/TableOfContents.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
-import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems, getArticleExtraSchemas } from '../../utils/schema';
+import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
 import { calculateReadingTime, extractHeadingsFromMDX } from '../../utils/articles';
 
 export async function getStaticPaths() {
@@ -65,7 +65,7 @@ const readingTime = calculateReadingTime(article.body || '');
 const wordCount = (article.body || '').trim().split(/\s+/).length;
 const tocHeadings = wordCount > 1500 ? extractHeadingsFromMDX(article.body || '') : [];
 
-const siteUrl = 'https://julien-brionne.fr';
+const siteUrl = 'https://www.julien-brionne.fr';
 const articleUrl = `${siteUrl}/articles/${article.slug}`;
 
 const rawExcerpt = article.data.excerpt || '';
@@ -88,7 +88,6 @@ const articleSchema = getArticleSchema(
 );
 
 // Generate extra schemas (FAQ, HowTo) for specific articles
-const { faqSchema, howToSchema } = getArticleExtraSchemas(article.slug);
 
 // Generate breadcrumb schema
 const breadcrumbSchema = getBreadcrumbSchema([
@@ -111,8 +110,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
   twitterDescription={metaDescription}
   articleSchema={articleSchema}
   breadcrumbSchema={breadcrumbSchema}
-  faqSchema={faqSchema}
-  howToSchema={howToSchema}
   articleDate={article.data.date}
 >
   <Navbar currentPage="articles" />

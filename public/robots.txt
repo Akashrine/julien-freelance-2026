@@ -1,16 +1,4 @@
 User-agent: *
-Allow: /
-Allow: /articles/
-Allow: /approche
-Allow: /references
-Allow: /contact
-Allow: /situations
-Allow: /diagnostic
-
 Disallow: /api/
-Disallow: /_astro/
-Disallow: /admin/
-Disallow: /*.json$
-Disallow: /*?*
 
-Sitemap: https://julien-brionne.fr/sitemap-index.xml
+Sitemap: https://www.julien-brionne.fr/sitemap-index.xml

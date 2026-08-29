@@ -9,7 +9,9 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://julien-brionne.fr',
+  // Hôte canonique : www, arbitré le 30/08. C'est le domaine primaire servi
+  // par Vercel ; le domaine nu redirige vers lui.
+  site: 'https://www.julien-brionne.fr',
   output: 'static',
   // Migration des routes, catégorie A, 28/08/2026.
   // Successeur fonctionnel direct, aucune donnée ne peut changer la destination.

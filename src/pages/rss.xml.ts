@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
     return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
   });
 
-  const siteUrl = 'https://julien-brionne.fr';
+  const siteUrl = 'https://www.julien-brionne.fr';
   
   const rssItems = sortedArticles.map((article) => {
     const articleUrl = `${siteUrl}/articles/${article.slug}`;
