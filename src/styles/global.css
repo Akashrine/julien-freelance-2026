@@ -1,5 +1,36 @@
 @import "tailwindcss";
 
+/* Nohemi — Rajesh Rajput, freeware personnel et commercial.
+   Fichiers non modifiés, la licence l'interdit. Voir public/fonts/README.md. */
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* =========================================================
    SOCLE — refonte 28/08/2026
    Crème, noir bleuté, gris. Une seule couleur d'accent : l'ocre.
@@ -9,15 +40,15 @@
 
 @theme {
   /* Palette */
-  --color-canvas: #F8F7F3;
+  --color-canvas: #FBF7F1;
   --color-ink: #121316;
   --color-dim: #5E5C56;
   --color-line: #E3DFD5;
   --color-ochre: #B0582A;
 
   /* Alias conservés pour les composants d'articles, à retirer au lot 4 */
-  --color-background: #F8F7F3;
-  --color-bg-light: #F8F7F3;
+  --color-background: #FBF7F1;
+  --color-bg-light: #FBF7F1;
   --color-text-primary: #121316;
   --color-text-code: #D4D4D4;
   --color-rule: #E3DFD5;
@@ -28,7 +59,7 @@
   --color-clay: #E7D9CE;
 
   /* Typographie */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Nohemi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
 }
 
@@ -44,6 +75,8 @@
     color: var(--color-ink);
     scroll-behavior: smooth;
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    /* Une géométrique nue paraît froide. Le tracking positif la réchauffe. */
+    letter-spacing: 0.015em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -184,7 +217,7 @@
 
   .btn-cta {
     background-color: #121316;
-    color: #F8F7F3;
+    color: #FBF7F1;
     padding: 1.1rem 2.2rem;
     min-height: 48px;
     display: inline-block;
@@ -936,4 +969,21 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 
   /* Le point ocre, en fin de titre. */
   .stop { color: var(--color-ochre); }
+
+  /* La serif garde son crénage d'origine : le tracking de la sans ne la concerne pas. */
+  .font-serif { letter-spacing: normal; }
+
+  /* Eyebrow. Petit label en capitales, au-dessus d'un titre.
+     Seul composant repris de la référence Getharvest : aucun rayon, aucune ombre,
+     aucune carte. Un label, rien d'autre. */
+  .eyebrow {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ochre);
+  }
 }
