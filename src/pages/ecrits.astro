@@ -119,11 +119,12 @@ const aLire = [
       <div class="shell space-y-12">
         <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">Par où commencer</h2>
 
-        <ul class="max-w-2xl space-y-10">
-          {numeros.map((n) => (
-            <li class="space-y-2">
+        <ul class="tiles">
+          {numeros.map((n, i) => (
+            <li class="tile space-y-3">
+              <span class="tile-index">{String(i + 1).padStart(2, '0')}</span>
               {n.href ? (
-                <a href={n.href} rel="noopener" class="link-inline font-serif text-xl leading-snug sm:text-2xl">
+                <a href={n.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
                   {n.titre}
                 </a>
               ) : (

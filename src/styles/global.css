@@ -1002,9 +1002,9 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
      Elle reçoit en revanche le resserrement éditorial, -0.02em. */
   .font-serif { letter-spacing: -0.02em; }
 
-  /* Eyebrow. Petit label en capitales, au-dessus d'un titre.
-     Seul composant repris de la référence Getharvest : aucun rayon, aucune ombre,
-     aucune carte. Un label, rien d'autre. */
+  /* Eyebrow. Petit label en capitales, au-dessus d'un titre, précédé d'un
+     court filet — le traitement des labels de Silo Theatre.
+     Aucun rayon, aucune ombre, aucune carte. Un label, rien d'autre. */
   .eyebrow {
     display: block;
     font-family: var(--font-sans);
@@ -1014,6 +1014,56 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-ochre);
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 1px;
+    margin-bottom: 0.75rem;
+    background: var(--color-ink);
+  }
+
+  /* Grille de carrés. Séparés par des filets, jamais par des cartes :
+     pas de rayon, pas d'ombre, pas de fond plein. Les carrés alternent
+     un souffle de ton, tiré du filet existant — aucune couleur nouvelle. */
+  .tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--color-line);
+    border-left: 1px solid var(--color-line);
+  }
+
+  @media (min-width: 640px) {
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .tile {
+    border-right: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+    padding: 1.75rem 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .tile { padding: 2.25rem 2rem; }
+  }
+
+  /* Un carré sur deux respire un ton plus bas. Le damier reste perceptible
+     de très loin, jamais lisible de près. */
+  .tiles > .tile:nth-child(4n + 2),
+  .tiles > .tile:nth-child(4n + 3) {
+    background: color-mix(in srgb, var(--color-line) 20%, transparent);
+  }
+
+  .tile-index {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-ochre);
+    margin-bottom: 0.75rem;
   }
 }
 

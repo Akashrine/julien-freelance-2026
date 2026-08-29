@@ -162,13 +162,13 @@ const demiJournees = [
           </div>
         </div>
 
-        <div class="measure-wide space-y-6 border-t border-line pt-10">
+        <div class="space-y-8 border-t border-line pt-10">
           <h3 class="font-serif text-xl text-ink sm:text-2xl">Les six demi-journées</h3>
-          <ol class="space-y-5">
+          <ol class="tiles">
             {demiJournees.map((item, i) => (
-              <li class="flex gap-5 leading-relaxed text-dim">
-                <span class="shrink-0 pt-1 font-serif text-sm text-ochre">{i + 1}</span>
-                <span>{item}</span>
+              <li class="tile">
+                <span class="tile-index">{String(i + 1).padStart(2, '0')}</span>
+                <span class="block leading-relaxed text-dim">{item}</span>
               </li>
             ))}
           </ol>

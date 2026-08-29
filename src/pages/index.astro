@@ -187,27 +187,45 @@ const phrases = [
 
     <!-- 7. Comment ça commence -->
     <section class="reveal border-t border-line px-6 py-28 sm:px-10 sm:py-40">
-      <div class="shell space-y-8">
-        <h2 class="font-serif text-3xl font-normal leading-snug text-ink sm:text-5xl">
-          Comment ça commence<span class="stop">.</span>
-        </h2>
-
-        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
-          <p>
-            Écrivez-moi. Trois choses suffisent : ce qui n’avance pas, depuis combien de
-            temps, et qui peut trancher chez vous.
-          </p>
-          <p>Je vous réponds et je vous dis si c’est pour moi ou pas.</p>
+      <div class="shell split">
+        {/* Le portrait tient dans le rail, à l'échelle des vignettes de Silo :
+            petit, légendé en capitales. On écrit à quelqu'un, pas à une adresse. */}
+        <div class="split-aside space-y-3">
+          <img
+            src="/_WOL6954-min.webp"
+            alt="Portrait de Julien Brionne"
+            width="240"
+            height="300"
+            loading="lazy"
+            decoding="async"
+            class="w-40 object-cover sm:w-full"
+            style="aspect-ratio: 4 / 5"
+          />
+          <p class="eyebrow">Julien Brionne</p>
         </div>
 
-        <div class="space-y-3 pt-2">
-          <p>
-            <a href={MAILTO} class="door font-serif text-xl sm:text-2xl">
-              <span>Écrire à Julien</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-          <p class="text-sm text-dim">{EMAIL}</p>
+        <div class="space-y-8">
+          <h2 class="font-serif text-3xl font-normal leading-snug text-ink sm:text-5xl">
+            Comment ça commence<span class="stop">.</span>
+          </h2>
+
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              Écrivez-moi. Trois choses suffisent : ce qui n’avance pas, depuis combien de
+              temps, et qui peut trancher chez vous.
+            </p>
+            <p>Je vous réponds et je vous dis si c’est pour moi ou pas.</p>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <p>
+              <a href={MAILTO} class="door font-serif text-xl sm:text-2xl">
+                <span>Écrire à Julien</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+            <p class="text-sm text-dim">{EMAIL}</p>
+          </div>
         </div>
       </div>
     </section>
