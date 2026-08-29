@@ -1,6 +1,9 @@
 ---
 // Écrits. Copy verbatim de 2026-08-27_JulienBrionne_Site-Ecrits_v3.md.
 // Page média, pas commerciale. Aucun prix, aucun compteur, aucun popup.
+//
+// Mise en page : une seule grille, rail + colonne de lecture (.split).
+// Les deux sélections — numéros et bibliothèque — passent par le registre.
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
@@ -69,10 +72,10 @@ const aLire = [
   <Navbar current="ecrits" />
 
   <main>
-    <!-- 1. La promesse -->
-    <section class="px-6 pt-24 sm:px-10 sm:pt-36">
+    <!-- 1. La promesse. Pleine largeur : moment serif. -->
+    <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-32">
       <div class="shell space-y-12">
-        <h1 class="max-w-[18ch] font-serif text-4xl font-normal leading-[1.1] tracking-tight text-ink sm:text-6xl">
+        <h1 class="t-display max-w-[18ch] text-ink">
           Ce que j’écris, c’est comment je travaille<span class="stop">.</span>
         </h1>
 
@@ -87,67 +90,79 @@ const aLire = [
     </section>
 
     <!-- 2. Produits Sans Filtres. Action principale. -->
-    <section class="reveal mt-28 border-t border-line px-6 py-24 sm:mt-40 sm:px-10 sm:py-32">
-      <div class="shell space-y-8">
-        <h2 class="font-serif text-3xl font-normal text-ink sm:text-5xl">Produits Sans Filtres</h2>
+    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell split">
+        <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+        <div class="space-y-8">
+          <h2 class="t-title text-ink">Produits Sans Filtres</h2>
 
-        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
-          <p>Un numéro toutes les deux semaines.</p>
-          <p>
-            Des situations vécues dans des équipes produit réelles. Ce qui a été décidé,
-            contre qui, et ce qui s’est passé après. Pas de framework, pas de liste d’outils,
-            pas de conseils de carrière.
-          </p>
-        </div>
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>Un numéro toutes les deux semaines.</p>
+            <p>
+              Des situations vécues dans des équipes produit réelles. Ce qui a été décidé,
+              contre qui, et ce qui s’est passé après. Pas de framework, pas de liste d’outils,
+              pas de conseils de carrière.
+            </p>
+          </div>
 
-        <div class="space-y-3 pt-2">
-          <p>
-            <a href={SUBSTACK} rel="noopener" class="door font-serif text-xl sm:text-2xl">
-              <span>S’inscrire</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-          <p class="text-sm text-dim">
-            Gratuit. Désabonnement en un clic, en bas de chaque numéro.
-          </p>
+          <div class="space-y-3 pt-2">
+            <p>
+              <a href={SUBSTACK} rel="noopener" class="door font-serif text-xl sm:text-2xl">
+                <span>S’inscrire</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+            <p class="text-sm text-dim">
+              Gratuit. Désabonnement en un clic, en bas de chaque numéro.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. Par où commencer -->
-    <section class="reveal border-t border-line px-6 py-24 sm:px-10 sm:py-32">
-      <div class="shell space-y-12">
-        <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">Par où commencer</h2>
+    <!-- 3. Par où commencer. Registre. -->
+    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-10 sm:space-y-12">
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+          <h2 class="t-sub text-ink">Par où commencer</h2>
+        </div>
 
-        <ul class="tiles">
+        <ul class="ledger">
           {numeros.map((n, i) => (
-            <li class="tile space-y-3">
-              <span class="tile-index">{String(i + 1).padStart(2, '0')}</span>
-              {n.href ? (
-                <a href={n.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
-                  {n.titre}
-                </a>
-              ) : (
-                <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
-              )}
-              <p class="leading-relaxed text-dim">{n.resume}</p>
+            <li class="ledger-row reveal" style={`--index:${i}`}>
+              <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
+              <div class="space-y-2">
+                {n.href ? (
+                  <a href={n.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
+                    {n.titre}
+                  </a>
+                ) : (
+                  <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
+                )}
+                <p class="leading-relaxed text-dim">{n.resume}</p>
+              </div>
             </li>
           ))}
         </ul>
       </div>
     </section>
 
-    <!-- 4. À lire. Sélection éditoriale, porte d'entrée de la bibliothèque. -->
-    <section class="reveal border-t border-line px-6 py-24 sm:px-10 sm:py-32">
-      <div class="shell space-y-12">
-        <div class="space-y-3">
-          <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">À lire</h2>
-          <p class="leading-relaxed text-dim">Des textes de fond, plus longs que la newsletter.</p>
+    <!-- 4. À lire. Registre de la bibliothèque. -->
+    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-10 sm:space-y-12">
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+          <div class="space-y-3">
+            <h2 class="t-sub text-ink">À lire</h2>
+            <p class="leading-relaxed text-dim">Des textes de fond, plus longs que la newsletter.</p>
+          </div>
         </div>
 
-        <ul class="max-w-2xl space-y-6">
-          {aLire.map((a) => (
-            <li>
+        <ul class="ledger">
+          {aLire.map((a, i) => (
+            <li class="ledger-row reveal" style={`--index:${i}`}>
+              <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
               <a href={a.href} class="link-inline font-serif text-xl leading-snug sm:text-2xl">
                 {a.titre}
               </a>
@@ -155,39 +170,46 @@ const aLire = [
           ))}
         </ul>
 
-        <p>
-          <a href="/articles" class="door text-base">
-            <span>Tous les textes</span>
-            <span class="door-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </p>
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p>
+            <a href="/articles" class="door text-base">
+              <span>Tous les textes</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- 5. Sur LinkedIn -->
-    <section class="reveal border-t border-line px-6 py-24 sm:px-10 sm:py-32">
-      <div class="shell space-y-8">
-        <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">Sur LinkedIn</h2>
+    <section class="reveal border-t border-line px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell split">
+        <div class="split-aside" aria-hidden="true"><span class="rule-stub"></span></div>
+        <div class="space-y-6">
+          <h2 class="t-sub text-ink">Sur LinkedIn</h2>
 
-        <p class="measure-wide text-lg leading-relaxed text-dim">
-          J’écris deux fois par semaine. Des scènes courtes, prises dans la semaine. Une
-          phrase entendue en réunion, une décision qu’on rejoue pour la troisième fois, un
-          tableau de bord que personne ne regarde.
-        </p>
+          <p class="text-lg leading-relaxed text-dim">
+            J’écris deux fois par semaine. Des scènes courtes, prises dans la semaine. Une
+            phrase entendue en réunion, une décision qu’on rejoue pour la troisième fois, un
+            tableau de bord que personne ne regarde.
+          </p>
 
-        <p>
-          <a href={LINKEDIN} rel="noopener" class="door text-base">
-            <span>Suivre Julien sur LinkedIn</span>
-            <span class="door-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </p>
+          <p>
+            <a href={LINKEDIN} rel="noopener" class="door text-base">
+              <span>Suivre Julien sur LinkedIn</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- 6. La ligne commerciale. En texte, jamais en bouton. -->
-    <section class="reveal border-t border-line px-6 py-16 sm:px-10 sm:py-20">
-      <div class="shell">
-        <p class="max-w-2xl text-sm leading-relaxed text-dim sm:text-base">
+    <section class="reveal border-t border-line px-6 py-12 sm:px-10 sm:py-14">
+      <div class="shell split">
+        <div class="split-aside" aria-hidden="true"></div>
+        <p class="text-sm leading-relaxed text-dim sm:text-base">
           Si un de ces textes décrit votre situation, écrivez-moi. Ce que je vends est
           <a href="/ce-que-je-fais" class="link-inline">ici</a>.
         </p>
