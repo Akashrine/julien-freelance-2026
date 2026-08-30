@@ -1203,3 +1203,92 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 @media (prefers-reduced-motion: reduce) {
   .portrait-in { animation: none; }
 }
+
+/* =========================================================
+   LE SÉLECTEUR D'ENVOI — hors de toute @layer : ses classes
+   n'existent que dans du HTML injecté au runtime, Tailwind les
+   purgerait depuis une couche.
+
+   Au clic sur un mailto, un panneau sobre propose l'application
+   e-mail, Gmail, Outlook, ou la copie de l'adresse — l'objet
+   pré-rempli de l'offre est conservé partout. Sans JavaScript,
+   les liens mailto restent natifs : c'est un rehaussement.
+   ========================================================= */
+.mailpick-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.mailpick-overlay.is-open { opacity: 1; }
+
+.mailpick {
+  width: 100%;
+  max-width: 24rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-canvas);
+  padding: 1.75rem 1.75rem 1.5rem;
+  transform: translateY(6px);
+  transition: transform 180ms ease;
+}
+.mailpick-overlay.is-open .mailpick { transform: none; }
+
+.mailpick-title {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.mailpick-subject {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--color-dim);
+}
+.mailpick-list { margin-top: 1.25rem; display: grid; gap: 0.625rem; }
+.mailpick-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3rem;
+  text-decoration-color: var(--color-dim);
+  background: none;
+  border: 0;
+  padding: 0.125rem 0;
+  cursor: pointer;
+}
+.mailpick-item:hover { text-decoration-color: var(--color-ochre); }
+.mailpick-foot {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: var(--color-dim);
+}
+.mailpick-close {
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-dim);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+.mailpick-close:hover { color: var(--color-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mailpick-overlay, .mailpick-overlay .mailpick { transition: none; }
+}
