@@ -915,12 +915,12 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
      de texte. */
   .wordmark {
     font-family: var(--font-serif);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    letter-spacing: -0.025em;
     color: var(--color-ink);
   }
   .wordmark .wordmark-given,
-  .wordmark .wordmark-family { font-weight: 400; color: var(--color-ink); }
+  .wordmark .wordmark-family { font-weight: 500; color: var(--color-ink); }
   .wordmark .wordmark-dot {
     display: inline-block;
     color: var(--color-ochre);
