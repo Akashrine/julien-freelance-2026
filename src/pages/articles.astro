@@ -1,13 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import Breadcrumb from '../components/Breadcrumb.astro';
 import ArticlesHeader from '../components/ArticlesHeader.astro';
 import ArticlesList from '../components/ArticlesList.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
-const siteUrl = 'https://julien-brionne.fr';
+const siteUrl = 'https://www.julien-brionne.fr';
 const pageUrl = `${siteUrl}/articles`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
@@ -28,7 +27,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
   ogDescription="Réflexions et analyses de cas produit. Trancher le raisonnement avant d'agir. Pas des guides méthodologiques."
   ogType="website"
   ogImage="/og/page-articles.webp"
-  ogUrl="https://julien-brionne.fr/articles"
+  ogUrl="https://www.julien-brionne.fr/articles"
   twitterCard="summary_large_image"
   twitterTitle="Articles — Réflexions produit"
   twitterDescription="Réflexions et analyses de cas produit. Trancher le raisonnement avant d'agir. Pas des guides méthodologiques."
@@ -36,7 +35,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
   breadcrumbSchema={breadcrumbSchema}
 >
   <Navbar currentPage="articles" />
-  <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Articles' }]} />
   <main>
     <ArticlesHeader />
     <ArticlesList />

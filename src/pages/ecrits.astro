@@ -1,0 +1,209 @@
+---
+// Écrits. Copy verbatim de 2026-08-27_JulienBrionne_Site-Ecrits_v3.md.
+// Page média, pas commerciale. Aucun prix, aucun compteur, aucun popup.
+//
+// Mise en page : une seule grille, rail + colonne de lecture (.split).
+// Les deux sélections — numéros et bibliothèque — passent par le registre.
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getWebPageSchema } from '../utils/schema';
+
+const SUBSTACK = 'https://produitsansfiltre.substack.com';
+const LINKEDIN = 'https://www.linkedin.com/in/julienbrionne';
+
+// Section 3. Les quatre numéros.
+// Deux URLs fournies le 28/08 correspondent au titre de la copy, elles sont posées.
+// Les deux autres slugs désignent d'autres sujets : rien n'est deviné, le lien
+// reste absent tant que la correspondance n'est pas tranchée.
+const numeros = [
+  {
+    titre: 'Le jour où on a tué les étoiles chez Heetch.',
+    resume:
+      'Comment on retire à un produit grand public la mesure que tout le secteur utilise, et ce qu’on met à la place.',
+    href: 'https://produitsansfiltre.substack.com/p/le-jour-ou-on-a-tue-les-etoiles-chez-heetch',
+  },
+  {
+    titre: 'Le churn ne ment pas.',
+    resume:
+      'Ce que les clients qui partent disent de votre produit, et pourquoi personne ne l’écoute.',
+    href: 'https://produitsansfiltre.substack.com/p/le-churn-ne-ment-pas',
+  },
+  {
+    titre: 'Vous avez recruté un bon PM, mais pas pour votre contexte.',
+    resume:
+      'Pourquoi un excellent Product Manager échoue dans une maison où il n’a pas les moyens de décider.',
+  },
+  {
+    titre: 'J’ai ouvert Jira en dernier.',
+    resume:
+      'Les priorités réelles d’une équipe se lisent dans les horodatages, pas dans l’outil.',
+  },
+];
+
+// Section 4. Sélection éditoriale, pas commerciale.
+const aLire = [
+  {
+    href: '/articles/equipe-produit-trop-de-reunions',
+    titre: 'Quand l’équipe produit passe plus de temps à se coordonner qu’à livrer',
+  },
+  {
+    href: '/articles/ownership-produit',
+    titre: 'Ownership produit : quand personne ne sait plus qui décide quoi',
+  },
+  {
+    href: '/articles/illusion-mouvement',
+    titre: 'L’illusion du mouvement : quand l’effort masque l’absence de décision',
+  },
+  { href: '/articles/art-du-non', titre: 'L’art du non' },
+  { href: '/articles/care-territoire-produit', titre: 'Le care comme territoire produit' },
+];
+---
+
+<Layout
+  title="Écrits — Julien Brionne"
+  description="Ce que j'écris, c'est comment je travaille. Produits Sans Filtres, un numéro toutes les deux semaines, et des textes de fond."
+  webPageSchema={getWebPageSchema(
+    'https://www.julien-brionne.fr/ecrits',
+    'Écrits',
+    "Ce que j'écris, c'est comment je travaille."
+  )}
+  ogImage="/og/page-ecrits.webp"
+  twitterCard="summary_large_image"
+>
+  <Navbar current="ecrits" />
+
+  <main>
+    <!-- 1. La promesse. Pleine largeur : moment serif. -->
+    <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-32">
+      <div class="shell space-y-12">
+        <h1 class="t-display max-w-[18ch] text-ink">
+          Ce que j’écris, c’est comment je travaille<span class="stop">.</span>
+        </h1>
+
+        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim sm:text-xl">
+          <p>
+            Je n’ai pas de plaquette. Ce que vous lisez ici est la seule façon honnête de
+            savoir si ma manière de regarder un problème produit vous parle.
+          </p>
+          <p>Si oui, on finira par se parler. Si non, vous m’aurez lu gratuitement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Produits Sans Filtres. Action principale. -->
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-8">
+          <h2 class="t-title text-ink">Produits Sans Filtres</h2>
+
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>Un numéro toutes les deux semaines.</p>
+            <p>
+              Des situations vécues dans des équipes produit réelles. Ce qui a été décidé,
+              contre qui, et ce qui s’est passé après. Pas de framework, pas de liste d’outils,
+              pas de conseils de carrière.
+            </p>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <p>
+              <a href={SUBSTACK} rel="noopener" class="door font-serif text-xl sm:text-2xl">
+                <span>S’inscrire</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+            <p class="text-sm text-dim">
+              Gratuit. Désabonnement en un clic, en bas de chaque numéro.
+            </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Par où commencer. Registre. -->
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-10 sm:space-y-12">
+        <h2 class="t-sub text-ink">Par où commencer</h2>
+
+        <ul class="max-w-[42rem] space-y-7">
+          {numeros.map((n) => (
+            <li class="space-y-1.5">
+              {n.href ? (
+                <a href={n.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
+                  {n.titre}
+                </a>
+              ) : (
+                <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
+              )}
+              <p class="leading-relaxed text-dim">{n.resume}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. À lire. Registre de la bibliothèque. -->
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-10 sm:space-y-12">
+        <div class="space-y-3">
+          <h2 class="t-sub text-ink">À lire</h2>
+          <p class="leading-relaxed text-dim">Des textes de fond, plus longs que la newsletter.</p>
+        </div>
+
+        <ul class="max-w-[42rem] space-y-4">
+          {aLire.map((a) => (
+            <li>
+              <a href={a.href} class="link-inline font-serif text-xl leading-snug sm:text-2xl">
+                {a.titre}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p>
+          <a href="/articles" class="door text-base">
+            <span>Tous les textes</span>
+            <span class="door-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. Sur LinkedIn -->
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-6">
+          <h2 class="t-sub text-ink">Sur LinkedIn</h2>
+
+          <p class="text-lg leading-relaxed text-dim">
+            J’écris deux fois par semaine. Des scènes courtes, prises dans la semaine. Une
+            phrase entendue en réunion, une décision qu’on rejoue pour la troisième fois, un
+            tableau de bord que personne ne regarde.
+          </p>
+
+          <p>
+            <a href={LINKEDIN} rel="noopener" class="door text-base">
+              <span>Suivre Julien sur LinkedIn</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+      </div>
+    </section>
+
+    <!-- 6. La ligne commerciale. En texte, jamais en bouton. -->
+    <section class="reveal px-6 py-12 sm:px-10 sm:py-14">
+      <div class="shell">
+        <p class="max-w-[42rem] text-sm leading-relaxed text-dim sm:text-base">
+          Si un de ces textes décrit votre situation, écrivez-moi. Ce que je vends est
+          <a href="/ce-que-je-fais" class="link-inline">ici</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer
+    links={[
+      { href: '/', label: 'Accueil' },
+      { href: '/ce-que-je-fais', label: 'Ce que je fais' },
+      { href: '/mentions-legales', label: 'Mentions légales' },
+    ]}
+  />
+</Layout>

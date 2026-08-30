@@ -1,0 +1,360 @@
+---
+// Ce que je fais. Copy verbatim de 2026-08-28_JulienBrionne_Site-CeQueJeFais_v5.md,
+// moins les prix et moins les blocs « Pourquoi ce prix » (decisions.md, 28/08 au soir).
+// Les trois ancres sont définitives : des liens partent dessus. Ne jamais les changer.
+//
+// Mise en page : une seule grille, rail + colonne de lecture (.split).
+// Les en-têtes d'offre — nom serif, format à droite, filet — sont les seules
+// ruptures pleine largeur. Le registre porte les six demi-journées.
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getWebPageSchema } from '../utils/schema';
+
+const EMAIL = 'julien.brionne@gmail.com';
+// Objet générique arbitré par Julien le 28/08 ; objets par offre pour les trois ancres.
+const mailto = (sujet: string = "Un sujet qui n'avance pas") =>
+  `mailto:${EMAIL}?subject=${encodeURIComponent(sujet)}`;
+
+const demiJournees = [
+  'Vous et moi. Votre activité, vos chiffres, ce que vous voulez dans trois ans, ce que vous ne voulez plus faire.',
+  'Vos équipes. Ce que chacun croit qu’on est en train de construire. Les réponses ne concordent jamais.',
+  'Vos clients. Six à huit conversations courtes. Des fidèles, des nouveaux, et quelqu’un qui est parti.',
+  'Les chiffres et les concurrents. Ce que vous vendez, à qui, à quel prix, avec quelle marge.',
+  'On tranche. Deux ou trois scénarios sur la table, avec ce que chacun implique. Vous choisissez.',
+  'On séquence. Ce qui se fait maintenant, ce qui suit, ce qui attend.',
+];
+
+// Les fiches d'offre : chaque bloc libellé devient une ligne de la grille.
+const miseAuClair = [
+  {
+    label: 'Le problème.',
+    texte:
+      'Vous construisez un produit. Chaque client demande autre chose et vous dites oui à tout. Vos devs attendent que vous décidiez. Vous ne savez pas si vous construisez la bonne chose, ni dans quel ordre.',
+  },
+  {
+    label: 'Ce que je fais.',
+    texte:
+      'Six demi-journées sur trois semaines. Je parle à vos équipes et à vos clients. Puis on s’assoit et on tranche : ce que le produit doit résoudre, pour qui, dans quel ordre, et ce qu’on arrête.',
+  },
+  {
+    label: 'Ce que vous avez à la fin.',
+    texte:
+      'Une décision prise, en salle, avec vous. Le cadre écrit. Les trois prochains mois séquencés. Vous savez sur quoi vos devs travaillent lundi, et pourquoi.',
+  },
+  {
+    label: 'Pour qui.',
+    texte:
+      'Vous construisez déjà, vous avez des clients. Personne chez vous ne s’appelle Product Manager, et c’est vous qui tranchez.',
+  },
+  {
+    label: 'Pas pour qui.',
+    texte:
+      'Vous n’avez ni produit ni clients. Ou vous cherchez quelqu’un pour dérouler une roadmap déjà écrite.',
+  },
+  {
+    label: 'Ce que ce n’est pas.',
+    texte:
+      'Ce n’est pas un audit. Vous ne recevez pas soixante slides trois semaines plus tard. La décision se prend devant vous, pendant les trois semaines.',
+  },
+];
+
+const copilote = [
+  {
+    label: 'Le problème.',
+    texte:
+      'Un sujet traverse trois équipes. Chacune livre sa partie. Le résultat ne bouge pas. Ça dure depuis des mois, le responsable a changé deux fois, et personne ne peut vous dire quand ce sera en production. Vos équipes sont compétentes. Ce n’est pas un problème de compétence.',
+  },
+  {
+    label: 'Ce que je fais.',
+    texte:
+      'Un jour par semaine, je tiens le sujet. Je mets sur la table ce qui bloque entre les équipes, je prépare les arbitrages et je les fais prendre. Vos équipes gardent le clavier. Je ne code pas à leur place, et je ne décide pas à la vôtre.',
+  },
+  {
+    label: 'Ce que vous avez à la fin.',
+    texte:
+      'Un jalon produit observable, choisi avec vous avant de commencer. Une mise en production, une étape de migration franchie, un parcours qui remarche. Pas un plan pour y arriver.',
+  },
+  {
+    label: 'Le format.',
+    texte: 'Un jour par semaine, trois mois. Renouvelable sur un nouveau jalon.',
+  },
+  {
+    label: 'Pour qui.',
+    texte:
+      'Le sujet existe et il porte un nom. Un sponsor est identifié. Une équipe peut exécuter. Quelqu’un pourra trancher quand la décision sera posée.',
+  },
+  {
+    label: 'Pas pour qui.',
+    texte:
+      'Vous voulez un avis. Personne n’est prêt à décider. Ou vous cherchez une paire de mains sur une roadmap existante.',
+  },
+  {
+    label: 'Ce que ce n’est pas.',
+    texte:
+      'Ce n’est pas un Product Manager à temps plein en moins cher, et ce n’est pas du conseil. Je suis dans les réunions où ça se décide, et mon nom est sur le jalon.',
+  },
+];
+---
+
+<Layout
+  title="Ce que je fais — Julien Brionne"
+  description="Un sujet produit important n'avance plus. Vos équipes sont bonnes. Le résultat ne bouge pas. Je reprends ce sujet et je le mène jusqu'à une mise en production."
+  webPageSchema={getWebPageSchema(
+    'https://www.julien-brionne.fr/ce-que-je-fais',
+    'Ce que je fais',
+    "Un sujet produit important n'avance plus. Je reprends ce sujet et je le mène jusqu'à une mise en production."
+  )}
+  ogImage="/og/page-ce-que-je-fais.webp"
+  twitterCard="summary_large_image"
+>
+  <Navbar current="ce-que-je-fais" />
+
+  <main>
+    <!-- 1. Hero. Pleine largeur : moment serif. -->
+    <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-32">
+      <div class="shell space-y-12 sm:space-y-16">
+        <h1 class="t-display max-w-[20ch] text-ink">
+          Un sujet produit important n’avance plus. Vos équipes sont bonnes.
+          <span class="text-dim italic">Le résultat ne bouge pas.</span>
+        </h1>
+
+        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl">
+          <p class="text-ink">
+            Je reprends ce sujet et je le mène jusqu’à une mise en production.
+          </p>
+          <p class="text-dim">
+            Il y a deux raisons pour lesquelles un sujet s’arrête. J’interviens sur l’une ou
+            sur l’autre.
+          </p>
+          <p class="text-dim">Chaque offre dit ce qu’elle n’est pas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Le routeur. Deux questions au même poids, deux lignes identiques. -->
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell space-y-9 sm:space-y-11">
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <div class="space-y-2.5">
+            <p class="t-sub text-ink">Vous ne savez plus quoi décider.</p>
+            <p class="leading-relaxed text-dim">
+              Vous construisez déjà et ça part dans toutes les directions.
+            </p>
+            <p>
+              <a href="#la-mise-au-clair" class="door text-base">
+                <span>La Mise au clair</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <div class="space-y-2.5">
+            <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
+            <p class="leading-relaxed text-dim">
+              Un sujet important traverse plusieurs équipes et personne ne le porte jusqu’au
+              bout.
+            </p>
+            <p>
+              <a href="#le-copilote" class="door text-base">
+                <span>Le Copilote</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="split pt-2">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p class="text-sm leading-relaxed text-dim">
+            Vous décidez du produit seul et personne ne vous contredit utilement.
+            <a href="#le-rendez-vous-produit" class="link-inline">Le Rendez-vous produit</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- La Mise au clair -->
+    <section id="la-mise-au-clair" class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-9 sm:space-y-11">
+        <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
+          <h2 class="t-title text-ink">La Mise au clair</h2>
+          <p class="text-sm text-dim sm:text-base">6 demi-journées · 3 semaines</p>
+        </header>
+
+        <div class="space-y-6 sm:space-y-7">
+          {miseAuClair.map((bloc) => (
+            <div class="split">
+              <p class="split-aside font-semibold text-ink">{bloc.label}</p>
+              <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="split pt-2">
+          <div class="split-aside" aria-hidden="true"></div>
+          <h3 class="t-sub text-ink">Les six demi-journées</h3>
+        </div>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <ol class="ledger">
+            {demiJournees.map((item, i) => (
+              <li class="ledger-row">
+                <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="block text-lg leading-relaxed text-dim">{item}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p>
+            <a href={mailto('La Mise au clair')} class="door text-base sm:text-lg">
+              <span>Parler de La Mise au clair</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Le Copilote -->
+    <section id="le-copilote" class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-9 sm:space-y-11">
+        <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
+          <h2 class="t-title text-ink">Le Copilote</h2>
+          <p class="text-sm text-dim sm:text-base">1 jour / semaine · 3 mois</p>
+        </header>
+
+        <div class="space-y-6 sm:space-y-7">
+          {copilote.map((bloc) => (
+            <div class="split">
+              <p class="split-aside font-semibold text-ink">{bloc.label}</p>
+              <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="split pt-2">
+          <div class="split-aside" aria-hidden="true"></div>
+          <h3 class="t-sub text-ink">Ce que ça a donné</h3>
+        </div>
+
+        <div class="split">
+          <p class="split-aside font-semibold text-ink">Back Market, 2026.</p>
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              J’arrive en février sur la plateforme Care. Un chantier téléphone ouvert depuis
+              plus d’un an, en double run entre deux outils, les marchés répartis entre les
+              deux.
+            </p>
+            <p>
+              Quatre mois plus tard, les appels entrants passent en production. Allemagne le
+              9 juin, France le 22 juin, Royaume-Uni et États-Unis le 1<sup>er</sup> juillet.
+              Première semaine en Allemagne : <span class="text-ink">100 % des appels décrochés.</span>
+              Un appel n’est plus un ticket isolé, il est rattaché à la demande du client.
+            </p>
+          </div>
+        </div>
+
+        <figure class="split pt-1">
+          <div class="split-aside" aria-hidden="true"></div>
+          <div class="space-y-4">
+            <blockquote class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
+              “Julien was the Product Manager on our Platform team during my time as
+              Engineering Manager, and I truly enjoyed our partnership. He did an outstanding
+              job taking charge of major initiatives, defining clear project needs, and
+              managing stakeholder expectations with ease. Julien communicates brilliantly
+              with engineers. He understands technical nuances and keeps everyone aligned
+              toward the same goal. He is a true team player and I’d welcome the chance to
+              work with him again anywhere!”
+            </blockquote>
+            <figcaption class="text-sm text-dim">
+              Jaume Avila Estivill, Engineering Leader chez Back Market
+            </figcaption>
+          </div>
+        </figure>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p>
+            <a href={mailto('Le Copilote')} class="door text-base sm:text-lg">
+              <span>Parler du Copilote</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Le Rendez-vous produit. Cinq lignes, jamais plus. -->
+    <section id="le-rendez-vous-produit" class="px-6 py-10 sm:px-10 sm:py-12">
+      <div class="shell split">
+        <div class="split-aside" aria-hidden="true"></div>
+        <div class="max-w-[36rem] space-y-3">
+          <h2 class="text-lg font-semibold text-ink">Le Rendez-vous produit</h2>
+
+          <div class="space-y-2 text-sm leading-relaxed text-dim sm:text-base">
+            <p>Pour les dirigeants qui prennent seuls les décisions produit.</p>
+            <p>
+              Une demi-journée par mois pendant six mois. On regarde les décisions qui arrivent,
+              ce qui doit être tranché, et ce que vous êtes sur le point de construire.
+            </p>
+            <p>Ce n’est pas du coaching. On parle de votre produit, pas de vous.</p>
+            <p>Disponible après une première conversation.</p>
+          </div>
+
+          <p class="pt-1">
+            <a href={mailto('Le Rendez-vous produit')} class="door text-sm">
+              <span>Parler du Rendez-vous produit</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comment ça commence -->
+    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+      <div class="shell split">
+        <div class="split-aside" aria-hidden="true"></div>
+        <div class="space-y-8">
+          <h2 class="t-title text-ink">Comment ça commence<span class="stop">.</span></h2>
+
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              Écrivez-moi. Trois choses suffisent : ce qui n’avance pas, depuis combien de
+              temps, et qui peut trancher chez vous.
+            </p>
+            <p>Je vous réponds et je vous dis si c’est pour moi ou pas.</p>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <p>
+              <a href={mailto()} class="door font-serif text-xl sm:text-2xl">
+                <span>Écrire à Julien</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+            <p class="text-sm text-dim">{EMAIL}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer
+    missionLongue={true}
+    links={[
+      { href: '/', label: 'Accueil' },
+      { href: '/ecrits', label: 'Écrits' },
+      { href: '/mentions-legales', label: 'Mentions légales' },
+    ]}
+  />
+</Layout>

@@ -14,14 +14,24 @@ const colors = {
 };
 
 // Configuration des pages statiques avec leurs métadonnées OG
+// Titres et descriptions repris des metadata réelles des pages. Aucune
+// formulation propre à cet endpoint : l'image OG dit ce que la page dit.
 const staticPages: Record<string, { title: string; description: string }> = {
   'page-home': {
-    title: "Simplifier pour retrouver de l'impact",
-    description: "Quand le produit avance, que la roadmap se remplit, mais que chaque décision coûte plus cher que la précédente. Le problème n'est pas l'exécution. C'est la dette de décision.",
+    title: 'Julien Brionne — Senior Product Manager freelance',
+    description: "Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production.",
   },
-  'page-approche': {
-    title: 'Leadership opérationnel',
-    description: "Une approche d'intervention, pas une méthode. Fermer ce qui devrait l'être. Participer aux arbitrages, assumer les décisions impopulaires.",
+  'page-ce-que-je-fais': {
+    title: 'Ce que je fais',
+    description: "Un sujet produit important n'avance plus. Vos équipes sont bonnes. Le résultat ne bouge pas. Je reprends ce sujet et je le mène jusqu'à une mise en production.",
+  },
+  'page-ecrits': {
+    title: 'Écrits',
+    description: "Ce que j'écris, c'est comment je travaille. Produits Sans Filtres, un numéro toutes les deux semaines, et des textes de fond.",
+  },
+  'page-product-manager-freelance-pme': {
+    title: 'Product Manager freelance en PME : intervenir ou recruter',
+    description: "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un Product Manager senior freelance, et quand recruter.",
   },
   'page-situations': {
     title: 'Reconnaître le moment critique',
@@ -34,14 +44,6 @@ const staticPages: Record<string, { title: string; description: string }> = {
   'page-articles': {
     title: "L'écrit comme outil de lecture",
     description: "Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques.",
-  },
-  'page-references': {
-    title: 'Quelques missions',
-    description: 'Heetch (4 ans), Waalaxy, Wizville, Back Market. Ce que j\'ai fait, les résultats chiffrés.',
-  },
-  'page-contact': {
-    title: 'Discuter d\'une situation produit',
-    description: '30 minutes pour exposer ta situation. Sans engagement. On voit si j\'interviens.',
   },
 };
 

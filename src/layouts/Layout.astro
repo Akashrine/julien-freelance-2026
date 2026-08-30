@@ -28,8 +28,8 @@ interface Props {
 }
 
 const {
-  title = 'Julien Brionne — Je transforme le care et les ops en produit',
-  description = 'Senior PM Freelance. Je transforme le care, le support et les ops internes en systèmes produit mesurables. En mission chez Back Market.',
+  title = 'Julien Brionne — Senior Product Manager freelance',
+  description = "Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production.",
   ogTitle,
   ogDescription,
   ogType = 'website',
@@ -51,7 +51,7 @@ const {
   articleDate
 } = Astro.props;
 
-const siteUrl = 'https://julien-brionne.fr';
+const siteUrl = 'https://www.julien-brionne.fr';
 const finalOgTitle = ogTitle || title;
 const finalOgDescription = ogDescription || description;
 const finalOgUrl = ogUrl || Astro.url.href;
@@ -68,12 +68,16 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Preload des polices critiques (non-bloquant) -->
+    <!-- Nohemi, auto-hébergée, pour la navigation, la marque et les informations. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Nohemi-Regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Nohemi-Medium.woff2" crossorigin />
+
+    <!-- Newsreader pour les titres, les récits, les citations — et le logotype. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" /></noscript>
     
     <!-- SEO Meta -->
     <title>{title}</title>
@@ -82,7 +86,7 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
     <link rel="canonical" href={finalOgUrl} />
     <link rel="alternate" hreflang="fr" href={finalOgUrl} />
-    <meta name="theme-color" content="#FDFCFB" />
+    <meta name="theme-color" content="#FBF7F1" />
     <link rel="alternate" type="application/rss+xml" title="Julien Brionne — Articles" href="/rss.xml" />
 
     <!-- Open Graph -->
@@ -151,7 +155,23 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
       </>
     )}
   </head>
-  <body class="bg-[#FDFCFB] text-gray-900 antialiased relative">
+  <body class="bg-canvas text-ink antialiased relative">
+    <script is:inline>
+      // Marque la présence du JS. Sans cette classe, aucun contenu n'est masqué.
+      document.documentElement.classList.add('js');
+
+      // Le filet vit ici, dans le script même qui masque, et pas dans le module
+      // qui anime : les deux doivent partager le même sort. Si le module ne
+      // s'exécute pas — navigateur sans modules, erreur à l'intérieur — c'est
+      // ce délai qui rend le contenu, sinon la page resterait vide sous le hero.
+      // Écrit en syntaxe ancienne à dessein : il doit tourner là où le module échoue.
+      setTimeout(function () {
+        var caches = document.querySelectorAll('.reveal:not(.active)');
+        for (var i = 0; i < caches.length; i++) {
+          caches[i].classList.add('active');
+        }
+      }, 2500);
+    </script>
     <ReadingProgress />
     <div class="relative z-10">
       <slot />
@@ -167,10 +187,10 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
           var link = e.target.closest('a');
           if (!link) return;
           var href = link.getAttribute('href') || '';
-          if (href.includes('lemcal.com') || href.includes('/contact')) {
+          if (href.indexOf('mailto:') === 0) {
             gtag('event', 'cta_click', {
               event_category: 'conversion',
-              event_label: href,
+              event_label: decodeURIComponent(href),
               link_text: link.textContent.trim().substring(0, 50)
             });
           }
@@ -192,16 +212,17 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
           }, { passive: true });
         }
 
-        // Track /contact page view as conversion
-        if (window.location.pathname === '/contact') {
-          gtag('event', 'contact_page_view', { event_category: 'conversion' });
-        }
+        // La page /contact disparaît : la conversion se mesure sur le mailto,
+        // et l'objet pré-rempli distingue l'offre.
       })();
     </script>
 
     <script>
-      // IntersectionObserver pour les animations reveal
-      document.addEventListener('DOMContentLoaded', () => {
+      // IntersectionObserver pour les animations reveal.
+      // Démarrage sur readyState plutôt que sur le seul DOMContentLoaded :
+      // ce script est bundlé en module, son moment d'exécution dépend du
+      // navigateur, et un écouteur posé trop tard ne se déclencherait jamais.
+      const demarrer = () => {
         const observerOptions = {
           threshold: 0.1
         };
@@ -255,7 +276,13 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
 
           window.addEventListener('scroll', requestTick);
         }
-      });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', demarrer);
+      } else {
+        demarrer();
+      }
     </script>
   </body>
 </html>

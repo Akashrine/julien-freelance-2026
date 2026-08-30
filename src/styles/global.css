@@ -1,57 +1,122 @@
 @import "tailwindcss";
 
+/* Nohemi — Rajesh Rajput, freeware personnel et commercial.
+   Fichiers non modifiés, la licence l'interdit. Voir public/fonts/README.md. */
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/fonts/Nohemi-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================================================
+   SOCLE — refonte 28/08/2026
+   Crème, noir bleuté, gris. Une seule couleur d'accent : l'ocre.
+   Newsreader pour les titres, récits et citations.
+   Sans-serif sobre pour la navigation, la marque et les informations.
+   ========================================================= */
+
 @theme {
-  --color-background: #FDFCFB;
-  --color-sand: #F2E9E1;
-  --color-sand-light: rgba(242, 233, 225, 0.4);
-  --color-sage-blue: #D7E5E5;
-  --color-sage-blue-light: rgba(215, 229, 229, 0.2);
-  --color-clay: #E5BAAD;
-  --color-logo-sand: #C5A070;
-  --color-text-primary: #1A1A1A;
+  /* Palette */
+  --color-canvas: #FBF7F1;
+  --color-ink: #121316;
+  --color-dim: #5E5C56;
+  --color-line: #E3DFD5;
+  /* À l'essai depuis le 30/08 : vermillon #E84A2A à la place de l'ocre.
+     3,61:1 sur le crème — grands caractères, flèches et états seulement,
+     jamais du texte courant. Extrêmement rare : le point du logo, quelques
+     flèches, « Il sort. », les soulignés au survol. */
+  --color-ochre: #E84A2A;
+
+  /* Alias conservés pour les composants d'articles, à retirer au lot 4 */
+  --color-background: #FBF7F1;
+  --color-bg-light: #FBF7F1;
+  --color-text-primary: #121316;
   --color-text-code: #D4D4D4;
-  --color-bg-light: #FAFAF9;
+  --color-rule: #E3DFD5;
+  --color-sand: #F1EBE2;
+  --color-sand-light: rgba(241, 235, 226, 0.4);
+  --color-sage-blue: #DFE4E2;
+  --color-sage-blue-light: rgba(223, 228, 226, 0.2);
+  --color-clay: #E7D9CE;
+
+  /* Typographie */
+  --font-sans: 'Nohemi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
 }
 
 @layer base {
   :root {
-    --color-background: #FDFCFB;
-    --color-sand: #F2E9E1;
-    --color-sage-blue: #D7E5E5;
-    --color-clay: #E5BAAD;
-    --color-logo-sand: #C5A070;
+    --color-accent: #E84A2A;
+    --color-secondary: #5E5C56;
   }
 
   html {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--color-background);
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
     scroll-behavior: smooth;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    /* Une géométrique nue paraît froide. Le tracking positif la réchauffe. */
+    letter-spacing: 0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   body {
     margin: 0;
     padding: 0;
     position: relative;
+    background-color: var(--color-canvas);
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.25;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
-    mix-blend-mode: multiply;
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-canvas);
   }
+
+  /* Cible de scroll sous l'en-tête, pour les trois ancres d'offre */
+  [id] { scroll-margin-top: 6rem; }
+
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-line); }
 }
 
 @layer utilities {
   .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     letter-spacing: -0.01em;
   }
 
@@ -62,16 +127,6 @@
     text-transform: uppercase;
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
   /* Hero animations */
   @keyframes heroFadeInUp {
@@ -155,8 +210,8 @@
   }
 
   .btn-cta {
-    background-color: #1A1A1A;
-    color: #FDFCFB;
+    background-color: #121316;
+    color: #FBF7F1;
     padding: 1.1rem 2.2rem;
     min-height: 48px;
     display: inline-block;
@@ -180,19 +235,21 @@
   /* Article styles */
   .dropcap::first-letter,
   p.dropcap::first-letter {
-    font-family: 'Playfair Display', serif !important;
+    font-family: var(--font-serif) !important;
     font-size: 5rem !important;
     float: left !important;
     margin-right: 1.2rem !important;
     margin-top: 0.2rem !important;
     line-height: 0.8 !important;
-    color: #C5A070 !important;
+    color: #B0582A !important;
     font-weight: 700 !important;
     display: block !important;
   }
 
-  blockquote {
-    font-family: 'Playfair Display', serif;
+  /* Style d'article hérité. Scopé aux articles le 30/08 : nu, il s'appliquait
+     à toutes les citations du site et gonflait les blocs de 4rem de chaque côté. */
+  .article-content blockquote {
+    font-family: var(--font-serif);
     font-style: italic;
     font-size: 2.5rem;
     line-height: 1.2;
@@ -225,11 +282,11 @@
 
   /* Article content styles */
   .article-content {
-    color: #1A1A1A;
+    color: #121316;
   }
 
   .article-content h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-size: 2.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -237,7 +294,7 @@
   }
 
   .article-content h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-size: 1.875rem;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
@@ -253,13 +310,13 @@
   }
 
   .article-content a {
-    color: #C5A070;
+    color: #B0582A;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   .article-content a:hover {
-    color: #1A1A1A;
+    color: #121316;
   }
 
   .article-content ul, .article-content ol {
@@ -274,7 +331,7 @@
 
   .article-content strong {
     font-weight: 600;
-    color: #1A1A1A;
+    color: #121316;
   }
 
   .article-content em {
@@ -286,7 +343,7 @@
   }
 
   .article-content blockquote {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-style: italic;
     font-size: 2.5rem;
     line-height: 1.2;
@@ -298,13 +355,13 @@
   }
 
   .article-content .dropcap::first-letter {
-    font-family: 'Playfair Display', serif !important;
+    font-family: var(--font-serif) !important;
     font-size: 5rem !important;
     float: left !important;
     margin-right: 1.2rem !important;
     margin-top: 0.2rem !important;
     line-height: 0.8 !important;
-    color: #C5A070 !important;
+    color: #B0582A !important;
     font-weight: 700 !important;
   }
 
@@ -323,7 +380,7 @@
 
   /* Article specific color classes */
   .text-brand-sand {
-    color: #C5A070;
+    color: #B0582A;
   }
 
   .text-clay {
@@ -331,7 +388,7 @@
   }
 
   .text-sand {
-    color: #C5A070;
+    color: #B0582A;
   }
 
   .bg-sand {
@@ -355,7 +412,7 @@
   }
 
   .border-sand {
-    border-color: #C5A070;
+    border-color: #B0582A;
   }
 
   .border-clay {
@@ -441,16 +498,16 @@
 
   /* Accent éditorial — lettrine décorative */
   .editorial-accent {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-style: italic;
-    color: #C5A070;
+    color: #B0582A;
   }
 
   /* Séparateur éditorial */
   .editorial-rule {
     width: 60px;
     height: 2px;
-    background: linear-gradient(90deg, #C5A070, transparent);
+    background: linear-gradient(90deg, #B0582A, transparent);
   }
 
   /* Numéros lumineux */
@@ -500,7 +557,7 @@
     opacity: 0.05;
     z-index: -1;
     pointer-events: none;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
   }
 
   .thumbnail-box {
@@ -703,14 +760,14 @@
 
   /* 6. Focus amélioré pour accessibilité */
   *:focus-visible {
-    outline: 2px solid #C5A070;
+    outline: 2px solid #B0582A;
     outline-offset: 4px;
     border-radius: 2px;
   }
 
   button:focus-visible,
   a:focus-visible {
-    outline: 2px solid #C5A070;
+    outline: 2px solid #B0582A;
     outline-offset: 2px;
   }
 
@@ -768,7 +825,7 @@
   --surface-0: #0A0A0A;
   --surface-1: #0F0F0F;
   --surface-2: #141414;
-  --surface-3: #1A1A1A;
+  --surface-3: #121316;
   --border-dark: #1F1F1F;
   --text-1: #F5F5F5;
   --text-2: #A3A3A3;
@@ -846,3 +903,280 @@
 details summary { cursor: pointer; list-style: none; }
 details summary::-webkit-details-marker { display: none; }
 details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
+/* =========================================================
+   PAGES DE LA REFONTE — primitives, 28/08/2026
+   Rien ici ne produit de carte, de badge, de pill ni de gradient.
+   ========================================================= */
+
+@layer components {
+  /* Le logotype. Le point est le seul endroit où l'ocre est permanent. */
+  /* Le logotype. Serif, petit, une seule graisse — il parle la langue du
+     site au lieu de la sienne. Le point ocre reste la signature, à taille
+     de texte. */
+  .wordmark {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--color-ink);
+  }
+  .wordmark .wordmark-given,
+  .wordmark .wordmark-family { font-weight: 500; color: var(--color-ink); }
+  .wordmark .wordmark-dot {
+    display: inline-block;
+    color: var(--color-ochre);
+    transform-origin: bottom;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .wordmark:hover .wordmark-dot { transform: scale(1.2); }
+
+  /* Lien de navigation : sobre, souligné à l'ocre au survol. */
+  .link-nav {
+    color: var(--color-dim);
+    transition: color 0.2s ease;
+  }
+  .link-nav:hover,
+  .link-nav[aria-current="page"] { color: var(--color-ink); }
+
+  /* La porte. Un lien souligné, jamais un bouton. */
+  .door {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.5rem;
+    text-decoration-color: var(--color-dim);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  .door:hover {
+    color: var(--color-ink);
+    text-decoration-color: var(--color-ochre);
+  }
+  .door-arrow {
+    color: var(--color-ochre);
+    transition: transform 0.2s ease;
+  }
+  .door:hover .door-arrow { transform: translateX(0.25rem); }
+
+  /* Lien courant dans un paragraphe. */
+  .link-inline {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25rem;
+    text-decoration-color: var(--color-dim);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  .link-inline:hover {
+    color: var(--color-ink);
+    text-decoration-color: var(--color-ochre);
+  }
+
+  /* Le point ocre, en fin de titre. */
+  .stop { color: var(--color-ochre); }
+
+  /* Le schéma des deux moments. Un arbre typographique : la racine est le
+     point du logo, les branches sont des lignes d'encre de 1px. Ce ne sont
+     pas des filets décoratifs — c'est l'argument du site rendu visible.
+     Sous lg, l'arbre s'efface et les deux moments s'empilent. */
+  .schema { position: relative; }
+
+  @media (min-width: 1024px) {
+    .schema {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding-top: 5.5rem;
+    }
+    .schema-root {
+      position: absolute;
+      top: -2.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-size: 3.75rem;
+      line-height: 1;
+      color: var(--color-ochre);
+    }
+    .schema-drop {
+      position: absolute;
+      top: 1.4rem;
+      left: 50%;
+      width: 1px;
+      height: 1.6rem;
+      background: var(--color-ink);
+    }
+    .schema-bar {
+      position: absolute;
+      top: 3rem;
+      left: 25%;
+      right: 25%;
+      height: 1px;
+      background: var(--color-ink);
+    }
+    .schema-leg {
+      position: absolute;
+      top: 3rem;
+      width: 1px;
+      height: 1.6rem;
+      background: var(--color-ink);
+    }
+    .schema-leg-l { left: 25%; }
+    .schema-leg-r { right: calc(25% - 1px); }
+    .schema-branch { text-align: center; }
+    .schema-branch > * { text-align: left; }
+    .schema-branch-inner {
+      display: inline-block;
+      max-width: 26rem;
+      text-align: left;
+    }
+  }
+  .schema-root, .schema-drop, .schema-bar, .schema-leg { display: none; }
+  @media (min-width: 1024px) {
+    .schema-root, .schema-drop, .schema-bar, .schema-leg { display: block; }
+  }
+
+  /* La coque de page. Large, pour laisser respirer, jamais pour élargir le texte. */
+  .shell {
+    width: 100%;
+    max-width: 68rem;
+    margin-inline: auto;
+  }
+
+  /* La colonne de lecture. Elle ne dépasse jamais une mesure confortable,
+     quelle que soit la largeur de la coque. */
+  .measure { max-width: 34rem; }
+  .measure-wide { max-width: 42rem; }
+
+  /* Le partage éditorial : le label et le titre à gauche, la prose à droite.
+     Repris des blocs deux colonnes de Getharvest, sans carte ni image. */
+  .split { display: grid; gap: 1.25rem; }
+  @media (min-width: 1024px) {
+    .split {
+      grid-template-columns: minmax(0, 13rem) minmax(0, 42rem);
+      gap: 5rem;
+      align-items: start;
+    }
+    .split > .split-aside { position: sticky; top: 6rem; }
+  }
+
+  /* L'échelle typographique. Quatre tailles, pas une de plus.
+     Tout titre du site utilise l'une d'elles. */
+  .t-display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 1.2rem + 4.2vw, 4.25rem);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+  .t-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.875rem, 1.1rem + 2.4vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+  .t-quote {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1rem + 1.6vw, 2.125rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .t-sub {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.375rem, 1.05rem + 1vw, 1.75rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  /* La serif garde son crénage d'origine : le tracking de la sans ne la concerne pas.
+     Elle reçoit en revanche le resserrement éditorial, -0.02em. */
+  .font-serif { letter-spacing: -0.02em; }
+
+  /* Eyebrow. Petit label en capitales, au-dessus d'un titre, précédé d'un
+     court filet — le traitement des labels de Silo Theatre.
+     Aucun rayon, aucune ombre, aucune carte. Un label, rien d'autre. */
+  .eyebrow {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-dim);
+  }
+
+  /* Le registre. Une liste dense de document de travail : un numéro
+     discret dans une gouttière étroite, le texte à côté. Aucun filet,
+     aucun fond, aucune carte. La densité vient du rapprochement. */
+  .ledger { display: grid; gap: 0.875rem; }
+
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 42rem);
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .ledger-num {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--color-dim);
+  }
+}
+
+
+/* =========================================================
+   ENTRÉE AU SCROLL — hors de toute @layer, volontairement.
+   Tailwind 4 élague les règles d'une couche dont le sélecteur n'apparaît
+   pas dans le markup. `.active` n'étant posée qu'au runtime par le script,
+   la règle de révélation était supprimée du CSS et tout le contenu
+   restait invisible. En CSS nu, elle est toujours émise.
+
+   Le contenu n'est masqué que si le JS tourne : sans la classe .js,
+   posée par un script en tête de body, tout reste visible.
+   ========================================================= */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--index, 0) * 80ms);
+}
+
+.js .reveal.active {
+  opacity: 1;
+  transform: none;
+}
+
+/* Mouvement réduit : on ne joue rien, et surtout on ne masque rien. */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal.active {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Le portrait entre en fondu au chargement. Pur CSS : joue sans JavaScript,
+   `backwards` le tient masqué pendant le délai, et sans support d'animation
+   il est simplement visible. */
+@keyframes portrait-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+.portrait-in {
+  animation: portrait-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 200ms backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-in { animation: none; }
+}

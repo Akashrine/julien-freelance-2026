@@ -1,41 +1,217 @@
 ---
+// Accueil. Copy verbatim de 2026-08-28_JulienBrionne_Site-Accueil_v4.md,
+// moins les prix (decisions.md, 28/08 au soir).
+// L'édition de copy est close jusqu'au 31 octobre 2026 : ne pas retoucher un mot.
+//
+// Langage visuel, passe du 30/08 : un document éditorial, pas un portfolio.
+// Aucun filet entre les sections, aucun ornement de rail. La hiérarchie vient
+// de l'échelle typographique et de l'espace : dense à l'intérieur des blocs,
+// généreux entre eux. L'accent est rarissime.
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import Intro from '../components/Intro.astro';
-import Posture from '../components/Posture.astro';
-import Situations from '../components/Situations.astro';
-import HomeCTA from '../components/HomeCTA.astro';
 import Footer from '../components/Footer.astro';
 import { getPersonSchema, getWebsiteSchema, getServiceSchemas } from '../utils/schema';
 
-const personSchema = getPersonSchema();
-const websiteSchema = getWebsiteSchema();
-const serviceSchemas = getServiceSchemas();
+const EMAIL = 'julien.brionne@gmail.com';
+// Objet générique, arbitré par Julien le 28/08. Les objets par offre vivent
+// sur /ce-que-je-fais : ils sont la seule mesure de conversion par offre.
+const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent("Un sujet qui n'avance pas")}`;
+
+// Les six phrases de prospects. Nues : aucun titre, aucune introduction,
+// aucun commentaire après. Accueil v4, section 2.
+const phrases = [
+  "On construit beaucoup et je ne sais pas si c'est la bonne chose.",
+  'Aucun de mes PM ne peut prendre ce sujet transverse.',
+  'Chaque client demande un truc différent et on dit oui à tout.',
+  'La migration change de responsable tous les trois mois.',
+  'Mes devs attendent que je décide et je n’ai pas le temps.',
+  'Chaque équipe livre sa partie et le parcours reste cassé.',
+];
 ---
 
 <Layout
-  title="Senior PM Freelance — Julien Brionne | Orga Produit"
-  description="Senior PM Freelance, 10+ ans. J'interviens quand l'orga produit ne suit plus la croissance. Heetch, Back Market, Waalaxy, Wizville, et du conseil stratégique auprès de CEOs."
-  ogTitle="Senior PM Freelance — Julien Brionne | Orga Produit"
-  ogDescription="Senior PM Freelance, 10+ ans. J'interviens quand l'orga produit ne suit plus la croissance. Heetch, Back Market, Waalaxy, Wizville, et du conseil stratégique auprès de CEOs."
-  ogType="website"
+  title="Julien Brionne — Senior Product Manager freelance"
+  description="Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production."
+  ogTitle="Plusieurs personnes travaillent dessus. Personne ne le porte jusqu'au bout."
+  personSchema={getPersonSchema()}
+  websiteSchema={getWebsiteSchema()}
+  serviceSchemas={getServiceSchemas()}
   ogImage="/og/page-home.webp"
-  ogUrl="https://julien-brionne.fr"
   twitterCard="summary_large_image"
-  twitterTitle="Senior PM Freelance — Julien Brionne | Orga Produit"
-  twitterDescription="Senior PM Freelance, 10+ ans. J'interviens quand l'orga produit ne suit plus la croissance. Heetch, Back Market, Waalaxy, Wizville."
-  personSchema={personSchema}
-  websiteSchema={websiteSchema}
-  serviceSchemas={serviceSchemas}
 >
-  <Navbar currentPage="home" />
+  <Navbar current="accueil" />
+
   <main>
-    <Hero />
-    <Intro />
-    <Posture />
-    <Situations />
-    <HomeCTA />
-    <Footer />
+    <!-- 1. Hero. Ne pas y toucher : il fonctionne. -->
+    <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
+      <div class="shell grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
+        <div class="space-y-12 sm:space-y-16">
+          <h1 class="t-display max-w-[19ch] text-ink">
+            Plusieurs personnes travaillent dessus.
+            <span class="text-dim italic">Personne ne le porte jusqu’au bout.</span>
+          </h1>
+
+          <div class="measure-wide space-y-5 text-lg leading-relaxed text-ink sm:text-xl">
+            <p>
+              Je suis Senior Product Manager freelance. Je reprends les sujets produit qui
+              n’avancent plus et je les mène jusqu’à une mise en production.
+            </p>
+            <p class="text-dim">Pas un plan pour y arriver. Une mise en production.</p>
+          </div>
+
+          <p>
+            <a href={MAILTO} class="door text-base sm:text-lg">
+              <span>Écrire à Julien</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+
+        <img
+          src="/portrait-640.webp"
+          alt="Julien Brionne"
+          width="427"
+          height="640"
+          fetchpriority="high"
+          decoding="async"
+          class="portrait-in w-48 sm:w-56 lg:w-full"
+        />
+      </div>
+    </section>
+
+    <!-- 2. Reconnaissance. Un seul bloc de matière : six situations rapprochées,
+         numéros en repère discret. Le lecteur doit se dire « c'est chez nous ». -->
+    <section class="reveal px-6 py-14 sm:px-10 sm:py-20">
+      <div class="shell">
+        <div class="max-w-[42rem] space-y-2.5">
+          {phrases.map((phrase, i) => (
+            <blockquote class="reveal" style={`--index:${i}`}>
+              <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">«&nbsp;{phrase}&nbsp;»</p>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Signature. Le moment fort de la page : trois lignes, grand corps,
+         et l'accent sur la seule chose qui compte — le résultat. -->
+    <section class="reveal px-6 py-28 sm:px-10 sm:py-44">
+      <div class="shell space-y-2 sm:space-y-4">
+        <p class="reveal t-display text-ink" style="--index:0">Je prends le sujet.</p>
+        <p class="reveal t-display text-ink" style="--index:1">Je le fais avancer.</p>
+        <p class="reveal t-display text-ochre" style="--index:2">Il sort.</p>
+      </div>
+    </section>
+
+    <!-- 4. Les deux situations. La Mise au clair domine, Le Copilote suit :
+         la hiérarchie est dans l'échelle, pas dans des cadres. -->
+    <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-10 sm:space-y-14">
+        <h2 class="t-title max-w-[24ch] text-ink">
+          Quand un sujet produit n’avance plus, c’est pour l’une de ces deux raisons
+        </h2>
+
+        <article class="reveal max-w-[42rem] space-y-4">
+          <h3 class="t-title text-ink">Vous ne savez plus quoi décider.</h3>
+          <p class="text-lg leading-relaxed text-dim">
+            Vous construisez déjà. Les demandes s’accumulent, tout paraît urgent, et vos
+            équipes attendent que vous tranchiez.
+          </p>
+
+          <div class="space-y-2.5 pt-3">
+            <p class="text-lg font-semibold text-ink">La Mise au clair</p>
+            <p class="leading-relaxed text-dim">
+              Six demi-journées sur trois semaines. À la fin : une décision prise avec vous,
+              le cadre écrit, les trois prochains mois séquencés.
+            </p>
+            <p class="pt-1">
+              <a href="/ce-que-je-fais#la-mise-au-clair" class="door text-base">
+                <span>Voir La Mise au clair</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </div>
+        </article>
+
+        <article class="reveal max-w-[42rem] space-y-3.5">
+          <h3 class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</h3>
+          <p class="leading-relaxed text-dim">
+            Un sujet important traverse plusieurs équipes. Chacune livre sa partie, les
+            arbitrages reviennent, le responsable change, la production recule.
+          </p>
+
+          <div class="space-y-2.5 pt-2">
+            <p class="font-semibold text-ink">Le Copilote</p>
+            <p class="leading-relaxed text-dim">
+              Un jour par semaine, trois mois. À la fin : un jalon produit en production,
+              choisi avec vous avant de commencer.
+            </p>
+            <p class="pt-1">
+              <a href="/ce-que-je-fais#le-copilote" class="door text-base">
+                <span>Voir Le Copilote</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </div>
+        </article>
+
+        <p class="max-w-[42rem] text-sm leading-relaxed text-dim sm:text-base">
+          Vous préférez quelqu’un qui vous contredit utilement chaque mois ? Le
+          Rendez-vous produit. <a href="/ce-que-je-fais#le-rendez-vous-produit" class="link-inline">En savoir plus</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. Preuves. Deux faits, racontés comme des faits : le nom ouvre la
+         phrase, le texte suit. Aucune carte, aucune décoration. -->
+    <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-10 sm:space-y-12">
+        <h2 class="t-title text-ink">Deux fois où ça a marché<span class="stop">.</span></h2>
+
+        <div class="max-w-[42rem] space-y-8 text-lg leading-relaxed text-dim">
+          <p>
+            <strong class="font-semibold text-ink">Back Market, 2026.</strong>
+            Un chantier téléphone ouvert depuis plus d’un an, en double run entre deux
+            outils. Quatre mois après mon arrivée, les appels entrants passent en production
+            sur quatre marchés en trois semaines. Première semaine en Allemagne :
+            <span class="text-ink">100 % des appels décrochés.</span>
+          </p>
+          <p>
+            <strong class="font-semibold text-ink">Heetch, 2021.</strong>
+            Je fais supprimer la notation des chauffeurs à cinq étoiles, le standard du
+            secteur, parce qu’elle mesurait autre chose que ce qu’elle annonçait. Cinq ans
+            plus tard, elle est toujours absente de l’application.
+            <span class="text-ink">Vous pouvez l’ouvrir et vérifier.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Comment ça commence. Un titre, trois lignes, une porte. -->
+    <section class="reveal px-6 py-20 pb-28 sm:px-10 sm:py-28 sm:pb-40">
+      <div class="shell space-y-8">
+        <h2 class="t-title text-ink">Comment ça commence<span class="stop">.</span></h2>
+
+        <div class="max-w-[42rem] space-y-5 text-lg leading-relaxed text-dim">
+          <p>
+            Écrivez-moi. Trois choses suffisent : ce qui n’avance pas, depuis combien de
+            temps, et qui peut trancher chez vous.
+          </p>
+          <p>Je vous réponds et je vous dis si c’est pour moi ou pas.</p>
+        </div>
+
+        <div class="space-y-3 pt-2">
+          <p>
+            <a href={MAILTO} class="door font-serif text-xl sm:text-2xl">
+              <span>Écrire à Julien</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+          <p class="text-sm text-dim">{EMAIL}</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <Footer missionLongue={true} />
 </Layout>

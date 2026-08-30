@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# outillage d'agents et sorties de build locales — jamais versionnés
+.agents/
+.claude/
+.vercel/
+skills-lock.json

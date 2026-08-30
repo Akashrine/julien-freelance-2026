@@ -1,0 +1,256 @@
+---
+// Page SEO, seule au lancement. site-architecture.md, section SEO.
+// Intention : dirigeant de PME qui a un produit et des clients, sans fonction
+// produit, et qui hésite entre recruter un PM et en faire intervenir un.
+// Sortie commerciale unique : /ce-que-je-fais#la-mise-au-clair. Rien d'autre.
+// Matière : corpus-articles/pm-freelance-senior-scale-up_DRAFT-NON-PUBLIE.mdx,
+// purgé de toute logique de TJM, reciblé scale-up -> PME, tutoiement -> vouvoiement.
+// Aucun cas client, aucun chiffre de mission, aucun parcours.
+//
+// Mise en page : une seule grille, rail + colonne de lecture (.split).
+// L'eyebrow tient le rail de chaque section, le titre et la prose la colonne.
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getWebPageSchema } from '../utils/schema';
+
+const TITLE = 'Product Manager freelance en PME : intervenir ou recruter';
+const DESCRIPTION =
+  "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un Product Manager senior freelance, et quand recruter.";
+const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
+---
+
+<Layout
+  title={`${TITLE} — Julien Brionne`}
+  description={DESCRIPTION}
+  webPageSchema={getWebPageSchema(URL, TITLE, DESCRIPTION)}
+  ogImage="/og/page-product-manager-freelance-pme.webp"
+  twitterCard="summary_large_image"
+>
+  <Navbar />
+
+  <main>
+    <article>
+      <!-- Ouverture. Pleine largeur : moment serif. -->
+      <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-32">
+        <div class="shell space-y-12 sm:space-y-16">
+          <h1 class="t-display max-w-[22ch] text-ink">
+            Product Manager freelance en PME : intervenir ou recruter<span class="stop">.</span>
+          </h1>
+
+          <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl">
+            <p class="text-ink">
+              Vous avez un produit. Vous avez des clients. Et personne, chez vous, dont le
+              métier est de décider quoi construire ensuite.
+            </p>
+            <p class="text-dim">
+              La question qui suit est toujours la même : est-ce qu’il faut recruter
+              quelqu’un, ou est-ce qu’il faut faire intervenir quelqu’un ? Ce n’est pas la
+              même dépense, ce n’est pas le même délai, et ce n’est pas le même problème.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1 -->
+      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+        <div class="shell split">
+          <div class="split-aside">
+            <p class="eyebrow">Le moment</p>
+          </div>
+
+          <div class="space-y-6">
+            <h2 class="t-sub text-ink">
+              Vous êtes devenu le Product Manager de votre propre boîte sans l’avoir décidé
+            </h2>
+            <div class="space-y-5 text-lg leading-relaxed text-dim">
+              <p>
+                Ça s’est fait par accumulation. Un client demande une fonctionnalité, vous
+                dites oui. Un autre en demande une différente, vous dites oui aussi. Vos
+                développeurs viennent vous voir entre deux portes pour savoir par quoi
+                commencer, et vous tranchez dans le couloir, entre un rendez-vous commercial
+                et une facture.
+              </p>
+              <p>
+                Personne ne vous a nommé à ce poste. Vous l’occupez quand même, en plus du
+                vôtre, et c’est celui sur lequel vous avez le moins de temps.
+              </p>
+              <p>
+                Ce n’est pas un problème de motivation ni de compétence. C’est un problème de
+                place. Les décisions produit demandent du temps continu et du recul, et vous
+                n’avez ni l’un ni l’autre.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+        <div class="shell split">
+          <div class="split-aside">
+            <p class="eyebrow">Recruter</p>
+          </div>
+
+          <div class="space-y-6">
+            <h2 class="t-sub text-ink">
+              Recruter un Product Manager, ce que ça suppose vraiment
+            </h2>
+            <div class="space-y-5 text-lg leading-relaxed text-dim">
+              <p>
+                Un recrutement suppose que vous sachiez déjà ce que vous voulez que cette
+                personne fasse. Pas le titre, ni la fiche de poste : le périmètre réel, les
+                décisions qu’elle aura le droit de prendre, et celles qui resteront les vôtres.
+              </p>
+              <p>
+                C’est là que la plupart des recrutements produit en PME s’abîment. On recrute
+                un bon Product Manager sur un mandat qui n’existe pas encore. Il arrive, il
+                cherche pendant trois mois à qui demander l’autorisation, et il finit par
+                exécuter des demandes plutôt que d’en trancher. Vous avez payé un salaire pour
+                un problème qu’aucune embauche ne règle.
+              </p>
+              <p>
+                Il y a aussi la question du temps. Sur ce type de poste, un recrutement prend
+                rarement moins de trois mois. Pendant ces trois mois, c’est toujours vous qui
+                arbitrez dans le couloir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+        <div class="shell split">
+          <div class="split-aside">
+            <p class="eyebrow">Intervenir</p>
+          </div>
+
+          <div class="space-y-6">
+            <h2 class="t-sub text-ink">
+              Faire intervenir quelqu’un, c’est autre chose
+            </h2>
+            <div class="space-y-5 text-lg leading-relaxed text-dim">
+              <p>
+                Un Product Manager senior qui intervient ne prend pas votre liste de demandes
+                comme point de départ. Il la regarde, il regarde ce qui n’y est pas, et il
+                cherche pourquoi certains sujets y traînent depuis six mois sans que personne
+                les tranche.
+              </p>
+              <p>
+                Il ne cherche pas non plus à s’intégrer discrètement. Il écoute, puis il nomme
+                devant vous ce que tout le monde sent sans le dire. Souvent, ce n’est pas la
+                liste qui est mauvaise. C’est qu’elle n’a jamais été arbitrée par quelqu’un qui
+                avait le droit de dire non.
+              </p>
+              <p>
+                La différence avec un recrutement ne se joue pas sur le prix. Elle se joue sur
+                ce qui sort des trois premières semaines. Un salarié construit sa légitimité
+                lentement, et c’est normal, il reste longtemps. Quelqu’un qui intervient n’a
+                pas ce luxe, et c’est précisément ce qui le rend utile ici : il pose la
+                question qui fâche pendant qu’elle coûte encore peu cher.
+              </p>
+              <p>
+                Ce que vous achetez alors n’est pas du temps de travail. C’est une décision que
+                vous n’arriviez pas à prendre seul, et la <a href="/articles/ownership-produit" class="link-inline">clarté sur qui décide quoi</a> une fois qu’elle est prise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+        <div class="shell split">
+          <div class="split-aside">
+            <p class="eyebrow">Quand, et quand pas</p>
+          </div>
+
+          <div class="space-y-6">
+            <h2 class="t-sub text-ink">
+              Quand une intervention a du sens
+            </h2>
+            <div class="space-y-5 text-lg leading-relaxed text-dim">
+              <p>
+                Vous construisez déjà, vous vendez déjà, et la question n’est plus de savoir si
+                le produit intéresse quelqu’un. Elle est de savoir lequel de vos clients vous
+                suivez, et lesquels vous arrêtez de suivre.
+              </p>
+              <p>
+                Vos développeurs sont compétents et disponibles, mais ils attendent des
+                arbitrages qui ne viennent pas assez vite.
+              </p>
+              <p>
+                Vous tranchez encore vous-même, et vous voulez continuer à trancher. Une
+                intervention ne vous retire pas la décision. Elle vous met les scénarios sur la
+                table et vous demande de choisir.
+              </p>
+            </div>
+
+            <div class="space-y-5 border-t border-line pt-8 text-lg leading-relaxed text-dim">
+              <h3 class="text-lg font-semibold text-ink">Quand elle n’en a pas</h3>
+              <p>
+                Vous n’avez pas encore de clients. Le problème n’est pas l’arbitrage, il est en
+                amont, et une intervention produit arriverait trop tôt.
+              </p>
+              <p>
+                Vous avez déjà une direction claire et vous cherchez seulement des mains pour
+                dérouler ce qui est écrit. Un profil plus junior fera très bien ce travail, et
+                pour moins cher.
+              </p>
+              <p>
+                Vous voulez quelqu’un qui valide. Quelqu’un qui intervient va nommer ce qui ne
+                va pas, souvent dès les premiers jours. Si ce n’est pas le moment de l’entendre,
+                ce n’est pas le moment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 — sortie commerciale unique -->
+      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+        <div class="shell split">
+          <div class="split-aside">
+            <p class="eyebrow">En pratique</p>
+          </div>
+
+          <div class="space-y-6">
+            <h2 class="t-sub text-ink">
+              À quoi ressemble une intervention de ce type
+            </h2>
+            <div class="space-y-5 text-lg leading-relaxed text-dim">
+              <p>
+                Chez moi, elle s’appelle La Mise au clair. Six demi-journées sur trois
+                semaines. Je parle à vos équipes et à vos clients, puis on s’assoit et on
+                tranche : ce que le produit doit résoudre, pour qui, dans quel ordre, et ce
+                qu’on arrête.
+              </p>
+              <p>
+                À la fin, vous avez une décision prise avec vous, le cadre écrit, et les trois
+                prochains mois séquencés. Vous savez sur quoi vos développeurs travaillent
+                lundi, et pourquoi.
+              </p>
+            </div>
+
+            <p class="pt-2">
+              <a href="/ce-que-je-fais#la-mise-au-clair" class="door text-base sm:text-lg">
+                <span>Voir La Mise au clair</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <Footer
+    links={[
+      { href: '/', label: 'Accueil' },
+      { href: '/ce-que-je-fais', label: 'Ce que je fais' },
+      { href: '/ecrits', label: 'Écrits' },
+      { href: '/mentions-legales', label: 'Mentions légales' },
+    ]}
+  />
+</Layout>
