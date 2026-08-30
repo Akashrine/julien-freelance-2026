@@ -81,12 +81,11 @@ const phrases = [
 
     <!-- 2. Reconnaissance. Un seul bloc de matière : six situations rapprochées,
          numéros en repère discret. Le lecteur doit se dire « c'est chez nous ». -->
-    <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+    <section class="reveal px-6 py-14 sm:px-10 sm:py-20">
       <div class="shell">
-        <div class="ledger">
-          {phrases.map((phrase, i) => (
-            <blockquote class="ledger-row">
-              <span class="ledger-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <div class="max-w-[42rem] space-y-2.5">
+          {phrases.map((phrase) => (
+            <blockquote>
               <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">“{phrase}”</p>
             </blockquote>
           ))}
@@ -107,19 +106,19 @@ const phrases = [
     <!-- 4. Les deux situations. La Mise au clair domine, Le Copilote suit :
          la hiérarchie est dans l'échelle, pas dans des cadres. -->
     <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-16 sm:space-y-20">
+      <div class="shell space-y-10 sm:space-y-14">
         <h2 class="t-title max-w-[24ch] text-ink">
           Quand un sujet produit n’avance plus, c’est pour l’une de ces deux raisons
         </h2>
 
-        <article class="reveal max-w-[42rem] space-y-6">
+        <article class="reveal max-w-[42rem] space-y-4">
           <h3 class="t-title text-ink">Vous ne savez plus quoi décider.</h3>
           <p class="text-lg leading-relaxed text-dim">
             Vous construisez déjà. Les demandes s’accumulent, tout paraît urgent, et vos
             équipes attendent que vous tranchiez.
           </p>
 
-          <div class="space-y-3 pt-4">
+          <div class="space-y-2.5 pt-3">
             <p class="text-lg font-semibold text-ink">La Mise au clair</p>
             <p class="leading-relaxed text-dim">
               Six demi-journées sur trois semaines. À la fin : une décision prise avec vous,
@@ -134,14 +133,14 @@ const phrases = [
           </div>
         </article>
 
-        <article class="reveal max-w-[42rem] space-y-5">
+        <article class="reveal max-w-[42rem] space-y-3.5">
           <h3 class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</h3>
           <p class="leading-relaxed text-dim">
             Un sujet important traverse plusieurs équipes. Chacune livre sa partie, les
             arbitrages reviennent, le responsable change, la production recule.
           </p>
 
-          <div class="space-y-3 pt-3">
+          <div class="space-y-2.5 pt-2">
             <p class="font-semibold text-ink">Le Copilote</p>
             <p class="leading-relaxed text-dim">
               Un jour par semaine, trois mois. À la fin : un jalon produit en production,

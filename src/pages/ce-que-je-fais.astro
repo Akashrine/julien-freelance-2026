@@ -134,10 +134,10 @@ const copilote = [
 
     <!-- 2. Le routeur. Deux questions au même poids, deux lignes identiques. -->
     <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell space-y-12 sm:space-y-16">
+      <div class="shell space-y-9 sm:space-y-11">
         <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
-          <div class="space-y-3">
+          <div class="space-y-2.5">
             <p class="t-sub text-ink">Vous ne savez plus quoi décider.</p>
             <p class="leading-relaxed text-dim">
               Vous construisez déjà et ça part dans toutes les directions.
@@ -153,7 +153,7 @@ const copilote = [
 
         <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
-          <div class="space-y-3">
+          <div class="space-y-2.5">
             <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
             <p class="leading-relaxed text-dim">
               Un sujet important traverse plusieurs équipes et personne ne le porte jusqu’au
@@ -179,14 +179,14 @@ const copilote = [
     </section>
 
     <!-- La Mise au clair -->
-    <section id="la-mise-au-clair" class="px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell space-y-12 sm:space-y-16">
+    <section id="la-mise-au-clair" class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-9 sm:space-y-11">
         <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="t-title text-ink">La Mise au clair</h2>
           <p class="text-sm text-dim sm:text-base">6 demi-journées · 3 semaines</p>
         </header>
 
-        <div class="space-y-10 sm:space-y-12">
+        <div class="space-y-6 sm:space-y-7">
           {miseAuClair.map((bloc) => (
             <div class="split">
               <p class="split-aside font-semibold text-ink">{bloc.label}</p>
@@ -195,7 +195,7 @@ const copilote = [
           ))}
         </div>
 
-        <div class="split border-t border-line pt-10">
+        <div class="split pt-2">
           <div class="split-aside" aria-hidden="true"></div>
           <h3 class="t-sub text-ink">Les six demi-journées</h3>
         </div>
@@ -225,14 +225,14 @@ const copilote = [
     </section>
 
     <!-- Le Copilote -->
-    <section id="le-copilote" class="px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell space-y-12 sm:space-y-16">
+    <section id="le-copilote" class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-9 sm:space-y-11">
         <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="t-title text-ink">Le Copilote</h2>
           <p class="text-sm text-dim sm:text-base">1 jour / semaine · 3 mois</p>
         </header>
 
-        <div class="space-y-10 sm:space-y-12">
+        <div class="space-y-6 sm:space-y-7">
           {copilote.map((bloc) => (
             <div class="split">
               <p class="split-aside font-semibold text-ink">{bloc.label}</p>
@@ -241,7 +241,7 @@ const copilote = [
           ))}
         </div>
 
-        <div class="split border-t border-line pt-10">
+        <div class="split pt-2">
           <div class="split-aside" aria-hidden="true"></div>
           <h3 class="t-sub text-ink">Ce que ça a donné</h3>
         </div>
@@ -263,7 +263,7 @@ const copilote = [
           </div>
         </div>
 
-        <figure class="split border-t border-line pt-10">
+        <figure class="split pt-1">
           <div class="split-aside" aria-hidden="true"></div>
           <div class="space-y-4">
             <blockquote class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
@@ -294,13 +294,13 @@ const copilote = [
     </section>
 
     <!-- Le Rendez-vous produit. Cinq lignes, jamais plus. -->
-    <section id="le-rendez-vous-produit" class="px-6 py-16 sm:px-10 sm:py-20">
+    <section id="le-rendez-vous-produit" class="px-6 py-10 sm:px-10 sm:py-12">
       <div class="shell split">
         <div class="split-aside" aria-hidden="true"></div>
-        <div class="space-y-5">
-          <h2 class="t-sub text-ink">Le Rendez-vous produit</h2>
+        <div class="max-w-[36rem] space-y-3">
+          <h2 class="text-lg font-semibold text-ink">Le Rendez-vous produit</h2>
 
-          <div class="space-y-4 leading-relaxed text-dim">
+          <div class="space-y-2 text-sm leading-relaxed text-dim sm:text-base">
             <p>Pour les dirigeants qui prennent seuls les décisions produit.</p>
             <p>
               Une demi-journée par mois pendant six mois. On regarde les décisions qui arrivent,
@@ -310,8 +310,8 @@ const copilote = [
             <p>Disponible après une première conversation.</p>
           </div>
 
-          <p>
-            <a href={mailto('Le Rendez-vous produit')} class="door text-base">
+          <p class="pt-1">
+            <a href={mailto('Le Rendez-vous produit')} class="door text-sm">
               <span>Parler du Rendez-vous produit</span>
               <span class="door-arrow" aria-hidden="true">&rarr;</span>
             </a>
