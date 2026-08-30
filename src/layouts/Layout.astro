@@ -165,7 +165,11 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
       // s'exécute pas — navigateur sans modules, erreur à l'intérieur — c'est
       // ce délai qui rend le contenu, sinon la page resterait vide sous le hero.
       // Écrit en syntaxe ancienne à dessein : il doit tourner là où le module échoue.
-      setTimeout(function () {
+      //
+      // ANNULABLE : l'observateur du module l'annule dès son premier appel.
+      // Sans ça, le filet activait toute la page hors écran à 2,5 s et les
+      // animations étaient déjà jouées quand on scrollait — donc invisibles.
+      window.__revealFailsafe = setTimeout(function () {
         var caches = document.querySelectorAll('.reveal:not(.active)');
         for (var i = 0; i < caches.length; i++) {
           caches[i].classList.add('active');
@@ -228,6 +232,12 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
         };
 
         const observer = new IntersectionObserver((entries, obs) => {
+          // Premier appel = preuve de vie : le filet de secours n'a plus
+          // de raison d'être, les révélations se joueront au scroll.
+          if (window.__revealFailsafe) {
+            clearTimeout(window.__revealFailsafe);
+            window.__revealFailsafe = null;
+          }
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('active');
