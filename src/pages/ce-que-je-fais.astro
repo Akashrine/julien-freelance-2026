@@ -14,7 +14,9 @@ import { getWebPageSchema } from '../utils/schema';
 const EMAIL = 'julien.brionne@gmail.com';
 // Objet générique arbitré par Julien le 28/08 ; objets par offre pour les trois ancres.
 const mailto = (sujet: string = "Un sujet qui n'avance pas") =>
-  `mailto:${EMAIL}?subject=${encodeURIComponent(sujet)}`;
+  // encodeURIComponent laisse passer l'apostrophe ; certains clients mail
+  // tronquent le sujet dessus — on l'encode nous-mêmes.
+  `mailto:${EMAIL}?subject=${encodeURIComponent(sujet).replace(/'/g, '%27')}`;
 
 const demiJournees = [
   'Vous et moi. Votre activité, vos chiffres, ce que vous voulez dans trois ans, ce que vous ne voulez plus faire.',
