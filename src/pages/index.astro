@@ -15,7 +15,7 @@ import { getPersonSchema, getWebsiteSchema, getServiceSchemas } from '../utils/s
 const EMAIL = 'julien.brionne@gmail.com';
 // Objet générique, arbitré par Julien le 28/08. Les objets par offre vivent
 // sur /ce-que-je-fais : ils sont la seule mesure de conversion par offre.
-const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent("Un sujet qui n'avance pas")}`;
+const MAILTO = `mailto:${EMAIL}?subject=${'Un%20sujet%20qui%20n%27avance%20pas'}`;
 
 // Les six phrases de prospects. Nues : aucun titre, aucune introduction,
 // aucun commentaire après. Accueil v4, section 2.
