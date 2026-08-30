@@ -65,8 +65,6 @@
   /* Typographie */
   --font-sans: 'Nohemi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-  /* Inter n'existe plus que pour le logotype. Tout le reste est en Nohemi. */
-  --font-mark: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer base {
@@ -912,25 +910,24 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 
 @layer components {
   /* Le logotype. Le point est le seul endroit où l'ocre est permanent. */
+  /* Le logotype. Serif, petit, une seule graisse — il parle la langue du
+     site au lieu de la sienne. Le point ocre reste la signature, à taille
+     de texte. */
   .wordmark {
-    font-family: var(--font-mark);
-    letter-spacing: -1px;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.28em;
-  }
-  .wordmark .wordmark-given { font-weight: 500; color: var(--color-ink); }
-  .wordmark .wordmark-family { font-weight: 900; color: var(--color-ink); }
-  .wordmark .wordmark-dot {
+    font-family: var(--font-serif);
     font-weight: 400;
-    font-size: 1.5em;
-    line-height: 0;
-    letter-spacing: normal;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .wordmark .wordmark-given,
+  .wordmark .wordmark-family { font-weight: 400; color: var(--color-ink); }
+  .wordmark .wordmark-dot {
+    display: inline-block;
     color: var(--color-ochre);
     transform-origin: bottom;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .wordmark:hover .wordmark-dot { transform: scale(1.15); }
+  .wordmark:hover .wordmark-dot { transform: scale(1.2); }
 
   /* Lien de navigation : sobre, souligné à l'ocre au survol. */
   .link-nav {
@@ -979,6 +976,67 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 
   /* Le point ocre, en fin de titre. */
   .stop { color: var(--color-ochre); }
+
+  /* Le schéma des deux moments. Un arbre typographique : la racine est le
+     point du logo, les branches sont des lignes d'encre de 1px. Ce ne sont
+     pas des filets décoratifs — c'est l'argument du site rendu visible.
+     Sous lg, l'arbre s'efface et les deux moments s'empilent. */
+  .schema { position: relative; }
+
+  @media (min-width: 1024px) {
+    .schema {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      padding-top: 5.5rem;
+    }
+    .schema-root {
+      position: absolute;
+      top: -2.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-size: 3.75rem;
+      line-height: 1;
+      color: var(--color-ochre);
+    }
+    .schema-drop {
+      position: absolute;
+      top: 1.4rem;
+      left: 50%;
+      width: 1px;
+      height: 1.6rem;
+      background: var(--color-ink);
+    }
+    .schema-bar {
+      position: absolute;
+      top: 3rem;
+      left: 25%;
+      right: 25%;
+      height: 1px;
+      background: var(--color-ink);
+    }
+    .schema-leg {
+      position: absolute;
+      top: 3rem;
+      width: 1px;
+      height: 1.6rem;
+      background: var(--color-ink);
+    }
+    .schema-leg-l { left: 25%; }
+    .schema-leg-r { right: calc(25% - 1px); }
+    .schema-branch { text-align: center; }
+    .schema-branch > * { text-align: left; }
+    .schema-branch-inner {
+      display: inline-block;
+      max-width: 26rem;
+      text-align: left;
+    }
+  }
+  .schema-root, .schema-drop, .schema-bar, .schema-leg { display: none; }
+  @media (min-width: 1024px) {
+    .schema-root, .schema-drop, .schema-bar, .schema-leg { display: block; }
+  }
 
   /* La coque de page. Large, pour laisser respirer, jamais pour élargir le texte. */
   .shell {
