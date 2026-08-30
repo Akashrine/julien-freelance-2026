@@ -134,47 +134,50 @@ const copilote = [
 
     <!-- 2. Le routeur. Deux questions au même poids, deux lignes identiques. -->
     <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell space-y-9 sm:space-y-11">
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"></div>
-          <div class="space-y-2.5">
-            <p class="t-sub text-ink">Vous ne savez plus quoi décider.</p>
-            <p class="leading-relaxed text-dim">
-              Vous construisez déjà et ça part dans toutes les directions.
-            </p>
-            <p>
-              <a href="#la-mise-au-clair" class="door text-base">
-                <span>La Mise au clair</span>
-                <span class="door-arrow" aria-hidden="true">&rarr;</span>
-              </a>
-            </p>
+      <div class="shell space-y-12 sm:space-y-14">
+        <div class="schema">
+          <span class="schema-root" aria-hidden="true">.</span>
+          <span class="schema-drop" aria-hidden="true"></span>
+          <span class="schema-bar" aria-hidden="true"></span>
+          <span class="schema-leg schema-leg-l" aria-hidden="true"></span>
+          <span class="schema-leg schema-leg-r" aria-hidden="true"></span>
+
+          <div class="schema-branch space-y-9 lg:space-y-0">
+            <div class="schema-branch-inner space-y-2.5">
+              <p class="t-sub text-ink">Vous ne savez plus quoi décider.</p>
+              <p class="leading-relaxed text-dim">
+                Vous construisez déjà et ça part dans toutes les directions.
+              </p>
+              <p>
+                <a href="#la-mise-au-clair" class="door text-base">
+                  <span>La Mise au clair</span>
+                  <span class="door-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="schema-branch mt-9 lg:mt-0">
+            <div class="schema-branch-inner space-y-2.5">
+              <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
+              <p class="leading-relaxed text-dim">
+                Un sujet important traverse plusieurs équipes et personne ne le porte jusqu’au
+                bout.
+              </p>
+              <p>
+                <a href="#le-copilote" class="door text-base">
+                  <span>Le Copilote</span>
+                  <span class="door-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"></div>
-          <div class="space-y-2.5">
-            <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
-            <p class="leading-relaxed text-dim">
-              Un sujet important traverse plusieurs équipes et personne ne le porte jusqu’au
-              bout.
-            </p>
-            <p>
-              <a href="#le-copilote" class="door text-base">
-                <span>Le Copilote</span>
-                <span class="door-arrow" aria-hidden="true">&rarr;</span>
-              </a>
-            </p>
-          </div>
-        </div>
-
-        <div class="split pt-2">
-          <div class="split-aside" aria-hidden="true"></div>
-          <p class="text-sm leading-relaxed text-dim">
-            Vous décidez du produit seul et personne ne vous contredit utilement.
-            <a href="#le-rendez-vous-produit" class="link-inline">Le Rendez-vous produit</a>
-          </p>
-        </div>
+        <p class="max-w-[42rem] text-sm leading-relaxed text-dim lg:mx-auto lg:text-center">
+          Vous décidez du produit seul et personne ne vous contredit utilement.
+          <a href="#le-rendez-vous-produit" class="link-inline">Le Rendez-vous produit</a>
+        </p>
       </div>
     </section>
 

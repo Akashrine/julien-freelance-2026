@@ -1166,6 +1166,29 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   }
 }
 
+/* L'arbre des deux moments se dessine dans l'ordre où l'argument se pense :
+   le point, la ligne qui en descend, la division, puis les deux branches.
+   Uniquement sur grand écran (l'arbre n'existe pas en dessous), uniquement
+   quand la section s'active — sinon tout est simplement visible. */
+@media (min-width: 1024px) {
+  .js .reveal .schema-root { opacity: 0; transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1); }
+  .js .reveal .schema-drop { transform: scaleY(0); transform-origin: top; transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1) 250ms; }
+  .js .reveal .schema-bar  { transform: scaleX(0); transform-origin: center; transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1) 450ms; }
+  .js .reveal .schema-leg  { transform: scaleY(0); transform-origin: top; transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1) 700ms; }
+  .js .reveal .schema-branch { opacity: 0; transform: translateY(8px); transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1) 850ms, transform 450ms cubic-bezier(0.16, 1, 0.3, 1) 850ms; }
+
+  .js .reveal.active .schema-root { opacity: 1; }
+  .js .reveal.active .schema-drop,
+  .js .reveal.active .schema-bar,
+  .js .reveal.active .schema-leg { transform: none; }
+  .js .reveal.active .schema-branch { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal .schema-root, .js .reveal .schema-branch { opacity: 1; transition: none; }
+    .js .reveal .schema-drop, .js .reveal .schema-bar, .js .reveal .schema-leg { transform: none; transition: none; }
+  }
+}
+
 /* Le portrait entre en fondu au chargement. Pur CSS : joue sans JavaScript,
    `backwards` le tient masqué pendant le délai, et sans support d'animation
    il est simplement visible. */

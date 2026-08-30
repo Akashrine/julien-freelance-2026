@@ -12,10 +12,10 @@ import { getWebPageSchema } from '../utils/schema';
 const SUBSTACK = 'https://produitsansfiltre.substack.com';
 const LINKEDIN = 'https://www.linkedin.com/in/julienbrionne';
 
-// Section 3. Les quatre numéros.
-// Deux URLs fournies le 28/08 correspondent au titre de la copy, elles sont posées.
-// Les deux autres slugs désignent d'autres sujets : rien n'est deviné, le lien
-// reste absent tant que la correspondance n'est pas tranchée.
+// Section 3. Les quatre numéros, chacun vers son URL précise.
+// Les deux dernières confirmées par Julien le 30/08 : « Vous avez recruté un
+// bon PM » vit sous le slug « ce-que-jai-dit-a-30-personnes-en », « J'ai
+// ouvert Jira en dernier » sous « psf-40-jai-ouvert-jira-en-dernier ».
 const numeros = [
   {
     titre: 'Le jour où on a tué les étoiles chez Heetch.',
@@ -33,11 +33,13 @@ const numeros = [
     titre: 'Vous avez recruté un bon PM, mais pas pour votre contexte.',
     resume:
       'Pourquoi un excellent Product Manager échoue dans une maison où il n’a pas les moyens de décider.',
+    href: 'https://produitsansfiltre.substack.com/p/ce-que-jai-dit-a-30-personnes-en',
   },
   {
     titre: 'J’ai ouvert Jira en dernier.',
     resume:
       'Les priorités réelles d’une équipe se lisent dans les horodatages, pas dans l’outil.',
+    href: 'https://produitsansfiltre.substack.com/p/psf-40-jai-ouvert-jira-en-dernier',
   },
 ];
 

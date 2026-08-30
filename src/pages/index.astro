@@ -32,7 +32,7 @@ const phrases = [
 <Layout
   title="Julien Brionne — Senior Product Manager freelance"
   description="Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production."
-  ogTitle="Plusieurs personnes travaillent dessus. Personne ne le porte jusqu'au bout."
+  ogTitle="Un sujet produit important n'avance plus ? Je le reprends et je le fais avancer."
   personSchema={getPersonSchema()}
   websiteSchema={getWebsiteSchema()}
   serviceSchemas={getServiceSchemas()}
@@ -42,21 +42,21 @@ const phrases = [
   <Navbar current="accueil" />
 
   <main>
-    <!-- 1. Hero. Ne pas y toucher : il fonctionne. -->
+    <!-- 1. Hero. Amendé le 30/08 sur décision de Julien, post-mise en prod :
+         la promesse d'abord, l'accroche en second temps. Voir decisions.md. -->
     <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
       <div class="shell grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
         <div class="space-y-12 sm:space-y-16">
-          <h1 class="t-display max-w-[19ch] text-ink">
-            Plusieurs personnes travaillent dessus.
-            <span class="text-dim italic">Personne ne le porte jusqu’au bout.</span>
+          <h1 class="t-display max-w-[24ch] text-ink">
+            Un sujet produit important n’avance&nbsp;plus&nbsp;?
+            <span class="text-dim italic">Je le reprends et je le fais avancer.</span>
           </h1>
 
-          <div class="measure-wide space-y-5 text-lg leading-relaxed text-ink sm:text-xl">
+          <div class="measure-wide text-lg leading-relaxed text-ink sm:text-xl">
             <p>
-              Je suis Senior Product Manager freelance. Je reprends les sujets produit qui
-              n’avancent plus et je les mène jusqu’à une mise en production.
+              Senior Product Manager freelance, j’interviens quand il faut enfin décider
+              quoi construire, ou quand un sujet important n’arrive pas jusqu’en production.
             </p>
-            <p class="text-dim">Pas un plan pour y arriver. Une mise en production.</p>
           </div>
 
           <p>
@@ -74,7 +74,7 @@ const phrases = [
           height="640"
           fetchpriority="high"
           decoding="async"
-          class="portrait-in w-48 sm:w-56 lg:w-full"
+          class="portrait-in mx-auto w-48 sm:w-56 lg:mx-0 lg:w-full"
         />
       </div>
     </section>
