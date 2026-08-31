@@ -63,6 +63,13 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      // Applique le thème choisi AVANT le premier rendu — sinon flash.
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -86,7 +93,8 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
     <link rel="canonical" href={finalOgUrl} />
     <link rel="alternate" hreflang="fr" href={finalOgUrl} />
-    <meta name="theme-color" content="#FBF7F1" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBF7F1" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141518" />
     <link rel="alternate" type="application/rss+xml" title="Julien Brionne — Articles" href="/rss.xml" />
 
     <!-- Open Graph -->

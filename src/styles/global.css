@@ -1292,3 +1292,86 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 @media (prefers-reduced-motion: reduce) {
   .mailpick-overlay, .mailpick-overlay .mailpick { transition: none; }
 }
+
+/* =========================================================
+   MODE SOMBRE — 31/08/2026. Le même système, la nuit :
+   l'encre et le crème échangent leurs rôles, le vermillon
+   s'éclaircit d'un cran pour tenir sur le sombre, les gris
+   Tailwind des articles sont remappés vers l'échelle inverse.
+   Trois états : clair forcé, sombre forcé, sinon le système.
+   ========================================================= */
+:root[data-theme="dark"] {
+  --color-canvas: #141518;
+  --color-ink: #F3F0EA;
+  --color-dim: #A5A19A;
+  --color-line: #2C2D31;
+  --color-ochre: #F05B33;
+  --color-accent: #F05B33;
+  --color-background: #141518;
+  --color-bg-light: #141518;
+  --color-text-primary: #F3F0EA;
+  --color-rule: #2C2D31;
+  --color-sand: #262320;
+  --color-sand-light: rgba(38, 35, 32, 0.5);
+  --color-sage-blue: #202527;
+  --color-sage-blue-light: rgba(32, 37, 39, 0.35);
+  --color-clay: #2E2521;
+  --color-gray-900: #F3F0EA;
+  --color-gray-800: #DDD8D0;
+  --color-gray-700: #C6C1B9;
+  --color-gray-600: #A5A19A;
+  --color-gray-500: #918D86;
+  --color-gray-400: #7A766F;
+  --color-gray-300: #3A3B3F;
+  --color-gray-200: #2C2D31;
+  --color-gray-100: #232428;
+  --color-gray-50: #1B1C1F;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-canvas: #141518;
+    --color-ink: #F3F0EA;
+    --color-dim: #A5A19A;
+    --color-line: #2C2D31;
+    --color-ochre: #F05B33;
+    --color-accent: #F05B33;
+    --color-background: #141518;
+    --color-bg-light: #141518;
+    --color-text-primary: #F3F0EA;
+    --color-rule: #2C2D31;
+    --color-sand: #262320;
+    --color-sand-light: rgba(38, 35, 32, 0.5);
+    --color-sage-blue: #202527;
+    --color-sage-blue-light: rgba(32, 37, 39, 0.35);
+    --color-clay: #2E2521;
+    --color-gray-900: #F3F0EA;
+    --color-gray-800: #DDD8D0;
+    --color-gray-700: #C6C1B9;
+    --color-gray-600: #A5A19A;
+    --color-gray-500: #918D86;
+    --color-gray-400: #7A766F;
+    --color-gray-300: #3A3B3F;
+    --color-gray-200: #2C2D31;
+    --color-gray-100: #232428;
+    --color-gray-50: #1B1C1F;
+    color-scheme: dark;
+  }
+}
+
+/* Le sélecteur. Un petit disque mi-plein — clair d'un côté, sombre de
+   l'autre. Fonctionnel, pas décoratif : c'est l'état du thème. */
+.theme-toggle {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-dim);
+  background: linear-gradient(90deg, transparent 50%, var(--color-dim) 50%);
+  cursor: pointer;
+  padding: 0;
+  flex: none;
+  align-self: center;
+  transition: border-color 0.2s ease;
+}
+.theme-toggle:hover { border-color: var(--color-ochre); }
