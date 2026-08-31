@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import { GA4_MEASUREMENT_ID, GA4_ENABLED } from '../utils/analytics';
-import ReadingProgress from '../components/ReadingProgress.astro';
 
 interface Props {
   title?: string;
@@ -184,7 +183,6 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
         }
       }, 2500);
     </script>
-    <ReadingProgress />
     <div class="relative z-10">
       <slot />
     </div>

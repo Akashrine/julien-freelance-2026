@@ -1,18 +1,24 @@
 ---
-interface Props {
-  number: string;
-  title: string;
-}
-
+// Une entrée du registre : numéro discret, titre en encre, texte en gris.
+// Le slot arrive en <p> depuis le MDX : jamais de <p> conteneur ici.
+interface Props { number: string; title: string }
 const { number, title } = Astro.props;
 ---
 
-<div class="flex gap-8 items-start">
-  <span class="text-2xl font-sans text-gray-700 font-medium tracking-tight flex-shrink-0">{number}</span>
-  <div class="flex-1">
-    <p class="text-xl text-gray-900 leading-relaxed font-normal mb-0">
-      <span class="font-bold text-gray-900">{title}</span>
-      <span class="text-gray-600 font-normal"> <slot /></span>
-    </p>
+<div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-baseline gap-4">
+  <span class="ledger-num">{number}</span>
+  <div>
+    <p class="mb-1.5 font-semibold text-ink">{title}</p>
+    <div class="ledger-body text-dim"><slot /></div>
   </div>
 </div>
+
+<style>
+  .ledger-body :global(p) {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-dim);
+  }
+  .ledger-body :global(p:last-child) { margin-bottom: 0; }
+</style>

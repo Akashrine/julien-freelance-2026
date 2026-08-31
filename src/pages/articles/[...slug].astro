@@ -14,11 +14,10 @@ import KeyPoint from '../../components/articles/KeyPoint.astro';
 import CodeBlock from '../../components/articles/CodeBlock.astro';
 import Tooltip from '../../components/Tooltip.astro';
 import ArticleNavigation from '../../components/articles/ArticleNavigation.astro';
-import ArticleMetadata from '../../components/articles/ArticleMetadata.astro';
-import TableOfContents from '../../components/articles/TableOfContents.astro';
 import Footer from '../../components/Footer.astro';
 import { getArticleSchema, getBreadcrumbSchema, BreadcrumbItems } from '../../utils/schema';
-import { calculateReadingTime, extractHeadingsFromMDX } from '../../utils/articles';
+import { calculateReadingTime, getCategoryLabel } from '../../utils/articles';
+import { formatDate } from '../../utils/date';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles', ({ data }) => {
@@ -62,7 +61,6 @@ const { Content, remarkPluginFrontmatter } = await article.render();
 
 const readingTime = calculateReadingTime(article.body || '');
 const wordCount = (article.body || '').trim().split(/\s+/).length;
-const tocHeadings = wordCount > 1500 ? extractHeadingsFromMDX(article.body || '') : [];
 
 const siteUrl = 'https://www.julien-brionne.fr';
 const articleUrl = `${siteUrl}/articles/${article.slug}`;
@@ -113,45 +111,32 @@ const breadcrumbSchema = getBreadcrumbSchema([
 >
   <Navbar currentPage="articles" />
   <main>
-    <article class="max-w-[1150px] mx-auto px-8 py-20">
-      <div class="max-w-3xl mx-auto mb-8">
-        <div class="mb-6">
-          <ArticleMetadata 
-            date={article.data.date}
-            category={article.data.category}
-            readingTime={readingTime}
-            variant="page"
-          />
-        </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-4">
+    <article class="mx-auto max-w-[1150px] px-6 py-20 sm:px-8 sm:pt-28">
+      <header class="mx-auto mb-16 max-w-[42rem] sm:mb-20">
+        <p class="mb-5 text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">
+          {getCategoryLabel(article.data.category)} · {formatDate(article.data.date)} · {readingTime} min de lecture
+        </p>
+        <h1 class="t-title mb-6 text-ink">
           {article.data.title}
         </h1>
-        <p class="font-mono text-[10px] text-gray-400 tracking-widest mb-8">
-          Par Julien Brionne — Senior Product Manager freelance
-        </p>
-        <p class="text-xl text-gray-600 leading-relaxed font-light italic mb-4">
+        <p class="font-serif text-xl italic leading-relaxed text-dim">
           {article.data.excerpt}
         </p>
-      </div>
+      </header>
 
-      {tocHeadings.length > 0 && (
-        <div class="max-w-3xl mx-auto">
-          <TableOfContents headings={tocHeadings} />
-        </div>
-      )}
-
-      <div class="pt-8 border-t border-black/5">
+      <div class="article-content">
         <Content components={{ Section, SectionIntro, ColorBlock, DecisionItem, ClosingBlock, SidebarBox, PillarCard, Callout, KeyPoint, CodeBlock, Tooltip }} />
       </div>
 
-      <div class="max-w-3xl mx-auto">
+      <div class="mx-auto max-w-[42rem]">
         <ArticleNavigation previousArticle={previousArticle} nextArticle={nextArticle} />
-        
-        <div class="mt-8 pt-8 border-t border-black/5">
-          <a href="/articles" class="back-link font-mono text-sm text-gray-500 hover:text-black transition-colors">
-            Retour aux articles
+
+        <p class="mt-10 border-t border-line pt-8">
+          <a href="/articles" class="door text-base">
+            <span>Tous les textes</span>
+            <span class="door-arrow" aria-hidden="true">&rarr;</span>
           </a>
-        </div>
+        </p>
       </div>
     </article>
     <Footer />

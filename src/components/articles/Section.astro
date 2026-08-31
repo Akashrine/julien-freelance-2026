@@ -1,6 +1,7 @@
 ---
+// Section d'article : eyebrow + titre serif. Les ids restent, des liens
+// peuvent pointer dessus.
 import { slugify } from '../../utils/articles';
-
 interface Props {
   label?: string;
   title?: string;
@@ -9,22 +10,17 @@ interface Props {
   titleSize?: 'default' | 'large';
   className?: string;
 }
-
-const { label, title, quote, maxWidth = '2xl', titleSize = 'default', className = '' } = Astro.props;
-const maxWidthClass = maxWidth === '3xl' ? 'max-w-3xl' : 'max-w-2xl';
-const titleClass = titleSize === 'large'
-  ? 'text-5xl mb-12 font-serif font-bold'
-  : 'text-3xl md:text-4xl mb-12 font-serif italic';
+const { label, title, quote, className = '' } = Astro.props;
 const sectionId = slugify(label || title || '');
 ---
 
-<section id={sectionId || undefined} class={`${maxWidthClass} mx-auto mb-32 reveal ${className}`}>
-  {label && <div class="font-mono mb-8 text-gray-400 article-label">{label}</div>}
+<section id={sectionId || undefined} class={`mx-auto max-w-[42rem] mb-20 sm:mb-24 reveal ${className}`}>
+  {label && <p class="eyebrow mb-4">{label}</p>}
   {quote && (
-    <p class="text-2xl leading-relaxed text-gray-800 font-serif italic mb-12">
-      "{quote}"
+    <p class="mb-8 font-serif text-xl italic leading-relaxed text-ink sm:text-2xl">
+      “{quote}”
     </p>
   )}
-  {title && <h2 class={titleClass}>{title}</h2>}
+  {title && <h2 class="t-sub mb-8 text-ink">{title}</h2>}
   <slot />
 </section>

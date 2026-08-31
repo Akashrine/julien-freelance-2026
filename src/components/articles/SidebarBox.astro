@@ -1,13 +1,13 @@
 ---
-interface Props {
-  title?: string;
-  className?: string;
-}
-
+// L'aparté sur fond de sable. Deux régimes : eyebrow + corps quand il y a
+// du contenu ; sans contenu, le titre est le propos et passe en serif.
+interface Props { title?: string; className?: string }
 const { title, className = '' } = Astro.props;
+const hasBody = Astro.slots.has('default');
 ---
 
-<div class={`bg-[#D7E5E5]/20 p-8 reveal organic-shape ${className}`}>
-  {title && <div class="font-mono mb-4 text-gray-600 text-xs uppercase tracking-wider">{title}</div>}
+<div class={`mx-auto my-12 max-w-[42rem] bg-sand-light p-7 sm:p-9 reveal ${className}`}>
+  {title && hasBody && <p class="eyebrow mb-3">{title}</p>}
+  {title && !hasBody && <p class="font-serif text-xl italic leading-relaxed text-ink">{title}</p>}
   <slot />
 </div>

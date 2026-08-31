@@ -1,54 +1,34 @@
 ---
+// Navigation de bibliothèque : le texte précédent, le suivant. Deux liens.
+interface ArticleLink { slug: string; title: string }
 interface Props {
-  previousArticle?: { slug: string; title: string } | null;
-  nextArticle?: { slug: string; title: string } | null;
+  previousArticle?: ArticleLink | null;
+  nextArticle?: ArticleLink | null;
 }
-
 const { previousArticle, nextArticle } = Astro.props;
 ---
 
 {(previousArticle || nextArticle) && (
-  <nav class="flex flex-col md:flex-row justify-between gap-8 mt-16 pt-8 border-t border-black/5">
-    {previousArticle ? (
-      <a 
-        href={`/articles/${previousArticle.slug}`}
-        class="group flex-1 flex items-start gap-4 p-6 rounded-lg hover:bg-gray-50 transition-colors"
-      >
-        <div class="flex-shrink-0">
-          <svg class="w-6 h-6 text-gray-400 group-hover:text-gray-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="font-mono text-xs text-gray-400 mb-2">Article précédent</div>
-          <h3 class="text-lg font-serif group-hover:italic transition-all text-gray-900 line-clamp-2">
+  <nav class="mt-16 grid gap-8 border-t border-line pt-10 sm:grid-cols-2" aria-label="Autres textes">
+    <div>
+      {previousArticle && (
+        <>
+          <p class="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">Texte précédent</p>
+          <a href={`/articles/${previousArticle.slug}`} class="link-inline font-serif text-lg leading-snug">
             {previousArticle.title}
-          </h3>
-        </div>
-      </a>
-    ) : (
-      <div class="flex-1"></div>
-    )}
-    
-    {nextArticle ? (
-      <a 
-        href={`/articles/${nextArticle.slug}`}
-        class="group flex-1 flex items-start gap-4 p-6 rounded-lg hover:bg-gray-50 transition-colors md:text-right"
-      >
-        <div class="flex-1 min-w-0 md:order-first">
-          <div class="font-mono text-xs text-gray-400 mb-2">Article suivant</div>
-          <h3 class="text-lg font-serif group-hover:italic transition-all text-gray-900 line-clamp-2">
+          </a>
+        </>
+      )}
+    </div>
+    <div class="sm:text-right">
+      {nextArticle && (
+        <>
+          <p class="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">Texte suivant</p>
+          <a href={`/articles/${nextArticle.slug}`} class="link-inline font-serif text-lg leading-snug">
             {nextArticle.title}
-          </h3>
-        </div>
-        <div class="flex-shrink-0 md:order-last">
-          <svg class="w-6 h-6 text-gray-400 group-hover:text-gray-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </a>
-    ) : (
-      <div class="flex-1"></div>
-    )}
+          </a>
+        </>
+      )}
+    </div>
   </nav>
 )}
