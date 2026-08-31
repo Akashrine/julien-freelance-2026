@@ -1,23 +1,27 @@
 ---
+// La bibliothèque. Index sobre dans le langage du site : un hero, une liste
+// dense de textes — titre serif, méta discrète, extrait. Hors navigation.
+// Textes du hero repris de l'ancien en-tête, rien d'inventé.
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import ArticlesHeader from '../components/ArticlesHeader.astro';
-import ArticlesList from '../components/ArticlesList.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { getCategoryLabel } from '../utils/articles';
+import { formatDate } from '../utils/date';
+
+const articles = (await getCollection('articles', ({ data }) => data.draft !== true))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const siteUrl = 'https://www.julien-brionne.fr';
 const pageUrl = `${siteUrl}/articles`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
   'Articles',
-  'Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d\'agir, pas des guides méthodologiques.',
+  "Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques.",
   ['réflexions produit', 'analyses de cas', 'décision produit', 'trancher']
 );
-const breadcrumbSchema = getBreadcrumbSchema([
-  BreadcrumbItems.home,
-  BreadcrumbItems.articles,
-]);
+const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.articles]);
 ---
 
 <Layout
@@ -27,17 +31,57 @@ const breadcrumbSchema = getBreadcrumbSchema([
   ogDescription="Réflexions et analyses de cas produit. Trancher le raisonnement avant d'agir. Pas des guides méthodologiques."
   ogType="website"
   ogImage="/og/page-articles.webp"
-  ogUrl="https://www.julien-brionne.fr/articles"
+  ogUrl={pageUrl}
   twitterCard="summary_large_image"
-  twitterTitle="Articles — Réflexions produit"
-  twitterDescription="Réflexions et analyses de cas produit. Trancher le raisonnement avant d'agir. Pas des guides méthodologiques."
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
-  <Navbar currentPage="articles" />
+  <Navbar />
+
   <main>
-    <ArticlesHeader />
-    <ArticlesList />
-    <Footer />
+    <!-- Hero -->
+    <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-24">
+      <div class="shell space-y-10">
+        <h1 class="t-display max-w-[18ch] text-ink">
+          L’écrit comme outil de lecture<span class="stop">.</span>
+        </h1>
+        <p class="measure-wide text-lg leading-relaxed text-dim sm:text-xl">
+          Ces textes ne sont pas des guides méthodologiques. Ce sont des réflexions sur des
+          situations rencontrées, pour clarifier le raisonnement avant d’agir.
+        </p>
+      </div>
+    </section>
+
+    <!-- La bibliothèque : une liste, rien d'autre. -->
+    <section class="reveal px-6 pb-24 sm:px-10 sm:pb-36">
+      <div class="shell">
+        <ul class="max-w-[42rem] space-y-9 sm:space-y-10">
+          {articles.map((article) => (
+            <li class="space-y-1.5">
+              <p class="text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">
+                {getCategoryLabel(article.data.category)} · {formatDate(article.data.date)}
+              </p>
+              <a
+                href={`/articles/${article.slug}`}
+                class="link-inline block font-serif text-xl leading-snug sm:text-2xl"
+              >
+                {article.data.title}
+              </a>
+              {article.data.excerpt && (
+                <p class="leading-relaxed text-dim">{article.data.excerpt}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   </main>
+
+  <Footer
+    links={[
+      { href: '/', label: 'Accueil' },
+      { href: '/ecrits', label: 'Écrits' },
+      { href: '/mentions-legales', label: 'Mentions légales' },
+    ]}
+  />
 </Layout>
