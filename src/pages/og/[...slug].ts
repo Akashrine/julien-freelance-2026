@@ -1,25 +1,42 @@
 import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
 import sharp from 'sharp';
+import satori from 'satori';
+import { Resvg } from '@resvg/resvg-js';
+import { readFileSync } from 'node:fs';
 import { formatDate } from '../../utils/date';
 import { getCategoryLabel } from '../../utils/articles';
 
-// Configuration des couleurs du site
-const colors = {
-  ivory: [253, 252, 251] as [number, number, number],      // #FDFCFB
-  graphite: [18, 18, 18] as [number, number, number],     // #121212
-  sand: [242, 233, 225] as [number, number, number],       // #F2E9E1
-  softgray: [154, 139, 122] as [number, number, number],  // #9A8B7A
-  clay: [229, 186, 173] as [number, number, number],      // #E5BAAD
+// Images OG rendues par satori : polices embarquées, retour à la ligne natif,
+// rendu identique en local et sur Vercel. Le design est celui du site —
+// crème, encre, Newsreader pour le titre, Nohemi pour le reste, le point
+// du logotype en vermillon. Les TTF de src/og-fonts/ ne servent qu'au build.
+const COLORS = {
+  canvas: '#FBF7F1',
+  ink: '#121316',
+  dim: '#5E5C56',
+  ochre: '#E84A2A',
 };
 
-// Configuration des pages statiques avec leurs métadonnées OG
+// Chemin depuis la racine du projet : le module bundlé ne vit plus dans
+// src/, et ces routes sont toutes prérendues — l'endpoint ne s'exécute
+// qu'au build, où cwd est la racine du dépôt.
+const font = (file: string) => readFileSync(`${process.cwd()}/src/og-fonts/${file}`);
+
+const FONTS = [
+  { name: 'Newsreader', data: font('Newsreader-Medium.ttf'), weight: 500 as const, style: 'normal' as const },
+  { name: 'Nohemi', data: font('Nohemi-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Nohemi', data: font('Nohemi-Medium.ttf'), weight: 500 as const, style: 'normal' as const },
+];
+
 // Titres et descriptions repris des metadata réelles des pages. Aucune
 // formulation propre à cet endpoint : l'image OG dit ce que la page dit.
 const staticPages: Record<string, { title: string; description: string }> = {
   'page-home': {
-    title: 'Julien Brionne — Senior Product Manager freelance',
-    description: "Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production.",
+    // Le H1 réel de la page : le logotype est déjà dans la carte, le
+    // répéter en titre faisait doublon.
+    title: 'Un sujet produit important n’avance plus ? Je le reprends et je le fais avancer.',
+    description: "Senior Product Manager freelance, j'interviens quand il faut enfin décider quoi construire, ou quand un sujet important n'arrive pas jusqu'en production.",
   },
   'page-ce-que-je-fais': {
     title: 'Ce que je fais',
@@ -50,16 +67,11 @@ const staticPages: Record<string, { title: string; description: string }> = {
 export async function getStaticPaths() {
   const paths: Array<{ params: { slug: string } }> = [];
 
-  // Ajouter les pages statiques (uniquement avec extension .webp)
   Object.keys(staticPages).forEach((pageSlug) => {
     paths.push({ params: { slug: `${pageSlug}.webp` } });
   });
 
-  // Ajouter les articles (uniquement avec extension .webp)
-  const articles = await getCollection('articles', ({ data }) => {
-    return data.draft !== true;
-  });
-
+  const articles = await getCollection('articles', ({ data }) => data.draft !== true);
   articles.forEach((article) => {
     paths.push({ params: { slug: `article-${article.slug}.webp` } });
   });
@@ -67,119 +79,127 @@ export async function getStaticPaths() {
   return paths;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const el = (type: string, style: Record<string, unknown>, children: unknown): any => ({
+  type,
+  props: { style, children },
+});
 
-// Fonction pour échapper le texte pour SVG
-function escapeXml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
-}
+function carte(title: string, description: string, meta?: string) {
+  // La taille du titre suit sa longueur : grand quand il est court.
+  const corps = title.length > 70 ? 56 : title.length > 42 ? 66 : 76;
 
-// Fonction pour générer le SVG
-function generateOGSVG(title: string, category?: string, date?: string): string {
-  const categoryLabel = category ? getCategoryLabel(category) : '';
-  const formattedDate = date ? formatDate(date) : '';
-  const metaText = category && date ? `${categoryLabel} · ${formattedDate}` : '';
+  return el(
+    'div',
+    {
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundColor: COLORS.canvas,
+      padding: '72px 80px 64px',
+      fontFamily: 'Nohemi',
+    },
+    [
+      // Le logotype, point vermillon compris.
+      el('div', { display: 'flex', fontFamily: 'Newsreader', fontSize: 34, letterSpacing: '-0.5px' }, [
+        el('span', { color: COLORS.ink }, 'Julien Brionne'),
+        el('span', { color: COLORS.ochre }, '.'),
+      ]),
 
-  return `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .title {
-      font-family: Inter, sans-serif;
-      font-weight: 700;
-      font-size: 64px;
-      line-height: 1.15;
-      fill: #0F172A;
-    }
-    .meta {
-      font-family: Inter, sans-serif;
-      font-weight: 400;
-      font-size: 28px;
-      fill: #475569;
-    }
-    .signature {
-      font-family: Inter, sans-serif;
-      font-weight: 400;
-      font-size: 22px;
-      fill: #94A3B8;
-    }
-  </style>
+      // Le cœur : méta éventuelle, titre serif, description.
+      el(
+        'div',
+        { display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'center', paddingBottom: 24 },
+        [
+          meta
+            ? el(
+                'div',
+                {
+                  fontSize: 21,
+                  fontWeight: 500,
+                  letterSpacing: '2.5px',
+                  textTransform: 'uppercase',
+                  color: COLORS.dim,
+                  marginBottom: 26,
+                },
+                meta
+              )
+            : null,
+          el(
+            'div',
+            {
+              fontFamily: 'Newsreader',
+              fontSize: corps,
+              lineHeight: 1.12,
+              letterSpacing: '-1px',
+              color: COLORS.ink,
+              maxWidth: 980,
+              lineClamp: 3,
+            },
+            title
+          ),
+          description
+            ? el(
+                'div',
+                {
+                  fontSize: 27,
+                  lineHeight: 1.5,
+                  color: COLORS.dim,
+                  marginTop: 28,
+                  maxWidth: 900,
+                  lineClamp: 3,
+                },
+                description
+              )
+            : null,
+        ]
+      ),
 
-  <rect width="100%" height="100%" fill="#F8FAFC"/>
-
-  <text x="80" y="200" class="title">
-    ${escapeXml(title)}
-  </text>
-
-  ${metaText ? `<text x="80" y="280" class="meta">
-    ${escapeXml(metaText)}
-  </text>
-
-  <line x1="80" y1="320" x2="240" y2="320" stroke="#CBD5E1" stroke-width="2"/>` : ''}
-
-  <text x="80" y="560" class="signature">
-    julien-brionne.fr
-  </text>
-
-</svg>`;
+      // Pied : le domaine, rien d'autre.
+      el('div', { fontSize: 23, color: COLORS.dim }, 'julien-brionne.fr'),
+    ]
+  );
 }
 
 export const GET: APIRoute = async ({ params }) => {
   const { slug } = params;
+  if (!slug) return new Response('Not Found', { status: 404 });
 
-  if (!slug) {
-    return new Response('Not Found', { status: 404 });
-  }
-
-  // Retirer l'extension .webp si présente
   const cleanSlug = slug.replace(/\.webp$/, '');
-
   let title = '';
-  let category: string | undefined;
-  let date: string | undefined;
+  let description = '';
+  let meta: string | undefined;
 
-  // Vérifier si c'est un article
   if (cleanSlug.startsWith('article-')) {
     const articleSlug = cleanSlug.replace('article-', '');
-    const articles = await getCollection('articles', ({ data }) => {
-      return data.draft !== true;
-    });
-    
+    const articles = await getCollection('articles', ({ data }) => data.draft !== true);
     const article = articles.find((a) => a.slug === articleSlug);
-    if (article) {
-      title = String(article.data.title || '');
-      category = article.data.category;
-      date = article.data.date;
-    } else {
-      return new Response('Article Not Found', { status: 404 });
-    }
-  }
-  // Vérifier si c'est une page statique
-  else if (cleanSlug.startsWith('page-')) {
+    if (!article) return new Response('Article Not Found', { status: 404 });
+    title = String(article.data.title || '');
+    description = String(article.data.excerpt || '');
+    const cat = article.data.category ? getCategoryLabel(article.data.category) : '';
+    const dat = article.data.date ? formatDate(article.data.date) : '';
+    meta = cat && dat ? `${cat} · ${dat}` : cat || dat || undefined;
+  } else if (cleanSlug.startsWith('page-')) {
     const pageData = staticPages[cleanSlug];
-    if (pageData) {
-      title = String(pageData.title);
-      // Pas de catégorie ni date pour les pages statiques
-    } else {
-      return new Response('Page Not Found', { status: 404 });
-    }
+    if (!pageData) return new Response('Page Not Found', { status: 404 });
+    title = pageData.title;
+    description = pageData.description;
   } else {
     return new Response('Invalid slug format', { status: 400 });
   }
 
-  // Générer le SVG
-  const svg = generateOGSVG(title, category, date);
+  const svg = await satori(carte(title, description, meta), {
+    width: 1200,
+    height: 630,
+    fonts: FONTS,
+  });
 
-  // Convertir le SVG en WebP avec sharp
-  const webpBuffer = await sharp(Buffer.from(svg))
-    .webp({ quality: 90 })
-    .toBuffer();
+  const png = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } }).render().asPng();
+  const webpBuffer = await sharp(png).webp({ quality: 90 }).toBuffer();
 
   return new Response(webpBuffer, {
-    headers: {
-      'Content-Type': 'image/webp',
-    },
+    headers: { 'Content-Type': 'image/webp' },
   });
 };
