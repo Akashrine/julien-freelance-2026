@@ -1,27 +1,20 @@
 ---
 import { slugify } from '../../utils/articles';
-
 interface Props {
   bgColor?: 'blue' | 'clay';
   label?: string;
   title?: string;
   className?: string;
 }
-
 const { bgColor = 'blue', label, title, className = '' } = Astro.props;
-
-const bgClass = bgColor === 'clay' ? 'article-color-block-clay' : 'article-color-block-blue';
-const labelColorClass = bgColor === 'clay' ? 'text-clay' : 'text-gray-400';
-const blobPositionClass = bgColor === 'clay' ? 'blob-article-clay' : 'blob-article-blue';
-const blobBgClass = bgColor === 'clay' ? 'bg-[rgba(229,186,173,0.2)]' : 'bg-blue-light';
+const bg = bgColor === 'clay' ? 'article-color-block-clay' : 'article-color-block-blue';
 const sectionId = slugify(label || title || '');
 ---
 
-<section id={sectionId || undefined} class={`full-width-section ${bgClass} py-32 mb-32 relative overflow-hidden reveal ${className}`}>
-  <div class={`blob-article blob-article-small organic-shape ${blobPositionClass} ${blobBgClass}`}></div>
-  <div class="max-w-2xl mx-auto relative z-10">
-    {label && <div class={`font-mono mb-8 ${labelColorClass} article-label`}>{label}</div>}
-    {title && <h2 class="text-4xl mb-10 font-serif italic">{title}</h2>}
+<section id={sectionId || undefined} class={`${bg} mb-20 px-6 py-14 sm:mb-24 sm:px-10 sm:py-20 reveal ${className}`}>
+  <div class="mx-auto max-w-[42rem]">
+    {label && <p class="eyebrow mb-4">{label}</p>}
+    {title && <h2 class="t-title mb-8 text-ink">{title}</h2>}
     <slot />
   </div>
 </section>

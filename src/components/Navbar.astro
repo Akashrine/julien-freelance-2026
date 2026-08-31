@@ -19,9 +19,9 @@ const links = [
     </a>
 
     <nav aria-label="Navigation principale">
-      <ul class="flex items-baseline gap-6 text-sm sm:gap-10">
+      <ul class="flex items-center gap-6 text-sm sm:gap-10">
         {links.map((link) => (
-          <li>
+          <li class="flex">
             <a
               href={link.href}
               class="link-nav"
@@ -31,7 +31,25 @@ const links = [
             </a>
           </li>
         ))}
+        <li class="flex">
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Basculer entre thème clair et sombre"></button>
+        </li>
       </ul>
     </nav>
+
+    <script>
+      const bouton = document.getElementById('theme-toggle');
+      if (bouton) {
+        bouton.addEventListener('click', () => {
+          const racine = document.documentElement;
+          const sombre =
+            racine.dataset.theme === 'dark' ||
+            (!racine.dataset.theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          const nouveau = sombre ? 'light' : 'dark';
+          racine.dataset.theme = nouveau;
+          try { localStorage.setItem('theme', nouveau); } catch (e) {}
+        });
+      }
+    </script>
   </div>
 </header>

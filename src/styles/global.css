@@ -205,8 +205,16 @@
     animation: move 20s infinite alternate;
   }
 
-  .organic-shape {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  /* Héritage de l'ancienne DA : les formes organiques redeviennent droites,
+     les cartes blanches ombrées deviennent des cases filet. Neutralisé ici
+     pour ne pas toucher au markup des articles (copy gelée). */
+  .organic-shape { border-radius: 0; }
+
+  .article-content .bg-white {
+    background-color: transparent;
+    box-shadow: none !important;
+    border-radius: 0;
+    border-color: var(--color-line);
   }
 
   .btn-cta {
@@ -236,28 +244,35 @@
   .dropcap::first-letter,
   p.dropcap::first-letter {
     font-family: var(--font-serif) !important;
-    font-size: 5rem !important;
+    font-size: 3.4em !important;
     float: left !important;
-    margin-right: 1.2rem !important;
-    margin-top: 0.2rem !important;
-    line-height: 0.8 !important;
-    color: #B0582A !important;
-    font-weight: 700 !important;
-    display: block !important;
+    padding-right: 0.14em !important;
+    padding-top: 0.05em !important;
+    line-height: 0.85 !important;
+    color: var(--color-ink) !important;
+    font-weight: 400 !important;
   }
 
-  /* Style d'article hérité. Scopé aux articles le 30/08 : nu, il s'appliquait
-     à toutes les citations du site et gonflait les blocs de 4rem de chaque côté. */
+  /* L'exergue. La grande citation des articles : serif italique, alignée
+     à gauche, portée par l'espace — plus de centrage ni de filets. */
   .article-content blockquote {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 2.5rem;
-    line-height: 1.2;
-    padding: 4rem 0;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    margin: 4rem 0;
-    text-align: center;
+    font-size: 1.625rem;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 3.5rem auto;
+    max-width: 38rem;
+  }
+
+  /* Le MDX enveloppe la citation d'un <p> : il hérite du corps de l'exergue. */
+  .article-content blockquote p {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    color: inherit;
+    margin-bottom: 0;
   }
 
   .blob-article {
@@ -280,43 +295,62 @@
     padding-right: 25vw;
   }
 
-  /* Article content styles */
+  /* Le corps des articles. Tokens partout : le dark mode suit sans remap. */
   .article-content {
-    color: #121316;
+    color: var(--color-ink);
+  }
+
+  /* Le texte nu du MDX (hors composants) retombe dans la colonne de lecture ;
+     les composants pleine largeur (ColorBlock) gardent la leur. */
+  .article-content > p,
+  .article-content > ul,
+  .article-content > ol,
+  .article-content > h2,
+  .article-content > h3,
+  .article-content > blockquote {
+    max-width: 42rem;
+    margin-inline: auto;
   }
 
   .article-content h2 {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+    color: var(--color-ink);
   }
 
   .article-content h3 {
     font-family: var(--font-serif);
-    font-size: 1.875rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
+    font-size: 1.375rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink);
   }
 
   .article-content p {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     line-height: 1.75;
-    margin-bottom: 1.5rem;
-    font-weight: 300;
-    color: #374151;
+    margin-bottom: 1.375rem;
+    color: color-mix(in srgb, var(--color-ink) 88%, var(--color-canvas));
   }
 
   .article-content a {
-    color: #B0582A;
+    color: inherit;
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration-color: var(--color-ochre);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
   }
 
   .article-content a:hover {
-    color: #121316;
+    color: var(--color-ochre);
   }
 
   .article-content ul, .article-content ol {
@@ -326,43 +360,20 @@
 
   .article-content li {
     margin-bottom: 0.5rem;
-    font-weight: 300;
   }
 
   .article-content strong {
     font-weight: 600;
-    color: #121316;
+    color: var(--color-ink);
   }
 
   .article-content em {
     font-style: italic;
   }
 
-  .article-content > * {
+  .article-content img {
     max-width: 100%;
-  }
-
-  .article-content blockquote {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 2.5rem;
-    line-height: 1.2;
-    padding: 4rem 0;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    margin: 4rem 0;
-    text-align: center;
-  }
-
-  .article-content .dropcap::first-letter {
-    font-family: var(--font-serif) !important;
-    font-size: 5rem !important;
-    float: left !important;
-    margin-right: 1.2rem !important;
-    margin-top: 0.2rem !important;
-    line-height: 0.8 !important;
-    color: #B0582A !important;
-    font-weight: 700 !important;
+    height: auto;
   }
 
   .article-content .article-header {
@@ -396,7 +407,7 @@
   }
 
   .bg-sand-light {
-    background-color: rgba(242, 233, 225, 0.4);
+    background-color: var(--color-sand-light);
   }
 
   .bg-blue-light {
@@ -1292,3 +1303,86 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 @media (prefers-reduced-motion: reduce) {
   .mailpick-overlay, .mailpick-overlay .mailpick { transition: none; }
 }
+
+/* =========================================================
+   MODE SOMBRE — 31/08/2026. Le même système, la nuit :
+   l'encre et le crème échangent leurs rôles, le vermillon
+   s'éclaircit d'un cran pour tenir sur le sombre, les gris
+   Tailwind des articles sont remappés vers l'échelle inverse.
+   Trois états : clair forcé, sombre forcé, sinon le système.
+   ========================================================= */
+:root[data-theme="dark"] {
+  --color-canvas: #141518;
+  --color-ink: #F3F0EA;
+  --color-dim: #A5A19A;
+  --color-line: #2C2D31;
+  --color-ochre: #F05B33;
+  --color-accent: #F05B33;
+  --color-background: #141518;
+  --color-bg-light: #141518;
+  --color-text-primary: #F3F0EA;
+  --color-rule: #2C2D31;
+  --color-sand: #262320;
+  --color-sand-light: rgba(38, 35, 32, 0.5);
+  --color-sage-blue: #202527;
+  --color-sage-blue-light: rgba(32, 37, 39, 0.35);
+  --color-clay: #2E2521;
+  --color-gray-900: #F3F0EA;
+  --color-gray-800: #DDD8D0;
+  --color-gray-700: #C6C1B9;
+  --color-gray-600: #A5A19A;
+  --color-gray-500: #918D86;
+  --color-gray-400: #7A766F;
+  --color-gray-300: #3A3B3F;
+  --color-gray-200: #2C2D31;
+  --color-gray-100: #232428;
+  --color-gray-50: #1B1C1F;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-canvas: #141518;
+    --color-ink: #F3F0EA;
+    --color-dim: #A5A19A;
+    --color-line: #2C2D31;
+    --color-ochre: #F05B33;
+    --color-accent: #F05B33;
+    --color-background: #141518;
+    --color-bg-light: #141518;
+    --color-text-primary: #F3F0EA;
+    --color-rule: #2C2D31;
+    --color-sand: #262320;
+    --color-sand-light: rgba(38, 35, 32, 0.5);
+    --color-sage-blue: #202527;
+    --color-sage-blue-light: rgba(32, 37, 39, 0.35);
+    --color-clay: #2E2521;
+    --color-gray-900: #F3F0EA;
+    --color-gray-800: #DDD8D0;
+    --color-gray-700: #C6C1B9;
+    --color-gray-600: #A5A19A;
+    --color-gray-500: #918D86;
+    --color-gray-400: #7A766F;
+    --color-gray-300: #3A3B3F;
+    --color-gray-200: #2C2D31;
+    --color-gray-100: #232428;
+    --color-gray-50: #1B1C1F;
+    color-scheme: dark;
+  }
+}
+
+/* Le sélecteur. Un petit disque mi-plein — clair d'un côté, sombre de
+   l'autre. Fonctionnel, pas décoratif : c'est l'état du thème. */
+.theme-toggle {
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-dim);
+  background: linear-gradient(90deg, transparent 50%, var(--color-dim) 50%);
+  cursor: pointer;
+  padding: 0;
+  flex: none;
+  align-self: center;
+  transition: border-color 0.2s ease;
+}
+.theme-toggle:hover { border-color: var(--color-ochre); }
