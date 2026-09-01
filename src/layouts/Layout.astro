@@ -360,31 +360,6 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
 
         const sectionFadeElements = document.querySelectorAll('.section-fade');
         sectionFadeElements.forEach(el => sectionObserver.observe(el));
-
-        // Parallaxe sur les blobs (léger effet au scroll)
-        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-          const parallaxBlobs = document.querySelectorAll('.blob-parallax');
-          
-          let ticking = false;
-          function updateParallax() {
-            const scrolled = window.pageYOffset;
-            parallaxBlobs.forEach((blob, index) => {
-              const speed = (index % 2 === 0 ? 0.3 : 0.5);
-              const yPos = -(scrolled * speed);
-              blob.style.transform = `translateY(${yPos}px)`;
-            });
-            ticking = false;
-          }
-
-          function requestTick() {
-            if (!ticking) {
-              window.requestAnimationFrame(updateParallax);
-              ticking = true;
-            }
-          }
-
-          window.addEventListener('scroll', requestTick);
-        }
       };
 
       if (document.readyState === 'loading') {
