@@ -6,7 +6,7 @@ const { title, className = '' } = Astro.props;
 const hasBody = Astro.slots.has('default');
 ---
 
-<div class={`mx-auto my-12 max-w-[42rem] bg-sand-light p-7 sm:p-9 reveal ${className}`}>
+<div class={`my-12 max-w-[42rem] bg-sand-light p-7 sm:p-9 reveal ${className}`}>
   {title && hasBody && <p class="eyebrow mb-3">{title}</p>}
   {title && !hasBody && <p class="font-serif text-xl italic leading-relaxed text-ink">{title}</p>}
   <slot />
