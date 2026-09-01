@@ -1,8 +1,8 @@
 # Julien Brionne
 
 > Senior Product Manager freelance. Je reprends les sujets produit qui n'avancent
-> plus et je les mène jusqu'à une mise en production. Quatre scale-ups traversées :
-> Heetch, Back Market, Waalaxy, Wizville.
+> plus et je les mène jusqu'à une mise en production. Je suis intervenu chez Heetch,
+> Back Market, Waalaxy et Wizville.
 
 Site personnel et bibliothèque de textes sur l'organisation produit en scale-up :
 ownership, structuration d'équipe, priorisation, outils internes, support client
