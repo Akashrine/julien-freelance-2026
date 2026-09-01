@@ -183,6 +183,7 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
       }, 2500);
     </script>
     <div class="relative z-10">
+      <a href="#contenu" class="skip-link">Aller au contenu</a>
       <slot />
     </div>
     
@@ -241,8 +242,8 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
         const overlay = document.createElement('div');
         overlay.className = 'mailpick-overlay';
         overlay.innerHTML = `
-          <div class="mailpick" role="dialog" aria-modal="true" aria-label="Écrire à Julien">
-            <p class="mailpick-title">Écrire à Julien</p>
+          <div class="mailpick" role="dialog" aria-modal="true" aria-label="M’écrire">
+            <p class="mailpick-title">M’écrire</p>
             ${sujet ? `<p class="mailpick-subject">Objet : ${sujet.replace(/[<>&]/g, '')}</p>` : ''}
             <div class="mailpick-list">
               <button type="button" class="mailpick-item" data-act="app">Ouvrir mon application e-mail</button>
@@ -266,6 +267,22 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
         }
         function surEchap(e) { if (e.key === 'Escape') fermer(); }
 
+        // Le focus reste dans la boîte : au Tab, on tourne, on n'en sort pas.
+        function surTab(e) {
+          if (e.key !== 'Tab') return;
+          const cibles = overlay.querySelectorAll('.mailpick-item, button, [href]');
+          if (!cibles.length) return;
+          const premier = cibles[0];
+          const dernier = cibles[cibles.length - 1];
+          if (e.shiftKey && document.activeElement === premier) {
+            e.preventDefault();
+            dernier.focus();
+          } else if (!e.shiftKey && document.activeElement === dernier) {
+            e.preventDefault();
+            premier.focus();
+          }
+        }
+
         overlay.addEventListener('click', (e) => {
           if (e.target === overlay) { fermer(); return; }
           const el = e.target.closest('[data-act], .mailpick-close');
@@ -283,11 +300,15 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
         });
 
         document.addEventListener('keydown', surEchap);
+        overlay.addEventListener('keydown', surTab);
         document.body.appendChild(overlay);
         requestAnimationFrame(() => {
           overlay.classList.add('is-open');
-          const premier = overlay.querySelector('.mailpick-item');
-          if (premier) premier.focus();
+          // Second passage : le focus ne se pose qu'une fois la boîte peinte.
+          requestAnimationFrame(() => {
+            const premier = overlay.querySelector('.mailpick-item');
+            if (premier) premier.focus();
+          });
         });
       }
 
