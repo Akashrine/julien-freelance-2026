@@ -1,13 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import SituationsIntro from '../components/SituationsIntro.astro';
-import SituationsObservables from '../components/SituationsObservables.astro';
-import SituationsAnalysis from '../components/SituationsAnalysis.astro';
-import SituationsIntervention from '../components/SituationsIntervention.astro';
-import Breadcrumb from '../components/Breadcrumb.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+// Copy verbatim de l'ancienne page (gel du 30/08) — seule la forme change.
+const observables = [
+  { titre: 'La vision décorative', texte: 'La stratégie existe sur le papier, mais elle n’aide plus à trancher les arbitrages difficiles du quotidien. Les équipes naviguent à vue. Le fondateur et le Head of Product ne sont plus alignés sur ce qu’on arrête.' },
+  { titre: 'La roadmap réactive', texte: 'Le backlog n’est plus un outil d’orientation, mais une liste de réponses aux urgences internes ou aux demandes des derniers clients signés. Sales pousse, produit subit.' },
+  { titre: 'Les PMs « éponges »', texte: 'Les Product Managers absorbent toute la complexité opérationnelle. Ils s’épuisent à coordonner au lieu de construire. Les décisions qu’ils devraient trancher remontent en réunion sans jamais être fermées.' },
+  { titre: 'Les décisions en silos', texte: 'Les choix structurants sont retardés ou pris de manière implicite. Tech build une chose, le fondateur en attend une autre. On découvre les incohérences au moment de la mise en production.' },
+  { titre: 'Le delivery stagnant', texte: 'La tech livre à une vélocité constante, mais l’usage ne décolle plus. Les nouvelles fonctionnalités ne trouvent pas leur public. Personne n’a fermé la liste des features pour recentrer.' },
+  { titre: 'La chute silencieuse', texte: 'L’activation ou la rétention déclinent doucement. On multiplie les petites optimisations sans s’attaquer au problème de fond. Personne n’assume d’arrêter ce qui ne marche pas.' },
+  { titre: 'Le doute sur les priorités', texte: 'Les équipes perdent confiance dans la direction. Le sentiment que l’on travaille sur les « mauvaises choses » s’installe. PM et tech se renvoient la responsabilité de trancher.' },
+  { titre: 'Tensions Produit / Tech / Ops', texte: 'Chaque département se replie sur ses enjeux propres. La coordination devient une source de friction constante. Les arbitrages entre ce que veut Sales, ce que livre Tech et ce que porte le produit restent ouverts.' },
+];
+
+const intervention = [
+  { titre: 'Nommer le réel', texte: 'Mettre sur la table le désaccord fondateur / Head of Product ou produit / Sales que personne n’osait formuler. Ça crée un moment d’inconfort. Ensuite on tranche.' },
+  { titre: 'Trancher les arbitrages', texte: 'Forcer les choix explicites : ce qu’on arrête, ce qu’on supprime, ce qu’on dépriorise. Pas « aider les leaders à porter ». Je participe aux arbitrages et j’assume les décisions impopulaires avec eux.' },
+  { titre: 'Réduire le bruit', texte: 'Supprimer des initiatives, fermer des options, arrêter des features. Simplifier le périmètre. Ça crée de la résistance. C’est le prix de la clarté.' },
+  { titre: 'Retrouver l’impact', texte: 'Recentrer l’énergie sur ce qui crée de la valeur mesurable. Donc arrêter ce qui n’en crée pas. La décision de fermeture est assumée, pas déléguée.' },
+];
 
 const siteUrl = 'https://www.julien-brionne.fr';
 const pageUrl = `${siteUrl}/situations`;
@@ -38,17 +52,103 @@ const breadcrumbSchema = getBreadcrumbSchema([
   breadcrumbSchema={breadcrumbSchema}
 >
   <Navbar currentPage="situations" />
-  <Breadcrumb items={[{ name: 'Accueil', url: '/' }, { name: 'Situations' }]} />
   <main>
-    <SituationsIntro />
-    <SituationsObservables />
-    <SituationsAnalysis />
-    <SituationsIntervention />
-    <section class="py-16 text-center">
-      <p class="text-base text-gray-500 font-light">
-        Pas encore prêt ? <a href="/diagnostic" class="underline hover:text-gray-700 transition-colors">Commence par un diagnostic</a>.
-      </p>
+    <!-- L'ouverture -->
+    <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
+      <div class="shell space-y-12 sm:space-y-16">
+        <div class="space-y-6">
+          <p class="eyebrow reveal">Contexte</p>
+          <h1 class="t-display max-w-[20ch] text-ink reveal">
+            Reconnaître <span class="text-dim italic">le moment critique.</span>
+          </h1>
+        </div>
+        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal">
+          <p class="text-ink">
+            Dans la croissance d’un produit, il existe un stade précis où tout continue de
+            fonctionner, mais où chaque avancée semble coûter deux fois plus d’énergie.
+          </p>
+          <p class="font-serif italic text-dim">
+            L’effort augmente plus vite que l’impact. Les journées sont denses, les livraisons
+            se succèdent, mais la sensation de progresser vers un objectif clair s’efface. Ce
+            n’est pas un échec, c’est un symptôme de saturation du système décisionnel :
+            personne n’ose plus trancher.
+          </p>
+        </div>
+      </div>
     </section>
+
+    <!-- Observables : le registre du terrain, dense dedans -->
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell">
+        <div class="split reveal">
+          <p class="split-aside eyebrow">Observables</p>
+          <div class="space-y-10">
+            <h2 class="t-title text-ink">Situations de terrain.</h2>
+            <div class="grid gap-x-9 gap-y-8 sm:grid-cols-2">
+              {observables.map((o) => (
+                <div class="space-y-1.5">
+                  <h3 class="font-semibold text-ink">{o.titre}</h3>
+                  <p class="text-[0.9375rem] leading-relaxed text-dim">{o.texte}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Analyse -->
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell">
+        <div class="split reveal">
+          <p class="split-aside eyebrow">Analyse</p>
+          <div class="space-y-7">
+            <h2 class="t-title max-w-[24ch] text-ink">Un problème de décision, pas de compétence.</h2>
+            <p class="max-w-[38rem] text-lg leading-relaxed text-dim">
+              Ces situations ne sont presque jamais dues à un manque de talent ou de motivation.
+              Ce sont des conséquences directes de l’accumulation de choix restés ouverts. Le
+              désalignement s’installe quand le système ne permet plus de trancher. La pression
+              opérationnelle finit par masquer les vrais arbitrages : quoi supprimer, quoi
+              arrêter, contre qui assumer la décision.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intervention -->
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell">
+        <div class="split reveal">
+          <p class="split-aside eyebrow">Intervention</p>
+          <div class="space-y-10">
+            <h2 class="t-title text-ink">Rétablir la direction.</h2>
+            <div class="grid gap-x-9 gap-y-8 sm:grid-cols-2">
+              {intervention.map((g) => (
+                <div class="space-y-1.5">
+                  <h3 class="font-serif text-lg italic text-ink">{g.titre}</h3>
+                  <p class="text-[0.9375rem] leading-relaxed text-dim">{g.texte}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- La suite -->
+    <section class="border-t border-line px-6 py-14 sm:px-10 sm:py-20">
+      <div class="shell reveal">
+        <p class="text-lg text-dim">Pas encore prêt ?</p>
+        <p class="mt-3">
+          <a href="/diagnostic" class="door text-lg">
+            <span>Commence par un diagnostic</span>
+            <span class="door-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </p>
+      </div>
+    </section>
+
     <Footer />
   </main>
 </Layout>
