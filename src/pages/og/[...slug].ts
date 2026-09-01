@@ -9,7 +9,7 @@ import { getCategoryLabel } from '../../utils/articles';
 
 // Images OG rendues par satori : polices embarquées, retour à la ligne natif,
 // rendu identique en local et sur Vercel. Le design est celui du site —
-// crème, encre, Newsreader pour le titre, Nohemi pour le reste, le point
+// crème, encre, Newsreader pour le titre, Instrument Sans pour le reste, le point
 // du logotype en vermillon. Les TTF de src/og-fonts/ ne servent qu'au build.
 const COLORS = {
   canvas: '#FBF7F1',
@@ -25,8 +25,8 @@ const font = (file: string) => readFileSync(`${process.cwd()}/src/og-fonts/${fil
 
 const FONTS = [
   { name: 'Newsreader', data: font('Newsreader-Medium.ttf'), weight: 500 as const, style: 'normal' as const },
-  { name: 'Nohemi', data: font('Nohemi-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
-  { name: 'Nohemi', data: font('Nohemi-Medium.ttf'), weight: 500 as const, style: 'normal' as const },
+  { name: 'Instrument Sans', data: font('InstrumentSans-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Instrument Sans', data: font('InstrumentSans-Medium.ttf'), weight: 500 as const, style: 'normal' as const },
 ];
 
 // Titres et descriptions repris des metadata réelles des pages. Aucune
@@ -98,7 +98,7 @@ function carte(title: string, description: string, meta?: string) {
       flexDirection: 'column',
       backgroundColor: COLORS.canvas,
       padding: '72px 80px 64px',
-      fontFamily: 'Nohemi',
+      fontFamily: 'Instrument Sans',
     },
     [
       // Le logotype, point vermillon compris.

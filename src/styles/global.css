@@ -1,34 +1,23 @@
 @import "tailwindcss";
 
-/* Nohemi — Rajesh Rajput, freeware personnel et commercial.
-   Fichiers non modifiés, la licence l'interdit. Voir public/fonts/README.md. */
+/* Instrument Sans (variable 400–700) — SIL OFL, auto-hébergée.
+   Sous-ensembles latin + latin-ext (unicode-range).
+   Newsreader (serif) reste servie par Google Fonts, voir Layout.astro. */
 @font-face {
-  font-family: 'Nohemi';
-  src: url('/fonts/Nohemi-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-400-700-latin-ext.woff2') format('woff2');
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: 'Nohemi';
-  src: url('/fonts/Nohemi-Medium.woff2') format('woff2');
-  font-weight: 500;
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-400-700-latin.woff2') format('woff2');
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
-}
-@font-face {
-  font-family: 'Nohemi';
-  src: url('/fonts/Nohemi-SemiBold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Nohemi';
-  src: url('/fonts/Nohemi-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* =========================================================
@@ -63,7 +52,7 @@
   --color-clay: #E7D9CE;
 
   /* Typographie */
-  --font-sans: 'Nohemi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
 }
 
@@ -101,9 +90,10 @@
     background-color: var(--color-canvas);
   }
 
+  /* La sélection porte l'accent, très dilué : on lit encore le texte dessous. */
   ::selection {
-    background-color: var(--color-ink);
-    color: var(--color-canvas);
+    background-color: color-mix(in srgb, var(--color-ochre) 18%, transparent);
+    color: var(--color-ink);
   }
 
   /* Cible de scroll sous l'en-tête, pour les trois ancres d'offre */
@@ -771,14 +761,14 @@
 
   /* 6. Focus amélioré pour accessibilité */
   *:focus-visible {
-    outline: 2px solid #B0582A;
+    outline: 2px solid var(--color-ochre);
     outline-offset: 4px;
     border-radius: 2px;
   }
 
   button:focus-visible,
   a:focus-visible {
-    outline: 2px solid #B0582A;
+    outline: 2px solid var(--color-ochre);
     outline-offset: 2px;
   }
 
@@ -1386,3 +1376,207 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   transition: border-color 0.2s ease;
 }
 .theme-toggle:hover { border-color: var(--color-ochre); }
+
+/* =========================================================
+   LES DÉTAILS — 01/09/2026
+   Rien ici ne se voit au premier regard. Tout se sent :
+   la typographie qui ne laisse pas de mot seul en bout de ligne,
+   le clavier qui trouve son chemin, la page qui s'imprime,
+   la navigation qui ne clignote plus.
+   Hors @layer : Tailwind purge ce qu'il ne lit pas dans le markup.
+   ========================================================= */
+
+/* Le saut de navigation. Invisible à la souris, premier arrêt au clavier. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 1.5rem));
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-offset: 3px;
+}
+
+/* Le contenu reçoit le focus sans dessiner de cadre autour de la page. */
+main:focus,
+main:focus-visible {
+  outline: none;
+}
+
+/* Équilibre des lignes. Un titre ne finit plus sur un mot esseulé,
+   un paragraphe ne laisse plus de veuve. Ignoré là où c'est inconnu. */
+h1, h2, h3,
+.t-display, .t-title, .t-sub, .t-quote {
+  text-wrap: balance;
+}
+p, li, figcaption, .measure-wide {
+  text-wrap: pretty;
+}
+
+/* Les guillemets de l'exergue débordent dans la marge : le bord du texte
+   redevient droit. Détail de composition, invisible s'il n'est pas rendu. */
+.article-content blockquote {
+  hanging-punctuation: first last;
+}
+
+/* Les chiffres des registres et des méta s'alignent en colonne. */
+.ledger-num,
+.eyebrow,
+time {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ligatures et crénage soignés sur les grands corps serif. */
+.t-display, .t-title, .t-quote, .t-sub,
+.article-content h2, .article-content h3,
+.wordmark {
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Les ancres d'articles ne se collent plus sous l'en-tête. */
+.article-content h2[id],
+.article-content h3[id],
+[id]:target {
+  scroll-margin-top: 6rem;
+}
+
+/* Transition de page, sans une ligne de JavaScript : le navigateur fond
+   l'ancienne vue dans la nouvelle. Là où ce n'est pas géré, rien ne change. */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: vt-out 0.18s cubic-bezier(0.4, 0, 1, 1) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes vt-out {
+    to { opacity: 0; }
+  }
+  @keyframes vt-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+  .skip-link { transition: none; }
+}
+
+/* L'article imprimé. Un dirigeant imprime un texte pour le passer à son
+   équipe : il doit arriver lisible, sans chrome, avec sa source. */
+@media print {
+  .theme-toggle,
+  .skip-link,
+  nav,
+  footer,
+  .door,
+  .mailpick,
+  .mailpick-overlay {
+    display: none !important;
+  }
+
+  /* Le logotype survit : l'article imprimé porte le nom de son auteur. */
+  header {
+    margin-bottom: 1cm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main,
+  .shell,
+  .article-content,
+  .article-content > * {
+    max-width: none !important;
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
+  }
+
+  /* Les bandes teintées redeviennent du papier, séparées par un filet. */
+  .article-color-block-blue,
+  .article-color-block-clay,
+  .bg-sand-light {
+    background: transparent !important;
+    border-top: 1pt solid #ccc;
+    padding: 0.5cm 0 !important;
+  }
+
+  .article-content h2,
+  .article-content h3 {
+    break-after: avoid;
+  }
+
+  .article-content p,
+  .article-content li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* L'adresse des liens survit au papier, interne comme externe. */
+  .article-content a[href^="http"]::after {
+    content: " (" attr(href) ")";
+  }
+  .article-content a[href^="/"]::after {
+    content: " (julien-brionne.fr" attr(href) ")";
+  }
+  .article-content a[href^="http"]::after,
+  .article-content a[href^="/"]::after {
+    font-size: 9pt;
+    color: #555;
+    word-break: break-all;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+}
+
+/* =========================================================
+   L'ENTRÉE — 01/09/2026
+   Le hero se compose en trois temps : la promesse, ce que je fais,
+   puis la porte. Il emprunte .reveal, déjà en place, plutôt qu'une
+   animation à lui : une entrée ne doit jamais conditionner la
+   lisibilité du contenu le plus important de la page.
+   ========================================================= */
+
+/* Le repère d'arrivée. Quand un lien mène à une section précise,
+   un voile d'accent s'efface : on sait où l'on vient d'atterrir. */
+@keyframes arrivee {
+  from { background-color: color-mix(in srgb, var(--color-ochre) 7%, transparent); }
+  to { background-color: transparent; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  section:target {
+    animation: arrivee 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+

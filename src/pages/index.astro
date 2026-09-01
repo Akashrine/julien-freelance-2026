@@ -41,27 +41,27 @@ const phrases = [
 >
   <Navbar current="accueil" />
 
-  <main>
+  <main id="contenu" tabindex="-1">
     <!-- 1. Hero. Amendé le 30/08 sur décision de Julien, post-mise en prod :
          la promesse d'abord, l'accroche en second temps. Voir decisions.md. -->
     <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
       <div class="shell grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
         <div class="space-y-12 sm:space-y-16">
-          <h1 class="t-display max-w-[24ch] text-ink">
+          <h1 class="reveal t-display max-w-[24ch] text-ink" style="--index:0">
             Un sujet produit important n’avance&nbsp;plus&nbsp;?
             <span class="text-dim italic">Je le reprends et je le fais avancer.</span>
           </h1>
 
-          <div class="measure-wide text-lg leading-relaxed text-ink sm:text-xl">
+          <div class="reveal measure-wide text-lg leading-relaxed text-ink sm:text-xl" style="--index:1">
             <p>
               Senior Product Manager freelance, j’interviens quand il faut enfin décider
               quoi construire, ou quand un sujet important n’arrive pas jusqu’en production.
             </p>
           </div>
 
-          <p>
+          <p class="reveal" style="--index:2">
             <a href={MAILTO} class="door text-base sm:text-lg">
-              <span>Écrire à Julien</span>
+              <span>M’écrire</span>
               <span class="door-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </p>
@@ -99,7 +99,7 @@ const phrases = [
       <div class="shell space-y-2 sm:space-y-4">
         <p class="reveal t-display text-ink" style="--index:0">Je prends le sujet.</p>
         <p class="reveal t-display text-ink" style="--index:1">Je le fais avancer.</p>
-        <p class="reveal t-display text-ochre" style="--index:2">Il sort.</p>
+        <p class="reveal t-display text-ochre" style="--index:4">Il sort.</p>
       </div>
     </section>
 
@@ -203,7 +203,7 @@ const phrases = [
         <div class="space-y-3 pt-2">
           <p>
             <a href={MAILTO} class="door font-serif text-xl sm:text-2xl">
-              <span>Écrire à Julien</span>
+              <span>M’écrire</span>
               <span class="door-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </p>

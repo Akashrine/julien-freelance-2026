@@ -32,22 +32,40 @@ const links = [
           </li>
         ))}
         <li class="flex">
-          <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Basculer entre thème clair et sombre"></button>
+          <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Passer au thème sombre"></button>
         </li>
       </ul>
     </nav>
 
     <script>
       const bouton = document.getElementById('theme-toggle');
+      const racine = document.documentElement;
+      const prefereSombre = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const estSombre = () =>
+        racine.dataset.theme === 'dark' ||
+        (!racine.dataset.theme && prefereSombre.matches);
+
+      // Le bouton dit où il emmène, pas où l'on est : c'est ce qu'annoncent
+      // les lecteurs d'écran au moment de le déclencher.
+      function annonce() {
+        if (!bouton) return;
+        const sombre = estSombre();
+        bouton.setAttribute('aria-pressed', String(sombre));
+        bouton.setAttribute('aria-label', sombre ? 'Passer au thème clair' : 'Passer au thème sombre');
+      }
+
       if (bouton) {
+        annonce();
         bouton.addEventListener('click', () => {
-          const racine = document.documentElement;
-          const sombre =
-            racine.dataset.theme === 'dark' ||
-            (!racine.dataset.theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-          const nouveau = sombre ? 'light' : 'dark';
+          const nouveau = estSombre() ? 'light' : 'dark';
           racine.dataset.theme = nouveau;
           try { localStorage.setItem('theme', nouveau); } catch (e) {}
+          annonce();
+        });
+        // Tant qu'aucun choix n'est enregistré, le système fait foi.
+        prefereSombre.addEventListener('change', () => {
+          if (!racine.dataset.theme) annonce();
         });
       }
     </script>
