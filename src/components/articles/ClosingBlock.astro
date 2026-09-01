@@ -5,7 +5,7 @@ const { title, className = '' } = Astro.props;
 const sectionId = title ? slugify(title) : '';
 ---
 
-<section id={sectionId || undefined} class={`mx-auto max-w-[42rem] border-t border-line pt-12 reveal ${className}`}>
+<section id={sectionId || undefined} class={`max-w-[42rem] border-t border-line pt-12 reveal ${className}`}>
   {title && <h2 class="t-title mb-8 text-ink">{title}</h2>}
   <slot />
 </section>

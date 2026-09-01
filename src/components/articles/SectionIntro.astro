@@ -3,7 +3,7 @@ interface Props { className?: string }
 const { className = '' } = Astro.props;
 ---
 
-<section class={`mx-auto max-w-[42rem] mb-20 sm:mb-24 reveal ${className}`}>
+<section class={`max-w-[42rem] mb-20 sm:mb-24 reveal ${className}`}>
   <slot />
 </section>
 

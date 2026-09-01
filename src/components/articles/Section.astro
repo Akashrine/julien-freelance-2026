@@ -14,7 +14,7 @@ const { label, title, quote, className = '' } = Astro.props;
 const sectionId = slugify(label || title || '');
 ---
 
-<section id={sectionId || undefined} class={`mx-auto max-w-[42rem] mb-20 sm:mb-24 reveal ${className}`}>
+<section id={sectionId || undefined} class={`max-w-[42rem] mb-20 sm:mb-24 reveal ${className}`}>
   {label && <p class="eyebrow mb-4">{label}</p>}
   {quote && (
     <p class="mb-8 font-serif text-xl italic leading-relaxed text-ink sm:text-2xl">

@@ -252,7 +252,7 @@
     line-height: 1.35;
     letter-spacing: -0.01em;
     color: var(--color-ink);
-    margin: 3.5rem auto;
+    margin: 3.5rem 0;
     max-width: 38rem;
   }
 
@@ -299,7 +299,6 @@
   .article-content > h3,
   .article-content > blockquote {
     max-width: 42rem;
-    margin-inline: auto;
   }
 
   .article-content h2 {
@@ -1406,10 +1405,28 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   outline-offset: 3px;
 }
 
-/* Le contenu reçoit le focus sans dessiner de cadre autour de la page. */
+/* Le contenu reçoit le focus sans encadrer la page — mais le saut doit
+   se voir : le premier titre porte brièvement le repère d'arrivée. */
 main:focus,
 main:focus-visible {
   outline: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main:focus-visible h1 {
+    animation: arrivee-titre 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes arrivee-titre {
+  from {
+    background-color: color-mix(in srgb, var(--color-ochre) 16%, transparent);
+    box-shadow: 0 0 0 0.4rem color-mix(in srgb, var(--color-ochre) 16%, transparent);
+  }
+  to {
+    background-color: transparent;
+    box-shadow: 0 0 0 0.4rem transparent;
+  }
 }
 
 /* Équilibre des lignes. Un titre ne finit plus sur un mot esseulé,
