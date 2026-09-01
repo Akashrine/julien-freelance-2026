@@ -1,0 +1,40 @@
+# Julien Brionne
+
+> Senior Product Manager freelance. Je reprends les sujets produit qui n'avancent
+> plus et je les mène jusqu'à une mise en production. Quatre scale-ups traversées :
+> Heetch, Back Market, Waalaxy, Wizville.
+
+Site personnel et bibliothèque de textes sur l'organisation produit en scale-up :
+ownership, structuration d'équipe, priorisation, outils internes, support client
+comme territoire produit, alignement entre Product, Ops et Engineering.
+
+Ce fichier suit la proposition llms.txt. Le contenu de référence reste les pages
+elles-mêmes, en HTML statique, lisibles sans exécution de JavaScript.
+
+## Pages
+
+- [Accueil](https://www.julien-brionne.fr/) : la promesse, deux preuves, les deux situations d'intervention.
+- [À propos](https://www.julien-brionne.fr/a-propos) : qui écrit, les terrains, les faits vérifiables.
+- [Ce que je fais](https://www.julien-brionne.fr/ce-que-je-fais) : les deux formes d'intervention, La Mise au clair et Le Copilote, et ce que chacune n'est pas.
+- [Écrits](https://www.julien-brionne.fr/ecrits) : où je publie, dont la newsletter Produit Sans Filtre.
+- [Textes](https://www.julien-brionne.fr/articles) : la bibliothèque complète.
+
+## Textes de fond
+
+- [Ownership produit : pourquoi personne ne sait qui décide quoi dans ton équipe](https://www.julien-brionne.fr/articles/ownership-produit)
+- [Structurer une équipe produit en scale-up : par où commencer quand tout est urgent](https://www.julien-brionne.fr/articles/structurer-equipe-produit-scale-up)
+- [Ton équipe produit passe plus de temps à se coordonner qu'à livrer](https://www.julien-brionne.fr/articles/equipe-produit-trop-de-reunions)
+- [Aligner Product, Ops et Engineering : le triptyque que personne ne pilote](https://www.julien-brionne.fr/articles/aligner-product-ops-engineering)
+- [Backoffice legacy : quand refondre, quand patcher, et comment trancher](https://www.julien-brionne.fr/articles/backoffice-legacy-scale-up)
+- [Le care comme territoire produit : pourquoi ton support client est un problème de PM](https://www.julien-brionne.fr/articles/care-territoire-produit)
+- [Product Manager freelance senior : ce que ça change pour une scale-up](https://www.julien-brionne.fr/articles/pm-freelance-senior-scale-up)
+- [Quand le problème devient l'organisation](https://www.julien-brionne.fr/articles/probleme-organisation)
+- [L'illusion du mouvement : quand l'effort masque l'absence de décision](https://www.julien-brionne.fr/articles/illusion-mouvement)
+- [Le poids des décisions déléguées](https://www.julien-brionne.fr/articles/poids-decisions-deleguees)
+- [Quand l'activation ne libère pas de valeur, le problème n'est pas l'onboarding](https://www.julien-brionne.fr/articles/activation-sequence)
+- [L'Art du Non](https://www.julien-brionne.fr/articles/art-du-non)
+
+## Ailleurs
+
+- [Produit Sans Filtre](https://produitsansfiltre.substack.com) : la newsletter.
+- [LinkedIn](https://www.linkedin.com/in/julienbrionne)

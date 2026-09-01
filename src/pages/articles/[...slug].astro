@@ -79,7 +79,7 @@ const articleSchema = getArticleSchema(
   article.data.title,
   article.data.excerpt,
   article.data.date,
-  article.data.date, // dateModified defaults to datePublished
+  article.data.updated ?? article.data.date,
   undefined, // about - can be added per article if needed
   article.data.thumbnail
 );
@@ -117,6 +117,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
         <p class="mb-5 text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">
           {getCategoryLabel(article.data.category)} · {formatDate(article.data.date)} · {readingTime} min de lecture
         </p>
+        {article.data.updated && article.data.updated !== article.data.date && (
+          <p class="mb-5 -mt-3 text-[0.6875rem] uppercase tracking-[0.08em] text-dim">
+            Révisé le {formatDate(article.data.updated)}
+          </p>
+        )}
         <h1 class="t-title mb-6 text-ink">
           {article.data.title}
         </h1>
@@ -130,6 +135,14 @@ const breadcrumbSchema = getBreadcrumbSchema([
       </div>
 
       <div>
+        <!-- La signature. Elle rattache le texte à son auteur — c'est ce qui
+             permet à un lecteur, humain ou moteur, d'attribuer ce qu'il lit. -->
+        <p class="max-w-[42rem] border-t border-line pt-8 text-base leading-relaxed text-dim">
+          Écrit par <a href="/a-propos" class="link-inline">Julien Brionne</a>, Senior Product
+          Manager freelance. Quatre scale-ups traversées : Heetch, Back Market, Waalaxy,
+          Wizville.
+        </p>
+
         <ArticleNavigation previousArticle={previousArticle} nextArticle={nextArticle} />
 
         <p class="mt-10 border-t border-line pt-8">

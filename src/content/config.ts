@@ -5,6 +5,9 @@ const articlesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
+    // Date de révision réelle. Renseignée seulement quand le texte a été
+    // repris après publication ; sinon dateModified retombe sur date.
+    updated: z.string().optional(),
     category: z.enum(['reflexion', 'analyse']),
     excerpt: z.string(),
     thumbnail: z.string().optional(),
