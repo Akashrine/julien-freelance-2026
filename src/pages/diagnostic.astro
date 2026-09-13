@@ -21,7 +21,7 @@ const methode = [
 
 const resultats = [
   { titre: 'Fermer le vrai problème', texte: 'Nommer ce qui freine l’équipe et fermer les options qui ne tiennent pas. Souvent, les symptômes visibles (PMs débordés, priorités qui changent) masquent un problème plus profond : une vision qui n’aide plus à trancher, ou un désaccord fondamental sur la direction que personne n’osait nommer.' },
-  { titre: 'Mettre en pause', texte: 'Décider d’arrêter certaines initiatives pour protéger la santé du produit.' },
+  { titre: 'Décider ce qu’on arrête', texte: 'Arrêter certaines initiatives pour protéger la santé du produit. C’est souvent la décision la plus difficile, et celle qui débloque le reste.' },
   { titre: 'Cibler l’intervention', texte: 'Identifier où investir l’énergie de l’équipe pour le prochain cycle. Et donc où ne pas l’investir.' },
   { titre: 'Ne rien changer', texte: 'Conclure que la situation actuelle est le meilleur arbitrage possible compte tenu des contraintes, et ne pas collaborer plus loin. C’est une issue valide et assumée.' },
 ];
@@ -31,7 +31,7 @@ const pageUrl = `${siteUrl}/diagnostic`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
   'Diagnostic produit',
-  'L\'effort augmente, l\'impact ne suit plus ? Intervention courte de 2 à 3 semaines pour identifier pourquoi les décisions ne tiennent pas. Une pause pour vérifier le cap avant d\'accélérer.',
+  'L\'effort augmente, l\'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque, trancher, et décider ce qu\'on arrête. Cette démarche porte un nom : La Mise au clair.',
   ['diagnostic produit', 'audit produit', 'décisions produit', 'vérifier le cap']
 );
 const breadcrumbSchema = getBreadcrumbSchema([
@@ -42,15 +42,15 @@ const breadcrumbSchema = getBreadcrumbSchema([
 
 <Layout
   title="Diagnostic produit — Julien Brionne"
-  description="L'effort augmente, l'impact ne suit plus ? Intervention courte 2 à 3 semaines pour identifier pourquoi les décisions ne tiennent pas."
+  description="L'effort augmente, l'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque, trancher, et décider ce qu'on arrête."
   ogTitle="Diagnostic produit"
-  ogDescription="L'effort augmente, l'impact ne suit plus ? Intervention courte 2 à 3 semaines pour identifier pourquoi les décisions ne tiennent pas."
+  ogDescription="L'effort augmente, l'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque et décider ce qu'on arrête."
   ogType="website"
   ogImage="/og/page-diagnostic.webp"
   ogUrl="https://www.julien-brionne.fr/diagnostic"
   twitterCard="summary_large_image"
   twitterTitle="Diagnostic produit"
-  twitterDescription="L'effort augmente, l'impact ne suit plus ? Intervention courte 2 à 3 semaines pour identifier pourquoi les décisions ne tiennent pas."
+  twitterDescription="L'effort augmente, l'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque et décider ce qu'on arrête."
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
@@ -89,7 +89,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
             <h2 class="t-title text-ink">Une pause pour vérifier le cap.</h2>
             <div class="max-w-[38rem] space-y-5 text-lg leading-relaxed text-dim">
               <p>
-                Intervention courte (2 à 3 semaines) pour identifier pourquoi les décisions ne
+                Six demi-journées sur trois semaines pour identifier pourquoi les décisions ne
                 tiennent pas. Le décalage entre ce que l’organisation pense faire et ce qu’elle
                 fait réellement est presque toujours là. Je mets sur la table les tensions non
                 formulées, pas pour juger la performance, mais pour que l’équipe puisse trancher
@@ -168,10 +168,10 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <!-- La suite -->
     <section class="border-t border-line px-6 py-14 sm:px-10 sm:py-20">
       <div class="shell reveal">
-        <p class="text-lg text-dim">Prêt à en parler ?</p>
+        <p class="text-lg text-dim">Cette démarche porte un nom : La Mise au clair.</p>
         <p class="mt-3">
-          <a href="/ce-que-je-fais" class="door text-lg">
-            <span>Prendre contact directement</span>
+          <a href="/ce-que-je-fais#la-mise-au-clair" class="door text-lg">
+            <span>Voir La Mise au clair</span>
             <span class="door-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </p>
