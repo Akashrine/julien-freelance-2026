@@ -18,13 +18,30 @@ const mailto = (sujet: string = "Un sujet qui n'avance pas") =>
   // tronquent le sujet dessus — on l'encode nous-mêmes.
   `mailto:${EMAIL}?subject=${encodeURIComponent(sujet).replace(/'/g, '%27')}`;
 
-const demiJournees = [
-  'Vous et moi. Votre activité, vos chiffres, ce que vous voulez dans trois ans, ce que vous ne voulez plus faire.',
-  'Vos équipes. Ce que chacun croit qu’on est en train de construire. Les réponses ne concordent jamais.',
-  'Vos clients. Six à huit conversations courtes. Des fidèles, des nouveaux, et quelqu’un qui est parti.',
-  'Les chiffres et les concurrents. Ce que vous vendez, à qui, à quel prix, avec quelle marge.',
-  'On tranche. Deux ou trois scénarios sur la table, avec ce que chacun implique. Vous choisissez.',
-  'On séquence. Ce qui se fait maintenant, ce qui suit, ce qui attend.',
+// Ce qui se passe pendant les trois semaines. Quatre mouvements, pas un
+// agenda : le protocole fixe vendait un audit, ce que la fiche « Ce que ce
+// n'est pas » dément deux lignes plus bas.
+const mouvements = [
+  {
+    titre: 'Je pars de votre diagnostic.',
+    texte:
+      'Vous me racontez ce qui n’avance pas, ce que vous pensez être le problème et ce que vous avez déjà essayé.',
+  },
+  {
+    titre: 'Je le confronte au terrain.',
+    texte:
+      'Je parle aux gens qui vivent le sujet, pas seulement à ceux qui le pilotent. Ce que je regarde dépend de ce qui bloque : les décisions, les clients, les données, les tickets, le fonctionnement des équipes. Je cherche ce qui confirme ou contredit votre diagnostic.',
+  },
+  {
+    titre: 'On met le vrai problème sur la table.',
+    texte:
+      'Je vous ramène ce que les faits montrent, y compris quand ce n’est pas là que vous pensiez que ça coinçait.',
+  },
+  {
+    titre: 'On tranche et on enclenche.',
+    texte:
+      'Ce qu’on change, dans quel ordre et ce qu’on arrête. La première action est cadrée avec l’équipe qui va la porter.',
+  },
 ];
 
 // Les fiches d'offre : chaque bloc libellé devient une ligne de la grille.
@@ -42,7 +59,7 @@ const miseAuClair = [
   {
     label: 'Ce que vous avez à la fin.',
     texte:
-      'Une décision prise, en salle, avec vous. Le cadre écrit. Les trois prochains mois séquencés. Vous savez sur quoi vos devs travaillent lundi, et pourquoi.',
+      'Une décision prise, en salle, avec vous. Ce qu’on change, ce qu’on arrête et le cadre pour la suite. Vous savez sur quoi vos équipes travaillent lundi, et pourquoi.',
   },
   {
     label: 'Pour qui.',
@@ -202,19 +219,19 @@ const copilote = [
 
         <div class="split pt-2">
           <div class="split-aside" aria-hidden="true"></div>
-          <h3 class="t-sub text-ink">Les six demi-journées</h3>
+          <h3 class="t-sub text-ink">Pendant ces trois semaines</h3>
         </div>
 
         <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
-          <ol class="ledger">
-            {demiJournees.map((item, i) => (
-              <li class="ledger-row">
-                <span class="ledger-num">{String(i + 1).padStart(2, '0')}</span>
-                <span class="block text-lg leading-relaxed text-dim">{item}</span>
-              </li>
+          <div class="space-y-7">
+            {mouvements.map((m) => (
+              <div class="space-y-1.5">
+                <p class="font-semibold text-ink">{m.titre}</p>
+                <p class="text-lg leading-relaxed text-dim">{m.texte}</p>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
 
         <div class="split">
