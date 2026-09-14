@@ -789,6 +789,98 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 }
 
 /* =========================================================
+   L'HORIZON — 14/09/2026
+   La seule image décorative du site : un paysage à peine tracé,
+   derrière le hero d'accueil. Il n'illustre rien et ne dit rien ;
+   il donne de la profondeur au crème, et il place le portrait
+   devant quelque chose plutôt que dans le vide.
+
+   Trois règles le tiennent :
+   — il entre par la droite et s'éteint avant la colonne de texte,
+     pour que pas un mot ne se lise sur un trait ;
+   — aucun bord ne se voit : le masque le dissout sur les côtés, un voile
+     de crème le rend à la page en bas — jamais de cadre, jamais de filet ;
+   — il est décoratif au sens strict (aria-hidden, background CSS) :
+     s'il ne charge pas, la page est exactement la même.
+   ========================================================= */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--color-canvas);
+}
+
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  /* Derrière le contenu, devant le fond de la section : c'est ce fond
+     que le mode sombre viendra mélanger. */
+  z-index: -2;
+  pointer-events: none;
+  background-image: url('/bg.webp');
+  background-repeat: no-repeat;
+  /* Toute la largeur, posé sur le bas : l'image garde ses proportions,
+     donc son vide à gauche reste à gauche quelle que soit la fenêtre.
+     Un recadrage en `cover` zoomerait dessus vers 1100 px et ramènerait
+     le relief sous le titre. */
+  background-position: right bottom;
+  background-size: 100% auto;
+  opacity: 0.75;
+  /* Une ellipse décentrée vers la droite : pleine sur le relief et le
+     soleil, éteinte avant la colonne de lecture. Un seul calque — les
+     masques composés ne sont pas également servis partout. */
+  -webkit-mask-image: radial-gradient(72% 110% at 86% 52%, #000 0%, #000 24%, transparent 74%);
+  mask-image: radial-gradient(72% 110% at 86% 52%, #000 0%, #000 24%, transparent 74%);
+}
+
+/* Le bas de la section coupe l'image à l'équerre : ce voile la rend au
+   crème avant le bord, pour qu'aucune ligne d'horizon ne trahisse le cadre.
+   Un dégradé de fond, pas un masque : il tient partout, et le mode sombre
+   l'obtient gratuitement puisqu'il est peint dans la couleur de la page. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 34%;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(to top, var(--color-canvas) 0%, transparent 100%);
+}
+
+/* Sous la coque, la page passe sur une seule colonne : le paysage
+   descend derrière le portrait, en retrait, et laisse le titre net. */
+@media (max-width: 1023px) {
+  .hero-scene {
+    background-position: 72% 100%;
+    background-size: 190% auto;
+    opacity: 0.6;
+    -webkit-mask-image: radial-gradient(105% 70% at 70% 100%, #000 0%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(105% 70% at 70% 100%, #000 0%, #000 30%, transparent 78%);
+  }
+}
+
+/* La nuit, le tracé s'inverse — l'encre devient claire, le papier
+   disparaît dans le fond de la section par éclaircissement. La rotation
+   de teinte rend au soleil sa couleur, que l'inversion seule virerait. */
+:root[data-theme="dark"] .hero-scene {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: screen;
+  opacity: 0.4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-scene {
+    filter: invert(1) hue-rotate(180deg);
+    mix-blend-mode: screen;
+    opacity: 0.4;
+  }
+}
+
+@media print {
+  .hero-scene { display: none; }
+}
+
+/* =========================================================
    LE SÉLECTEUR D'ENVOI — hors de toute @layer : ses classes
    n'existent que dans du HTML injecté au runtime, Tailwind les
    purgerait depuis une couche.

@@ -43,9 +43,13 @@ const phrases = [
 
   <main id="contenu" tabindex="-1">
     <!-- 1. Hero. Amendé le 30/08 sur décision de Julien, post-mise en prod :
-         la promesse d'abord, l'accroche en second temps. Voir decisions.md. -->
-    <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
-      <div class="shell grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
+         la promesse d'abord, l'accroche en second temps. Voir decisions.md.
+         Le paysage du 14/09 est purement décoratif — aria-hidden, posé en
+         fond CSS. Il met le portrait devant un horizon et s'éteint avant la
+         colonne de texte ; s'il ne charge pas, la page ne change pas. -->
+    <section class="hero px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
+      <div class="hero-scene" aria-hidden="true"></div>
+      <div class="shell relative grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
         <div class="space-y-12 sm:space-y-16">
           <h1 class="reveal t-display max-w-[24ch] text-ink" style="--index:0">
             Un sujet produit important n’avance&nbsp;plus&nbsp;?
