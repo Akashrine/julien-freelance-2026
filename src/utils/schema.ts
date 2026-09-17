@@ -55,7 +55,7 @@ export function getServiceSchemas(): object[] {
       '@context': 'https://schema.org',
       '@type': 'Service',
       name: 'Le Copilote',
-      description: 'Un jour par semaine, trois mois. Un jalon produit en production, choisi avec vous avant de commencer.',
+      description: "Huit semaines au maximum pour faire sortir un MVP qui ne sort pas, avec la méthode que l'équipe garde après mon départ.",
       provider: { '@id': `${SITE_URL}/#person` },
       url: `${SITE_URL}/ce-que-je-fais#le-copilote`,
       serviceType: 'Product management',

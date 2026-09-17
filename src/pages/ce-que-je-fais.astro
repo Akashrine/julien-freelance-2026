@@ -102,19 +102,29 @@ const miseAuClair = [
 ];
 
 // Le Copilote. Copy validée le 17/09/2026 : l'offre prend la délivrée,
-// plus la coordination inter-équipes. Cinq fiches, dans cet ordre.
+// plus la coordination inter-équipes. Sept fiches, dans cet ordre.
 // Le déroulé est dégressif : il tient sur six lignes, donc il sort du motif
 // libellé + paragraphe et prend le rail comme la preuve Back Market.
 const copiloteOuverture = [
   {
-    label: 'Le problème',
+    label: 'Le problème.',
     texte:
       'L’équipe sait où elle va. Le MVP, lui, ne sort pas. Les tickets s’empilent, le périmètre bouge chaque semaine, personne ne sait où couper. Le problème n’est pas l’équipe. Elle ne s’est jamais organisée pour livrer.',
   },
   {
-    label: 'Pour qui',
+    label: 'Pour qui.',
     texte:
       'Un dirigeant ou un sponsor qui porte le sujet. Une équipe déjà en place. Un cap déjà posé, avec ou sans Mise au clair avant.',
+  },
+  {
+    label: 'Pas pour qui.',
+    texte:
+      'Une équipe qui ne sait pas encore quoi construire : c’est La Mise au clair. Une organisation de quinze personnes et plus.',
+  },
+  {
+    label: 'Ce que ce n’est pas.',
+    texte:
+      'Une mission longue. Un renfort qui livre à la place de l’équipe. Une promesse de chiffre.',
   },
 ];
 
@@ -129,12 +139,12 @@ const copiloteDeroule = [
 
 const copiloteSortie = [
   {
-    label: 'Ce qui reste quand je pars',
+    label: 'Ce qui reste quand je pars.',
     texte:
       'Je pars quand la première version est livrée. L’équipe garde la méthode qu’on a construite ensemble : comment elle découpe, comment elle écrit, ses garde-fous. Si la version n’est pas livrée au bout de huit semaines, je pars quand même, la méthode reste, et on décide ensemble de la suite.',
   },
   {
-    label: 'Et après',
+    label: 'Et après.',
     texte: 'Si vous voulez que je reste, on en parle. C’est une autre mission.',
   },
 ];
@@ -204,8 +214,7 @@ const copiloteSortie = [
             <div class="schema-branch-inner space-y-2.5">
               <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
               <p class="leading-relaxed text-dim">
-                Un sujet important traverse plusieurs équipes et personne ne le porte jusqu’au
-                bout.
+                L’équipe sait où elle va. Le MVP, lui, ne sort pas.
               </p>
               <p>
                 <a href="#le-copilote" class="door text-base">
@@ -316,7 +325,7 @@ const copiloteSortie = [
           ))}
 
           <div class="split">
-            <p class="split-aside font-semibold text-ink">Comment ça se passe</p>
+            <p class="split-aside font-semibold text-ink">Comment ça se passe.</p>
             <div class="space-y-5 text-lg leading-relaxed text-dim">
               {copiloteDeroule.map((ligne) => (
                 <p>{ligne}</p>
