@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
-/* Instrument Sans (variable 400–700) — SIL OFL, auto-hébergée.
-   Sous-ensembles latin + latin-ext (unicode-range).
-   Newsreader (serif) reste servie par Google Fonts, voir Layout.astro. */
+/* Les deux fontes du site, auto-hébergées, servies depuis le même domaine.
+   Instrument Sans (variable 400–700) et Newsreader (variable 300–500,
+   axe optique conservé) — SIL OFL toutes les deux, sous-ensembles latin
+   et latin-ext téléchargés depuis Google Fonts, woff2 non modifiés.
+   Newsreader est passée en auto-hébergement le 17/09/2026 : son CSS distant
+   coûtait un aller-retour vers fonts.googleapis.com avant même que le
+   navigateur connaisse l'adresse des fichiers. Voir public/fonts/README.md. */
 @font-face {
   font-family: 'Instrument Sans';
   src: url('/fonts/InstrumentSans-400-700-latin-ext.woff2') format('woff2');
@@ -16,6 +20,39 @@
   src: url('/fonts/InstrumentSans-400-700-latin.woff2') format('woff2');
   font-weight: 400 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/Newsreader-300-500-latin-ext.woff2') format('woff2');
+  font-weight: 300 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/Newsreader-300-500-latin.woff2') format('woff2');
+  font-weight: 300 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/Newsreader-italic-300-400-latin-ext.woff2') format('woff2');
+  font-weight: 300 400;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/Newsreader-italic-300-400-latin.woff2') format('woff2');
+  font-weight: 300 400;
+  font-style: italic;
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -50,6 +87,12 @@
   --color-sage-blue: #DFE4E2;
   --color-sage-blue-light: rgba(223, 228, 226, 0.2);
   --color-clay: #E7D9CE;
+
+  /* L'or de /ressources. La valeur d'origine (#C5A070) mesurait 2,28:1 sur
+     le crème : illisible en texte. Assombri pour le jour, éclairci pour la
+     nuit — le fond et les filets, eux, gardent la teinte d'origine.
+     Assez sombre pour tenir aussi sur les pastilles teintées (4,8:1). */
+  --color-gold: #7E5E2C;
 
   /* Typographie */
   --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -118,59 +161,6 @@
   }
 
 
-  /* Hero animations */
-  @keyframes heroFadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes heroImageFadeIn {
-    from {
-      opacity: 0;
-      transform: translateX(40px) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-
-  .float {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  @keyframes move {
-    from { 
-      transform: translate(0, 0) rotate(0deg) scale(1); 
-    }
-    to { 
-      transform: translate(50px, 40px) rotate(15deg) scale(1.1); 
-    }
-  }
-
-  .blob {
-    position: absolute;
-    z-index: -1;
-    filter: blur(40px);
-    opacity: 0.5;
-    animation: move 20s infinite alternate;
-  }
-
   /* Héritage de l'ancienne DA : les formes organiques redeviennent droites,
      les cartes blanches ombrées deviennent des cases filet. Neutralisé ici
      pour ne pas toucher au markup des articles (copy gelée). */
@@ -189,17 +179,13 @@
     padding: 1.1rem 2.2rem;
     min-height: 48px;
     display: inline-block;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background-color 150ms ease, color 150ms ease;
     border-radius: 50px;
   }
 
   .btn-cta:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  }
-
-  .group:hover .photo-hover-shadow {
-    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
   }
 
   /* Article styles */
@@ -235,11 +221,6 @@
     font-weight: inherit;
     color: inherit;
     margin-bottom: 0;
-  }
-
-  @keyframes float-article {
-    from { transform: translate(0, 0) rotate(0deg); }
-    to { transform: translate(40px, 30px) rotate(10deg); }
   }
 
   /* Le corps des articles. Tokens partout : le dark mode suit sans remap. */
@@ -335,42 +316,13 @@
     background-color: color-mix(in srgb, var(--color-clay) 10%, transparent);
   }
 
-  .bg-sand {
-    background-color: #F2E9E1;
-  }
-
   .bg-sand-light {
     background-color: var(--color-sand-light);
-  }
-
-  .article-item.hidden {
-    display: none;
-    opacity: 0;
-    transform: scale(0.98);
   }
 
   /* Color block component */
   .color-block {
     background-color: var(--bg-color, rgba(215, 229, 229, 0.1));
-  }
-
-  @media (max-width: 768px) {
-  }
-
-  .nav-link:not(.active)::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: currentColor;
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .nav-link.active {
-    text-decoration: underline;
-    text-underline-offset: 4px;
   }
 
   /* Lift effect sur les boutons CTA */
@@ -379,22 +331,25 @@
     overflow: hidden;
   }
 
+  /* L'onde du survol. Elle animait width et height — deux propriétés qui
+     repassent par la mise en page à chaque image. Même dessin, en échelle :
+     le compositeur s'en charge seul. */
   .btn-cta::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0;
-    height: 0;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease;
+    will-change: transform;
   }
 
   .btn-cta:hover::before {
-    width: 300px;
-    height: 300px;
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .btn-cta:hover {
@@ -403,22 +358,6 @@
 
   .btn-cta:active {
     transform: translateY(0);
-  }
-
-  .filter-btn.active {
-    animation: filterActivate 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  @keyframes filterActivate {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.08);
-    }
-    100% {
-      transform: scale(1);
-    }
   }
 
   /* 6. Focus amélioré pour accessibilité */
@@ -434,61 +373,14 @@
     outline-offset: 2px;
   }
 
-  /* 8. Fade-in progressif des sections */
-  .section-fade {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .section-fade.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* 9. Transition de page */
-  @keyframes pageFadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  main {
-    animation: pageFadeIn 0.5s ease-out;
-  }
-}
-
-/* ──────────────────────────────────────────────
-   Ressources — design tokens (dark mode islands)
-   ────────────────────────────────────────────── */
-:root {
-  --lime: #E8FF8B;
-  --surface-0: #0A0A0A;
-  --surface-1: #0F0F0F;
-  --surface-2: #141414;
-  --surface-3: #121316;
-  --border-dark: #1F1F1F;
-  --text-1: #F5F5F5;
-  --text-2: #A3A3A3;
-  --text-3: #666666;
+  /* Aucun fondu d'entrée sur <main> : @view-transition enchaîne déjà une
+     page sur l'autre, et à la première visite un voile sur le titre ne
+     sert personne — c'est lui que le visiteur est venu lire. */
 }
 
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes shimmer-dark {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 255, 139, 0); }
-  50%      { box-shadow: 0 0 24px 4px rgba(232, 255, 139, 0.12); }
 }
 
 details summary { cursor: pointer; list-style: none; }
@@ -522,14 +414,23 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 
   /* Lien de navigation : sobre, souligné à l'ocre au survol. */
   .link-nav {
+    position: relative;
     color: var(--color-dim);
     transition: color 0.2s ease;
+  }
+  /* La zone atteignable dépasse le texte de part et d'autre : 20 px de
+     caractères deviennent 30 px de cible, sans décaler la ligne de base. */
+  .link-nav::after {
+    content: '';
+    position: absolute;
+    inset: -0.3125rem 0;
   }
   .link-nav:hover,
   .link-nav[aria-current="page"] { color: var(--color-ink); }
 
   /* La porte. Un lien souligné, jamais un bouton. */
   .door {
+    position: relative;
     display: inline-flex;
     align-items: baseline;
     gap: 0.5rem;
@@ -545,9 +446,17 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     color: var(--color-ink);
     text-decoration-color: var(--color-ochre);
   }
+  /* Même règle pour la porte : c'est un lien isolé, pas un mot dans une
+     phrase — il doit tenir le minimum de cible à lui seul. */
+  .door::after {
+    content: '';
+    position: absolute;
+    inset: -0.375rem 0;
+  }
+
   .door-arrow {
     color: var(--color-ochre);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .door:hover .door-arrow { transform: translateX(0.25rem); }
 
@@ -740,6 +649,72 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   transform: none;
 }
 
+/* Le premier écran ne passe pas par l'observateur. Même geste, même durée,
+   même décalage — mais joué par CSS au chargement, si bien que le titre est
+   peint dès le premier rendu au lieu d'attendre l'exécution du module qui
+   surveille le défilement. C'est le titre qui décide du LCP : le faire
+   dépendre d'un script différé, c'est retarder la seule chose que le
+   visiteur est venu lire. `backwards` le tient transparent pendant le
+   délai, et sans support d'animation il est simplement visible. */
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(12px); }
+}
+
+.reveal-load {
+  animation: reveal-in 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--index, 0) * 80ms);
+}
+
+/* =========================================================
+   L'AVANCÉE — 17/09/2026
+   Le seul moment composé du site. Trois lignes disent qu'un sujet est
+   repris, qu'il avance, et qu'il sort. Elles ne montaient pas autrement
+   que les vingt autres blocs de la page : même fondu, même douze pixels.
+   Elles se découvrent maintenant de la gauche vers la droite, chacune
+   poussée d'un demi-cadratin jusqu'à sa place — le mouvement dit la phrase
+   au lieu de l'accompagner.
+
+   Les temps ne sont pas réguliers : 0, puis 180 ms, puis 620 ms. Le silence
+   avant « Il sort. » est la mesure la plus longue de la séquence, parce que
+   c'est le résultat qu'on attend et qu'il arrive toujours plus tard qu'on
+   ne voudrait. Il porte le vermillon, et il s'arrête net.
+
+   Le cache déborde verticalement : à 1,06 d'interligne, un `inset` à zéro
+   couperait la jambe du « j » et la panse du « p ».
+   ========================================================= */
+.js .reveal.avance {
+  /* Le fondu générique ne s'applique pas ici : la ligne est visible,
+     c'est son propre découpage qui la retient. */
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.js .reveal.avance > span {
+  display: inline-block;
+  clip-path: inset(-0.3em 100% -0.3em 0);
+  transform: translateX(-0.5em);
+}
+
+.js .reveal.avance.active > span {
+  clip-path: inset(-0.3em -0.12em -0.3em 0);
+  transform: none;
+  transition: clip-path 700ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--temps, 0) * 1ms);
+}
+
+/* Mouvement réduit : la phrase reste, le geste part. Aucun déplacement,
+   aucun découpage — les trois lignes sont simplement là. */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal.avance > span,
+  .js .reveal.avance.active > span {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Mouvement réduit : on ne joue rien, et surtout on ne masque rien. */
 @media (prefers-reduced-motion: reduce) {
   .js .reveal,
@@ -747,6 +722,10 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .reveal-load {
+    animation: none;
   }
 }
 
@@ -1002,6 +981,7 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   --color-gray-200: #2C2D31;
   --color-gray-100: #232428;
   --color-gray-50: #1B1C1F;
+  --color-gold: #D9B06A;
   color-scheme: dark;
 }
 
@@ -1032,8 +1012,17 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     --color-gray-200: #2C2D31;
     --color-gray-100: #232428;
     --color-gray-50: #1B1C1F;
+    --color-gold: #D9B06A;
     color-scheme: dark;
   }
+}
+
+/* L'en-tête se peint au-dessus de ce qui suit. Sans cela, la première
+   section recouvrait le bas des zones atteignables de la navigation :
+   la cible existait dans le style et pas sous le doigt. */
+.site-header {
+  position: relative;
+  z-index: 2;
 }
 
 /* Le sélecteur. Un petit disque mi-plein — clair d'un côté, sombre de
@@ -1048,7 +1037,15 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   padding: 0;
   flex: none;
   align-self: center;
+  position: relative;
   transition: border-color 0.2s ease;
+}
+/* Le disque fait 17 px : c'est sa taille juste. Sa cible, elle, en fait 27 —
+   au doigt, on ne vise pas un disque de 17 px. */
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  inset: -0.4rem;
 }
 .theme-toggle:hover { border-color: var(--color-ochre); }
 
@@ -1198,9 +1195,11 @@ time {
     font-size: 11pt;
   }
 
-  .reveal {
+  .reveal,
+  .reveal-load {
     opacity: 1 !important;
     transform: none !important;
+    animation: none !important;
   }
 
   main,

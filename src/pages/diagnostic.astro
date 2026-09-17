@@ -54,18 +54,18 @@ const breadcrumbSchema = getBreadcrumbSchema([
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
-  <Navbar currentPage="diagnostic" />
+  <Navbar />
   <main id="contenu" tabindex="-1">
     <!-- L'ouverture -->
     <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12 sm:space-y-16">
         <div class="space-y-6">
-          <p class="eyebrow reveal">Diagnostic</p>
-          <h1 class="t-display max-w-[20ch] text-ink reveal">
+          <p class="eyebrow reveal-load">Diagnostic</p>
+          <h1 class="t-display max-w-[20ch] text-ink reveal-load">
             L’effort augmente, <span class="text-dim italic">l’impact ne suit plus&nbsp;?</span>
           </h1>
         </div>
-        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal">
+        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal-load">
           <p class="text-ink">
             Ce diagnostic intervient quand l’équipe livre, mais que l’adoption stagne, que les
             décisions coûtent de plus en plus cher, ou que personne ne sait expliquer pourquoi
@@ -96,7 +96,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
                 en connaissance de cause.
               </p>
               <p class="text-ink">
-                Vérifier que tu adresses le bon problème avant d’accélérer. Si le bon problème
+                Vérifier que vous traitez le bon problème avant d’accélérer. Si le bon problème
                 n’est pas là, on s’arrête. Aucune garantie de suite.
               </p>
             </div>
@@ -178,6 +178,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
       </div>
     </section>
 
-    <Footer />
   </main>
+
+  <Footer />
+
 </Layout>

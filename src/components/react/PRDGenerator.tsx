@@ -26,20 +26,20 @@ type FieldProps = {
 
 function Field({ id, label, placeholder, helper, required, rows, value, onChange }: FieldProps) {
   const sharedClass =
-    "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-[#C5A070]/20 focus:border-[#C5A070] transition-all resize-none";
+    "w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder:text-dim text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-[#C5A070]/20 focus:border-[#C5A070] transition-all resize-none";
 
   return (
     <div className="space-y-1.5">
       <label htmlFor={id} className="block text-sm font-medium text-gray-700">
         {label}
-        {required && <span className="text-[#C5A070] ml-1">*</span>}
+        {required && <span className="text-gold ml-1">*</span>}
       </label>
       {rows ? (
         <textarea id={id} rows={rows} placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} className={sharedClass} />
       ) : (
         <input id={id} type="text" placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} className={sharedClass} />
       )}
-      {helper && <p className="text-xs text-gray-400">{helper}</p>}
+      {helper && <p className="text-xs text-dim">{helper}</p>}
     </div>
   );
 }
@@ -121,7 +121,7 @@ export default function PRDGenerator() {
   return (
     <div className="space-y-8">
       {/* Formulaire */}
-      <div className="border border-gray-200 rounded-2xl p-6 sm:p-8 space-y-6 bg-white/50">
+      <div className="border border-gray-200 rounded-2xl p-6 sm:p-8 space-y-6 bg-gray-50/50">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <Field id="nom-initiative" label="Nom de l'initiative" placeholder="Ex: Refonte onboarding mobile" required value={inputs.nomInitiative} onChange={set("nomInitiative")} />
           <Field id="contexte-produit" label="Contexte produit" placeholder="Ex: App mobile B2C, 50k MAU" helper="Type de produit, taille de la base, modèle de croissance." required value={inputs.contexteProduit} onChange={set("contexteProduit")} />
@@ -137,7 +137,7 @@ export default function PRDGenerator() {
           <button onClick={handleGenerate} disabled={!requiredFilled} className="btn-cta font-mono text-[10px] tracking-widest disabled:opacity-40 disabled:cursor-not-allowed">
             Générer le prompt
           </button>
-          <p className="mt-3 text-xs text-gray-400">Champs marqués * obligatoires</p>
+          <p className="mt-3 text-xs text-dim">Champs marqués * obligatoires</p>
         </div>
       </div>
 
@@ -145,46 +145,46 @@ export default function PRDGenerator() {
       {prompt && (
         <div className="space-y-4">
           <div className="border border-gray-200 rounded-2xl overflow-hidden">
-            <div className="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-[#F2E9E1]/30">
-              <span className="font-mono text-[10px] tracking-[0.2em] text-gray-400">TON PROMPT</span>
+            <div className="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between bg-sand/30">
+              <span className="font-mono text-[10px] tracking-[0.2em] text-dim">TON PROMPT</span>
               {unlocked && (
-                <button onClick={handleCopy} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-300 text-gray-500 hover:text-gray-900 hover:border-gray-400 transition-all">
+                <button onClick={handleCopy} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-gray-300 text-dim hover:text-gray-900 hover:border-gray-400 transition-all">
                   <CopyIcon />{copied ? "Copié !" : "Copier"}
                 </button>
               )}
             </div>
 
-            <div className="p-5 bg-[#F2E9E1]/20">
+            <div className="p-5 bg-sand/20">
               <pre className="font-mono text-sm leading-relaxed text-gray-700 whitespace-pre-wrap">{previewPart}</pre>
             </div>
 
             {gatedPart && (
               <div className="relative">
                 {unlocked ? (
-                  <div className="px-5 pb-5 bg-[#F2E9E1]/20">
+                  <div className="px-5 pb-5 bg-sand/20">
                     <pre className="font-mono text-sm leading-relaxed text-gray-700 whitespace-pre-wrap">{gatedPart}</pre>
                   </div>
                 ) : (
                   <>
-                    <div className="px-5 pb-5 select-none pointer-events-none blur-sm opacity-40 max-h-48 overflow-hidden bg-[#F2E9E1]/20">
+                    <div className="px-5 pb-5 select-none pointer-events-none blur-sm opacity-40 max-h-48 overflow-hidden bg-sand/20">
                       <pre className="font-mono text-sm leading-relaxed text-gray-700 whitespace-pre-wrap">{gatedPart}</pre>
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center bg-linear-to-t from-white via-white/95 to-transparent">
                       <div className="w-full max-w-sm px-6 py-6 text-center">
                         <p className="text-sm font-medium text-gray-900 mb-1">Le prompt est calibré avec tes données.</p>
-                        <p className="text-xs text-gray-500 mb-5">Entre ton email pour voir la structure complète.</p>
+                        <p className="text-xs text-dim mb-5">Entre ton email pour voir la structure complète.</p>
                         {subStatus === "success" ? (
-                          <p className="text-[#C5A070] text-sm font-medium">C'est noté. Prompt débloqué.</p>
+                          <p className="text-gold text-sm font-medium">C'est noté. Prompt débloqué.</p>
                         ) : (
                           <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
-                            <input type="email" placeholder="ton@email.com" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={subStatus === "loading"} className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#C5A070]/20 focus:border-[#C5A070] transition-all" />
+                            <input type="email" placeholder="ton@email.com" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={subStatus === "loading"} className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder:text-dim text-sm focus:outline-none focus:ring-2 focus:ring-[#C5A070]/20 focus:border-[#C5A070] transition-all" />
                             <button type="submit" disabled={subStatus === "loading"} className="btn-cta font-mono text-[10px] tracking-widest disabled:opacity-50">
                               {subStatus === "loading" ? "..." : "Voir le prompt complet"}
                             </button>
                             {subStatus === "error" && <p className="text-red-500 text-xs">{subError}</p>}
                           </form>
                         )}
-                        <p className="mt-3 text-[10px] text-gray-400">Pas de spam. Désinscription en 1 clic.</p>
+                        <p className="mt-3 text-[10px] text-dim">Pas de spam. Désinscription en 1 clic.</p>
                       </div>
                     </div>
                   </>
@@ -195,8 +195,8 @@ export default function PRDGenerator() {
 
           {unlocked && (
             <div className="border-l-2 border-[#C5A070] pl-5 py-1">
-              <p className="text-xs font-mono tracking-[0.15em] text-[#C5A070] mb-2">COMMENT L'UTILISER</p>
-              <ol className="text-sm text-gray-500 space-y-1.5 list-decimal list-inside font-light">
+              <p className="text-xs font-mono tracking-[0.15em] text-gold mb-2">COMMENT L'UTILISER</p>
+              <ol className="text-sm text-dim space-y-1.5 list-decimal list-inside font-light">
                 <li>Copie le prompt ci-dessus</li>
                 <li>Colle-le dans Claude, ChatGPT ou tout autre LLM</li>
                 <li>Récupère ton PRD structuré en 7 sections, prêt à partager</li>

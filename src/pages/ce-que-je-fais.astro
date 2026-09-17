@@ -186,6 +186,10 @@ const copiloteSortie = [
     </section>
 
     <!-- 2. Le routeur. Deux questions au même poids, deux lignes identiques. -->
+    <!-- Seule section du site qui garde `.reveal` : ici ce n'est pas une
+         entrée mais un déclencheur. L'arbre se dessine dans l'ordre où
+         l'argument se pense — racine, descente, division, branches — et
+         toute la séquence est accrochée à `.reveal.active`. Voir global.css. -->
     <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell space-y-12 sm:space-y-14">
         <div class="schema">
@@ -389,7 +393,7 @@ const copiloteSortie = [
         <figure class="split pt-1">
           <div class="split-aside" aria-hidden="true"></div>
           <div class="space-y-4">
-            <blockquote class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
+            <blockquote lang="en" class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
               “Julien was the Product Manager on our Platform team during my time as
               Engineering Manager, and I truly enjoyed our partnership. He did an outstanding
               job taking charge of major initiatives, defining clear project needs, and
@@ -434,7 +438,7 @@ const copiloteSortie = [
     </section>
 
     <!-- Comment ça commence -->
-    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+    <section class="px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell split">
         <div class="split-aside" aria-hidden="true"></div>
         <div class="space-y-8">

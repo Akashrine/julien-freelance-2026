@@ -70,12 +70,12 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12 sm:space-y-16">
         <div class="space-y-6">
-          <p class="eyebrow reveal">À propos</p>
-          <h1 class="t-display max-w-[20ch] text-ink reveal">
+          <p class="eyebrow reveal-load">À propos</p>
+          <h1 class="t-display max-w-[20ch] text-ink reveal-load">
             Julien Brionne, <span class="text-dim italic">Senior Product Manager freelance.</span>
           </h1>
         </div>
-        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal">
+        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal-load">
           <p class="text-ink">
             Je reprends les sujets produit qui n’avancent plus et je les mène jusqu’à une
             mise en production.
@@ -202,9 +202,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
       </div>
     </section>
 
-    <Footer links={[
-      { href: '/ecrits', label: 'Écrits' },
-      { href: '/mentions-legales', label: 'Mentions légales' },
-    ]} />
   </main>
+
+  <Footer links={[
+  { href: '/ecrits', label: 'Écrits' },
+  { href: '/mentions-legales', label: 'Mentions légales' },
+  ]} />
+
 </Layout>
