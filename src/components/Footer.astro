@@ -12,6 +12,16 @@ const {
     { href: '/ecrits', label: 'Écrits' },
     { href: '/mentions-legales', label: 'Mentions légales' },
   ],
+  // Trois pages d'entrée, atteintes par recherche. Elles étaient dans le
+  // sitemap et dans aucun lien du site : indexables, mais sans aucune
+  // importance aux yeux d'un moteur, et introuvables pour un humain qui
+  // arrive par l'accueil. Elles restent au pied de page, en retrait —
+  // ce sont des entrées, pas des destinations.
+  entrees = [
+    { href: '/situations', label: 'Reconnaître la situation' },
+    { href: '/diagnostic', label: 'Diagnostic produit' },
+    { href: '/product-manager-freelance-pme', label: 'PM freelance en PME' },
+  ],
 } = Astro.props;
 ---
 
@@ -28,9 +38,14 @@ const {
       )}
     </div>
 
-    <nav aria-label="Navigation de pied de page">
+    <nav aria-label="Navigation de pied de page" class="space-y-5">
       <ul class="flex flex-col gap-3 text-sm sm:flex-row sm:gap-8">
         {links.map((link) => (
+          <li><a href={link.href} class="link-nav">{link.label}</a></li>
+        ))}
+      </ul>
+      <ul class="flex flex-col gap-3 text-sm sm:flex-row sm:gap-8">
+        {entrees.map((link) => (
           <li><a href={link.href} class="link-nav">{link.label}</a></li>
         ))}
       </ul>

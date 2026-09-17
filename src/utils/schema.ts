@@ -12,6 +12,7 @@
  */
 
 const SITE_URL = 'https://www.julien-brionne.fr';
+import { MISE_AU_CLAIR, COPILOTE } from './offres';
 const AUTHOR_NAME = 'Julien Brionne';
 const AUTHOR_JOB_TITLE = 'Senior Product Manager freelance';
 
@@ -27,7 +28,22 @@ export function getPersonSchema(): object {
     name: AUTHOR_NAME,
     jobTitle: AUTHOR_JOB_TITLE,
     url: SITE_URL,
-    description: "Senior Product Manager freelance. Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production.",
+    description: "Senior Product Manager freelance. Je reprends les sujets produit importants qui n'avancent plus et je les mène jusqu'en production.",
+    // `knowsAbout` dit à un moteur génératif sur quoi cette personne fait
+    // autorité. Sans lui, il doit le déduire du corps des pages. Les sujets
+    // listés sont ceux que les douze articles couvrent réellement.
+    knowsAbout: [
+      'Product management',
+      'Organisation produit en scale-up',
+      'Ownership produit',
+      'Priorisation et arbitrage produit',
+      "Structuration d'équipe produit",
+      'Support client comme territoire produit',
+      'Alignement Product, Ops et Engineering',
+      'Backoffice et outils internes',
+    ],
+    knowsLanguage: 'fr-FR',
+    areaServed: { '@type': 'Country', name: 'France' },
     sameAs: [
       'https://www.linkedin.com/in/julienbrionne',
       'https://produitsansfiltre.substack.com',
@@ -44,8 +60,8 @@ export function getServiceSchemas(): object[] {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: 'La Mise au clair',
-      description: "Six demi-journées sur trois semaines. Une décision prise avec vous, le cadre écrit, les trois prochains mois séquencés.",
+      name: MISE_AU_CLAIR.nom,
+      description: `${MISE_AU_CLAIR.format}. ${MISE_AU_CLAIR.resultat}`,
       provider: { '@id': `${SITE_URL}/#person` },
       url: `${SITE_URL}/ce-que-je-fais#la-mise-au-clair`,
       serviceType: 'Product management',
@@ -54,8 +70,8 @@ export function getServiceSchemas(): object[] {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: 'Le Copilote',
-      description: "Huit semaines au maximum pour faire sortir un MVP qui ne sort pas, avec la méthode que l'équipe garde après mon départ.",
+      name: COPILOTE.nom,
+      description: `${COPILOTE.format} pour faire sortir un MVP qui ne sort pas, avec la méthode que l'équipe garde après mon départ.`,
       provider: { '@id': `${SITE_URL}/#person` },
       url: `${SITE_URL}/ce-que-je-fais#le-copilote`,
       serviceType: 'Product management',
@@ -74,7 +90,7 @@ export function getWebsiteSchema(): object {
     '@type': 'WebSite',
     name: 'Julien Brionne',
     url: SITE_URL,
-    description: 'Intervention produit quand l\'organisation n\'arrive plus à décider. Réflexions, situations de terrain, diagnostic. Trancher, fermer, assumer.',
+    description: "Je reprends les sujets produit importants qui n'avancent plus. On vérifie, on tranche, puis seulement on construit.",
     author: {
       '@type': 'Person',
       name: AUTHOR_NAME,
@@ -209,15 +225,19 @@ export function getBreadcrumbSchema(
 /**
  * Helper to generate breadcrumb items for common page types
  */
+// `approche`, `references` et `contact` ont été retirées le 18/09 : ces trois
+// URL ne sont plus que des redirections 301, et déclarer une URL qui redirige
+// dans un fil d'Ariane apprend au moteur un chemin qui n'existe plus. Aucune
+// page ne les utilisait.
 export const BreadcrumbItems = {
   home: { name: 'Accueil', url: SITE_URL },
-  approche: { name: 'Mon approche', url: `${SITE_URL}/approche` },
-  references: { name: 'Références', url: `${SITE_URL}/references` },
+  ceQueJeFais: { name: 'Ce que je fais', url: `${SITE_URL}/ce-que-je-fais` },
+  ecrits: { name: 'Écrits', url: `${SITE_URL}/ecrits` },
   ressources: { name: 'Ressources', url: `${SITE_URL}/ressources` },
   situations: { name: 'Situations', url: `${SITE_URL}/situations` },
   articles: { name: 'Articles', url: `${SITE_URL}/articles` },
   diagnostic: { name: 'Diagnostic', url: `${SITE_URL}/diagnostic` },
-  contact: { name: 'Contact', url: `${SITE_URL}/contact` },
+  pme: { name: 'PM freelance en PME', url: `${SITE_URL}/product-manager-freelance-pme` },
   article: (title: string, url: string) => ({ name: title, url }),
 };
 

@@ -4,6 +4,9 @@ const articlesCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    // Titre de la balise <title> quand celui de l'article dépasse la
+    // soixantaine de caractères que Google affiche. Le H1 ne change pas.
+    seoTitle: z.string().optional(),
     date: z.string(),
     // Date de révision réelle. Renseignée seulement quand le texte a été
     // repris après publication ; sinon dateModified retombe sur date.

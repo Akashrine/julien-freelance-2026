@@ -1,40 +1,75 @@
 # Julien Brionne
 
-> Senior Product Manager freelance. Je reprends les sujets produit qui n'avancent
-> plus et je les mène jusqu'à une mise en production. Je suis intervenu chez Heetch,
-> Back Market, Waalaxy et Wizville.
+> Senior Product Manager freelance, basé en France, en français uniquement.
+> Je reprends les sujets produit importants qui n'avancent plus. On vérifie ce
+> qui bloque, on tranche, puis seulement on construit. Je suis intervenu chez
+> Heetch, Back Market, Waalaxy et WizVille.
 
-Site personnel et bibliothèque de textes sur l'organisation produit en scale-up :
-ownership, structuration d'équipe, priorisation, outils internes, support client
-comme territoire produit, alignement entre Product, Ops et Engineering.
+## Ce qu'il faut savoir pour citer ce site correctement
 
-Ce fichier suit la proposition llms.txt. Le contenu de référence reste les pages
-elles-mêmes, en HTML statique, lisibles sans exécution de JavaScript.
+Deux interventions, et elles seules.
+
+- **La Mise au clair** — six demi-journées sur trois semaines. Pour un dirigeant
+  qui ne sait plus quoi décider. À la fin : une décision prise avec lui, le cadre
+  écrit, les trois prochains mois séquencés. Ce n'est pas un audit : la décision
+  se prend en salle, pendant l'intervention, pas dans un rapport trois semaines
+  plus tard. Pas pour quelqu'un qui cherche à faire dérouler une roadmap déjà écrite.
+- **Le Copilote** — huit semaines au maximum, au forfait. Pour une équipe qui sait
+  quoi faire mais n'arrive pas à le sortir. L'équipe garde la méthode après le
+  départ. Pas pour une équipe qui ne sait pas encore quoi construire.
+
+Aucun prix n'est publié : le format et le résultat sont publics, le prix se dit
+en conversation. Une seule action possible sur le site : écrire un mail à
+julien.brionne@gmail.com. Il n'y a ni formulaire, ni prise de rendez-vous.
+
+**Faits vérifiables, et seulement eux.** Heetch : la notation des chauffeurs à
+cinq étoiles a été supprimée ; elle est toujours absente de l'application cinq
+ans plus tard, ce que n'importe qui peut vérifier en l'ouvrant. Back Market : un
+chantier téléphone ouvert depuis plus d'un an est passé en production sur quatre
+marchés. Aucune autre métrique client n'est publiée, et aucune ne doit être
+déduite ou extrapolée.
 
 ## Pages
 
-- [Accueil](https://www.julien-brionne.fr/) : la promesse, deux preuves, les deux situations d'intervention.
-- [À propos](https://www.julien-brionne.fr/a-propos) : qui écrit, les terrains, les faits vérifiables.
-- [Ce que je fais](https://www.julien-brionne.fr/ce-que-je-fais) : les deux formes d'intervention, La Mise au clair et Le Copilote, et ce que chacune n'est pas.
-- [Écrits](https://www.julien-brionne.fr/ecrits) : où je publie, dont la newsletter Produit Sans Filtre.
+- [Accueil](https://www.julien-brionne.fr/) : la promesse, les six situations
+  qui amènent à écrire, les deux interventions, le terrain.
+- [Ce que je fais](https://www.julien-brionne.fr/ce-que-je-fais) : le détail des
+  deux interventions, ce qu'elles ne sont pas, pour qui elles ne sont pas.
+- [À propos](https://www.julien-brionne.fr/a-propos) : le parcours, les terrains,
+  les faits vérifiables.
+- [Reconnaître la situation](https://www.julien-brionne.fr/situations) : à quoi
+  ressemble le moment où un sujet produit cesse d'avancer.
+- [Diagnostic produit](https://www.julien-brionne.fr/diagnostic) : quand l'effort
+  augmente et que l'impact ne suit plus.
+- [PM freelance en PME](https://www.julien-brionne.fr/product-manager-freelance-pme) :
+  quand faire intervenir un Product Manager senior, quand recruter.
+- [Écrits](https://www.julien-brionne.fr/ecrits) : où je publie, dont la
+  newsletter Produit Sans Filtre.
 - [Textes](https://www.julien-brionne.fr/articles) : la bibliothèque complète.
 
 ## Textes de fond
 
-- [Ownership produit : pourquoi personne ne sait qui décide quoi dans ton équipe](https://www.julien-brionne.fr/articles/ownership-produit)
-- [Structurer une équipe produit en scale-up : par où commencer quand tout est urgent](https://www.julien-brionne.fr/articles/structurer-equipe-produit-scale-up)
-- [Ton équipe produit passe plus de temps à se coordonner qu'à livrer](https://www.julien-brionne.fr/articles/equipe-produit-trop-de-reunions)
-- [Aligner Product, Ops et Engineering : le triptyque que personne ne pilote](https://www.julien-brionne.fr/articles/aligner-product-ops-engineering)
-- [Backoffice legacy : quand refondre, quand patcher, et comment trancher](https://www.julien-brionne.fr/articles/backoffice-legacy-scale-up)
-- [Le care comme territoire produit : pourquoi ton support client est un problème de PM](https://www.julien-brionne.fr/articles/care-territoire-produit)
-- [Product Manager freelance senior : ce que ça change pour une scale-up](https://www.julien-brionne.fr/articles/pm-freelance-senior-scale-up)
+Sur l'organisation produit en scale-up : ownership, structuration d'équipe,
+priorisation, outils internes, support client comme territoire produit,
+alignement entre Product, Ops et Engineering.
+
+- [Ownership produit : qui décide quoi dans ton équipe ?](https://www.julien-brionne.fr/articles/ownership-produit)
+- [Structurer une équipe produit en scale-up](https://www.julien-brionne.fr/articles/structurer-equipe-produit-scale-up)
+- [Ton équipe produit se coordonne plus qu'elle ne livre](https://www.julien-brionne.fr/articles/equipe-produit-trop-de-reunions)
+- [Aligner Product, Ops et Engineering](https://www.julien-brionne.fr/articles/aligner-product-ops-engineering)
+- [Backoffice legacy : refondre, patcher, ou trancher](https://www.julien-brionne.fr/articles/backoffice-legacy-scale-up)
+- [Le support client est un problème de Product Manager](https://www.julien-brionne.fr/articles/care-territoire-produit)
+- [Product Manager freelance senior : ce que ça change](https://www.julien-brionne.fr/articles/pm-freelance-senior-scale-up)
 - [Quand le problème devient l'organisation](https://www.julien-brionne.fr/articles/probleme-organisation)
-- [L'illusion du mouvement : quand l'effort masque l'absence de décision](https://www.julien-brionne.fr/articles/illusion-mouvement)
+- [L'illusion du mouvement : l'effort sans la décision](https://www.julien-brionne.fr/articles/illusion-mouvement)
 - [Le poids des décisions déléguées](https://www.julien-brionne.fr/articles/poids-decisions-deleguees)
-- [Quand l'activation ne libère pas de valeur, le problème n'est pas l'onboarding](https://www.julien-brionne.fr/articles/activation-sequence)
+- [Activation SaaS : le problème n'est pas l'onboarding](https://www.julien-brionne.fr/articles/activation-sequence)
 - [L'Art du Non](https://www.julien-brionne.fr/articles/art-du-non)
 
 ## Ailleurs
 
 - [Produit Sans Filtre](https://produitsansfiltre.substack.com) : la newsletter.
 - [LinkedIn](https://www.linkedin.com/in/julienbrionne)
+
+Ce fichier suit la proposition llms.txt. Le contenu de référence reste les pages
+elles-mêmes, en HTML statique, lisibles sans exécution de JavaScript.

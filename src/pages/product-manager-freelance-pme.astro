@@ -12,12 +12,14 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { getWebPageSchema } from '../utils/schema';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { MISE_AU_CLAIR } from '../utils/offres';
 
-const TITLE = 'Product Manager freelance en PME : intervenir ou recruter';
+const TITLE = 'Product Manager freelance en PME';
 const DESCRIPTION =
-  "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un Product Manager senior freelance, et quand recruter.";
+  "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un PM freelance, quand recruter.";
 const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
+const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.pme]);
 ---
 
 <Layout
@@ -25,6 +27,7 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
   title={`${TITLE} — Julien Brionne`}
   description={DESCRIPTION}
   webPageSchema={getWebPageSchema(URL, TITLE, DESCRIPTION)}
+  breadcrumbSchema={breadcrumbSchema}
   ogImage="/og/page-product-manager-freelance-pme.webp"
   twitterCard="summary_large_image"
 >
@@ -222,8 +225,8 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
             </h2>
             <div class="space-y-5 text-lg leading-relaxed text-dim">
               <p>
-                Chez moi, elle s’appelle La Mise au clair. Six demi-journées sur trois
-                semaines. Je parle à vos équipes et à vos clients, puis on s’assoit et on
+                Chez moi, elle s’appelle {MISE_AU_CLAIR.nom}. {MISE_AU_CLAIR.format}.
+                Je parle à vos équipes et à vos clients, puis on s’assoit et on
                 tranche : ce que le produit doit résoudre, pour qui, dans quel ordre, et ce
                 qu’on arrête.
               </p>

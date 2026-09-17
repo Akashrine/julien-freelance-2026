@@ -1,4 +1,61 @@
+# julien-brionne.fr
+
+# Les moteurs de recherche, sans restriction hors des deux endpoints.
 User-agent: *
+Disallow: /api/
+
+# Les moteurs génératifs et les agents de recherche assistée sont accueillis
+# explicitement. Le site existe pour qu'un dirigeant dont un sujet produit
+# n'avance plus trouve une réponse — qu'il arrive par une page de résultats
+# ou par un assistant ne change rien à l'intention.
+#
+# Trois d'entre eux ont deux agents distincts : celui qui indexe pour répondre
+# en citant, et celui qui collecte pour entraîner. Les deux sont autorisés ici.
+# Pour n'autoriser que la citation, il suffit d'interdire GPTBot, ClaudeBot et
+# CCBot en laissant OAI-SearchBot, Claude-SearchBot et PerplexityBot.
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: CCBot
+Allow: /
 Disallow: /api/
 
 Sitemap: https://www.julien-brionne.fr/sitemap-index.xml

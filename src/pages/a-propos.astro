@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { mailto } from '../utils/mail';
 
 // Page d'entité. Elle ne raconte rien de neuf : elle rassemble en un seul
 // endroit ce que le site dit déjà de son auteur — le rôle, les terrains, les
@@ -14,7 +15,7 @@ const SITE = 'https://www.julien-brionne.fr';
 const LINKEDIN = 'https://www.linkedin.com/in/julienbrionne';
 const SUBSTACK = 'https://produitsansfiltre.substack.com';
 const MAILTO =
-  'mailto:julien.brionne@gmail.com?subject=Un%20sujet%20qui%20n%27avance%20pas';
+  mailto();
 
 const profileSchema = {
   '@context': 'https://schema.org',
@@ -53,7 +54,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
 
 <Layout
   title="À propos — Julien Brionne, Senior Product Manager freelance"
-  description="Senior Product Manager freelance, intervenu chez Heetch, Back Market, Waalaxy et Wizville. Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'en production."
+  description="Senior Product Manager freelance, intervenu chez Heetch, Back Market, Waalaxy et WizVille. Je reprends les sujets produit qui n\'avancent plus."
   ogTitle="À propos — Julien Brionne"
   ogDescription="Senior Product Manager freelance, intervenu chez Heetch, Back Market, Waalaxy et Wizville."
   ogType="profile"

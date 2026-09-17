@@ -9,14 +9,11 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { getWebPageSchema } from '../utils/schema';
-
-const EMAIL = 'julien.brionne@gmail.com';
-// Objet générique arbitré par Julien le 28/08 ; objets par offre pour les trois ancres.
-const mailto = (sujet: string = "Un sujet qui n'avance pas") =>
-  // encodeURIComponent laisse passer l'apostrophe ; certains clients mail
-  // tronquent le sujet dessus — on l'encode nous-mêmes.
-  `mailto:${EMAIL}?subject=${encodeURIComponent(sujet).replace(/'/g, '%27')}`;
+import { getWebPageSchema, getServiceSchemas, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+// Objet générique arbitré par Julien le 28/08 ; objets par offre pour les trois
+// ancres. L'encodage et le corps de la lettre vivent dans utils/mail.ts.
+import { EMAIL, mailto } from '../utils/mail';
+import { MISE_AU_CLAIR, COPILOTE } from '../utils/offres';
 
 // Ce qui se passe pendant les trois semaines. Quatre mouvements, pas un
 // agenda : le protocole fixe vendait un audit, ce que la fiche « Ce que ce
@@ -77,7 +74,7 @@ const miseAuClair = [
   {
     label: 'Ce que je fais.',
     texte:
-      'Six demi-journées sur trois semaines. Je parle à vos équipes et à vos clients. Puis on s’assoit et on tranche : ce que le produit doit résoudre, pour qui, dans quel ordre, et ce qu’on arrête.',
+      `${MISE_AU_CLAIR.format}. Je parle à vos équipes et à vos clients. Puis on s’assoit et on tranche : ce que le produit doit résoudre, pour qui, dans quel ordre, et ce qu’on arrête.`,
   },
   {
     label: 'Ce que vous avez à la fin.',
@@ -134,7 +131,7 @@ const copiloteDeroule = [
   'Puis un jour par semaine avec l’équipe jusqu’à la livraison, et du cadrage de mon côté entre deux.',
   'Deux jours de présence renforcée au moment de livrer.',
   'Deux semaines de suivi léger pour vérifier que ça tient sans moi.',
-  'Huit semaines au maximum. Au forfait.',
+  `${COPILOTE.format}. Au forfait.`,
 ];
 
 const copiloteSortie = [
@@ -148,16 +145,18 @@ const copiloteSortie = [
     texte: 'Si vous voulez que je reste, on en parle. C’est une autre mission.',
   },
 ];
+const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.ceQueJeFais]);
 ---
 
 <Layout
-  title="Ce que je fais — Julien Brionne"
-  description="Un sujet produit important n'avance plus. Vos équipes sont bonnes. Le résultat ne bouge pas. Je reprends ce sujet et je le mène jusqu'à une mise en production."
+  title="La Mise au clair et Le Copilote — Julien Brionne"
+  description="La Mise au clair pour trancher ce qu'on construit. Le Copilote pour faire sortir un MVP qui ne sort pas. Format, périmètre et limites de chaque offre."
   webPageSchema={getWebPageSchema(
     'https://www.julien-brionne.fr/ce-que-je-fais',
-    'Ce que je fais',
-    "Un sujet produit important n'avance plus. Je reprends ce sujet et je le mène jusqu'à une mise en production."
+    'Ce que je fais',"Un sujet produit important n'avance plus. Je reprends ce sujet et je le mène jusqu'à une mise en production."
   )}
+  serviceSchemas={getServiceSchemas()}
+  breadcrumbSchema={breadcrumbSchema}
   ogImage="/og/page-ce-que-je-fais.webp"
   twitterCard="summary_large_image"
 >
@@ -230,7 +229,7 @@ const copiloteSortie = [
           </div>
         </div>
 
-        <p class="max-w-[42rem] text-sm leading-relaxed text-dim lg:mx-auto lg:text-center">
+        <p class="measure-wide text-sm leading-relaxed text-dim lg:mx-auto lg:text-center">
           Vous décidez du produit seul et personne ne vous contredit utilement.
           <a href="#le-rendez-vous-produit" class="link-inline">Le Rendez-vous produit</a>
         </p>
@@ -411,29 +410,23 @@ const copiloteSortie = [
     </section>
 
     <!-- Le Rendez-vous produit. Cinq lignes, jamais plus. -->
-    <section id="le-rendez-vous-produit" class="px-6 py-10 sm:px-10 sm:py-12">
+    <!-- Le Rendez-vous produit est retiré de l'offre le 18/09/2026 : cinq lignes,
+         aucune preuve, et la seule des trois qui ne répondait à aucune des deux
+         raisons d'un sujet bloqué. L'ancre, elle, ne bouge pas — des liens partent
+         dessus depuis LinkedIn et des messages privés, et une ancre morte renvoie
+         le lecteur en haut de page sans rien lui dire. Repliée : celui qui arrive
+         par l'ancien lien trouve sa réponse, les autres ne lisent pas un faire-part. -->
+    <section id="le-rendez-vous-produit" class="px-6 py-8 sm:px-10">
       <div class="shell split">
         <div class="split-aside" aria-hidden="true"></div>
-        <div class="max-w-[36rem] space-y-3">
-          <h2 class="text-lg font-semibold text-ink">Le Rendez-vous produit</h2>
-
-          <div class="space-y-2 text-sm leading-relaxed text-dim sm:text-base">
-            <p>Pour les dirigeants qui prennent seuls les décisions produit.</p>
-            <p>
-              Une demi-journée par mois pendant six mois. On regarde les décisions qui arrivent,
-              ce qui doit être tranché, et ce que vous êtes sur le point de construire.
-            </p>
-            <p>Ce n’est pas du coaching. On parle de votre produit, pas de vous.</p>
-            <p>Disponible après une première conversation.</p>
-          </div>
-
-          <p class="pt-1">
-            <a href={mailto('Le Rendez-vous produit')} class="door text-sm">
-              <span>Parler du Rendez-vous produit</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
+        <details class="measure text-sm leading-relaxed text-dim">
+          <summary class="w-fit cursor-pointer py-2 text-ink">Vous arrivez par un lien « Le Rendez-vous produit » ?</summary>
+          <p class="pt-3">
+            Ce format ne fait plus partie de ce que je propose. Si c'est ce qui vous
+            amenait, <a href={mailto()} class="link-inline">écrivez-moi ce qui ne tranche pas chez vous</a> —
+            on verra si l'une des deux interventions y répond.
           </p>
-        </div>
+        </details>
       </div>
     </section>
 

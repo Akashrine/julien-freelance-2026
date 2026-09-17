@@ -7,7 +7,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { getWebPageSchema } from '../utils/schema';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
 
 const SUBSTACK = 'https://produitsansfiltre.substack.com';
 const LINKEDIN = 'https://www.linkedin.com/in/julienbrionne';
@@ -60,6 +60,7 @@ const aLire = [
   { href: '/articles/art-du-non', titre: 'L’art du non' },
   { href: '/articles/care-territoire-produit', titre: 'Le care comme territoire produit' },
 ];
+const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.ecrits]);
 ---
 
 <Layout
@@ -68,9 +69,9 @@ const aLire = [
   description="Ce que j'écris, c'est comment je travaille. Produit Sans Filtre, un numéro toutes les deux semaines, et des textes de fond."
   webPageSchema={getWebPageSchema(
     'https://www.julien-brionne.fr/ecrits',
-    'Écrits',
-    "Ce que j'écris, c'est comment je travaille."
+    'Écrits',"Ce que j'écris, c'est comment je travaille."
   )}
+  breadcrumbSchema={breadcrumbSchema}
   ogImage="/og/page-ecrits.webp"
   twitterCard="summary_large_image"
 >
@@ -127,7 +128,7 @@ const aLire = [
       <div class="shell space-y-10 sm:space-y-12">
         <h2 class="t-sub text-ink">Par où commencer</h2>
 
-        <ul class="max-w-[42rem] space-y-7">
+        <ul class="measure-wide space-y-7">
           {numeros.map((n) => (
             <li class="space-y-1.5">
               {n.href ? (
@@ -152,7 +153,7 @@ const aLire = [
           <p class="leading-relaxed text-dim">Des textes de fond, plus longs que la newsletter.</p>
         </div>
 
-        <ul class="max-w-[42rem] space-y-4">
+        <ul class="measure-wide space-y-4">
           {aLire.map((a) => (
             <li>
               <a href={a.href} class="link-inline font-serif text-xl leading-snug sm:text-2xl">
@@ -194,7 +195,7 @@ const aLire = [
     <!-- 6. La ligne commerciale. En texte, jamais en bouton. -->
     <section class="px-6 py-12 sm:px-10 sm:py-14">
       <div class="shell">
-        <p class="max-w-[42rem] text-sm leading-relaxed text-dim sm:text-base">
+        <p class="measure-wide text-sm leading-relaxed text-dim sm:text-base">
           Si un de ces textes décrit votre situation, écrivez-moi. Ce que je vends est
           <a href="/ce-que-je-fais" class="link-inline">ici</a>.
         </p>

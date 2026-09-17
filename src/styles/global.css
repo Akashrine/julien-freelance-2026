@@ -166,6 +166,13 @@
      pour ne pas toucher au markup des articles (copy gelée). */
   .organic-shape { border-radius: 0; }
 
+  /* Deux articles hérités centrent leurs blocs avec `mx-auto` pendant que le
+     titre, les composants et le reste de la page s'alignent à gauche. Le bord
+     gauche se déplaçait donc de 208 px au fil de la lecture — sur une surface
+     de lecture, c'est l'appui le plus coûteux à perdre. La colonne revient à
+     gauche ; les blocs centrés à dessein (`text-center`) gardent leur axe. */
+  .article-content .mx-auto:not(.text-center) { margin-inline: 0; }
+
   .article-content .bg-white {
     background-color: transparent;
     box-shadow: none !important;
@@ -404,13 +411,60 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   }
   .wordmark .wordmark-given,
   .wordmark .wordmark-family { font-weight: 500; color: var(--color-ink); }
+  /* =========================================================
+     LE POINT, AU SURVOL — 18/09/2026
+     Le point ocre est la seule marque qui revienne sur tout le site : il
+     ferme « Mentions légales. », « La Mise au clair. », « Il sort. » C'est
+     une ponctuation, pas un ornement — un point final.
+
+     Au survol du logotype, un filet part du J et court jusqu'à lui, puis
+     s'arrête. Le point, atteint, prend l'appui de l'encre. Le trait s'arrête
+     AU point et pas après : c'est ce qui en fait une destination, et c'est
+     pourquoi il est porté par le nom seul, jamais par le lien entier.
+
+     Deux gestes disparaissent au passage. Le `scale(1.2)`, qui est le
+     « grossir au survol » que fait tout le monde. Et le `hover:opacity-70`
+     du markup, qui faisait reculer la signature au moment où on la touchait.
+
+     Le logotype du pied de page n'est pas un lien : il ne porte pas
+     `.wordmark-nom` et ne réagit à rien. Ces règles visent `a.wordmark`. */
+  .wordmark-nom { position: relative; }
+
+  .wordmark-nom::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 -0.24em 0;
+    height: 1px;
+    background-color: var(--color-ochre);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  a.wordmark:hover .wordmark-nom::after,
+  a.wordmark:focus-visible .wordmark-nom::after { transform: scaleX(1); }
+
   .wordmark .wordmark-dot {
     display: inline-block;
     color: var(--color-ochre);
-    transform-origin: bottom;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Le délai vaut la course du trait : l'encre s'appuie à l'instant où
+       il arrive, pas avant. */
+    transition: color 160ms ease 200ms;
   }
-  .wordmark:hover .wordmark-dot { transform: scale(1.2); }
+
+  /* `color-mix` vers l'encre tient dans les deux thèmes : sur le crème elle
+     fonce le vermillon, sur la nuit elle l'éclaire. Dans les deux cas le
+     contraste monte — c'est un appui, pas un changement de couleur. */
+  a.wordmark:hover .wordmark-dot,
+  a.wordmark:focus-visible .wordmark-dot {
+    color: color-mix(in srgb, var(--color-ochre) 82%, var(--color-ink));
+  }
+
+  /* Mouvement réduit : le trait est là, il n'a simplement pas couru. */
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark-nom::after,
+    .wordmark .wordmark-dot { transition: none; }
+  }
 
   /* Lien de navigation : sobre, souligné à l'ocre au survol. */
   .link-nav {
@@ -553,6 +607,13 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   /* Le partage éditorial : le label et le titre à gauche, la prose à droite.
      Repris des blocs deux colonnes de Getharvest, sans carte ni image. */
   .split { display: grid; gap: 1.25rem; }
+  /* Sous 1024 px le rail passe au-dessus et la grille retombe sur une colonne.
+     Sans limite, la prose prenait alors toute la coque : 87 caractères par
+     ligne mesurés à 900 px, contre 71 dès que le rail réapparaît. La colonne
+     de lecture ne dépend pas de la présence du rail — elle a sa largeur. */
+  @media (max-width: 1023px) {
+    .split > * { max-width: 42rem; }
+  }
   @media (min-width: 1024px) {
     .split {
       grid-template-columns: minmax(0, 13rem) minmax(0, 42rem);
@@ -750,6 +811,62 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
     .js .reveal .schema-root, .js .reveal .schema-branch { opacity: 1; transition: none; }
     .js .reveal .schema-drop, .js .reveal .schema-bar, .js .reveal .schema-leg { transform: none; transition: none; }
   }
+}
+
+/* =========================================================
+   LA MISE AU POINT — 18/09/2026
+   Newsreader est une fonte à axe optique : le même caractère se dessine
+   autrement selon la taille à laquelle on le destine. Petit, il est large
+   et robuste ; grand, ses déliés s'affinent et le contraste monte. Le site
+   paie cet axe — 152 Ko contre 120 sans lui — et rien ne s'en servait.
+
+   Le titre d'accueil arrive donc dessiné un cran trop « corps de lecture »
+   et se raffine jusqu'à sa coupe de titrage pendant qu'il se pose. Personne
+   ne saura nommer ce qui se passe ; on verra le titre se mettre au point.
+   C'est le nom de l'offre.
+
+   La plage est mesurée, pas choisie : sous opsz 40 le titre perd une ligne
+   et pousse la page de 72 px. De 40 à 68, la hauteur ne bouge pas d'un
+   pixel. La valeur d'arrivée suit la taille du titre, qui est fluide.
+   ========================================================= */
+@property --opsz {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 68;
+}
+
+.mise-au-point {
+  /* `auto` accorderait l'axe à la taille ; on prend la main pour l'animer,
+     et on atterrit sur la valeur que `auto` aurait donnée. */
+  font-optical-sizing: none;
+  font-variation-settings: 'opsz' var(--opsz);
+  --opsz: var(--opsz-fin);
+  --opsz-fin: 40;
+}
+
+@media (min-width: 640px) { .mise-au-point { --opsz-fin: 54; } }
+@media (min-width: 1024px) { .mise-au-point { --opsz-fin: 68; } }
+
+@keyframes mise-au-point {
+  /* 0,65 et pas moins : à 0,5 le titre perd une ligne et pousse la page de
+     72 px. Mesuré à 375, 900 et 1440 — la hauteur ne bouge sur aucun. */
+  from { --opsz: calc(var(--opsz-fin) * 0.65); }
+}
+
+/* Le titre porte déjà l'entrée du premier écran : les deux animations se
+   jouent ensemble, la mise au point durant plus longtemps que l'arrivée
+   pour que le dessin continue de se préciser une fois la ligne posée. */
+.reveal-load.mise-au-point {
+  animation:
+    reveal-in 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards,
+    mise-au-point 1100ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--index, 0) * 80ms);
+}
+
+/* Mouvement réduit : le titre est posé, dans sa coupe d'arrivée. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-load.mise-au-point { animation: none; }
+  .mise-au-point { --opsz: var(--opsz-fin); }
 }
 
 /* Le portrait entre en fondu au chargement. Pur CSS : joue sans JavaScript,
