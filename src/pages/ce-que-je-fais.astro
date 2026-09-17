@@ -44,6 +44,29 @@ const mouvements = [
   },
 ];
 
+// Ce qui reste après les trois semaines. Même forme que les mouvements :
+// une ligne = ce qui protège la décision, pas une clause de contrat.
+const protections = [
+  {
+    titre: 'Qui la tient.',
+    texte: 'Une personne nommée. Vous validez son mandat ensemble, elle et vous.',
+  },
+  {
+    titre: 'Qui peut dire non.',
+    texte:
+      'Quand un client demande l’inverse, cette personne refuse sans attendre votre accord.',
+  },
+  {
+    titre: 'Quand on la rouvre.',
+    texte:
+      'Sur un fait nouveau, écrit. Le reste attend la date de revue fixée avant mon départ.',
+  },
+  {
+    titre: 'Ce qu’on surveille.',
+    texte: 'Deux ou trois signaux qui montrent qu’elle se défait.',
+  },
+];
+
 // Les fiches d'offre : chaque bloc libellé devient une ligne de la grille.
 const miseAuClair = [
   {
@@ -231,6 +254,35 @@ const copilote = [
                 <p class="text-lg leading-relaxed text-dim">{m.texte}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div class="split pt-2">
+          <div class="split-aside" aria-hidden="true"></div>
+          <h3 class="t-sub text-ink">Quand je pars</h3>
+        </div>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <div class="space-y-7">
+            <p class="text-lg leading-relaxed text-dim">
+              La décision ne tient pas toute seule. Avant de partir, on écrit ce qui la
+              protège.
+            </p>
+
+            <div class="space-y-7">
+              {protections.map((p) => (
+                <div class="space-y-1.5">
+                  <p class="font-semibold text-ink">{p.titre}</p>
+                  <p class="text-lg leading-relaxed text-dim">{p.texte}</p>
+                </div>
+              ))}
+            </div>
+
+            <p class="text-lg leading-relaxed text-dim">
+              Un mois après, on se revoit pour vérifier qu’elle tient. Ce rendez-vous fait
+              partie de La Mise au clair.
+            </p>
           </div>
         </div>
 
