@@ -104,7 +104,7 @@ const miseAuClair = [
 // Le Copilote. Copy validée le 17/09/2026 : l'offre prend la délivrée,
 // plus la coordination inter-équipes. Sept fiches, dans cet ordre.
 // Le déroulé est dégressif : il tient sur six lignes, donc il sort du motif
-// libellé + paragraphe et prend le rail comme la preuve Back Market.
+// libellé + paragraphe et empile ses paragraphes dans la colonne de lecture.
 const copiloteOuverture = [
   {
     label: 'Le problème.',
@@ -341,9 +341,32 @@ const copiloteSortie = [
           ))}
         </div>
 
-        <div class="split pt-2">
+        <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
-          <h3 class="t-sub text-ink">Ce que ça a donné</h3>
+          <p>
+            <a href={mailto('Le Copilote')} class="door text-base sm:text-lg">
+              <span>Parler du Copilote</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Le terrain. Commun aux deux offres : la preuve ne vit plus dans une
+         fiche, elle vaut pour les deux. Sans id : aucune ancre n'est publique
+         dessus, et les trois ancres de la page ne se touchent pas. -->
+    <section class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-9 sm:space-y-11">
+        <header class="reveal border-b border-line pb-6">
+          <h2 class="t-title text-ink">Le terrain.</h2>
+        </header>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p class="text-lg leading-relaxed text-dim">
+            Ce que je fais aujourd’hui en mission, et d’où viennent les deux offres.
+          </p>
         </div>
 
         <div class="split">
@@ -380,16 +403,6 @@ const copiloteSortie = [
             </figcaption>
           </div>
         </figure>
-
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"></div>
-          <p>
-            <a href={mailto('Le Copilote')} class="door text-base sm:text-lg">
-              <span>Parler du Copilote</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-        </div>
       </div>
     </section>
 
