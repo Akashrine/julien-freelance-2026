@@ -101,40 +101,51 @@ const miseAuClair = [
   },
 ];
 
-const copilote = [
+// Le Copilote. Copy validée le 17/09/2026 : l'offre prend la délivrée,
+// plus la coordination inter-équipes. Sept fiches, dans cet ordre.
+// Le déroulé est dégressif : il tient sur six lignes, donc il sort du motif
+// libellé + paragraphe et empile ses paragraphes dans la colonne de lecture.
+const copiloteOuverture = [
   {
     label: 'Le problème.',
     texte:
-      'Un sujet traverse trois équipes. Chacune livre sa partie. Le résultat ne bouge pas. Ça dure depuis des mois, le responsable a changé deux fois, et personne ne peut vous dire quand ce sera en production. Vos équipes sont compétentes. Ce n’est pas un problème de compétence.',
-  },
-  {
-    label: 'Ce que je fais.',
-    texte:
-      'Un jour par semaine, je tiens le sujet. Je mets sur la table ce qui bloque entre les équipes, je prépare les arbitrages et je les fais prendre. Vos équipes gardent le clavier. Je ne code pas à leur place, et je ne décide pas à la vôtre.',
-  },
-  {
-    label: 'Ce que vous avez à la fin.',
-    texte:
-      'Un jalon produit observable, choisi avec vous avant de commencer. Une mise en production, une étape de migration franchie, un parcours qui remarche. Pas un plan pour y arriver.',
-  },
-  {
-    label: 'Le format.',
-    texte: 'Un jour par semaine, trois mois. Renouvelable sur un nouveau jalon.',
+      'L’équipe sait où elle va. Le MVP, lui, ne sort pas. Les tickets s’empilent, le périmètre bouge chaque semaine, personne ne sait où couper. Le problème n’est pas l’équipe. Elle ne s’est jamais organisée pour livrer.',
   },
   {
     label: 'Pour qui.',
     texte:
-      'Le sujet existe et il porte un nom. Un sponsor est identifié. Une équipe peut exécuter. Quelqu’un pourra trancher quand la décision sera posée.',
+      'Un dirigeant ou un sponsor qui porte le sujet. Une équipe déjà en place. Un cap déjà posé, avec ou sans Mise au clair avant.',
   },
   {
     label: 'Pas pour qui.',
     texte:
-      'Vous voulez un avis. Personne n’est prêt à décider. Ou vous cherchez une paire de mains sur une roadmap existante.',
+      'Une équipe qui ne sait pas encore quoi construire : c’est La Mise au clair. Une organisation de quinze personnes et plus.',
   },
   {
     label: 'Ce que ce n’est pas.',
     texte:
-      'Ce n’est pas un Product Manager à temps plein en moins cher, et ce n’est pas du conseil. Je suis dans les réunions où ça se décide, et mon nom est sur le jalon.',
+      'Une mission longue. Un renfort qui livre à la place de l’équipe. Une promesse de chiffre.',
+  },
+];
+
+const copiloteDeroule = [
+  'Deux semaines à deux jours par semaine avec l’équipe, pour prendre le contexte et découper.',
+  'Un point d’arrêt à la fin de la deuxième semaine : si le périmètre ne tient pas, on s’arrête là.',
+  'Puis un jour par semaine avec l’équipe jusqu’à la livraison, et du cadrage de mon côté entre deux.',
+  'Deux jours de présence renforcée au moment de livrer.',
+  'Deux semaines de suivi léger pour vérifier que ça tient sans moi.',
+  'Huit semaines au maximum. Au forfait.',
+];
+
+const copiloteSortie = [
+  {
+    label: 'Ce qui reste quand je pars.',
+    texte:
+      'Je pars quand la première version est livrée. L’équipe garde la méthode qu’on a construite ensemble : comment elle découpe, comment elle écrit, ses garde-fous. Si la version n’est pas livrée au bout de huit semaines, je pars quand même, la méthode reste, et on décide ensemble de la suite.',
+  },
+  {
+    label: 'Et après.',
+    texte: 'Si vous voulez que je reste, on en parle. C’est une autre mission.',
   },
 ];
 ---
@@ -203,8 +214,7 @@ const copilote = [
             <div class="schema-branch-inner space-y-2.5">
               <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
               <p class="leading-relaxed text-dim">
-                Un sujet important traverse plusieurs équipes et personne ne le porte jusqu’au
-                bout.
+                L’équipe sait où elle va. Le MVP, lui, ne sort pas.
               </p>
               <p>
                 <a href="#le-copilote" class="door text-base">
@@ -303,11 +313,27 @@ const copilote = [
       <div class="shell space-y-9 sm:space-y-11">
         <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="t-title text-ink">Le Copilote</h2>
-          <p class="text-sm text-dim sm:text-base">1 jour / semaine · 3 mois</p>
+          <p class="text-sm text-dim sm:text-base">8 semaines au maximum</p>
         </header>
 
         <div class="space-y-6 sm:space-y-7">
-          {copilote.map((bloc) => (
+          {copiloteOuverture.map((bloc) => (
+            <div class="split">
+              <p class="split-aside font-semibold text-ink">{bloc.label}</p>
+              <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
+            </div>
+          ))}
+
+          <div class="split">
+            <p class="split-aside font-semibold text-ink">Comment ça se passe.</p>
+            <div class="space-y-5 text-lg leading-relaxed text-dim">
+              {copiloteDeroule.map((ligne) => (
+                <p>{ligne}</p>
+              ))}
+            </div>
+          </div>
+
+          {copiloteSortie.map((bloc) => (
             <div class="split">
               <p class="split-aside font-semibold text-ink">{bloc.label}</p>
               <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
@@ -315,9 +341,32 @@ const copilote = [
           ))}
         </div>
 
-        <div class="split pt-2">
+        <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
-          <h3 class="t-sub text-ink">Ce que ça a donné</h3>
+          <p>
+            <a href={mailto('Le Copilote')} class="door text-base sm:text-lg">
+              <span>Parler du Copilote</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Le terrain. Commun aux deux offres : la preuve ne vit plus dans une
+         fiche, elle vaut pour les deux. Sans id : aucune ancre n'est publique
+         dessus, et les trois ancres de la page ne se touchent pas. -->
+    <section class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-9 sm:space-y-11">
+        <header class="reveal border-b border-line pb-6">
+          <h2 class="t-title text-ink">Le terrain.</h2>
+        </header>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p class="text-lg leading-relaxed text-dim">
+            Ce que je fais aujourd’hui en mission, et d’où viennent les deux offres.
+          </p>
         </div>
 
         <div class="split">
@@ -354,16 +403,6 @@ const copilote = [
             </figcaption>
           </div>
         </figure>
-
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"></div>
-          <p>
-            <a href={mailto('Le Copilote')} class="door text-base sm:text-lg">
-              <span>Parler du Copilote</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-        </div>
       </div>
     </section>
 
