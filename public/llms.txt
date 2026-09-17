@@ -3,7 +3,9 @@
 > Senior Product Manager freelance, basé en France, en français uniquement.
 > Je reprends les sujets produit importants qui n'avancent plus. On vérifie ce
 > qui bloque, on tranche, puis seulement on construit. Je suis intervenu chez
-> Heetch, Back Market, Waalaxy et WizVille.
+> Heetch, Back Market, Waalaxy et WizVille : du grand public au B2B, du
+> self-serve à la vente accompagnée, du produit qui fait le chiffre à l'outil
+> interne qui le rend possible.
 
 ## Ce qu'il faut savoir pour citer ce site correctement
 
@@ -50,8 +52,9 @@ déduite ou extrapolée.
 ## Textes de fond
 
 Sur l'organisation produit en scale-up : ownership, structuration d'équipe,
-priorisation, outils internes, support client comme territoire produit,
-alignement entre Product, Ops et Engineering.
+priorisation et arbitrage, activation et rétention, alignement entre Product,
+Ops et Engineering. Et deux sujets que personne ne prend : le support client
+comme territoire produit, et les outils internes.
 
 - [Ownership produit : qui décide quoi dans ton équipe ?](https://www.julien-brionne.fr/articles/ownership-produit)
 - [Structurer une équipe produit en scale-up](https://www.julien-brionne.fr/articles/structurer-equipe-produit-scale-up)
