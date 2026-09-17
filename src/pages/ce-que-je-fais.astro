@@ -101,40 +101,41 @@ const miseAuClair = [
   },
 ];
 
-const copilote = [
+// Le Copilote. Copy validée le 17/09/2026 : l'offre prend la délivrée,
+// plus la coordination inter-équipes. Cinq fiches, dans cet ordre.
+// Le déroulé est dégressif : il tient sur six lignes, donc il sort du motif
+// libellé + paragraphe et prend le rail comme la preuve Back Market.
+const copiloteOuverture = [
   {
-    label: 'Le problème.',
+    label: 'Le problème',
     texte:
-      'Un sujet traverse trois équipes. Chacune livre sa partie. Le résultat ne bouge pas. Ça dure depuis des mois, le responsable a changé deux fois, et personne ne peut vous dire quand ce sera en production. Vos équipes sont compétentes. Ce n’est pas un problème de compétence.',
+      'L’équipe sait où elle va. Le MVP, lui, ne sort pas. Les tickets s’empilent, le périmètre bouge chaque semaine, personne ne sait où couper. Le problème n’est pas l’équipe. Elle ne s’est jamais organisée pour livrer.',
   },
   {
-    label: 'Ce que je fais.',
+    label: 'Pour qui',
     texte:
-      'Un jour par semaine, je tiens le sujet. Je mets sur la table ce qui bloque entre les équipes, je prépare les arbitrages et je les fais prendre. Vos équipes gardent le clavier. Je ne code pas à leur place, et je ne décide pas à la vôtre.',
+      'Un dirigeant ou un sponsor qui porte le sujet. Une équipe déjà en place. Un cap déjà posé, avec ou sans Mise au clair avant.',
+  },
+];
+
+const copiloteDeroule = [
+  'Deux semaines à deux jours par semaine avec l’équipe, pour prendre le contexte et découper.',
+  'Un point d’arrêt à la fin de la deuxième semaine : si le périmètre ne tient pas, on s’arrête là.',
+  'Puis un jour par semaine avec l’équipe jusqu’à la livraison, et du cadrage de mon côté entre deux.',
+  'Deux jours de présence renforcée au moment de livrer.',
+  'Deux semaines de suivi léger pour vérifier que ça tient sans moi.',
+  'Huit semaines au maximum. Au forfait.',
+];
+
+const copiloteSortie = [
+  {
+    label: 'Ce qui reste quand je pars',
+    texte:
+      'Je pars quand la première version est livrée. L’équipe garde la méthode qu’on a construite ensemble : comment elle découpe, comment elle écrit, ses garde-fous. Si la version n’est pas livrée au bout de huit semaines, je pars quand même, la méthode reste, et on décide ensemble de la suite.',
   },
   {
-    label: 'Ce que vous avez à la fin.',
-    texte:
-      'Un jalon produit observable, choisi avec vous avant de commencer. Une mise en production, une étape de migration franchie, un parcours qui remarche. Pas un plan pour y arriver.',
-  },
-  {
-    label: 'Le format.',
-    texte: 'Un jour par semaine, trois mois. Renouvelable sur un nouveau jalon.',
-  },
-  {
-    label: 'Pour qui.',
-    texte:
-      'Le sujet existe et il porte un nom. Un sponsor est identifié. Une équipe peut exécuter. Quelqu’un pourra trancher quand la décision sera posée.',
-  },
-  {
-    label: 'Pas pour qui.',
-    texte:
-      'Vous voulez un avis. Personne n’est prêt à décider. Ou vous cherchez une paire de mains sur une roadmap existante.',
-  },
-  {
-    label: 'Ce que ce n’est pas.',
-    texte:
-      'Ce n’est pas un Product Manager à temps plein en moins cher, et ce n’est pas du conseil. Je suis dans les réunions où ça se décide, et mon nom est sur le jalon.',
+    label: 'Et après',
+    texte: 'Si vous voulez que je reste, on en parle. C’est une autre mission.',
   },
 ];
 ---
@@ -303,11 +304,27 @@ const copilote = [
       <div class="shell space-y-9 sm:space-y-11">
         <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
           <h2 class="t-title text-ink">Le Copilote</h2>
-          <p class="text-sm text-dim sm:text-base">1 jour / semaine · 3 mois</p>
+          <p class="text-sm text-dim sm:text-base">8 semaines au maximum</p>
         </header>
 
         <div class="space-y-6 sm:space-y-7">
-          {copilote.map((bloc) => (
+          {copiloteOuverture.map((bloc) => (
+            <div class="split">
+              <p class="split-aside font-semibold text-ink">{bloc.label}</p>
+              <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
+            </div>
+          ))}
+
+          <div class="split">
+            <p class="split-aside font-semibold text-ink">Comment ça se passe</p>
+            <div class="space-y-5 text-lg leading-relaxed text-dim">
+              {copiloteDeroule.map((ligne) => (
+                <p>{ligne}</p>
+              ))}
+            </div>
+          </div>
+
+          {copiloteSortie.map((bloc) => (
             <div class="split">
               <p class="split-aside font-semibold text-ink">{bloc.label}</p>
               <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
