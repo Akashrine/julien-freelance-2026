@@ -1,8 +1,15 @@
 ---
+// Mentions légales. Passée dans le langage du site le 17/09 : elle était restée
+// à l'ancienne DA (gris bleutés de Tailwind sur le crème, label mono à 2,4:1).
+// Aucun fait juridique n'a changé — seule la mention de Lemcal est tombée,
+// l'outil n'existant plus nulle part sur le site.
+// Mise en page : la grille du site, rail + colonne de lecture (.split).
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+
+const EMAIL = 'julien.brionne@gmail.com';
 
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
@@ -11,6 +18,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
 ---
 
 <Layout
+  preloadSerifItalic={false}
   title="Mentions légales — Julien Brionne"
   description="Mentions légales du site julien-brionne.fr. Informations sur l'éditeur, l'hébergeur et les conditions d'utilisation."
   ogUrl="https://www.julien-brionne.fr/mentions-legales"
@@ -18,52 +26,83 @@ const breadcrumbSchema = getBreadcrumbSchema([
   breadcrumbSchema={breadcrumbSchema}
 >
   <Navbar />
-  <main id="contenu" tabindex="-1">
-    <section class="max-w-3xl mx-auto px-8 pt-32 pb-20">
-      <div class="reveal">
-        <div class="font-mono text-[10px] tracking-[0.3em] text-gray-400 mb-8">MENTIONS LÉGALES</div>
-        <h1 class="text-4xl md:text-5xl font-serif mb-12">Mentions légales.</h1>
 
-        <div class="space-y-12 text-gray-700 font-light leading-relaxed">
-          <div>
-            <h2 class="text-xl font-bold mb-4">Éditeur du site</h2>
+  <main id="contenu" tabindex="-1">
+    <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
+      <div class="shell">
+        <h1 class="t-display max-w-[20ch] text-ink reveal-load">
+          Mentions légales<span class="stop">.</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-10 sm:space-y-12">
+        <div class="split reveal">
+          <h2 class="split-aside font-semibold text-ink">Éditeur du site</h2>
+          <div class="space-y-1 text-lg leading-relaxed text-dim">
             <p>Julien Brionne</p>
             <p>Activité de conseil en gestion et management</p>
-            <p>SIRET : 500 834 692 00039</p>
+            <p>SIRET : <span class="tabular-nums">500 834 692 00039</span></p>
             <p>Paris, France</p>
-            <p>Contact : <a href="mailto:julien.brionne@gmail.com" class="underline hover:text-gray-900 transition-colors">julien.brionne@gmail.com</a></p>
+            <p>Contact : <a href={`mailto:${EMAIL}`} class="link-inline">{EMAIL}</a></p>
           </div>
+        </div>
 
-          <div>
-            <h2 class="text-xl font-bold mb-4">Hébergement</h2>
+        <div class="split reveal">
+          <h2 class="split-aside font-semibold text-ink">Hébergement</h2>
+          <div class="space-y-1 text-lg leading-relaxed text-dim">
             <p>Ce site est hébergé par Vercel Inc.</p>
             <p>440 N Barranca Ave #4133, Covina, CA 91723, USA</p>
-            <p><a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-900 transition-colors">vercel.com</a></p>
+            <p><a href="https://vercel.com" class="link-inline" rel="noopener">vercel.com</a></p>
           </div>
+        </div>
 
-          <div>
-            <h2 class="text-xl font-bold mb-4">Propriété intellectuelle</h2>
-            <p>L'ensemble des contenus de ce site (textes, images, illustrations) est la propriété de Julien Brionne, sauf mention contraire. Toute reproduction, représentation ou diffusion, en tout ou partie, du contenu de ce site est interdite sans autorisation écrite préalable.</p>
-          </div>
+        <div class="split reveal">
+          <h2 class="split-aside font-semibold text-ink">Propriété intellectuelle</h2>
+          <p class="text-lg leading-relaxed text-dim">
+            L’ensemble des contenus de ce site (textes, images, illustrations) est la propriété
+            de Julien Brionne, sauf mention contraire. Toute reproduction, représentation ou
+            diffusion, en tout ou partie, du contenu de ce site est interdite sans autorisation
+            écrite préalable.
+          </p>
+        </div>
 
-          <div>
-            <h2 class="text-xl font-bold mb-4">Données personnelles</h2>
-            <p>Ce site utilise Google Analytics 4 avec anonymisation des adresses IP pour mesurer la fréquentation. Aucune donnée personnelle n'est collectée via des formulaires. Les prises de contact se font par email ou via Lemcal (service tiers).</p>
-            <p class="mt-2">Conformément au RGPD, tu disposes d'un droit d'accès, de rectification et de suppression de tes données. Pour exercer ce droit : <a href="mailto:julien.brionne@gmail.com" class="underline hover:text-gray-900 transition-colors">julien.brionne@gmail.com</a>.</p>
+        <div class="split reveal">
+          <h2 class="split-aside font-semibold text-ink">Données personnelles</h2>
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              Ce site utilise Google Analytics 4 avec anonymisation des adresses IP pour mesurer
+              la fréquentation. Aucune donnée personnelle n’est collectée via des formulaires.
+              Les prises de contact se font par email.
+            </p>
+            <p>
+              Conformément au RGPD, vous disposez d’un droit d’accès, de rectification et de
+              suppression de vos données. Pour exercer ce droit :
+              <a href={`mailto:${EMAIL}`} class="link-inline">{EMAIL}</a>.
+            </p>
           </div>
+        </div>
 
-          <div>
-            <h2 class="text-xl font-bold mb-4">Cookies</h2>
-            <p>Ce site utilise uniquement des cookies techniques nécessaires au fonctionnement (Google Analytics). Aucun cookie publicitaire ou de profilage n'est déposé.</p>
-          </div>
+        <div class="split reveal">
+          <h2 class="split-aside font-semibold text-ink">Cookies</h2>
+          <p class="text-lg leading-relaxed text-dim">
+            Ce site utilise uniquement des cookies techniques nécessaires au fonctionnement
+            (Google Analytics). Aucun cookie publicitaire ou de profilage n’est déposé.
+          </p>
+        </div>
 
-          <div>
-            <h2 class="text-xl font-bold mb-4">Responsabilité</h2>
-            <p>Les informations fournies sur ce site le sont à titre indicatif. Julien Brionne ne garantit pas l'exactitude, la complétude ou l'actualité des informations diffusées. L'utilisation des informations est sous la responsabilité de l'utilisateur.</p>
-          </div>
+        <div class="split reveal">
+          <h2 class="split-aside font-semibold text-ink">Responsabilité</h2>
+          <p class="text-lg leading-relaxed text-dim">
+            Les informations fournies sur ce site le sont à titre indicatif. Julien Brionne ne
+            garantit pas l’exactitude, la complétude ou l’actualité des informations diffusées.
+            L’utilisation des informations est sous la responsabilité de l’utilisateur.
+          </p>
         </div>
       </div>
     </section>
-    <Footer />
   </main>
+
+  <Footer />
 </Layout>

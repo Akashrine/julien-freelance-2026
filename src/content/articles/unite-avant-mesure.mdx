@@ -1,0 +1,78 @@
+---
+title: "On vous demande un chiffre. Il manque une unité."
+seoTitle: "Mesurer un produit : quand c'est le modèle qui manque"
+date: "2026-09-18"
+category: "analyse"
+excerpt: "Une demande de mesure qu'on ne peut pas satisfaire est rarement un problème de données. C'est presque toujours un problème de granularité du modèle — et produire le rapport quand même ne crée pas une erreur, mais une fausse confiance."
+draft: true
+---
+
+<SectionIntro>
+  <p>Une équipe Care. La question qui arrive est bonne : est-ce que les canaux live sont plus performants que les canaux asynchrones ? Satisfaction et temps de résolution.</p>
+  <p>Elle est bonne parce qu'elle décide quelque chose. Où l'on met les agents. Quels canaux on ouvre, lesquels on ferme.</p>
+  <p>Ma réponse a été : on ne peut pas y répondre. Pas parce que la donnée manque. Parce qu'on n'a pas l'unité qui permet de poser la question.</p>
+</SectionIntro>
+
+<ColorBlock bgColor="blue" label="LA DEMANDE" title="« Est-ce que le live est meilleur que l'async ? »">
+  <div class="space-y-5 text-lg leading-relaxed text-dim">
+    <p>Une question à laquelle on peut répondre avec un tableau. Le tableau existe déjà. Il est exact. Et il ne répond pas à cette question-là.</p>
+  </div>
+</ColorBlock>
+
+<Section title="Le chiffre existait. Il ne répondait pas.">
+  <p>Nos indicateurs se calculaient sur le contenant : la demande d'aide. Un objet qui rassemble tout ce qui concerne un même problème client.</p>
+  <p>Ce contenant agrège plusieurs échanges. Mais un nouvel échange ne crée pas systématiquement sa propre ligne. Concrètement : un appel, puis un suivi asynchrone deux jours plus tard. Pour le système, c'est la même demande. Le second échange n'existe nulle part comme événement distinct.</p>
+  <p>Deux conséquences, et elles suffisent à tout fausser. La satisfaction est attachée au contenant, pas au canal. Le temps de résolution court sur toute la demande, appel et suivi confondus.</p>
+  <p>On ne mesurait pas des canaux. On mesurait des demandes, en croyant mesurer des canaux.</p>
+</Section>
+
+<Section title="Ce que coûte le fait de répondre quand même.">
+  <p>On peut construire ce rapport. Il sera juste. Chaque chiffre sera exact, chaque agrégat vérifiable.</p>
+  <p>Et il dira que le live est meilleur. Mécaniquement : les demandes qui commencent par un appel et se terminent là sont les plus simples. Celles qui débordent en asynchrone traînent une queue — qu'on attribue au live aussi, puisque c'est la même demande.</p>
+  <p>Le chiffre ne se trompe pas. Il répond à une autre question que celle qu'on pose.</p>
+  <p>C'est le pire des cas de figure. Pas une erreur : une fausse confiance. Une erreur se corrige quand on la trouve. Une fausse confiance se propage — elle devient une slide, puis un arbitrage, puis un canal qu'on ferme.</p>
+  <p>Et elle a une propriété désagréable : on ne peut pas la détecter depuis la donnée. Le rapport est cohérent avec lui-même. Il se recoupe, il se reproduit d'un mois sur l'autre, il résiste à la relecture. Rien à l'intérieur du tableau ne signale qu'il décrit autre chose que ce qu'on croit lire. Seul quelqu'un qui connaît le modèle peut le dire — et si cette personne n'est pas dans la pièce, personne ne le dira.</p>
+</Section>
+
+<Section label="AVANT DE CONSTRUIRE" title="Trois questions qui coûtent dix minutes.">
+  <DecisionItem number="01" title="De quoi parle-t-on exactement ?">
+    Nommer l'objet qu'on prétend mesurer, à voix haute. Si deux personnes autour de la table n'en donnent pas la même définition, le rapport est déjà inutile — il sera lu deux fois différemment.
+  </DecisionItem>
+
+  <DecisionItem number="02" title="Ce que je veux compter existe-t-il comme objet ?">
+    Pas « est-ce que j'ai la donnée », mais « est-ce que la chose que je compte existe ». Ici, l'objet à compter était un échange sur un canal. Il n'existait pas. On comptait des contenants.
+  </DecisionItem>
+
+  <DecisionItem number="03" title="Si je livre ce rapport, qu'est-ce que je ne verrai plus ?">
+    La question la moins chère de la liste, et celle que personne ne pose. Un indicateur ne se contente pas de montrer : il décide de ce qu'on arrête de regarder. Une fois qu'un tableau existe et qu'il tourne, plus personne ne retourne voir ce qu'il laisse dehors.
+  </DecisionItem>
+</Section>
+
+<Callout title="Ce n'est pas un droit de veto.">
+  <p>Le responsable du Care a redemandé les chiffres. Il avait raison : il avait une décision à préparer et une réunion à tenir. Attendre un développement n'était pas une option pour lui.</p>
+  <p>On les a produits. Avec la limite écrite à côté, en une phrase : ce tableau compare des demandes, pas des canaux.</p>
+  <p>Bloquer une mesure parce qu'elle est imparfaite, c'est se rendre inutile. Le travail n'est pas de refuser le chiffre. C'est de refuser qu'il soit lu pour ce qu'il n'est pas.</p>
+  <p>Et parfois on s'arrête là. Enjeu faible, décision réversible, l'approximation suffit — poser une unité pour trancher une question à mille euros, c'est de la dette d'ingénierie déguisée en rigueur.</p>
+</Callout>
+
+<Section title="Ce qui change quand l'unité existe.">
+  <p>Le niveau qui manquait, c'est l'interaction. Un échange, sur un canal, à un moment donné.</p>
+  <p>Trois attributs suffisent. La surface : où ça se passe. Le point d'entrée : par où c'est arrivé. Le rang : la place de cet échange dans la séquence.</p>
+  <p>Le rang est celui qu'on oublie, et c'est le plus utile. C'est lui qui distingue « un appel » de « un appel après deux messages restés sans réponse ». Le premier est un canal qui fonctionne. Le second est un canal qui a échoué, et dont on s'apprêtait à créditer le téléphone.</p>
+  <p>Une fois ce niveau posé, la question de départ devient une requête : la satisfaction d'un canal, pour un type de problème, sur un marché donné.</p>
+  <p>Mais le rendement réel n'est pas là. Il est dans les questions qu'on n'avait pas pensé à poser, et qui deviennent possibles le jour où l'unité existe.</p>
+  <p>Où les gens basculent d'un canal à l'autre, et à quel moment de la séquence. Quel point d'entrée produit les résolutions les plus courtes — ce qui n'est pas la même chose que le canal le plus rapide. Quel type de problème ne devrait jamais commencer en asynchrone, parce qu'il finit systématiquement au téléphone après deux jours perdus.</p>
+  <p>Aucune de ces trois questions n'était dans la demande initiale. Aucune n'était formulable avant. C'est ça qu'on achète en posant une unité : pas une réponse, une classe de questions.</p>
+</Section>
+
+<Section title="Le réflexe à installer.">
+  <p>Quand une demande de mesure résiste, le premier réflexe est de chercher la donnée manquante. Le bon réflexe est de vérifier que la chose à compter existe.</p>
+  <p>Dans la plupart des cas, elle existe et il suffit d'aller la chercher. Mais quand elle n'existe pas, aucune requête ne la fera apparaître — et tout le temps passé à contourner le problème produit des rapports justes qui répondent à côté.</p>
+  <p>C'est le même geste que pour un sujet produit qui n'avance plus. On cherche la solution, alors que c'est la question qu'il faut reprendre. J'en ai parlé ailleurs, à propos de <a href="/articles/illusion-mouvement" class="link-inline">l'effort qui masque l'absence de décision</a> et du <a href="/articles/care-territoire-produit" class="link-inline">care comme territoire produit</a>.</p>
+</Section>
+
+<ClosingBlock title="Ce que ça coûte.">
+  <p>Du temps avant le premier chiffre. Un développement à faire valider alors que tout le monde attendait un tableau. Et une conversation désagréable : expliquer que la donnée existe, qu'elle est exacte, et qu'elle ne répond pas.</p>
+  <p>Ce que ça rapporte : on arrête de décider sur une mesure qui décrit autre chose.</p>
+  <p>La plupart des sujets produit qui traînent ne manquent pas de solution. Ils manquent d'une question posable. C'est précisément le travail que je fais en <a href="/ce-que-je-fais#la-mise-au-clair" class="link-inline">Mise au clair</a>.</p>
+</ClosingBlock>

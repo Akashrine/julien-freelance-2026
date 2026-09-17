@@ -51,18 +51,18 @@ const breadcrumbSchema = getBreadcrumbSchema([
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
-  <Navbar currentPage="situations" />
+  <Navbar />
   <main id="contenu" tabindex="-1">
     <!-- L'ouverture -->
     <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12 sm:space-y-16">
         <div class="space-y-6">
-          <p class="eyebrow reveal">Contexte</p>
-          <h1 class="t-display max-w-[20ch] text-ink reveal">
+          <p class="eyebrow reveal-load">Contexte</p>
+          <h1 class="t-display max-w-[20ch] text-ink reveal-load">
             Reconnaître <span class="text-dim italic">le moment critique.</span>
           </h1>
         </div>
-        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal">
+        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal-load">
           <p class="text-ink">
             Dans la croissance d’un produit, il existe un stade précis où tout continue de
             fonctionner, mais où chaque avancée semble coûter deux fois plus d’énergie.
@@ -142,13 +142,15 @@ const breadcrumbSchema = getBreadcrumbSchema([
         <p class="text-lg text-dim">Pas encore prêt ?</p>
         <p class="mt-3">
           <a href="/diagnostic" class="door text-lg">
-            <span>Commence par un diagnostic</span>
+            <span>Commencez par un diagnostic</span>
             <span class="door-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </p>
       </div>
     </section>
 
-    <Footer />
   </main>
+
+  <Footer />
+
 </Layout>

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { MISE_AU_CLAIR } from '../utils/offres';
 
 // Copy verbatim de l'ancienne page (gel du 30/08) — seule la forme change.
 const limites = [
@@ -31,7 +32,7 @@ const pageUrl = `${siteUrl}/diagnostic`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
   'Diagnostic produit',
-  'L\'effort augmente, l\'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque, trancher, et décider ce qu\'on arrête. Cette démarche porte un nom : La Mise au clair.',
+  `L'effort augmente, l'impact ne suit plus ? ${MISE_AU_CLAIR.format} pour comprendre ce qui bloque, trancher, et décider ce qu'on arrête. Cette démarche porte un nom : ${MISE_AU_CLAIR.nom}.`,
   ['diagnostic produit', 'audit produit', 'décisions produit', 'vérifier le cap']
 );
 const breadcrumbSchema = getBreadcrumbSchema([
@@ -41,31 +42,31 @@ const breadcrumbSchema = getBreadcrumbSchema([
 ---
 
 <Layout
-  title="Diagnostic produit — Julien Brionne"
-  description="L'effort augmente, l'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque, trancher, et décider ce qu'on arrête."
+  title="Diagnostic produit : l'effort monte, l'impact ne suit plus"
+  description={`L'effort augmente, l'impact ne suit plus ? ${MISE_AU_CLAIR.format} pour comprendre ce qui bloque, trancher, et décider ce qu'on arrête.`}
   ogTitle="Diagnostic produit"
-  ogDescription="L'effort augmente, l'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque et décider ce qu'on arrête."
+  ogDescription={`L'effort augmente, l'impact ne suit plus ? ${MISE_AU_CLAIR.format} pour comprendre ce qui bloque et décider ce qu'on arrête.`}
   ogType="website"
   ogImage="/og/page-diagnostic.webp"
   ogUrl="https://www.julien-brionne.fr/diagnostic"
   twitterCard="summary_large_image"
   twitterTitle="Diagnostic produit"
-  twitterDescription="L'effort augmente, l'impact ne suit plus ? Six demi-journées sur trois semaines pour comprendre ce qui bloque et décider ce qu'on arrête."
+  twitterDescription={`L'effort augmente, l'impact ne suit plus ? ${MISE_AU_CLAIR.format} pour comprendre ce qui bloque et décider ce qu'on arrête.`}
   webPageSchema={webPageSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
-  <Navbar currentPage="diagnostic" />
+  <Navbar />
   <main id="contenu" tabindex="-1">
     <!-- L'ouverture -->
     <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12 sm:space-y-16">
         <div class="space-y-6">
-          <p class="eyebrow reveal">Diagnostic</p>
-          <h1 class="t-display max-w-[20ch] text-ink reveal">
+          <p class="eyebrow reveal-load">Diagnostic</p>
+          <h1 class="t-display max-w-[20ch] text-ink reveal-load">
             L’effort augmente, <span class="text-dim italic">l’impact ne suit plus&nbsp;?</span>
           </h1>
         </div>
-        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal">
+        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal-load">
           <p class="text-ink">
             Ce diagnostic intervient quand l’équipe livre, mais que l’adoption stagne, que les
             décisions coûtent de plus en plus cher, ou que personne ne sait expliquer pourquoi
@@ -89,14 +90,14 @@ const breadcrumbSchema = getBreadcrumbSchema([
             <h2 class="t-title text-ink">Une pause pour vérifier le cap.</h2>
             <div class="max-w-[38rem] space-y-5 text-lg leading-relaxed text-dim">
               <p>
-                Six demi-journées sur trois semaines pour identifier pourquoi les décisions ne
+                {MISE_AU_CLAIR.format} pour identifier pourquoi les décisions ne
                 tiennent pas. Le décalage entre ce que l’organisation pense faire et ce qu’elle
                 fait réellement est presque toujours là. Je mets sur la table les tensions non
                 formulées, pas pour juger la performance, mais pour que l’équipe puisse trancher
                 en connaissance de cause.
               </p>
               <p class="text-ink">
-                Vérifier que tu adresses le bon problème avant d’accélérer. Si le bon problème
+                Vérifier que vous traitez le bon problème avant d’accélérer. Si le bon problème
                 n’est pas là, on s’arrête. Aucune garantie de suite.
               </p>
             </div>
@@ -178,6 +179,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
       </div>
     </section>
 
-    <Footer />
   </main>
+
+  <Footer />
+
 </Layout>

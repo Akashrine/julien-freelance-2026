@@ -6,6 +6,22 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
 import sitemap from '@astrojs/sitemap';
+import { readdirSync, readFileSync } from 'node:fs';
+
+// Dates de dernière révision, lues une fois au build dans le frontmatter MDX.
+// Pas de dépendance : le frontmatter de ce dépôt tient sur des lignes simples.
+const datesArticles = Object.fromEntries(
+  readdirSync('./src/content/articles')
+    .filter((f) => f.endsWith('.mdx'))
+    .map((f) => {
+      const tete = readFileSync(`./src/content/articles/${f}`, 'utf-8').split('---')[1] || '';
+      const lire = (cle) => (tete.match(new RegExp(`^${cle}:\\s*['"]?([0-9-]{10})`, 'm')) || [])[1];
+      const quand = lire('updated') || lire('date');
+      return [`articles/${f.replace(/\.mdx$/, '')}`, quand ? new Date(quand).toISOString() : null];
+    })
+    .filter(([, d]) => d)
+);
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -36,6 +52,14 @@ export default defineConfig({
   },
   integrations: [mdx(), react(), sitemap({
     filter: (page) => !page.includes('/mentions-legales'),
+    // Le sitemap ne portait aucune date. Chaque article en a une dans son
+    // frontmatter — `updated` s'il a été repris, `date` sinon. La donner au
+    // moteur lui évite de redécouvrir douze textes à chaque passage.
+    serialize: (item) => {
+      const slug = item.url.replace(/^https?:\/\/[^/]+\//, '').replace(/\/$/, '');
+      const lastmod = datesArticles[slug];
+      return lastmod ? { ...item, lastmod } : item;
+    },
   })],
   compressHTML: true,
   build: {

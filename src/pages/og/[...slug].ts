@@ -44,7 +44,7 @@ const staticPages: Record<string, { title: string; description: string }> = {
   },
   'page-ecrits': {
     title: 'Écrits',
-    description: "Ce que j'écris, c'est comment je travaille. Produits Sans Filtres, un numéro toutes les deux semaines, et des textes de fond.",
+    description: "Ce que j'écris, c'est comment je travaille. Produit Sans Filtre, un numéro toutes les deux semaines, et des textes de fond.",
   },
   'page-product-manager-freelance-pme': {
     title: 'Product Manager freelance en PME : intervenir ou recruter',

@@ -12,18 +12,22 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { getWebPageSchema } from '../utils/schema';
+import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { MISE_AU_CLAIR } from '../utils/offres';
 
-const TITLE = 'Product Manager freelance en PME : intervenir ou recruter';
+const TITLE = 'Product Manager freelance en PME';
 const DESCRIPTION =
-  "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un Product Manager senior freelance, et quand recruter.";
+  "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un PM freelance, quand recruter.";
 const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
+const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.pme]);
 ---
 
 <Layout
+  preloadSerifItalic={false}
   title={`${TITLE} — Julien Brionne`}
   description={DESCRIPTION}
   webPageSchema={getWebPageSchema(URL, TITLE, DESCRIPTION)}
+  breadcrumbSchema={breadcrumbSchema}
   ogImage="/og/page-product-manager-freelance-pme.webp"
   twitterCard="summary_large_image"
 >
@@ -53,7 +57,7 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
       </section>
 
       <!-- 1 -->
-      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+      <section class="px-6 py-16 sm:px-10 sm:py-24">
         <div class="shell split">
           <div class="split-aside">
             <p class="eyebrow">Le moment</p>
@@ -86,7 +90,7 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
       </section>
 
       <!-- 2 -->
-      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+      <section class="px-6 py-16 sm:px-10 sm:py-24">
         <div class="shell split">
           <div class="split-aside">
             <p class="eyebrow">Recruter</p>
@@ -120,7 +124,7 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
       </section>
 
       <!-- 3 -->
-      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+      <section class="px-6 py-16 sm:px-10 sm:py-24">
         <div class="shell split">
           <div class="split-aside">
             <p class="eyebrow">Intervenir</p>
@@ -160,7 +164,7 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
       </section>
 
       <!-- 4 -->
-      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+      <section class="px-6 py-16 sm:px-10 sm:py-24">
         <div class="shell split">
           <div class="split-aside">
             <p class="eyebrow">Quand, et quand pas</p>
@@ -209,7 +213,7 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
       </section>
 
       <!-- 5 — sortie commerciale unique -->
-      <section class="reveal px-6 py-16 sm:px-10 sm:py-24">
+      <section class="px-6 py-16 sm:px-10 sm:py-24">
         <div class="shell split">
           <div class="split-aside">
             <p class="eyebrow">En pratique</p>
@@ -221,8 +225,8 @@ const URL = 'https://www.julien-brionne.fr/product-manager-freelance-pme';
             </h2>
             <div class="space-y-5 text-lg leading-relaxed text-dim">
               <p>
-                Chez moi, elle s’appelle La Mise au clair. Six demi-journées sur trois
-                semaines. Je parle à vos équipes et à vos clients, puis on s’assoit et on
+                Chez moi, elle s’appelle {MISE_AU_CLAIR.nom}. {MISE_AU_CLAIR.format}.
+                Je parle à vos équipes et à vos clients, puis on s’assoit et on
                 tranche : ce que le produit doit résoudre, pour qui, dans quel ordre, et ce
                 qu’on arrête.
               </p>

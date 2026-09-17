@@ -31,10 +31,10 @@ export default function PackSystemeForm() {
   if (status === "success") {
     return (
       <div className="border-l-2 border-[#C5A070] pl-5 py-2 text-left">
-        <p className="text-[#C5A070] font-medium text-sm mb-1">
+        <p className="text-gold font-medium text-sm mb-1">
           Tu seras prévenu(e) dès le lancement.
         </p>
-        <p className="text-xs text-gray-500 font-light">
+        <p className="text-xs text-dim font-light">
           En attendant,{" "}
           <a href="/ressources/prompts-discovery" className="underline underline-offset-2 hover:text-gray-900 transition-colors">
             explore les 10 prompts gratuits
@@ -53,7 +53,7 @@ export default function PackSystemeForm() {
           type="email" required value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="ton@email.com"
-          className="flex-1 px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C5A070]/20 focus:border-[#C5A070] transition-all text-sm"
+          className="flex-1 px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder:text-dim focus:outline-none focus:ring-2 focus:ring-[#C5A070]/20 focus:border-[#C5A070] transition-all text-sm"
         />
         <button
           type="submit"

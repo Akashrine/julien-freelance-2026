@@ -17,14 +17,14 @@ const siteUrl = 'https://www.julien-brionne.fr';
 const pageUrl = `${siteUrl}/articles`;
 const webPageSchema = getWebPageSchema(
   pageUrl,
-  'Articles',
-  "Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques.",
+  'Articles',"Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques.",
   ['réflexions produit', 'analyses de cas', 'décision produit', 'trancher']
 );
 const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.articles]);
 ---
 
 <Layout
+  preloadSerifItalic={false}
   title="Articles — Réflexions produit | Julien Brionne"
   description="Réflexions et analyses de cas produit. Trancher le raisonnement avant d'agir. Pas des guides méthodologiques."
   ogTitle="Articles — Réflexions produit"
@@ -53,9 +53,9 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
     </section>
 
     <!-- La bibliothèque : une liste, rien d'autre. -->
-    <section class="reveal px-6 pb-24 sm:px-10 sm:pb-36">
+    <section class="px-6 pb-24 sm:px-10 sm:pb-36">
       <div class="shell">
-        <ul class="max-w-[42rem] space-y-9 sm:space-y-10">
+        <ul class="measure-wide space-y-9 sm:space-y-10">
           {articles.map((article) => (
             <li class="space-y-1.5">
               <p class="text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">
