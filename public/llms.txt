@@ -56,6 +56,7 @@ priorisation et arbitrage, activation et rétention, alignement entre Product,
 Ops et Engineering. Et deux sujets que personne ne prend : le support client
 comme territoire produit, et les outils internes.
 
+- [On vous demande un chiffre. Il manque une unité.](https://www.julien-brionne.fr/articles/unite-avant-mesure)
 - [Ownership produit : qui décide quoi dans ton équipe ?](https://www.julien-brionne.fr/articles/ownership-produit)
 - [Structurer une équipe produit en scale-up](https://www.julien-brionne.fr/articles/structurer-equipe-produit-scale-up)
 - [Ton équipe produit se coordonne plus qu'elle ne livre](https://www.julien-brionne.fr/articles/equipe-produit-trop-de-reunions)

@@ -79,19 +79,19 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- Les trois fontes du premier écran, toutes sur le domaine du site.
+    {/* Les trois fontes du premier écran, toutes sur le domaine du site.
          Instrument Sans porte la navigation et la marque ; Newsreader porte
          le titre et son incise en italique — c'est le titre qui décide du LCP,
          donc les deux coupes partent dès l'analyse du HTML, sans attendre que
          la feuille de style soit lue. Les sous-ensembles latin-ext, eux, ne se
-         chargent que si un caractère les appelle : ils restent dans le CSS. -->
+         chargent que si un caractère les appelle : ils restent dans le CSS. */}
     <link rel="preload" as="font" type="font/woff2" href="/fonts/InstrumentSans-400-700-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Newsreader-300-500-latin.woff2" crossorigin />
     {preloadSerifItalic && (
       <link rel="preload" as="font" type="font/woff2" href="/fonts/Newsreader-italic-300-400-latin.woff2" crossorigin />
     )}
     
-    <!-- SEO Meta -->
+    {/* SEO Meta */}
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Julien Brionne" />
@@ -102,7 +102,7 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141518" />
     <link rel="alternate" type="application/rss+xml" title="Julien Brionne — Articles" href="/rss.xml" />
 
-    <!-- Open Graph -->
+    {/* Open Graph */}
     <meta property="og:site_name" content="Julien Brionne" />
     <meta property="og:title" content={finalOgTitle} />
     <meta property="og:description" content={finalOgDescription} />
@@ -128,13 +128,13 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
       </>
     )}
 
-    <!-- Twitter Card -->
+    {/* Twitter Card */}
     <meta name="twitter:card" content={twitterCard} />
     <meta name="twitter:title" content={finalTwitterTitle} />
     <meta name="twitter:description" content={finalTwitterDescription} />
     {ogImage && <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />}
     
-    <!-- Schema.org JSON-LD -->
+    {/* Schema.org JSON-LD */}
     {personSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     )}
@@ -163,12 +163,12 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
       <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
     )}
     
-    <!-- Google Analytics 4. gtag.js pèse 484 Ko : chargé dans le head, il
+    {/* Google Analytics 4. gtag.js pèse 484 Ko : chargé dans le head, il
          disputait la bande passante au CSS et aux fontes pendant la fenêtre
          qui décide du premier rendu. La file d'attente est posée tout de
          suite — `gtag()` empile dans `dataLayer` sans que le script soit là —
          et le téléchargement part une fois la page chargée. Rien ne se perd :
-         le page_view et les événements se vident dans l'ordre à l'arrivée. -->
+         le page_view et les événements se vident dans l'ordre à l'arrivée. */}
     {GA4_ENABLED && (
       <script is:inline define:vars={{ GA4_MEASUREMENT_ID }}>
         window.dataLayer = window.dataLayer || [];
