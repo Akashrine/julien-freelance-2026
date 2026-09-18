@@ -835,38 +835,52 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   initial-value: 68;
 }
 
-.mise-au-point {
-  /* `auto` accorderait l'axe à la taille ; on prend la main pour l'animer,
-     et on atterrit sur la valeur que `auto` aurait donnée. */
-  font-optical-sizing: none;
-  font-variation-settings: 'opsz' var(--opsz);
-  --opsz: var(--opsz-fin);
-  --opsz-fin: 40;
-}
+/* Mesuré le 18/09 : changer l'axe optique coûte 0,74 ms par image sur ce
+   titre, contre 0,10 ms pour une opacité et 0,07 ms pour le découpage de la
+   signature. Sept fois le prix d'une propriété composable, sur l'élément qui
+   décide du LCP, pendant l'entrée de page.
 
-@media (min-width: 640px) { .mise-au-point { --opsz-fin: 54; } }
-@media (min-width: 1024px) { .mise-au-point { --opsz-fin: 68; } }
+   Sur une machine de bureau récente c'est 4 % du budget d'une image à 60 im/s.
+   Sur un Android milieu de gamme, cinq à dix fois plus — un tiers du budget,
+   au pire moment. Et c'est précisément là que l'effet se voit le moins : à
+   40 px, l'écart entre deux coupes optiques est presque nul.
 
-@keyframes mise-au-point {
-  /* 0,65 et pas moins : à 0,5 le titre perd une ligne et pousse la page de
-     72 px. Mesuré à 375, 900 et 1440 — la hauteur ne bouge sur aucun. */
-  from { --opsz: calc(var(--opsz-fin) * 0.65); }
-}
+   L'effet reste donc où il se lit et où le processeur suit. Sous 1024 px,
+   `font-optical-sizing: auto` reprend la main et accorde l'axe à la taille,
+   exactement comme avant que cette règle existe. */
+@media (min-width: 1024px) {
+  .mise-au-point {
+    /* `auto` accorderait l'axe à la taille ; on prend la main pour l'animer,
+       et on atterrit sur la valeur que `auto` aurait donnée. */
+    font-optical-sizing: none;
+    font-variation-settings: 'opsz' var(--opsz);
+    --opsz: var(--opsz-fin);
+    --opsz-fin: 68;
+  }
 
-/* Le titre porte déjà l'entrée du premier écran : les deux animations se
-   jouent ensemble, la mise au point durant plus longtemps que l'arrivée
-   pour que le dessin continue de se préciser une fois la ligne posée. */
-.reveal-load.mise-au-point {
-  animation:
-    reveal-in 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards,
-    mise-au-point 1100ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
-  animation-delay: calc(var(--index, 0) * 80ms);
-}
+  @keyframes mise-au-point {
+    /* 0,65 et pas moins : à 0,5 le titre perd une ligne et pousse la page de
+       72 px. Mesuré à 1024 et 1440 — la hauteur ne bouge sur aucun. */
+    from { --opsz: calc(var(--opsz-fin) * 0.65); }
+  }
 
-/* Mouvement réduit : le titre est posé, dans sa coupe d'arrivée. */
-@media (prefers-reduced-motion: reduce) {
-  .reveal-load.mise-au-point { animation: none; }
-  .mise-au-point { --opsz: var(--opsz-fin); }
+  /* Le titre porte déjà l'entrée du premier écran : les deux animations se
+     jouent ensemble, la mise au point durant un peu plus longtemps que
+     l'arrivée pour que le dessin se précise encore une fois la ligne posée.
+     700 ms et non 1100 : vingt-quatre images de rastérisation en moins, pour
+     un mouvement qui n'avait pas besoin d'être si long. */
+  .reveal-load.mise-au-point {
+    animation:
+      reveal-in 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards,
+      mise-au-point 700ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: calc(var(--index, 0) * 80ms);
+  }
+
+  /* Mouvement réduit : le titre est posé, dans sa coupe d'arrivée. */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-load.mise-au-point { animation: none; }
+    .mise-au-point { --opsz: var(--opsz-fin); }
+  }
 }
 
 /* Le portrait entre en fondu au chargement. Pur CSS : joue sans JavaScript,
