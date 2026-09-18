@@ -31,7 +31,7 @@ export function getPersonSchema(): object {
     description: "Senior Product Manager freelance. Je reprends les sujets produit importants qui n'avancent plus et je les mène jusqu'en production.",
     // `knowsAbout` dit à un moteur génératif sur quoi cette personne fait
     // autorité. Sans lui, il doit le déduire du corps des pages. Les sujets
-    // listés sont ceux que les douze articles couvrent réellement.
+    // listés sont ceux que les treize articles couvrent réellement.
     knowsAbout: [
       'Product management',
       'Organisation produit en scale-up',
