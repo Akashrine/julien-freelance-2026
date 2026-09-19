@@ -131,14 +131,14 @@ const copiloteDeroule = [
   'Puis un jour par semaine avec l’équipe jusqu’à la livraison, et du cadrage de mon côté entre deux.',
   'Deux jours de présence renforcée au moment de livrer.',
   'Deux semaines de suivi léger pour vérifier que ça tient sans moi.',
-  `${COPILOTE.format}. Au forfait.`,
+  `${COPILOTE.format}, suivi compris. Au forfait.`,
 ];
 
 const copiloteSortie = [
   {
     label: 'Ce qui reste quand je pars.',
     texte:
-      'Je pars quand la première version est livrée. L’équipe garde la méthode qu’on a construite ensemble : comment elle découpe, comment elle écrit, ses garde-fous. Si la version n’est pas livrée au bout de huit semaines, je pars quand même, la méthode reste, et on décide ensemble de la suite.',
+      'Je quitte l’équipe quand la première version est livrée ; les deux semaines de suivi viennent ensuite, dans les mêmes huit semaines. L’équipe garde la méthode qu’on a construite ensemble : comment elle découpe, comment elle écrit, ses garde-fous. Si la version n’est pas livrée au bout de huit semaines, je pars quand même, la méthode reste, et on décide ensemble de la suite.',
   },
   {
     label: 'Et après.',
@@ -173,7 +173,8 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
 
         <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl">
           <p class="text-ink">
-            Je reprends ce sujet et je le mène jusqu’à une mise en production.
+            Je reprends ce sujet avec vos équipes. Ça se termine par une décision —
+            parfois celle d’arrêter — ou par une mise en production.
           </p>
           <p class="text-dim">
             Il y a deux raisons pour lesquelles un sujet s’arrête. J’interviens sur l’une ou
