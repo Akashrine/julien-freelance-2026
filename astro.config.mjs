@@ -90,6 +90,11 @@ export default defineConfig({
     '/posts': { status: 301, destination: '/ecrits' },
     '/outils': { status: 301, destination: '/ecrits' },
     '/case-studies': { status: 301, destination: '/a-propos' },
+    // Articles dépubliés le 12/10/2026 (draft: true, fichiers conservés).
+    '/articles/pm-freelance-senior-scale-up': { status: 301, destination: '/ecrits' },
+    '/articles/structurer-equipe-produit-scale-up': { status: 301, destination: '/ecrits' },
+    '/articles/probleme-organisation': { status: 301, destination: '/ecrits' },
+    '/articles/activation-sequence': { status: 301, destination: '/ecrits' },
     // /case-study/* : route dynamique, posée par l'intégration
     // `redirection-case-study` plus bas (Astro statique n'accepte pas de
     // redirection à paramètre sans getStaticPaths).
