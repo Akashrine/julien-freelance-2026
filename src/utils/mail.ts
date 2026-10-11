@@ -1,39 +1,45 @@
 /**
  * La porte. Le site n'a qu'une action et c'est celle-ci.
  *
- * Écrire ce mail est plus dur qu'il n'y paraît : il faut admettre qu'un sujet
- * traîne, dire depuis quand, et nommer qui peut trancher — ce dernier point
- * est politique. Devant une fenêtre vide, ça se remet à plus tard.
+ * La lettre est déjà commencée : des intitulés, et des lignes vides dessous.
+ * Le visiteur remplit ou efface. C'est son brouillon, dans son client mail,
+ * pas un formulaire.
  *
- * Alors la lettre est déjà commencée. Trois intitulés, ceux que Julien demande
- * mot pour mot sur l'accueil, et des lignes vides dessous. Le visiteur remplit
- * ou efface : c'est son brouillon, dans son client mail, pas un formulaire.
- *
- * L'objet, lui, ne se banalise pas : il reste la seule mesure de conversion
- * par offre (PRODUCT.md). Le corps ne le touche pas.
+ * Trois objets, et seulement trois. Ils servent de mesure : on sait d'où
+ * vient chaque mail sans formulaire ni traceur. Ne pas les banaliser.
+ * Libellés validés le 11/10/2026 (site-architecture.md, section Contact).
  */
 export const EMAIL = 'julien.brionne@gmail.com';
 
-// Apostrophe droite, pas typographique : cet objet est la mesure de conversion
-// et des mails portant exactement cette chaîne sont déjà partis. Il ne bouge pas.
-export const SUJET_GENERIQUE = "Un sujet qui n'avance pas";
+export type Porte = 'generique' | 'mission' | 'miseAuClair';
+
+const PORTES: Record<Porte, { sujet: string; lignes: string[] }> = {
+  generique: {
+    sujet: 'Un sujet produit',
+    lignes: ['Le sujet :', 'L’explication qu’on en donne aujourd’hui :', 'Qui tranche chez nous :'],
+  },
+  mission: {
+    sujet: 'Mission longue',
+    lignes: ['Le sujet :', 'L’équipe :', 'Le rôle attendu :'],
+  },
+  miseAuClair: {
+    sujet: 'La Mise au clair',
+    lignes: [
+      'La question à trancher :',
+      'L’explication qu’on en donne aujourd’hui :',
+      'Qui doit décider chez vous :',
+    ],
+  },
+};
 
 /** CRLF : c'est le retour à la ligne que les clients mail lisent tous. */
-const LETTRE = [
-  'Ce qui n’avance pas :',
-  '',
-  '',
-  'Depuis combien de temps :',
-  '',
-  '',
-  'Qui peut trancher chez nous :',
-  '',
-  '',
-].join('\r\n');
+const lettre = (lignes: string[]) => lignes.flatMap((l) => [l, '', '']).join('\r\n');
 
 // encodeURIComponent laisse passer l'apostrophe droite ; certains clients
 // tronquent dessus. On l'encode nous-mêmes, sujet comme corps.
 const encoder = (valeur: string) => encodeURIComponent(valeur).replace(/'/g, '%27');
 
-export const mailto = (sujet: string = SUJET_GENERIQUE) =>
-  `mailto:${EMAIL}?subject=${encoder(sujet)}&body=${encoder(LETTRE)}`;
+export const mailto = (porte: Porte = 'generique') => {
+  const { sujet, lignes } = PORTES[porte];
+  return `mailto:${EMAIL}?subject=${encoder(sujet)}&body=${encoder(lettre(lignes))}`;
+};

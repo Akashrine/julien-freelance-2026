@@ -1,24 +1,22 @@
 /**
- * Schema.org utilities for editorial / thought leadership website
- * 
- * This module provides reusable functions to generate Schema.org JSON-LD
- * schemas aligned with an editorial positioning, not a service marketplace.
- * 
- * Principles:
- * - No transactional schemas (ProfessionalService, Offer, Service)
- * - No commercial signals (reviews, ratings, offers)
- * - Focus on editorial credibility (Person, Article, WebPage)
- * - Minimal and semantic, not SEO spam
+ * Schema.org JSON-LD du site.
+ *
+ * Identité : Julien Brionne, Product Lead freelance (site-architecture.md,
+ * 11/10/2026). Un seul Service déclaré : La Mise au clair. Porter un sujet
+ * pendant plusieurs mois est une manière de travailler, pas un Service nommé.
+ * Aucun prix, aucune note, aucun avis, aucun résultat client.
  */
 
 const SITE_URL = 'https://www.julien-brionne.fr';
-import { MISE_AU_CLAIR, COPILOTE } from './offres';
+import { MISE_AU_CLAIR } from './offres';
 const AUTHOR_NAME = 'Julien Brionne';
-const AUTHOR_JOB_TITLE = 'Senior Product Manager freelance';
+export const AUTHOR_JOB_TITLE = 'Product Lead freelance';
+export const AUTHOR_DESCRIPTION =
+  "Product Lead freelance. Je vérifie que le problème annoncé est le bon, je fais trancher, puis je porte le sujet avec l'équipe jusqu'à la mesure.";
 
 /**
- * Person schema for the author
- * Used on the Home page to establish author identity
+ * Person schema for the author.
+ * `@id` partagé : les autres schémas y renvoient au lieu de redéclarer la personne.
  */
 export function getPersonSchema(): object {
   return {
@@ -28,22 +26,16 @@ export function getPersonSchema(): object {
     name: AUTHOR_NAME,
     jobTitle: AUTHOR_JOB_TITLE,
     url: SITE_URL,
-    description: "Senior Product Manager freelance. Je reprends les sujets produit importants qui n'avancent plus et je les mène jusqu'en production.",
-    // `knowsAbout` dit à un moteur génératif sur quoi cette personne fait
-    // autorité. Sans lui, il doit le déduire du corps des pages. Les sujets
-    // listés sont ceux que les treize articles couvrent réellement.
+    description: AUTHOR_DESCRIPTION,
+    // Les terrains publiés sur /ce-que-je-fais et /a-propos, et le geste.
     knowsAbout: [
       'Product management',
-      'Organisation produit en scale-up',
-      'Ownership produit',
-      'Priorisation et arbitrage produit',
-      "Structuration d'équipe produit",
-      'Activation et rétention en self-serve',
-      'Produit B2B SaaS',
-      'Expérience client et parcours grand public',
-      'Alignement Product, Ops et Engineering',
-      'Support client comme territoire produit',
-      'Backoffice et outils internes',
+      'Décision produit',
+      'Discovery et delivery produit',
+      'Customer Care et support',
+      'Plateformes et outils internes',
+      'E-commerce et checkout',
+      'Mesure produit et data',
     ],
     knowsLanguage: 'fr-FR',
     areaServed: { '@type': 'Country', name: 'France' },
@@ -55,8 +47,7 @@ export function getPersonSchema(): object {
 }
 
 /**
- * Service schemas for the Home page
- * Descriptive only — no pricing, no offers, no commercial signals
+ * La Mise au clair, seule intervention déclarée. Descriptif seulement.
  */
 export function getServiceSchemas(): object[] {
   return [
@@ -66,17 +57,7 @@ export function getServiceSchemas(): object[] {
       name: MISE_AU_CLAIR.nom,
       description: `${MISE_AU_CLAIR.format}. ${MISE_AU_CLAIR.resultat}`,
       provider: { '@id': `${SITE_URL}/#person` },
-      url: `${SITE_URL}/ce-que-je-fais#la-mise-au-clair`,
-      serviceType: 'Product management',
-      areaServed: 'FR',
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      name: COPILOTE.nom,
-      description: `${COPILOTE.format} pour faire sortir un MVP qui ne sort pas, avec la méthode que l'équipe garde après mon départ.`,
-      provider: { '@id': `${SITE_URL}/#person` },
-      url: `${SITE_URL}/ce-que-je-fais#le-copilote`,
+      url: `${SITE_URL}${MISE_AU_CLAIR.ancre}`,
       serviceType: 'Product management',
       areaServed: 'FR',
     },
@@ -84,8 +65,7 @@ export function getServiceSchemas(): object[] {
 }
 
 /**
- * WebSite schema for the site structure
- * Used on the Home page to describe the site globally
+ * WebSite schema, posé sur l'accueil.
  */
 export function getWebsiteSchema(): object {
   return {
@@ -93,18 +73,15 @@ export function getWebsiteSchema(): object {
     '@type': 'WebSite',
     name: 'Julien Brionne',
     url: SITE_URL,
-    description: "Je reprends les sujets produit importants qui n'avancent plus. On vérifie, on tranche, puis seulement on construit.",
-    author: {
-      '@type': 'Person',
-      name: AUTHOR_NAME,
-    },
+    description: AUTHOR_DESCRIPTION,
+    author: { '@id': `${SITE_URL}/#person` },
     inLanguage: 'fr',
   };
 }
 
 /**
  * WebPage schema for editorial pages
- * Used on pages like Approche, Situations, Diagnostic, Articles listing
+ * Used on the editorial pages
  * 
  * @param url - Full URL of the page
  * @param title - Page title
@@ -235,12 +212,8 @@ export function getBreadcrumbSchema(
 export const BreadcrumbItems = {
   home: { name: 'Accueil', url: SITE_URL },
   ceQueJeFais: { name: 'Ce que je fais', url: `${SITE_URL}/ce-que-je-fais` },
+  aPropos: { name: 'Parcours', url: `${SITE_URL}/a-propos` },
   ecrits: { name: 'Écrits', url: `${SITE_URL}/ecrits` },
-  ressources: { name: 'Ressources', url: `${SITE_URL}/ressources` },
-  situations: { name: 'Situations', url: `${SITE_URL}/situations` },
-  articles: { name: 'Articles', url: `${SITE_URL}/articles` },
-  diagnostic: { name: 'Diagnostic', url: `${SITE_URL}/diagnostic` },
-  pme: { name: 'PM freelance en PME', url: `${SITE_URL}/product-manager-freelance-pme` },
   article: (title: string, url: string) => ({ name: title, url }),
 };
 

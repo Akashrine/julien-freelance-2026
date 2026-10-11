@@ -1,76 +1,54 @@
 ---
-// Écrits. Copy verbatim de 2026-08-27_JulienBrionne_Site-Ecrits_v3.md.
-// Page média, pas commerciale. Aucun prix, aucun compteur, aucun popup.
+// Écrits. Copy validée le 11/10/2026 (refonte Product Lead freelance).
+// Ne pas reformuler : toute modification de texte passe par Julien.
 //
-// Mise en page : une seule grille, rail + colonne de lecture (.split).
-// Les deux sélections — numéros et bibliothèque — passent par le registre.
+// Page éditoriale, pas commerciale. Elle absorbe l'ancien index /articles
+// (redirigé ici) ; les URLs /articles/[slug] restent en ligne, reliées entre
+// elles par les liens des articles et la navigation précédent / suivant.
+//
+// Trois entrées seulement, toutes publiées, alignées avec le territoire et
+// compatibles avec 04_CASES.md (site-architecture.md, Écrits mis en avant).
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { mailto } from '../utils/mail';
 
 const SUBSTACK = 'https://produitsansfiltre.substack.com';
 const LINKEDIN = 'https://www.linkedin.com/in/julienbrionne';
+const TITLE = 'Écrits · Julien Brionne';
+const DESCRIPTION =
+  'Produit Sans Filtre et des textes sur les organisations produit : les explications qui arrivent avant le problème, les décisions qui ne tiennent pas.';
 
-// Section 3. Les quatre numéros, chacun vers son URL précise.
-// Les deux dernières confirmées par Julien le 30/08 : « Vous avez recruté un
-// bon PM » vit sous le slug « ce-que-jai-dit-a-30-personnes-en », « J'ai
-// ouvert Jira en dernier » sous « psf-40-jai-ouvert-jira-en-dernier ».
-const numeros = [
+const entrees = [
   {
-    titre: 'Le jour où on a tué les étoiles chez Heetch.',
-    resume:
-      'Comment on retire à un produit grand public la mesure que tout le secteur utilise, et ce qu’on met à la place.',
-    href: 'https://produitsansfiltre.substack.com/p/le-jour-ou-on-a-tue-les-etoiles-chez-heetch',
+    titre: '« On itérera ».',
+    resume: 'L’itération est parfois une façon de ne pas décider.',
+    href: 'https://produitsansfiltre.substack.com/p/on-iterera',
   },
   {
     titre: 'Le churn ne ment pas.',
     resume:
-      'Ce que les clients qui partent disent de votre produit, et pourquoi personne ne l’écoute.',
+      'Quand le churn monte, chacun arrive avec une explication cohérente. On regarde rarement les décisions qui l’ont précédé.',
     href: 'https://produitsansfiltre.substack.com/p/le-churn-ne-ment-pas',
   },
   {
-    titre: 'Vous avez recruté un bon PM, mais pas pour votre contexte.',
+    titre: 'Les produits invisibles.',
     resume:
-      'Pourquoi un excellent Product Manager échoue dans une maison où il n’a pas les moyens de décider.',
-    href: 'https://produitsansfiltre.substack.com/p/ce-que-jai-dit-a-30-personnes-en',
-  },
-  {
-    titre: 'J’ai ouvert Jira en dernier.',
-    resume:
-      'Les priorités réelles d’une équipe se lisent dans les horodatages, pas dans l’outil.',
-    href: 'https://produitsansfiltre.substack.com/p/psf-40-jai-ouvert-jira-en-dernier',
+      'Back-office, règles, permissions, notifications. Les produits que personne ne montre en démo, et qui racontent souvent plus de choses sur une boîte que son produit public.',
+    href: 'https://produitsansfiltre.substack.com/p/les-produits-invisibles',
   },
 ];
 
-// Section 4. Sélection éditoriale, pas commerciale.
-const aLire = [
-  {
-    href: '/articles/unite-avant-mesure',
-    titre: 'On vous demande un chiffre. Il manque une unité.',
-  },
-  {
-    href: '/articles/ownership-produit',
-    titre: 'Ownership produit : quand personne ne sait plus qui décide quoi',
-  },
-  {
-    href: '/articles/illusion-mouvement',
-    titre: 'L’illusion du mouvement : quand l’effort masque l’absence de décision',
-  },
-  { href: '/articles/art-du-non', titre: 'L’art du non' },
-  { href: '/articles/care-territoire-produit', titre: 'Le care comme territoire produit' },
-];
 const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.ecrits]);
 ---
 
 <Layout
   preloadSerifItalic={false}
-  title="Écrits sur l'organisation produit en scale-up"
-  description="Ce que j'écris, c'est comment je travaille. Produit Sans Filtre, un numéro toutes les deux semaines, et des textes de fond."
-  webPageSchema={getWebPageSchema(
-    'https://www.julien-brionne.fr/ecrits',
-    'Écrits',"Ce que j'écris, c'est comment je travaille."
-  )}
+  title={TITLE}
+  description={DESCRIPTION}
+  ogTitle="Ce que j’écris, c’est comment je travaille."
+  webPageSchema={getWebPageSchema('https://www.julien-brionne.fr/ecrits', 'Écrits', DESCRIPTION)}
   breadcrumbSchema={breadcrumbSchema}
   ogImage="/og/page-ecrits.webp"
   twitterCard="summary_large_image"
@@ -78,137 +56,86 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
   <Navbar current="ecrits" />
 
   <main id="contenu" tabindex="-1">
-    {/* 1. La promesse. Pleine largeur : moment serif. */}
-    <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-32">
+    {/* 1. Ouverture */}
+    <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12">
-        <h1 class="t-display max-w-[18ch] text-ink">
+        <h1 class="reveal-load t-display max-w-[18ch] text-ink">
           Ce que j’écris, c’est comment je travaille<span class="stop">.</span>
         </h1>
-
-        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim sm:text-xl">
+        <div class="reveal-load measure-wide space-y-5 text-lg leading-relaxed text-dim sm:text-xl" style="--index:1">
           <p>
-            Je n’ai pas de plaquette. Ce que vous lisez ici est la seule façon honnête de
-            savoir si ma manière de regarder un problème produit vous parle.
+            J’écris sur ce que je vois dans les organisations produit. Les explications qui
+            arrivent avant le problème. Les décisions qui se rejouent. Les features livrées que
+            personne n’utilise.
           </p>
-          <p>Si oui, on finira par se parler. Si non, vous m’aurez lu gratuitement.</p>
+          <p>Si vous vous y reconnaissez, on finira par se parler. Sinon, vous m’aurez lu gratuitement.</p>
         </div>
       </div>
     </section>
 
-    {/* 2. Produit Sans Filtre. Action principale. */}
-    <section class="px-6 py-20 sm:px-10 sm:py-28">
+    {/* 2. Produit Sans Filtre. Action principale de la page. */}
+    <section class="px-6 py-16 sm:px-10 sm:py-24">
       <div class="shell space-y-8">
-          <h2 class="t-title text-ink">Produit Sans Filtre</h2>
-
-          <div class="space-y-5 text-lg leading-relaxed text-dim">
-            <p>Un numéro toutes les deux semaines.</p>
-            <p>
-              Des situations vécues dans des équipes produit réelles. Ce qui a été décidé,
-              contre qui, et ce qui s’est passé après. Pas de framework, pas de liste d’outils,
-              pas de conseils de carrière.
-            </p>
-          </div>
-
-          <div class="space-y-3 pt-2">
-            <p>
-              <a href={SUBSTACK} rel="noopener" class="door font-serif text-xl sm:text-2xl">
-                <span>S’inscrire</span>
-                <span class="door-arrow" aria-hidden="true">&rarr;</span>
-              </a>
-            </p>
-            <p class="text-sm text-dim">
-              Gratuit. Désabonnement en un clic, en bas de chaque numéro.
-            </p>
+        <h2 class="t-title text-ink">Produit Sans Filtre</h2>
+        <p class="measure-wide text-lg leading-relaxed text-dim">
+          Toutes les deux semaines. C’est là que je prends le temps : plus long qu’un post, plus de
+          place pour la nuance, et pour le doute quand je n’ai pas la réponse.
+        </p>
+        <div class="space-y-3 pt-2">
+          <p>
+            <a href={SUBSTACK} rel="noopener" class="door font-serif text-xl sm:text-2xl">
+              <span>S’inscrire</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+          <p class="text-sm text-dim">Gratuit.</p>
         </div>
       </div>
     </section>
 
-    {/* 3. Par où commencer. Registre. */}
-    <section class="px-6 py-20 sm:px-10 sm:py-28">
+    {/* 3. Par où commencer */}
+    <section class="px-6 py-16 sm:px-10 sm:py-24">
       <div class="shell space-y-10 sm:space-y-12">
         <h2 class="t-sub text-ink">Par où commencer</h2>
-
-        <ul class="measure-wide space-y-7">
-          {numeros.map((n) => (
+        <ul class="measure-wide space-y-8">
+          {entrees.map((e) => (
             <li class="space-y-1.5">
-              {n.href ? (
-                <a href={n.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
-                  {n.titre}
-                </a>
-              ) : (
-                <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">{n.titre}</p>
-              )}
-              <p class="leading-relaxed text-dim">{n.resume}</p>
+              <a href={e.href} rel="noopener" class="link-inline block font-serif text-xl leading-snug sm:text-2xl">
+                {e.titre}
+              </a>
+              <p class="leading-relaxed text-dim">{e.resume}</p>
             </li>
           ))}
         </ul>
       </div>
     </section>
 
-    {/* 4. À lire. Registre de la bibliothèque. */}
-    <section class="px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell space-y-10 sm:space-y-12">
-        <div class="space-y-3">
-          <h2 class="t-sub text-ink">À lire</h2>
-          <p class="leading-relaxed text-dim">Des textes de fond, plus longs que la newsletter.</p>
-        </div>
-
-        <ul class="measure-wide space-y-4">
-          {aLire.map((a) => (
-            <li>
-              <a href={a.href} class="link-inline font-serif text-xl leading-snug sm:text-2xl">
-                {a.titre}
-              </a>
-            </li>
-          ))}
-        </ul>
-
+    {/* 4. LinkedIn */}
+    <section class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-6">
+        <h2 class="t-sub text-ink">Sur LinkedIn</h2>
+        <p class="measure-wide text-lg leading-relaxed text-dim">
+          Des textes plus courts, pris dans la semaine. Une phrase entendue en réunion, une décision
+          qu’on rejoue pour la troisième fois, un tableau de bord que personne ne regarde.
+        </p>
         <p>
-          <a href="/articles" class="door text-base">
-            <span>Tous les textes</span>
+          <a href={LINKEDIN} rel="noopener" class="door text-base">
+            <span>Suivre sur LinkedIn</span>
             <span class="door-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </p>
       </div>
     </section>
 
-    {/* 5. Sur LinkedIn */}
-    <section class="px-6 py-20 sm:px-10 sm:py-28">
-      <div class="shell space-y-6">
-          <h2 class="t-sub text-ink">Sur LinkedIn</h2>
-
-          <p class="text-lg leading-relaxed text-dim">
-            J’écris deux fois par semaine. Des scènes courtes, prises dans la semaine. Une
-            phrase entendue en réunion, une décision qu’on rejoue pour la troisième fois, un
-            tableau de bord que personne ne regarde.
-          </p>
-
-          <p>
-            <a href={LINKEDIN} rel="noopener" class="door text-base">
-              <span>Suivre Julien sur LinkedIn</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-      </div>
-    </section>
-
-    {/* 6. La ligne commerciale. En texte, jamais en bouton. */}
+    {/* 5. Ligne de fin. En texte, jamais en bouton, pas de lien vers les offres. */}
     <section class="px-6 py-12 sm:px-10 sm:py-14">
       <div class="shell">
         <p class="measure-wide text-sm leading-relaxed text-dim sm:text-base">
-          Si un de ces textes décrit votre situation, écrivez-moi. Ce que je vends est
-          <a href="/ce-que-je-fais" class="link-inline">ici</a>.
+          Si un de ces textes décrit ce qui se passe chez vous, <a href={mailto()} class="link-inline">écrivez-moi</a>.
         </p>
       </div>
     </section>
   </main>
 
-  <Footer
-    links={[
-      { href: '/', label: 'Accueil' },
-      { href: '/ce-que-je-fais', label: 'Ce que je fais' },
-      { href: '/a-propos', label: 'À propos' },
-      { href: '/mentions-legales', label: 'Mentions légales' },
-    ]}
-  />
+  <Footer />
 </Layout>

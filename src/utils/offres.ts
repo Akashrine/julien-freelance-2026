@@ -1,39 +1,24 @@
 /**
- * Les offres, et ce qui les définit en un mot.
+ * Les deux profondeurs du même travail, et ce qui les définit en un mot.
  *
- * Le format de La Mise au clair était écrit à la main dans neuf endroits :
- * l'accueil, la page d'offre, la page diagnostic (quatre fois, dont trois
- * métadonnées qu'on ne relit jamais), la page PME et les données structurées.
- * Le jour où la durée change — et elle a failli passer à deux semaines le
- * 17/09 — il en manquait forcément un, et le site annonçait deux durées pour
- * la même chose, une troisième à Google.
+ * Porter n'est pas une offre : pas de nom commercial, pas de Service déclaré,
+ * ni rythme ni durée minimum publiés. Seule son ancre vit ici.
+ * La Mise au clair est l'intervention courte (01_OFFERS.md, 08/10/2026).
  *
  * Les phrases autour restent écrites à la main, page par page : c'est de la
- * copy, elle appartient à sa page. Seul l'atome factuel vit ici.
+ * copy validée, elle appartient à sa page. Seul l'atome factuel vit ici.
  *
- * Les ancres sont définitives (PRODUCT.md) : des liens partent dessus depuis
- * LinkedIn et des messages privés. Elles ne se renomment pas.
+ * Les anciennes ancres #le-copilote et #le-rendez-vous-produit restent posées
+ * sur /ce-que-je-fais : des liens partent dessus depuis LinkedIn et des DM.
  */
+export const PORTER = {
+  ancre: '/ce-que-je-fais#porter',
+} as const;
+
 export const MISE_AU_CLAIR = {
   nom: 'La Mise au clair',
   ancre: '/ce-que-je-fais#la-mise-au-clair',
-  format: 'Six demi-journées sur trois semaines',
-  resultat: 'Une décision prise avec vous, le cadre écrit, les trois prochains mois séquencés.',
-} as const;
-
-export const COPILOTE = {
-  nom: 'Le Copilote',
-  ancre: '/ce-que-je-fais#le-copilote',
-  format: 'Huit semaines au maximum',
-  resultat: "Faire sortir un MVP qui ne sort pas, avec la méthode que l'équipe garde après mon départ.",
-} as const;
-
-/**
- * Retiré de l'offre le 18/09/2026. On garde l'ancre, pas le format : des liens
- * partent dessus depuis LinkedIn et des messages privés. Elle mène désormais à
- * deux lignes qui expliquent le retrait.
- */
-export const RENDEZ_VOUS_RETIRE = {
-  nom: 'Le Rendez-vous produit',
-  ancre: '/ce-que-je-fais#le-rendez-vous-produit',
+  format: 'Un mois',
+  resultat:
+    'Avec le dirigeant et les personnes Produit, Tech ou Data utiles au sujet, pour décider quoi construire, pour qui, comment savoir si ça marche et par quoi commencer.',
 } as const;
