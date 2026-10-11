@@ -24,17 +24,17 @@
 
 **Exemples :**
 - `/og/article-art-du-non.png`
-- `/og/page-approche.png`
 - `/og/page-home.png`
 
 ### 2. Pages Statiques Configurées
 
 Les pages suivantes ont des images OG générées automatiquement :
-- `page-home` : Page d'accueil
-- `page-approche` : Page Approche
-- `page-situations` : Page Situations
-- `page-diagnostic` : Page Diagnostic
-- `page-articles` : Page Articles
+- `page-home` : Accueil
+- `page-ce-que-je-fais` : Ce que je fais
+- `page-a-propos` : Parcours
+- `page-ecrits` : Écrits
+
+(Liste à jour au 11/10/2026. La source réelle est `staticPages` dans `src/pages/og/[...slug].ts`, en `.webp`.)
 
 ### 3. Design des Images OG
 

@@ -1,160 +1,116 @@
 ---
-// Ce que je fais. Copy verbatim de 2026-08-28_JulienBrionne_Site-CeQueJeFais_v5.md,
-// moins les prix et moins les blocs « Pourquoi ce prix » (decisions.md, 28/08 au soir).
-// Les trois ancres sont définitives : des liens partent dessus. Ne jamais les changer.
+// Ce que je fais. Copy validée et figée le 11/10/2026 (refonte Product Lead
+// freelance). Ne pas reformuler : toute modification de texte passe par Julien.
 //
-// Mise en page : une seule grille, rail + colonne de lecture (.split).
-// Les en-têtes d'offre — nom serif, format à droite, filet — sont les seules
-// ruptures pleine largeur. Le registre porte les six demi-journées.
+// La page répond à : « Dans ma situation, Julien doit-il porter le sujet avec
+// nous, ou a-t-on d'abord besoin de trancher ? »
+//
+// Ancres. #porter et #la-mise-au-clair sont les deux sections.
+// #le-copilote (ancienne offre) est posé sur Porter, #le-rendez-vous-produit
+// (ancienne offre) sur le bloc « lequel des deux » : des liens partent dessus
+// depuis LinkedIn et des DM. Aucune ancienne offre n'est affichée.
+//
+// Preuve côté Porter : Heetch, équipe Care et admin (04_CASES.md, publiable
+// sans chiffre). Jaume Avila Estivill cité sans entreprise (CASES).
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getWebPageSchema, getServiceSchemas, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
-// Objet générique arbitré par Julien le 28/08 ; objets par offre pour les trois
-// ancres. L'encodage et le corps de la lettre vivent dans utils/mail.ts.
 import { EMAIL, mailto } from '../utils/mail';
-import { MISE_AU_CLAIR, COPILOTE } from '../utils/offres';
+import { PORTER, MISE_AU_CLAIR } from '../utils/offres';
 
-// Ce qui se passe pendant les trois semaines. Quatre mouvements, pas un
-// agenda : le protocole fixe vendait un audit, ce que la fiche « Ce que ce
-// n'est pas » dément deux lignes plus bas.
-const mouvements = [
+const TITLE = 'Porter un sujet produit, ou d’abord trancher · Julien Brionne';
+const DESCRIPTION =
+  'Deux manières de travailler avec moi : porter un sujet produit pendant plusieurs mois, ou trancher d’abord une question en un mois avec La Mise au clair.';
+
+const porterSi = [
+  'La direction est posée. Il manque quelqu’un pour la tenir jusqu’à l’exécution.',
+  'Le sujet traverse plusieurs équipes, et chacune n’en voit qu’une partie.',
+  'Il faudra arbitrer chaque semaine, pas une seule fois.',
+  'Vous voulez savoir si ça a marché, pas seulement que c’est sorti.',
+];
+
+const trancherSi = [
+  'Plusieurs explications circulent pour le même problème.',
+  'Une feature importante est livrée et peu utilisée, et personne ne sait dire pourquoi.',
+  'La roadmap se remplit de demandes, et rien ne dit lesquelles comptent.',
+  'L’équipe ne sait plus quoi arrêter, poursuivre ou construire ensuite.',
+];
+
+const dedans = [
   {
-    titre: 'Je pars de votre diagnostic.',
+    titre: 'Je commence par vérifier.',
     texte:
-      'Vous me racontez ce qui n’avance pas, ce que vous pensez être le problème et ce que vous avez déjà essayé.',
+      'Même en mission longue, le sujet arrive avec son explication. Je commence par la confronter à l’usage, aux données et aux gens qui vivent le sujet, avant de prendre les gros engagements.',
   },
   {
-    titre: 'Je le confronte au terrain.',
+    titre: 'Je tiens les arbitrages.',
     texte:
-      'Je parle aux gens qui vivent le sujet, pas seulement à ceux qui le pilotent. Ce que je regarde dépend de ce qui bloque : les décisions, les clients, les données, les tickets, le fonctionnement des équipes. Je cherche ce qui confirme ou contredit votre diagnostic.',
+      'Ce qui entre, ce qui attend, ce qu’on arrête. Avec les personnes qui ont le droit de décider, pour que la décision ne se rejoue pas à chaque réunion.',
   },
   {
-    titre: 'On met le vrai problème sur la table.',
+    titre: 'Je fais la discovery et le delivery avec l’équipe.',
     texte:
-      'Je vous ramène ce que les faits montrent, y compris quand ce n’est pas là que vous pensiez que ça coinçait.',
+      'Avec Product, Design, Data et Engineering. Mon passé de développeur sert encore : quand le sujet le demande, je descends dans le modèle de données, l’architecture ou les contraintes d’intégration.',
   },
   {
-    titre: 'On tranche et on enclenche.',
+    titre: 'Je suis les résultats.',
     texte:
-      'Ce qu’on change, dans quel ordre et ce qu’on arrête. La première action est cadrée avec l’équipe qui va la porter.',
+      'Je ne quitte pas le sujet quand il sort. On regarde si l’usage a changé comme prévu, et on décide de la suite à partir de ça.',
   },
 ];
 
-// Ce qui reste après les trois semaines. Même forme que les mouvements :
-// une ligne = ce qui protège la décision, pas une clause de contrat.
-const protections = [
+const terrains = [
+  'Le Customer Care et le support.',
+  'Les plateformes et les outils internes que tout le monde utilise et que personne ne possède.',
+  'L’e-commerce et le checkout.',
+  'La mesure et la data : vérifier qu’un indicateur mesure ce qu’il prétend, jusque dans le modèle de données.',
+];
+
+const pendantLeMois = [
   {
-    titre: 'Qui la tient.',
-    texte: 'Une personne nommée. Vous validez son mandat ensemble, elle et vous.',
-  },
-  {
-    titre: 'Qui peut dire non.',
+    titre: 'On part d’une question.',
     texte:
-      'Quand un client demande l’inverse, cette personne refuse sans attendre votre accord.',
+      'Assez précise pour être tranchée. « Pourquoi on n’avance pas ? » ne se tranche pas. « Faut-il refaire l’onboarding, et pour qui ? » se tranche.',
   },
   {
-    titre: 'Quand on la rouvre.',
+    titre: 'Je confronte l’explication en place aux faits disponibles.',
     texte:
-      'Sur un fait nouveau, écrit. Le reste attend la date de revue fixée avant mon départ.',
+      'L’usage, les données, les tickets, les décisions déjà prises. Et les personnes qui vivent le sujet, pas seulement celles qui le pilotent.',
   },
   {
-    titre: 'Ce qu’on surveille.',
-    texte: 'Deux ou trois signaux qui montrent qu’elle se défait.',
+    titre: 'On tranche ensemble.',
+    texte:
+      'Je mets sur la table ce que les faits montrent. La décision se prend avec vous, pendant le mois, pas dans un rapport après.',
+  },
+  {
+    titre: 'On la rend exploitable.',
+    texte:
+      'La cible est explicite. On écrit comment on saura si ça marche. Le premier incrément est assez cadré pour que l’équipe l’engage sans moi.',
   },
 ];
 
-// Les fiches d'offre : chaque bloc libellé devient une ligne de la grille.
-const miseAuClair = [
-  {
-    label: 'Le problème.',
-    texte:
-      'Vous construisez un produit. Chaque client demande autre chose et vous dites oui à tout. Vos équipes attendent que vous décidiez. Vous ne savez pas si vous construisez la bonne chose, ni dans quel ordre.',
-  },
-  {
-    label: 'Ce que je fais.',
-    texte:
-      `${MISE_AU_CLAIR.format}. Je parle à vos équipes et à vos clients. Puis on s’assoit et on tranche : ce que le produit doit résoudre, pour qui, dans quel ordre, et ce qu’on arrête.`,
-  },
-  {
-    label: 'Ce que vous avez à la fin.',
-    texte:
-      'Une décision prise, en salle, avec vous. Ce qu’on change, ce qu’on arrête et le cadre pour la suite. Vous savez sur quoi vos équipes travaillent lundi, et pourquoi.',
-  },
-  {
-    label: 'Pour qui.',
-    texte:
-      'Vous construisez déjà, vous avez des clients. Avec ou sans équipe produit, les décisions structurantes remontent encore jusqu’à vous.',
-  },
-  {
-    label: 'Pas pour qui.',
-    texte:
-      'Vous n’avez ni produit ni clients. Ou vous cherchez quelqu’un pour dérouler une roadmap déjà écrite.',
-  },
-  {
-    label: 'Ce que ce n’est pas.',
-    texte:
-      'Ce n’est pas un audit. Vous ne recevez pas soixante slides trois semaines plus tard. La décision se prend devant vous, pendant les trois semaines.',
-  },
+const aLaFin = [
+  'Une décision explicite sur ce qu’on construit. Parfois sur ce qu’on arrête.',
+  'Les personnes pour qui on le construit.',
+  'La manière de savoir si ça marche.',
+  'Un premier incrément que l’équipe peut engager sans moi.',
 ];
 
-// Le Copilote. Copy validée le 17/09/2026 : l'offre prend la délivrée,
-// plus la coordination inter-équipes. Sept fiches, dans cet ordre.
-// Le déroulé est dégressif : il tient sur six lignes, donc il sort du motif
-// libellé + paragraphe et empile ses paragraphes dans la colonne de lecture.
-const copiloteOuverture = [
-  {
-    label: 'Le problème.',
-    texte:
-      'Le sujet est décidé. Il ne sort pas. Il traverse plusieurs équipes, chacune livre sa part, le périmètre bouge chaque semaine et les arbitrages reviennent. Personne n’est disponible pour le porter de bout en bout.',
-  },
-  {
-    label: 'Pour qui.',
-    texte:
-      'Un dirigeant ou un sponsor qui porte le sujet. Une équipe déjà en place. Un cap déjà posé, avec ou sans Mise au clair avant.',
-  },
-  {
-    label: 'Pas pour qui.',
-    texte:
-      'Une équipe qui ne sait pas encore quoi construire : c’est La Mise au clair. Un périmètre qui demande de coordonner plus de quinze personnes — au-delà, huit semaines ne suffisent pas.',
-  },
-  {
-    label: 'Ce que ce n’est pas.',
-    texte:
-      'Une mission longue. Un renfort qui livre à la place de l’équipe. Une promesse de chiffre.',
-  },
+const pasCeci = [
+  'Une roadmap déroulée à votre place.',
+  'Du coaching pour votre équipe produit.',
+  'Un mois de PM en renfort. Si le sujet a besoin de quelqu’un pour le porter, c’est l’autre format.',
 ];
 
-const copiloteDeroule = [
-  'Deux semaines à deux jours par semaine avec l’équipe, pour prendre le contexte et découper.',
-  'Un point d’arrêt à la fin de la deuxième semaine : si le périmètre ne tient pas, on s’arrête là.',
-  'Puis un jour par semaine avec l’équipe jusqu’à la livraison, et du cadrage de mon côté entre deux.',
-  'Deux jours de présence renforcée au moment de livrer.',
-  'Deux semaines de suivi léger pour vérifier que ça tient sans moi.',
-  `${COPILOTE.format}, suivi compris. Au forfait.`,
-];
-
-const copiloteSortie = [
-  {
-    label: 'Ce qui reste quand je pars.',
-    texte:
-      'Je quitte l’équipe quand la première version est livrée ; les deux semaines de suivi viennent ensuite, dans les mêmes huit semaines. L’équipe garde la méthode qu’on a construite ensemble : comment elle découpe, comment elle écrit, ses garde-fous. Si la version n’est pas livrée au bout de huit semaines, je pars quand même, la méthode reste, et on décide ensemble de la suite.',
-  },
-  {
-    label: 'Et après.',
-    texte: 'Si vous voulez que je reste, on en parle. C’est une autre mission.',
-  },
-];
 const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.ceQueJeFais]);
 ---
 
 <Layout
-  title="La Mise au clair : trancher un sujet produit en 3 semaines"
-  description="La Mise au clair pour trancher ce qu'on construit. Le Copilote pour faire sortir un MVP qui ne sort pas. Format, périmètre et limites de chaque offre."
-  webPageSchema={getWebPageSchema(
-    'https://www.julien-brionne.fr/ce-que-je-fais',
-    'Ce que je fais',"Un sujet produit important n'avance plus. Je le reprends avec vos équipes : ça se termine par une décision, parfois celle d'arrêter, ou par une mise en production."
-  )}
+  title={TITLE}
+  description={DESCRIPTION}
+  ogTitle="Porter le sujet avec vous, ou d’abord trancher ?"
+  webPageSchema={getWebPageSchema('https://www.julien-brionne.fr/ce-que-je-fais', 'Ce que je fais', DESCRIPTION)}
   serviceSchemas={getServiceSchemas()}
   breadcrumbSchema={breadcrumbSchema}
   ogImage="/og/page-ce-que-je-fais.webp"
@@ -163,34 +119,28 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
   <Navbar current="ce-que-je-fais" />
 
   <main id="contenu" tabindex="-1">
-    {/* 1. Hero. Pleine largeur : moment serif. */}
-    <section class="px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-32">
+    {/* 1. Ouverture. */}
+    <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12 sm:space-y-16">
-        <h1 class="t-display max-w-[20ch] text-ink">
-          Un sujet produit important n’avance plus. Vos équipes sont bonnes.
-          <span class="text-dim italic">Le résultat ne bouge pas.</span>
+        <h1 class="reveal-load t-display max-w-[20ch] text-ink" style="--index:0">
+          Porter le sujet avec vous, ou d’abord trancher&nbsp;?
         </h1>
-
-        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl">
+        <div class="reveal-load measure-wide space-y-5 text-lg leading-relaxed sm:text-xl" style="--index:1">
           <p class="text-ink">
-            Je reprends ce sujet avec vos équipes. Ça se termine par une décision —
-            parfois celle d’arrêter — ou par une mise en production.
+            Les deux partent du même travail : vérifier l’explication en place, trouver le vrai
+            problème, faire décider.
           </p>
           <p class="text-dim">
-            Il y a deux raisons pour lesquelles un sujet s’arrête. J’interviens sur l’une ou
-            sur l’autre.
+            La différence tient à ce dont votre sujet a besoin maintenant. Quelqu’un qui le tient
+            pendant plusieurs mois. Ou d’abord une décision.
           </p>
-          <p class="text-dim">Chaque offre dit ce qu’elle n’est pas.</p>
         </div>
       </div>
     </section>
 
-    {/* 2. Le routeur. Deux questions au même poids, deux lignes identiques. */}
-    {/* Seule section du site qui garde `.reveal` : ici ce n'est pas une
-         entrée mais un déclencheur. L'arbre se dessine dans l'ordre où
-         l'argument se pense — racine, descente, division, branches — et
-         toute la séquence est accrochée à `.reveal.active`. Voir global.css. */}
-    <section class="reveal px-6 py-20 sm:px-10 sm:py-28">
+    {/* 2. Lequel des deux. L'arbre ne se dessine qu'à partir de lg ; en
+         dessous, les deux branches s'empilent. */}
+    <section id="le-rendez-vous-produit" class="reveal px-6 py-16 sm:px-10 sm:py-24">
       <div class="shell space-y-12 sm:space-y-14">
         <div class="schema">
           <span class="schema-root" aria-hidden="true">.</span>
@@ -199,112 +149,213 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
           <span class="schema-leg schema-leg-l" aria-hidden="true"></span>
           <span class="schema-leg schema-leg-r" aria-hidden="true"></span>
 
-          <div class="schema-branch space-y-9 lg:space-y-0">
-            <div class="schema-branch-inner space-y-2.5">
-              <p class="t-sub text-ink">Vous ne savez plus quoi décider.</p>
-              <p class="leading-relaxed text-dim">
-                Vous construisez déjà et ça part dans toutes les directions.
+          <div class="schema-branch">
+            <div class="schema-branch-inner space-y-5">
+              <h2 class="t-sub text-ink">Vous avez besoin que je porte le sujet si&nbsp;:</h2>
+              <ul class="space-y-3 text-lg leading-relaxed text-dim">
+                {porterSi.map((ligne) => (
+                  <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
+                    <span class="text-dim" aria-hidden="true">·</span>
+                    <span>{ligne}</span>
+                  </li>
+                ))}
+              </ul>
+              <p class="pt-1">
+                <a href={PORTER.ancre} class="door text-base">
+                  <span>Porter un sujet</span>
+                  <span class="door-arrow" aria-hidden="true">&rarr;</span>
+                </a>
               </p>
-              <p>
-                <a href="#la-mise-au-clair" class="door text-base">
+            </div>
+          </div>
+
+          <div class="schema-branch mt-12 lg:mt-0">
+            <div class="schema-branch-inner space-y-5">
+              <h2 class="t-sub text-ink">Vous avez d’abord besoin de trancher si&nbsp;:</h2>
+              <ul class="space-y-3 text-lg leading-relaxed text-dim">
+                {trancherSi.map((ligne) => (
+                  <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
+                    <span class="text-dim" aria-hidden="true">·</span>
+                    <span>{ligne}</span>
+                  </li>
+                ))}
+              </ul>
+              <p class="pt-1">
+                <a href={MISE_AU_CLAIR.ancre} class="door text-base">
                   <span>La Mise au clair</span>
                   <span class="door-arrow" aria-hidden="true">&rarr;</span>
                 </a>
               </p>
             </div>
           </div>
-
-          <div class="schema-branch mt-9 lg:mt-0">
-            <div class="schema-branch-inner space-y-2.5">
-              <p class="t-sub text-ink">Vous savez quoi faire, mais ça ne sort pas.</p>
-              <p class="leading-relaxed text-dim">
-                L’équipe sait où elle va. Le MVP, lui, ne sort pas.
-              </p>
-              <p>
-                <a href="#le-copilote" class="door text-base">
-                  <span>Le Copilote</span>
-                  <span class="door-arrow" aria-hidden="true">&rarr;</span>
-                </a>
-              </p>
-            </div>
-          </div>
         </div>
+
+        <p class="measure-wide text-lg leading-relaxed text-dim lg:mx-auto lg:text-center">
+          Ce ne sont pas des cases à cocher. Si vous vous reconnaissez des deux côtés, on commence
+          par en parler.
+        </p>
       </div>
     </section>
 
-    {/* Le Rendez-vous produit est retiré, y compris sa mention. L'ancre, elle,
-         reste : PRODUCT.md la déclare définitive, des liens partent dessus depuis
-         LinkedIn et des messages privés. Elle ne dit plus rien — elle dépose le
-         visiteur sur les deux interventions, ce qui est la réponse à sa question. */}
-    <div id="le-rendez-vous-produit" aria-hidden="true"></div>
-
-    {/* La Mise au clair */}
-    <section id="la-mise-au-clair" class="px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-9 sm:space-y-11">
-        <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
-          <h2 class="t-title text-ink">La Mise au clair</h2>
-          <p class="text-sm text-dim sm:text-base">6 demi-journées · 3 semaines</p>
+    {/* 3. Porter. L'ancienne ancre #le-copilote pointe ici. */}
+    <section id="porter" class="px-6 py-16 sm:px-10 sm:py-24">
+      <span id="le-copilote" aria-hidden="true"></span>
+      <div class="shell space-y-10 sm:space-y-12">
+        <header class="border-b border-line pb-6">
+          <h2 class="t-title text-ink">Porter un sujet</h2>
         </header>
-
-        <div class="space-y-6 sm:space-y-7">
-          {miseAuClair.map((bloc) => (
-            <div class="split">
-              <p class="split-aside font-semibold text-ink">{bloc.label}</p>
-              <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="split pt-2">
-          <div class="split-aside" aria-hidden="true"></div>
-          <h3 class="t-sub text-ink">Pendant ces trois semaines</h3>
-        </div>
 
         <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
+          <p class="text-lg leading-relaxed text-ink sm:text-xl">
+            C’est l’essentiel de mon activité, et le format de ma mission actuelle chez Back Market.
+            Plusieurs mois, au rythme que demande le sujet.
+          </p>
+        </div>
+
+        <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Ce que je fais une fois dedans</h3>
           <div class="space-y-7">
-            {mouvements.map((m) => (
+            {dedans.map((d) => (
               <div class="space-y-1.5">
-                <p class="font-semibold text-ink">{m.titre}</p>
-                <p class="text-lg leading-relaxed text-dim">{m.texte}</p>
+                <p class="font-semibold text-ink">{d.titre}</p>
+                <p class="text-lg leading-relaxed text-dim">{d.texte}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div class="split pt-2">
-          <div class="split-aside" aria-hidden="true"></div>
-          <h3 class="t-sub text-ink">Quand je pars</h3>
+        <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Les sujets où je suis utile le plus vite</h3>
+          <ul class="space-y-3 text-lg leading-relaxed text-dim">
+            {terrains.map((t) => (
+              <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
+                <span class="text-dim" aria-hidden="true">·</span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Un exemple</h3>
+          <p class="text-lg leading-relaxed text-dim">
+            Chez Heetch, le Care n’avait pas d’équipe produit. Deux personnes, des outils éparpillés
+            côté Ops. L’admin interne servait chaque jour au Produit, aux Ops et au Support, et
+            n’appartenait à personne. J’ai créé l’équipe produit Care, avec sa mission, son
+            périmètre et ses KPI, puis refondu l’admin en une plateforme unique que chaque équipe
+            alimente.
+          </p>
+        </div>
+
+        <figure class="split">
           <div class="split-aside" aria-hidden="true"></div>
-          <div class="space-y-7">
-            <p class="text-lg leading-relaxed text-dim">
-              La décision ne tient pas toute seule. Avant de partir, on écrit ce qui la
-              protège.
+          <div class="space-y-3">
+            <blockquote lang="en" class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
+              “He did an outstanding job taking charge of major initiatives, defining clear project
+              needs, and managing stakeholder expectations with ease. Julien communicates
+              brilliantly with engineers.”
+            </blockquote>
+            <figcaption class="text-sm text-dim">Jaume Avila Estivill, Engineering Leader</figcaption>
+          </div>
+        </figure>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p>
+            <a href={mailto('mission')} class="door text-base sm:text-lg">
+              <span>Proposer une mission</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* 4. La Mise au clair. */}
+    <section id="la-mise-au-clair" class="px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-10 sm:space-y-12">
+        <header class="border-b border-line pb-6">
+          <h2 class="t-title text-ink">La Mise au clair</h2>
+        </header>
+
+        <div class="split">
+          <div class="split-aside" aria-hidden="true"></div>
+          <p class="text-lg leading-relaxed text-ink sm:text-xl">
+            Je propose La Mise au clair quand le sujet a d’abord besoin d’une décision. Un mois,
+            avec vous et les personnes Produit, Tech ou Data utiles au sujet.
+          </p>
+        </div>
+
+        <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Quand elle sert</h3>
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              Votre équipe livre. Mais le lien entre ce qu’elle construit, l’usage et la valeur est
+              devenu flou. Personne ne sait dire avec certitude ce qui marche, ce qu’il faut
+              arrêter, ni ce qu’on construit ensuite.
             </p>
-
-            <div class="space-y-7">
-              {protections.map((p) => (
-                <div class="space-y-1.5">
-                  <p class="font-semibold text-ink">{p.titre}</p>
-                  <p class="text-lg leading-relaxed text-dim">{p.texte}</p>
-                </div>
-              ))}
-            </div>
-
-            <p class="text-lg leading-relaxed text-dim">
-              Un mois après, on se revoit pour vérifier qu’elle tient. Ce rendez-vous fait
-              partie de La Mise au clair.
+            <p>
+              Elle est surtout utile quand une équipe Produit et Tech existe déjà. Sans équipe en
+              place, le besoin est souvent ailleurs. On en parle, et je vous dis si c’est le bon
+              format.
             </p>
           </div>
         </div>
 
         <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Pendant le mois</h3>
+          <div class="space-y-7">
+            {pendantLeMois.map((m) => (
+              <div class="space-y-1.5">
+                <p class="font-semibold text-ink">{m.titre}</p>
+                <p class="text-lg leading-relaxed text-dim">{m.texte}</p>
+              </div>
+            ))}
+            <p class="text-lg leading-relaxed text-dim">
+              Le temps que je passe dans le mois dépend de la question. On le fixe ensemble avant de
+              commencer.
+            </p>
+          </div>
+        </div>
+
+        <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Ce que vous avez à la fin</h3>
+          <ul class="space-y-3 text-lg leading-relaxed text-dim">
+            {aLaFin.map((l) => (
+              <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
+                <span class="text-dim" aria-hidden="true">·</span>
+                <span>{l}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Ce qui fait tenir une décision</h3>
+          <p class="text-lg leading-relaxed text-dim">
+            Une décision qui ne tient pas n’est pas vraiment une décision. Pendant le mois, on se
+            demande aussi qui la défendra quand un client demandera l’inverse, ce qui pourrait
+            légitimement la rouvrir, et quels signes montreraient qu’elle se défait.
+          </p>
+        </div>
+
+        <div class="split">
+          <h3 class="split-aside font-semibold text-ink">Ce que ce n’est pas</h3>
+          <ul class="space-y-3 text-lg leading-relaxed text-dim">
+            {pasCeci.map((l) => (
+              <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
+                <span class="text-dim" aria-hidden="true">·</span>
+                <span>{l}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
           <p>
-            <a href={mailto('La Mise au clair')} class="door text-base sm:text-lg">
+            <a href={mailto('miseAuClair')} class="door text-base sm:text-lg">
               <span>Parler de La Mise au clair</span>
               <span class="door-arrow" aria-hidden="true">&rarr;</span>
             </a>
@@ -313,119 +364,17 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
       </div>
     </section>
 
-    {/* Le Copilote */}
-    <section id="le-copilote" class="px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-9 sm:space-y-11">
-        <header class="reveal flex flex-col gap-2 border-b border-line pb-6 sm:flex-row sm:items-baseline sm:justify-between">
-          <h2 class="t-title text-ink">Le Copilote</h2>
-          <p class="text-sm text-dim sm:text-base">8 semaines au maximum</p>
-        </header>
-
-        <div class="space-y-6 sm:space-y-7">
-          {copiloteOuverture.map((bloc) => (
-            <div class="split">
-              <p class="split-aside font-semibold text-ink">{bloc.label}</p>
-              <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
-            </div>
-          ))}
-
-          <div class="split">
-            <p class="split-aside font-semibold text-ink">Comment ça se passe.</p>
-            <div class="space-y-5 text-lg leading-relaxed text-dim">
-              {copiloteDeroule.map((ligne) => (
-                <p>{ligne}</p>
-              ))}
-            </div>
-          </div>
-
-          {copiloteSortie.map((bloc) => (
-            <div class="split">
-              <p class="split-aside font-semibold text-ink">{bloc.label}</p>
-              <p class="text-lg leading-relaxed text-dim">{bloc.texte}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"></div>
-          <p>
-            <a href={mailto('Le Copilote')} class="door text-base sm:text-lg">
-              <span>Parler du Copilote</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    {/* Le terrain. Commun aux deux offres : la preuve ne vit plus dans une
-         fiche, elle vaut pour les deux. Sans id : aucune ancre n'est publique
-         dessus, et les trois ancres de la page ne se touchent pas. */}
-    <section class="px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-9 sm:space-y-11">
-        <header class="reveal border-b border-line pb-6">
-          <h2 class="t-title text-ink">Le terrain.</h2>
-        </header>
-
-        <div class="split">
-          <div class="split-aside" aria-hidden="true"></div>
-          <p class="text-lg leading-relaxed text-dim">
-            Ce que je fais aujourd’hui en mission, et d’où viennent les deux offres.
-          </p>
-        </div>
-
-        <div class="split">
-          <p class="split-aside font-semibold text-ink">Back Market, 2026.</p>
-          <div class="space-y-5 text-lg leading-relaxed text-dim">
-            <p>
-              J’arrive en février sur la plateforme Care. Un chantier téléphone ouvert depuis
-              plus d’un an, en double run entre deux outils, les marchés répartis entre les
-              deux.
-            </p>
-            <p>
-              Quatre mois plus tard, les appels entrants passent en production. Allemagne le
-              9 juin, France le 22 juin, Royaume-Uni et États-Unis le 1<sup>er</sup> juillet.
-              Première semaine en Allemagne : <span class="text-ink">100 % des appels décrochés.</span>
-              Un appel n’est plus un ticket isolé, il est rattaché à la demande du client.
-            </p>
-          </div>
-        </div>
-
-        <figure class="split pt-1">
-          <div class="split-aside" aria-hidden="true"></div>
-          <div class="space-y-4">
-            <blockquote lang="en" class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
-              “Julien was the Product Manager on our Platform team during my time as
-              Engineering Manager, and I truly enjoyed our partnership. He did an outstanding
-              job taking charge of major initiatives, defining clear project needs, and
-              managing stakeholder expectations with ease. Julien communicates brilliantly
-              with engineers. He understands technical nuances and keeps everyone aligned
-              toward the same goal. He is a true team player and I’d welcome the chance to
-              work with him again anywhere!”
-            </blockquote>
-            <figcaption class="text-sm text-dim">
-              Jaume Avila Estivill, Engineering Leader chez Back Market
-            </figcaption>
-          </div>
-        </figure>
-      </div>
-    </section>
-
-    {/* Comment ça commence */}
+    {/* 5. Fermeture. */}
     <section class="px-6 py-20 sm:px-10 sm:py-28">
       <div class="shell split">
         <div class="split-aside" aria-hidden="true"></div>
         <div class="space-y-8">
-          <h2 class="t-title text-ink">Comment ça commence<span class="stop">.</span></h2>
-
-          <div class="space-y-5 text-lg leading-relaxed text-dim">
-            <p>
-              Écrivez-moi. Trois choses suffisent : ce qui n’avance pas, depuis combien de
-              temps, et qui peut trancher chez vous.
-            </p>
-            <p>Je vous réponds et je vous dis si c’est pour moi ou pas.</p>
-          </div>
-
+          <h2 class="t-title text-ink">Vous hésitez entre les deux&nbsp;?</h2>
+          <p class="text-lg leading-relaxed text-dim">
+            Écrivez-moi quand même. Décrivez le sujet et l’explication qu’on en donne chez vous.
+            Savoir s’il faut le porter ou d’abord le trancher fait partie de la première
+            conversation.
+          </p>
           <div class="space-y-3 pt-2">
             <p>
               <a href={mailto()} class="door font-serif text-xl sm:text-2xl">
@@ -440,13 +389,5 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
     </section>
   </main>
 
-  <Footer
-    missionLongue={true}
-    links={[
-      { href: '/', label: 'Accueil' },
-      { href: '/ecrits', label: 'Écrits' },
-      { href: '/a-propos', label: 'À propos' },
-      { href: '/mentions-legales', label: 'Mentions légales' },
-    ]}
-  />
+  <Footer />
 </Layout>

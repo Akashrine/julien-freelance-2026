@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
 import sitemap from '@astrojs/sitemap';
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 // Dates de dernière révision, lues une fois au build dans le frontmatter MDX.
 // Pas de dépendance : le frontmatter de ce dépôt tient sur des lignes simples.
@@ -23,19 +23,76 @@ const datesArticles = Object.fromEntries(
 );
 
 
+// Une redirection à joker que la config `redirects` ne sait pas exprimer en
+// sortie statique : /case-study/* → /a-propos (audit SEO du 11/10). Ajoutée à
+// la table de routage Vercel une fois que l'adaptateur l'a écrite, avant la
+// lecture du système de fichiers, comme les autres redirections.
+const redirectionCaseStudy = {
+  name: 'redirection-case-study',
+  hooks: {
+    'astro:build:done': ({ logger }) => {
+      const chemin = './.vercel/output/config.json';
+      if (!existsSync(chemin)) {
+        logger.warn(`${chemin} introuvable : /case-study/* n'est pas redirigée.`);
+        return;
+      }
+      const config = JSON.parse(readFileSync(chemin, 'utf-8'));
+      const regle = { src: '^/case-study(?:/.*)?$', headers: { Location: '/a-propos' }, status: 301 };
+      if (config.routes.some((r) => r.src === regle.src)) return;
+      const ici = config.routes.findIndex((r) => r.handle === 'filesystem');
+      config.routes.splice(ici === -1 ? 0 : ici, 0, regle);
+      writeFileSync(chemin, JSON.stringify(config, null, 2));
+      logger.info('/case-study/* → /a-propos ajoutée à la table de routage.');
+    },
+  },
+};
+
 // https://astro.build/config
 export default defineConfig({
   // Hôte canonique : www, arbitré le 30/08. C'est le domaine primaire servi
   // par Vercel ; le domaine nu redirige vers lui.
   site: 'https://www.julien-brionne.fr',
   output: 'static',
-  // Migration des routes, catégorie A, 28/08/2026.
-  // Successeur fonctionnel direct, aucune donnée ne peut changer la destination.
-  // Les catégories B et C attendent la Search Console : ne rien ajouter ici sans elle.
+  // Redirections 301, refonte Product Lead freelance du 11/10/2026.
+  // Table de référence : 09_Solopreneur-Claude/03_PROJETS/julien-brionne/site-architecture.md.
+  // Chaque destination est une page existante, et aucune destination n'est
+  // elle-même redirigée. Exception connue et acceptée : une ancienne URL avec
+  // slash final passe d'abord par le 308 générique de l'adaptateur (qui retire
+  // le slash), puis par sa 301. Deux sauts, sans boucle. Les anciens articles
+  // anglais et /now restent volontairement en 404.
   redirects: {
+    // Pages retirées de cette refonte
+    '/articles': { status: 301, destination: '/ecrits' },
+    '/diagnostic': { status: 301, destination: '/ce-que-je-fais#la-mise-au-clair' },
+    '/product-manager-freelance-pme': { status: 301, destination: '/ce-que-je-fais' },
+    '/situations': { status: 301, destination: '/' },
+    '/ressources': { status: 301, destination: '/ecrits' },
+    '/ressources/generateur-prd': { status: 301, destination: '/ecrits' },
+    '/ressources/systeme-discovery': { status: 301, destination: '/ecrits' },
+    '/ressources/vibe-coding-pm': { status: 301, destination: '/ecrits' },
+    // Redirections du 28/08, destinations mises à jour
     '/approche': { status: 301, destination: '/ce-que-je-fais' },
     '/contact': { status: 301, destination: '/ce-que-je-fais' },
-    '/references': { status: 301, destination: '/ce-que-je-fais' },
+    '/references': { status: 301, destination: '/a-propos' },
+    // Anciennes routes (audit SEO du 11/10)
+    '/head-of-product-montpellier': { status: 301, destination: '/ce-que-je-fais#porter' },
+    '/fractional-cpo': { status: 301, destination: '/ce-que-je-fais#porter' },
+    '/fractional-head-of-product': { status: 301, destination: '/ce-que-je-fais#porter' },
+    '/blog/fractional-head-of-product': { status: 301, destination: '/ce-que-je-fais#porter' },
+    '/accompagnement/coaching-product': { status: 301, destination: '/ce-que-je-fais' },
+    '/accompagnement-produit': { status: 301, destination: '/ce-que-je-fais' },
+    '/accompagnement/impact-sprint': { status: 301, destination: '/ce-que-je-fais#la-mise-au-clair' },
+    '/accompagnement/leadership-produit': { status: 301, destination: '/ce-que-je-fais' },
+    '/leadership-produit': { status: 301, destination: '/ce-que-je-fais' },
+    '/diagnostic-produit': { status: 301, destination: '/ce-que-je-fais#la-mise-au-clair' },
+    '/blog/art-subtil-dire-non': { status: 301, destination: '/articles/art-du-non' },
+    '/blog': { status: 301, destination: '/ecrits' },
+    '/posts': { status: 301, destination: '/ecrits' },
+    '/outils': { status: 301, destination: '/ecrits' },
+    '/case-studies': { status: 301, destination: '/a-propos' },
+    // /case-study/* : route dynamique, posée par l'intégration
+    // `redirection-case-study` plus bas (Astro statique n'accepte pas de
+    // redirection à paramètre sans getStaticPaths).
   },
   adapter: vercel(),
   trailingSlash: 'never',
@@ -50,8 +107,10 @@ export default defineConfig({
       minify: 'terser',
     },
   },
-  integrations: [mdx(), react(), sitemap({
-    filter: (page) => !page.includes('/mentions-legales'),
+  integrations: [mdx(), react(), redirectionCaseStudy, sitemap({
+    // Hors sitemap : le légal, et /ressources/prompts-discovery, gardée hors
+    // vitrine pour d'anciens abonnés.
+    filter: (page) => !page.includes('/mentions-legales') && !page.includes('/ressources'),
     // Le sitemap ne portait aucune date. Chaque article en a une dans son
     // frontmatter — `updated` s'il a été repris, `date` sinon. La donner au
     // moteur lui évite de redécouvrir douze textes à chaque passage.

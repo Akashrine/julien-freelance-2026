@@ -89,7 +89,7 @@ const articleSchema = getArticleSchema(
 // Generate breadcrumb schema
 const breadcrumbSchema = getBreadcrumbSchema([
   BreadcrumbItems.home,
-  BreadcrumbItems.articles,
+  BreadcrumbItems.ecrits,
   BreadcrumbItems.article(article.data.title, articleUrl),
 ]);
 ---
@@ -138,15 +138,14 @@ const breadcrumbSchema = getBreadcrumbSchema([
         {/* La signature. Elle rattache le texte à son auteur — c'est ce qui
              permet à un lecteur, humain ou moteur, d'attribuer ce qu'il lit. */}
         <p class="measure-wide border-t border-line pt-8 text-base leading-relaxed text-dim">
-          Écrit par <a href="/a-propos" class="link-inline">Julien Brionne</a>, Senior Product
-          Manager freelance, intervenu chez Heetch, Back Market, Waalaxy et Wizville.
+          Écrit par <a href="/a-propos" class="link-inline">Julien Brionne</a>, Product Lead freelance.
         </p>
 
         <ArticleNavigation previousArticle={previousArticle} nextArticle={nextArticle} />
 
         <p class="mt-10 border-t border-line pt-8">
-          <a href="/articles" class="door text-base">
-            <span>Tous les textes</span>
+          <a href="/ecrits" class="door text-base">
+            <span>Tous les écrits</span>
             <span class="door-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </p>

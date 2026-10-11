@@ -1,21 +1,25 @@
 ---
+// Parcours. Copy validée et figée le 11/10/2026 (refonte Product Lead
+// freelance). Ne pas reformuler : toute modification de texte passe par Julien.
+//
+// La page répond à : « Pourquoi croire que Julien peut faire ce qu'il dit ? »
+// Pas un CV : le CV complet est sur LinkedIn.
+//
+// Règles (04_CASES.md) : rôle au « on » pour les étoiles Heetch, Cold
+// Feedback sans date de mise en production (CASES ambigu), aucun ordre
+// chronologique entre WizVille et Waalaxy, aucun statut pour Waalaxy,
+// Back Market au niveau public de LinkedIn, Jaume cité sans entreprise.
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
-import { mailto } from '../utils/mail';
-
-// Page d'entité. Elle ne raconte rien de neuf : elle rassemble en un seul
-// endroit ce que le site dit déjà de son auteur — le rôle, les terrains, les
-// deux faits vérifiables, où il écrit. C'est ce qui permet à un moteur, humain
-// ou génératif, de constituer « Julien Brionne » comme une entité unique.
-// Aucun fait n'est ajouté qui ne soit déjà publié ailleurs sur le site.
+import { getPersonSchema, getBreadcrumbSchema, BreadcrumbItems } from '../utils/schema';
+import { EMAIL, mailto } from '../utils/mail';
 
 const SITE = 'https://www.julien-brionne.fr';
 const LINKEDIN = 'https://www.linkedin.com/in/julienbrionne';
-const SUBSTACK = 'https://produitsansfiltre.substack.com';
-const MAILTO =
-  mailto();
+const TITLE = 'Parcours · Julien Brionne, Product Lead freelance';
+const DESCRIPTION =
+  'Quinze ans dans le produit, de designer à Head of Product. Où j’ai travaillé, ce que j’y ai porté, et ce qu’en disent les gens qui étaient là.';
 
 const profileSchema = {
   '@context': 'https://schema.org',
@@ -23,197 +27,193 @@ const profileSchema = {
   '@id': `${SITE}/a-propos`,
   url: `${SITE}/a-propos`,
   inLanguage: 'fr',
-  name: 'À propos — Julien Brionne',
-  mainEntity: {
-    '@type': 'Person',
-    '@id': `${SITE}/#person`,
-    name: 'Julien Brionne',
-    jobTitle: 'Senior Product Manager freelance',
-    url: SITE,
-    description:
-      "Senior Product Manager freelance. Je reprends les sujets produit qui n'avancent plus et je les mène jusqu'à une mise en production. Je suis intervenu chez Heetch, Back Market, Waalaxy et Wizville.",
-    knowsAbout: [
-      'organisation produit',
-      'ownership produit',
-      'structuration d’équipe produit',
-      'priorisation et arbitrage produit',
-      'alignement Product, Ops et Engineering',
-      'outils internes et backoffice',
-      'support client comme territoire produit',
-      'product management en scale-up',
-    ],
-    sameAs: [LINKEDIN, SUBSTACK],
-  },
+  name: TITLE,
+  description: DESCRIPTION,
+  mainEntity: getPersonSchema(),
 };
 
-const breadcrumbSchema = getBreadcrumbSchema([
-  BreadcrumbItems.home,
-  { name: 'À propos', url: `${SITE}/a-propos` },
-]);
+const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbItems.aPropos]);
+
+const parcours = [
+  {
+    nom: 'The Other Store',
+    texte:
+      ', agence e-commerce. Head of Front-End, puis Product Manager, puis Chief Product Owner. À la création de la fonction produit, j’ai repris une équipe de 12 à 13 personnes en deux squads.',
+  },
+  {
+    nom: 'Heetch.',
+    texte: ' Lead Product Manager, puis Head of Product sur le Customer Care, côté passagers et chauffeurs.',
+  },
+  {
+    nom: 'WizVille.',
+    texte: ' Chief Product Officer. La fonction produit, le pôle data, le repositionnement du produit.',
+  },
+  {
+    nom: 'Waalaxy.',
+    texte: ' Le churn, l’usage réel, l’offre équipe.',
+  },
+  {
+    nom: 'Back Market, aujourd’hui.',
+    texte:
+      ' Une mission de plusieurs mois côté Care : d’abord la Care Platform, aujourd’hui le Sales Customer Care. Je n’en raconte pas le détail tant qu’elle est en cours.',
+  },
+];
+
+const terrains = [
+  {
+    nom: 'Customer Care et support.',
+    texte: ' Chez Heetch, j’ai créé l’équipe produit Care. Chez Back Market, c’est le périmètre de ma mission.',
+  },
+  {
+    nom: 'Plateformes et outils internes.',
+    texte: ' L’admin de Heetch, que trois équipes utilisaient tous les jours sans qu’aucune la possède.',
+  },
+  {
+    nom: 'E-commerce et checkout.',
+    texte: ' Quatre ans chez The Other Store, sur des sites Magento : catalogue, PIM, checkout.',
+  },
+  {
+    nom: 'Mesure et data.',
+    texte:
+      ' Les étoiles chez Heetch, la consommation réelle chez Waalaxy, l’A/B test du checkout chez The Other Store. Chaque fois, ce qu’on a regardé a changé ce qu’on a décidé.',
+  },
+];
+
+const cas = [
+  {
+    nom: 'Heetch, les étoiles.',
+    texte:
+      ' La note sur cinq étoiles en fin de course ne mesurait pas ce qu’elle prétendait. La retirer touchait plus qu’un écran : un modèle de sélection des chauffeurs reposait dessus, et les Ops et la data s’y opposaient. Le marketing et le CEO, qui y gagnaient une campagne, ont porté la décision. La note a été remplacée par des compliments et des signalements qualifiés.',
+  },
+  {
+    nom: 'Heetch, l’objet oublié dans la voiture.',
+    texte:
+      ' Après la course, rien ne permettait de signaler un problème. Objet oublié, facture, paiement : tout arrivait par téléphone, et les Ops reconstruisaient à la main un contexte que le produit connaissait déjà. On a permis de déclarer un problème depuis la liste des courses passées, d’abord les objets perdus, puis d’autres problèmes découverts après coup, dont certains se traitaient automatiquement. C’était en production avant mon départ de Heetch.',
+  },
+  {
+    nom: 'WizVille, l’outil d’expert.',
+    texte:
+      ' Un outil puissant, difficile à prendre en main. Le produit supposait un utilisateur expert, et l’interface, le setup et le support en découlaient. On l’a repositionné vers une plateforme d’insights orientée usage : des modules de KPI déjà triés, une météo de l’activité du magasin ou du réseau, un setup raccourci.',
+  },
+];
 ---
 
 <Layout
-  title="À propos — Julien Brionne, Senior Product Manager freelance"
-  description="Senior Product Manager freelance, intervenu chez Heetch, Back Market, Waalaxy et WizVille. Je reprends les sujets produit qui n\'avancent plus."
-  ogTitle="À propos — Julien Brionne"
-  ogDescription="Senior Product Manager freelance, intervenu chez Heetch, Back Market, Waalaxy et Wizville."
-  ogType="profile"
-  ogUrl={`${SITE}/a-propos`}
+  title={TITLE}
+  description={DESCRIPTION}
+  ogTitle="Ce que j’ai déjà porté"
+  ogType="website"
+  ogImage="/og/page-a-propos.webp"
   twitterCard="summary_large_image"
-  twitterTitle="À propos — Julien Brionne"
-  twitterDescription="Senior Product Manager freelance, intervenu chez Heetch, Back Market, Waalaxy et Wizville."
   webPageSchema={profileSchema}
   breadcrumbSchema={breadcrumbSchema}
 >
-  <Navbar />
+  <Navbar current="a-propos" />
+
   <main id="contenu" tabindex="-1">
-    {/* L'identité, en une phrase */}
+    {/* Ouverture */}
     <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12 sm:space-y-16">
         <div class="space-y-6">
-          <p class="eyebrow reveal-load">À propos</p>
-          <h1 class="t-display max-w-[20ch] text-ink reveal-load">
-            Julien Brionne, <span class="text-dim italic">Senior Product Manager freelance.</span>
+          <p class="eyebrow reveal-load">Parcours</p>
+          <h1 class="t-display max-w-[20ch] text-ink reveal-load" style="--index:1">
+            Ce que j’ai déjà porté<span class="stop">.</span>
           </h1>
         </div>
-        <div class="measure-wide space-y-5 text-lg leading-relaxed sm:text-xl reveal-load">
-          <p class="text-ink">
-            Je reprends les sujets produit qui n’avancent plus et je les mène jusqu’à une
-            mise en production.
-          </p>
-          <p class="text-dim">
-            J’interviens quand il faut enfin décider quoi construire, ou quand un sujet
-            important n’arrive pas jusqu’en production.
-          </p>
+        <p class="measure-wide text-lg leading-relaxed text-dim sm:text-xl reveal-load" style="--index:2">
+          Quinze ans dans le produit. Pas tout, ici. Les endroits où j’ai fait ce que je décris sur
+          ce site, quelques décisions racontées de plus près, et ce qu’en disent des gens qui étaient
+          là.
+        </p>
+      </div>
+    </section>
+
+    {/* Le parcours */}
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell split">
+        <h2 class="split-aside eyebrow">Le parcours</h2>
+        <div class="space-y-6 text-lg leading-relaxed text-dim">
+          <p>Avant le produit, j’ai été designer, puis développeur front-end.</p>
+          {parcours.map((p) => (
+            <p><strong class="font-semibold text-ink">{p.nom}</strong>{p.texte}</p>
+          ))}
         </div>
       </div>
     </section>
 
     {/* Les terrains */}
     <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell">
-        <div class="split reveal">
-          <p class="split-aside eyebrow">Terrains</p>
-          <div class="space-y-7">
-            <h2 class="t-title text-ink">Où je suis intervenu.</h2>
-            <div class="max-w-[38rem] space-y-5 text-lg leading-relaxed text-dim">
-              <p>
-                Des scale-ups, en produit. <strong class="font-semibold text-ink">Heetch</strong>,
-                quatre ans : l’expérience des passagers, les paiements, et l’équipe produit
-                care structurée depuis zéro. <strong class="font-semibold text-ink">Waalaxy</strong>,
-                un produit en self-serve : activation, rétention, ce qui donne envie de revenir.
-                <strong class="font-semibold text-ink">WizVille</strong>, du B2B : rendre la main
-                aux clients. <strong class="font-semibold text-ink">Back Market</strong>,
-                aujourd’hui.
-              </p>
-              <p>
-                Du grand public au B2B, du self-serve à la vente accompagnée, du produit qui
-                fait le chiffre à l’outil interne qui le rend possible.
-              </p>
-              <p>
-                Et une chose que j’ai vue partout : les outils internes et le care sont les
-                derniers sujets à recevoir un owner produit dédié.
-              </p>
-            </div>
-          </div>
+      <div class="shell split">
+        <h2 class="split-aside eyebrow">D’où viennent mes terrains</h2>
+        <div class="space-y-6 text-lg leading-relaxed text-dim">
+          {terrains.map((t) => (
+            <p><strong class="font-semibold text-ink">{t.nom}</strong>{t.texte}</p>
+          ))}
         </div>
       </div>
     </section>
 
-    {/* Deux faits vérifiables */}
+    {/* Trois cas */}
     <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell">
-        <div class="split reveal">
-          <p class="split-aside eyebrow">Preuves</p>
-          <div class="space-y-8">
-            <h2 class="t-title text-ink">Deux exemples, en détail<span class="stop">.</span></h2>
-            <div class="max-w-[38rem] space-y-8 text-lg leading-relaxed text-dim">
-              <p>
-                <strong class="font-semibold text-ink">Back Market.</strong>
-                Un chantier téléphone ouvert depuis plus d’un an, en double run entre deux
-                outils. Quatre mois après mon arrivée, les appels entrants passent en
-                production sur quatre marchés en trois semaines. Première semaine en
-                Allemagne : <span class="text-ink">100 % des appels décrochés.</span>
-              </p>
-              <p>
-                <strong class="font-semibold text-ink">Heetch.</strong>
-                Je fais supprimer la notation des chauffeurs à cinq étoiles, le standard du
-                secteur, parce qu’elle mesurait autre chose que ce qu’elle annonçait. Cinq
-                ans plus tard, elle est toujours absente de l’application.
-                <span class="text-ink">Vous pouvez l’ouvrir et vérifier.</span>
-              </p>
-            </div>
-          </div>
+      <div class="shell split">
+        <h2 class="split-aside eyebrow">Trois cas, de plus près</h2>
+        <div class="space-y-8 text-lg leading-relaxed text-dim">
+          {cas.map((c) => (
+            <p><strong class="font-semibold text-ink">{c.nom}</strong>{c.texte}</p>
+          ))}
         </div>
       </div>
     </section>
 
-    {/* Ce que j'écris */}
+    {/* Témoignages */}
     <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell">
-        <div class="split reveal">
-          <p class="split-aside eyebrow">Écrits</p>
-          <div class="space-y-7">
-            <h2 class="t-title text-ink">Ce que j’écris, c’est comment je travaille.</h2>
-            <div class="max-w-[38rem] space-y-5 text-lg leading-relaxed text-dim">
-              <p>
-                J’écris <a href={SUBSTACK} class="link-inline" rel="noopener">Produit Sans Filtre</a>,
-                une newsletter sur les décisions produit, et je publie des textes de fond sur
-                l’organisation produit en scale-up.
-              </p>
-              <p>
-                <a href="/articles" class="link-inline">Douze textes</a> sont en accès libre :
-                ownership, structuration d’équipe, backoffice legacy, care, alignement entre
-                Product, Ops et Engineering.
-              </p>
-            </div>
-            <p>
-              <a href="/ecrits" class="door text-base">
-                <span>Où je publie</span>
-                <span class="door-arrow" aria-hidden="true">&rarr;</span>
-              </a>
-            </p>
-          </div>
+      <div class="shell split">
+        <h2 class="split-aside eyebrow">Ce qu’ils en disent</h2>
+        <div class="space-y-12">
+          <figure class="space-y-3">
+            <blockquote class="font-serif text-xl italic leading-snug text-ink sm:text-2xl">
+              «&nbsp;Il sait cerner quand un problème a besoin d’être investi davantage.&nbsp;»
+            </blockquote>
+            <figcaption class="text-sm text-dim">Elodie Mermet, Designer, Heetch</figcaption>
+          </figure>
+          <figure class="space-y-3">
+            <blockquote lang="en" class="font-serif text-lg italic leading-relaxed text-ink sm:text-xl">
+              “Julien was the Product Manager on our Platform team during my time as Engineering
+              Manager, and I truly enjoyed our partnership. He did an outstanding job taking charge
+              of major initiatives, defining clear project needs, and managing stakeholder
+              expectations with ease. Julien communicates brilliantly with engineers. He understands
+              technical nuances and keeps everyone aligned toward the same goal.”
+            </blockquote>
+            <figcaption class="text-sm text-dim">Jaume Avila Estivill, Engineering Leader</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    {/* Où me trouver */}
+    {/* Fermeture */}
     <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell">
-        <div class="split reveal">
-          <p class="split-aside eyebrow">Me joindre</p>
-          <div class="space-y-7">
-            <h2 class="t-title text-ink">Comment ça commence<span class="stop">.</span></h2>
-            <div class="max-w-[38rem] space-y-5 text-lg leading-relaxed text-dim">
-              <p>
-                Écrivez-moi. Trois choses suffisent : ce qui n’avance pas, depuis combien de
-                temps, et qui peut trancher chez vous.
-              </p>
-              <p>
-                Je suis aussi sur <a href={LINKEDIN} class="link-inline" rel="noopener">LinkedIn</a>.
-              </p>
-            </div>
-            <p class="flex flex-wrap gap-x-10 gap-y-4">
-              <a href={MAILTO} class="door text-base">
-                <span>M’écrire</span>
-                <span class="door-arrow" aria-hidden="true">&rarr;</span>
-              </a>
-              <a href="/ce-que-je-fais" class="door text-base">
-                <span>Ce que je fais</span>
-                <span class="door-arrow" aria-hidden="true">&rarr;</span>
-              </a>
-            </p>
-          </div>
+      <div class="shell split">
+        <div class="split-aside" aria-hidden="true"></div>
+        <div class="space-y-7">
+          <p class="text-lg leading-relaxed text-dim">
+            Le CV complet est sur <a href={LINKEDIN} rel="noopener" class="link-inline">LinkedIn</a>.
+            Pour une mission de plusieurs mois ou un sujet à trancher, écrivez-moi.
+          </p>
+          <p class="flex flex-wrap gap-x-10 gap-y-4">
+            <a href={mailto()} class="door text-base">
+              <span>M’écrire</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href={mailto('mission')} class="door text-base">
+              <span>Proposer une mission</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+          <p class="text-sm text-dim">{EMAIL}</p>
         </div>
       </div>
     </section>
-
   </main>
 
-  <Footer links={[
-  { href: '/ecrits', label: 'Écrits' },
-  { href: '/mentions-legales', label: 'Mentions légales' },
-  ]} />
-
+  <Footer />
 </Layout>

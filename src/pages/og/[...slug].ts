@@ -33,34 +33,21 @@ const FONTS = [
 // formulation propre à cet endpoint : l'image OG dit ce que la page dit.
 const staticPages: Record<string, { title: string; description: string }> = {
   'page-home': {
-    // Le H1 réel de la page : le logotype est déjà dans la carte, le
-    // répéter en titre faisait doublon.
-    title: 'Un sujet produit important n’avance plus ? Je le reprends et je le fais avancer.',
-    description: "Senior Product Manager freelance, j'interviens quand il faut enfin décider quoi construire, ou quand un sujet important n'arrive pas jusqu'en production.",
+    // Le H1 réel de la page : le logotype est déjà dans la carte.
+    title: '« Qu’est-ce qui vous fait dire que c’est ça, le problème ? »',
+    description: 'Julien Brionne, Product Lead freelance.',
   },
   'page-ce-que-je-fais': {
-    title: 'Ce que je fais',
-    description: "Un sujet produit important n'avance plus. Vos équipes sont bonnes. Le résultat ne bouge pas. Je reprends ce sujet et je le mène jusqu'à une mise en production.",
+    title: 'Porter le sujet avec vous, ou d’abord trancher ?',
+    description: 'Deux manières de travailler avec moi : porter un sujet produit pendant plusieurs mois, ou trancher d’abord une question en un mois avec La Mise au clair.',
+  },
+  'page-a-propos': {
+    title: 'Ce que j’ai déjà porté',
+    description: 'Quinze ans dans le produit, de designer à Head of Product. Où j’ai travaillé, ce que j’y ai porté, et ce qu’en disent les gens qui étaient là.',
   },
   'page-ecrits': {
-    title: 'Écrits',
-    description: "Ce que j'écris, c'est comment je travaille. Produit Sans Filtre, un numéro toutes les deux semaines, et des textes de fond.",
-  },
-  'page-product-manager-freelance-pme': {
-    title: 'Product Manager freelance en PME : intervenir ou recruter',
-    description: "Vous avez un produit, des clients, et personne dont c'est le métier de décider quoi construire. Quand faire intervenir un Product Manager senior freelance, et quand recruter.",
-  },
-  'page-situations': {
-    title: 'Reconnaître le moment critique',
-    description: "Quand l'effort augmente plus vite que l'impact et que personne n'ose plus trancher. Fermer les options, trancher les arbitrages.",
-  },
-  'page-diagnostic': {
-    title: "L'effort augmente, l'impact ne suit plus ?",
-    description: 'Intervention courte pour identifier pourquoi les décisions ne tiennent pas. Aucune garantie de suite.',
-  },
-  'page-articles': {
-    title: "L'écrit comme outil de lecture",
-    description: "Réflexions et analyses de cas. Des textes pour trancher le raisonnement avant d'agir, pas des guides méthodologiques.",
+    title: 'Ce que j’écris, c’est comment je travaille.',
+    description: 'Produit Sans Filtre et des textes sur les organisations produit : les explications qui arrivent avant le problème, les décisions qui ne tiennent pas.',
   },
 };
 
