@@ -110,7 +110,6 @@
     background-color: var(--color-canvas);
     color: var(--color-ink);
     scroll-behavior: smooth;
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
     /* Une géométrique nue paraît froide. Le tracking positif la réchauffe. */
     letter-spacing: 0.015em;
     -webkit-font-smoothing: antialiased;
@@ -154,7 +153,7 @@
   }
 
   .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.7rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -604,6 +603,18 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
   .measure { max-width: 34rem; }
   .measure-wide { max-width: 42rem; }
 
+  /* La ligne de lecture. Les colonnes gardent leur largeur ; c'est la prose
+     qui s'arrête à 34em, soit 70 caractères en médiane et 78 au plus, mesurés
+     en Instrument Sans de 17 à 18 px (revue typographique du 12/10/2026).
+     À 42rem, la même prose montait à 80 en médiane et 88 au plus. En em, la
+     mesure suit la taille du texte : le nombre de caractères reste le même. */
+  .measure-wide p, .measure-wide li,
+  .split p, .split li,
+  .ledger-row p,
+  .article-content > p, .article-content > ul, .article-content > ol {
+    max-width: 34em;
+  }
+
   /* Le partage éditorial : le label et le titre à gauche, la prose à droite.
      Repris des blocs deux colonnes de Getharvest, sans carte ni image. */
   .split { display: grid; gap: 1.25rem; }
@@ -679,7 +690,7 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 
   .ledger-num {
     font-family: var(--font-sans);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     color: var(--color-dim);
@@ -1191,6 +1202,11 @@ h1, h2, h3,
 }
 p, li, figcaption, .measure-wide {
   text-wrap: pretty;
+}
+/* Sauf dans la prose longue des articles : sur un paragraphe entier,
+   égaliser les lignes coûte de la place sans gain de lecture. */
+.article-content p {
+  text-wrap: wrap;
 }
 
 /* Les guillemets de l'exergue débordent dans la marge : le bord du texte
