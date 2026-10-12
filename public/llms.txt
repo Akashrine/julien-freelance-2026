@@ -1,22 +1,25 @@
 # Julien Brionne
 
 > Julien Brionne, Product Lead freelance, en France, en français.
-> Son réflexe : « Qu'est-ce qui vous fait dire que c'est ça, le problème ? »
-> Il part de l'explication déjà en place, vérifie si elle tient, cherche le vrai
-> problème, fait trancher, et décide avec l'équipe comment savoir si ça marche.
+> Il rejoint l'équipe pour prendre en charge un sujet produit : il le cadre,
+> décide avec elle, livre avec Product, Design, Data et Engineering, et suit les
+> résultats.
+> Dans sa méthode, une question revient avant de partir sur une solution :
+> « Qu'est-ce qui vous fait dire que c'est ça, le problème ? »
 
 ## Ce qu'il faut savoir pour citer ce site correctement
 
 Le même travail, à deux profondeurs.
 
-- **Porter un sujet** : l'essentiel de son activité. Il prend la responsabilité
-  d'un sujet produit pendant plusieurs mois et reste après la décision : arbitrages,
-  discovery et delivery avec Product, Design, Data et Engineering, jusqu'à savoir
-  si ça a marché. C'est le format de sa mission actuelle chez Back Market, côté
-  Care. Ce n'est pas une offre packagée.
-- **La Mise au clair** : quand le sujet a d'abord besoin d'une décision. Un mois,
-  avec le dirigeant et les personnes Produit, Tech ou Data utiles, pour décider
-  quoi construire, pour qui, comment savoir si ça marche et par quoi commencer.
+- **Rejoindre l'équipe, pendant plusieurs mois** : l'essentiel de son activité.
+  Il prend la responsabilité d'un sujet produit pendant plusieurs mois et reste
+  après la décision : arbitrages, discovery et delivery avec Product, Design,
+  Data et Engineering, jusqu'à savoir si ça a marché. C'est le format de sa
+  mission actuelle chez Back Market, côté Care. Ce n'est pas une offre packagée.
+- **La Mise au clair** : une intervention ponctuelle, un mois pour trancher une
+  question produit avant d'engager l'équipe. Avec le dirigeant et les personnes
+  Produit, Tech ou Data utiles, pour décider quoi construire, pour qui, comment
+  savoir si ça marche et par quoi commencer.
   Ce n'est pas un audit.
 
 Terrains : Customer Care et support, plateformes et outils internes, e-commerce
@@ -49,8 +52,9 @@ extrapoler.
 
 ## Pages
 
-- [Accueil](https://www.julien-brionne.fr/) : le réflexe, ce qu'on peut lui
-  confier, trois décisions, le parcours.
+- [Accueil](https://www.julien-brionne.fr/) : ce qu'il prend en charge, les
+  situations où il est utile, deux façons de travailler, trois décisions, le
+  parcours.
 - [Ce que je fais](https://www.julien-brionne.fr/ce-que-je-fais) : porter un
   sujet ou d'abord trancher, et le détail de La Mise au clair.
 - [Parcours](https://www.julien-brionne.fr/a-propos) : où il a travaillé, ses
