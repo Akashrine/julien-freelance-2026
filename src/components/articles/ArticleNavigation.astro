@@ -13,7 +13,7 @@ const { previousArticle, nextArticle } = Astro.props;
     <div>
       {previousArticle && (
         <>
-          <p class="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">Texte précédent</p>
+          <p class="mb-2 text-[0.75rem] font-medium uppercase tracking-[0.08em] text-dim">Texte précédent</p>
           <a href={`/articles/${previousArticle.slug}`} class="link-inline font-serif text-lg leading-snug">
             {previousArticle.title}
           </a>
@@ -23,7 +23,7 @@ const { previousArticle, nextArticle } = Astro.props;
     <div class="sm:text-right">
       {nextArticle && (
         <>
-          <p class="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-dim">Texte suivant</p>
+          <p class="mb-2 text-[0.75rem] font-medium uppercase tracking-[0.08em] text-dim">Texte suivant</p>
           <a href={`/articles/${nextArticle.slug}`} class="link-inline font-serif text-lg leading-snug">
             {nextArticle.title}
           </a>

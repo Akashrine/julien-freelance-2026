@@ -6,7 +6,9 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
 import sitemap from '@astrojs/sitemap';
-import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, existsSync, realpathSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // Dates de dernière révision, lues une fois au build dans le frontmatter MDX.
 // Pas de dépendance : le frontmatter de ce dépôt tient sur des lignes simples.
@@ -43,6 +45,52 @@ const redirectionCaseStudy = {
       config.routes.splice(ici === -1 ? 0 : ici, 0, regle);
       writeFileSync(chemin, JSON.stringify(config, null, 2));
       logger.info('/case-study/* → /a-propos ajoutée à la table de routage.');
+    },
+  },
+};
+
+// Typographie française : une espace fine insécable (U+202F) devant « : ; ? ! »
+// et à l'intérieur des guillemets, pour qu'un signe ne parte jamais seul en début
+// de ligne. Posée sur le HTML final, pas dans les sources : le texte n'est pas
+// réécrit. Seules les espaces ordinaires sont remplacées, dans le texte visible ;
+// balises, attributs, commentaires, scripts, styles et blocs de code restent
+// intacts. Revue typographique du 12/10/2026.
+const ESPACE_FINE = ' ';
+const espacesFines = (html) => {
+  let horsTexte = null;
+  return html.replace(/(<!--[\s\S]*?-->|<[^>]+>)|([^<]+)/g, (bloc, balise, texte) => {
+    if (balise) {
+      const ouvre = balise.match(/^<(script|style|pre|code|textarea)\b/i);
+      const ferme = balise.match(/^<\/(script|style|pre|code|textarea)\s*>/i);
+      if (!horsTexte && ouvre && !balise.endsWith('/>')) horsTexte = ouvre[1].toLowerCase();
+      else if (horsTexte && ferme && ferme[1].toLowerCase() === horsTexte) horsTexte = null;
+      return balise;
+    }
+    if (horsTexte) return texte;
+    return texte.replace(/ ([:;?!»])/g, `${ESPACE_FINE}$1`).replace(/« /g, `«${ESPACE_FINE}`);
+  });
+};
+const typographieFrancaise = {
+  name: 'typographie-francaise',
+  hooks: {
+    'astro:build:done': ({ dir, logger }) => {
+      const racines = [fileURLToPath(dir), './.vercel/output/static']
+        .filter((r) => existsSync(r))
+        .map((r) => realpathSync(r));
+      const vus = new Set();
+      let fichiers = 0;
+      for (const racine of new Set(racines)) {
+        for (const relatif of readdirSync(racine, { recursive: true })) {
+          if (!String(relatif).endsWith('.html')) continue;
+          const chemin = realpathSync(join(racine, String(relatif)));
+          if (vus.has(chemin)) continue;
+          vus.add(chemin);
+          const avant = readFileSync(chemin, 'utf-8');
+          const apres = espacesFines(avant);
+          if (apres !== avant) { writeFileSync(chemin, apres); fichiers++; }
+        }
+      }
+      logger.info(`Espaces fines insécables posées dans ${fichiers} pages.`);
     },
   },
 };
@@ -112,7 +160,7 @@ export default defineConfig({
       minify: 'terser',
     },
   },
-  integrations: [mdx(), react(), redirectionCaseStudy, sitemap({
+  integrations: [mdx(), react(), redirectionCaseStudy, typographieFrancaise, sitemap({
     // Hors sitemap : le légal, et /ressources/prompts-discovery, gardée hors
     // vitrine pour d'anciens abonnés.
     filter: (page) => !page.includes('/mentions-legales') && !page.includes('/ressources'),
