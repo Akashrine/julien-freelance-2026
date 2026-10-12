@@ -1,9 +1,16 @@
 ---
-// Accueil. Copy validée le 11/10/2026, révisée et validée le 12/10/2026.
-// Ne pas reformuler : toute modification de texte passe par Julien.
+// Accueil. Copy validée le 11/10/2026, révisée et validée le 12/10/2026,
+// puis reprise le 12/10/2026 (diagnostic no-ai-slop, validé par Julien :
+// moins de vocabulaire de cabinet, plus de faits, deux « trancher » au lieu
+// de sept). Ne pas reformuler : toute modification de texte passe par Julien.
 // Ordre validé : Hero → Où je suis utile → Deux façons de travailler
 // → Preuves → Parcours → Produit Sans Filtre → Contact. Le visiteur
 // reconnaît sa situation, puis comprend ce qu'il peut confier.
+//
+// Mise en page (12/10/2026) : le vocabulaire du site, rien d'autre. Des
+// filets, des numéros de registre, la grille rail + prose, deux colonnes
+// quand le contenu se compare. Aucune carte, aucun fond, aucune ombre.
+// Tout s'empile sous lg, dans l'ordre de lecture.
 //
 // La question « Qu'est-ce qui vous fait dire que c'est ça, le problème ? »
 // est une signature de travail : un seul endroit sur la page (section 2).
@@ -21,13 +28,14 @@ import { PORTER, MISE_AU_CLAIR } from '../utils/offres';
 const SUBSTACK = 'https://produitsansfiltre.substack.com';
 const ON_ITERERA = 'https://produitsansfiltre.substack.com/p/on-iterera';
 
-// Sources : 04_CASES (Heetch, l'admin sans responsable), 02_MARKET (signaux
-// d'usage et de mesure, formulés sans attribution), copy validée du 11/10.
+// Sources : 04_CASES (Heetch, l'admin sans responsable, déjà publiée sur
+// /a-propos), 02_MARKET (signaux d'usage et de mesure, formulés sans
+// attribution).
 const situations = [
   {
     titre: 'Un sujet que plusieurs équipes touchent, et que personne ne porte.',
     texte:
-      'Un outil interne, un parcours, un chantier entre deux équipes. Chacun en dépend, personne n’en a la responsabilité.',
+      'Un outil interne, un parcours, un chantier entre deux équipes. Chez Heetch, c’était l’admin : trois équipes s’en servaient tous les jours.',
   },
   {
     titre: 'Une feature importante que peu de gens utilisent.',
@@ -35,14 +43,43 @@ const situations = [
   },
   {
     titre: 'Personne ne sait dire ce qu’une livraison a changé.',
-    texte: 'On sait ce qui est sorti. Pas ce que ça a changé pour ceux qui s’en servent.',
+    texte:
+      'On a la liste de ce qui est sorti. Pour savoir ce que ça a changé, il faudrait demander à ceux qui s’en servent.',
   },
   {
     titre: 'Plusieurs explications pour le même problème.',
     texte:
-      '« Les devs sont trop lents. » « Il faut une refonte. » « On manque d’alignement. » Chacune se défend. Reste à vérifier laquelle tient.',
+      '« Les devs sont trop lents. » « Il faut une refonte. » « On manque d’alignement. » Chacune se défend. Reste à vérifier laquelle tient.',
   },
 ];
+
+// La méthode, en trois temps. Le texte validé, découpé phrase par phrase.
+const etapes = [
+  'Je regarde l’usage et les données, et je parle à ceux qui vivent le problème.',
+  'On décide avec ceux qui ont le droit de décider.',
+  'Avant de construire, on écrit ce qui devra changer pour dire que ça a marché.',
+];
+
+// Les cas. Le nom passe dans le rail, le récit à côté.
+const cas = [
+  {
+    nom: 'Heetch',
+    texte:
+      'La note sur cinq étoiles en fin de course était le standard du secteur. Elle apprenait peu sur ce qu’il fallait améliorer. On l’a remplacée par des compliments et des signalements qualifiés, et on a sorti l’enquête du moment de fin de course. Les étoiles sont toujours absentes de l’app. Vous pouvez l’ouvrir et vérifier.',
+  },
+  {
+    nom: 'Waalaxy',
+    texte:
+      'L’explication en place : le churn venait des plafonds LinkedIn et des crédits atteints trop vite. Elle se tenait. Avec le data analyst, on a regardé la consommation réelle. Ceux qui partaient étaient loin de saturer leur capacité. Beaucoup lançaient une campagne, puis ne revenaient pas. Les comptes utilisés à plusieurs restaient davantage. La priorité a changé : moins pousser la consommation des crédits, plus chercher la rétention sur l’offre équipe, dès l’onboarding.',
+  },
+  {
+    nom: 'The Other Store',
+    texte:
+      'Un débat d’équipe sur le checkout : une page ou trois étapes. On l’a tranché par un A/B test plutôt qu’en réunion. Une page a gagné. Le paiement en un clic a fait mieux encore.',
+  },
+];
+
+const num = (i: number) => String(i + 1).padStart(2, '0');
 ---
 
 <Layout
@@ -57,9 +94,9 @@ const situations = [
   <Navbar current="accueil" />
 
   <main id="contenu" tabindex="-1">
-    {/* 1. Hero. Identité, puis ce qu'on peut me confier, exécution
-         comprise. Un seul CTA. Le paysage reste un fond décoratif,
-         aria-hidden, posé en CSS. */}
+    {/* 1. Hero. Identité, l'accroche, puis ce qu'on peut me confier,
+         exécution comprise. Un seul CTA. Le paysage reste un fond
+         décoratif, aria-hidden, posé en CSS. */}
     <section class="hero px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
       <div class="hero-scene" aria-hidden="true"></div>
       <div class="shell relative grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
@@ -69,13 +106,13 @@ const situations = [
           </p>
 
           <h1 class="reveal-load mise-au-point t-display max-w-[22ch] text-ink" style="--index:1">
-            Je prends en charge un sujet produit, de la décision au suivi des résultats<span class="stop">.</span>
+            Quand un sujet produit coince, tout le monde a déjà une explication<span class="stop">.</span>
           </h1>
 
           <div class="reveal-load measure-wide space-y-5 text-lg leading-relaxed sm:text-xl" style="--index:2">
             <p class="text-ink">
-              Je rejoins votre équipe pour cadrer le sujet, faire trancher et livrer, avec Product,
-              Design, Data et Engineering.
+              Je commence par vérifier si c’est la bonne. Ensuite je reste dans l’équipe, avec
+              ceux qui conçoivent, développent et mesurent, jusqu’à savoir si ça a marché.
             </p>
             <p class="text-dim">Aujourd’hui en mission chez Back Market, côté Care.</p>
           </div>
@@ -100,210 +137,215 @@ const situations = [
       </div>
     </section>
 
-    {/* 2. Où je suis utile. Quatre situations, puis la signature. */}
-    <section class="px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-10 sm:space-y-12">
+    {/* 2. Où je suis utile. Les quatre situations en registre, deux par
+         ligne sur grand écran. Puis la signature, en grand, seule sur sa
+         ligne, et la méthode en trois temps. */}
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-12 sm:space-y-16">
         <h2 class="t-title max-w-[22ch] text-ink">Où je suis utile<span class="stop">.</span></h2>
 
-        <div class="measure-wide space-y-7">
+        <div class="grid gap-x-16 gap-y-10 md:grid-cols-2">
           {situations.map((s, i) => (
-            <div class="reveal space-y-1.5" style={`--index:${i}`}>
-              <h3 class="font-semibold text-ink">{s.titre}</h3>
+            <div class="reveal measure-wide space-y-3 border-t border-line pt-5" style={`--index:${i}`}>
+              <span class="ledger-num" aria-hidden="true">{num(i)}</span>
+              <h3 class="text-lg font-semibold leading-snug text-ink">{s.titre}</h3>
               <p class="text-lg leading-relaxed text-dim">{s.texte}</p>
             </div>
           ))}
         </div>
 
-        <div class="measure-wide space-y-6 pt-4">
+        <div class="space-y-6 pt-6 sm:pt-10">
           <p class="text-lg leading-relaxed text-dim">
             Avant de partir sur une solution, je pose une question :
           </p>
-          <p class="font-serif text-2xl leading-snug text-ink sm:text-3xl">
+          <p class="t-title max-w-[26ch] text-ink">
             «&nbsp;Qu’est-ce qui vous fait dire que c’est ça, le problème&nbsp;?&nbsp;»
           </p>
-          <p class="text-lg leading-relaxed text-dim">
-            Ensuite, je confronte l’explication à l’usage, aux données et aux gens qui vivent le
-            sujet. Je fais trancher. Et avant de construire, on décide comment savoir si ça marche.
-          </p>
+        </div>
+
+        <ol class="grid gap-x-12 gap-y-8 lg:grid-cols-3">
+          {etapes.map((e, i) => (
+            <li class="reveal measure-wide space-y-3 border-t border-ink pt-5" style={`--index:${i}`}>
+              <span class="ledger-num" aria-hidden="true">{num(i)}</span>
+              <p class="text-lg leading-relaxed text-ink">{e}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    {/* 3. Deux façons de travailler. Côte à côte sur grand écran, séparées
+         par un filet : le choix se lit d'un regard. La mission longue
+         d'abord, avec son propre CTA. La Mise au clair ensuite. */}
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-12 sm:space-y-16">
+        <h2 class="t-title max-w-[24ch] text-ink">
+          Quelqu’un pour plusieurs mois, ou d’abord une décision&nbsp;?
+        </h2>
+
+        <div class="grid gap-14 lg:grid-cols-2 lg:gap-0">
+          <article class="measure-wide flex flex-col gap-5 lg:pr-14">
+            <span class="eyebrow">Plusieurs mois</span>
+            <h3 class="t-sub text-ink">Rejoindre votre équipe, pendant plusieurs mois.</h3>
+            <p class="text-lg leading-relaxed text-dim">
+              C’est l’essentiel de mon travail. Vous me confiez un sujet. Je cherche le vrai
+              problème, je dis non à ce qui peut attendre, et je livre avec l’équipe. Je ne
+              m’arrête pas à la décision. Je reste jusqu’à savoir si ça a marché.
+            </p>
+            <p class="text-lg leading-relaxed text-dim">
+              Je vais plus vite sur ce que j’ai déjà porté : le support client, les outils
+              internes, le checkout, la mesure.
+            </p>
+            <p class="mt-auto flex flex-wrap gap-x-10 gap-y-4 pt-2">
+              <a href={PORTER.ancre} class="door text-base">
+                <span>Comment je travaille en mission</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+              <a href={mailto('mission')} class="door text-base">
+                <span>Proposer une mission</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </article>
+
+          <article class="measure-wide flex flex-col gap-5 border-t border-line pt-14 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-14">
+            <span class="eyebrow">Un mois</span>
+            <h3 class="t-sub text-ink">La Mise au clair, un mois pour répondre à une question.</h3>
+            <p class="font-serif text-lg italic leading-snug text-ink sm:text-xl">
+              Et si la question n’est pas encore assez claire pour lancer l’équipe dessus, on
+              commence par elle.
+            </p>
+            <p class="text-lg leading-relaxed text-dim">
+              On travaille avec vous et les personnes qui connaissent le sujet de près, côté
+              produit, technique ou données. On part d’une question produit assez précise pour la
+              trancher. À la fin, vous savez quoi construire, pour qui, comment savoir si ça
+              marche, et par quoi l’équipe commence sans moi.
+            </p>
+            <p class="text-lg leading-relaxed text-dim">
+              Vous ne recevez pas soixante slides un mois plus tard. Le document écrit ce qu’on a
+              décidé ensemble. La décision peut être d’arrêter le sujet.
+            </p>
+            <p class="text-lg leading-relaxed text-dim">
+              Pas si vous cherchez quelqu’un pour dérouler une roadmap déjà écrite.
+            </p>
+            <p class="mt-auto pt-2">
+              <a href={MISE_AU_CLAIR.ancre} class="door text-base">
+                <span>Voir La Mise au clair</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    {/* 3. Deux façons de travailler. La mission longue d'abord, sans nom
-         d'offre, avec son propre CTA. La Mise au clair ensuite. */}
-    <section class="px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-12 sm:space-y-14">
-        <h2 class="t-title text-ink">Deux façons de travailler ensemble<span class="stop">.</span></h2>
-
-        <article class="measure-wide space-y-4">
-          <h3 class="t-sub text-ink">Rejoindre votre équipe, pendant plusieurs mois.</h3>
-          <p class="text-lg leading-relaxed text-dim">
-            C’est l’essentiel de mon travail. Vous me confiez un sujet produit et je le porte :
-            discovery, arbitrages, delivery. Je ne m’arrête pas à la décision. Je reste jusqu’à
-            savoir si ça a marché.
-          </p>
-          <p class="text-lg leading-relaxed text-dim">
-            Les sujets où je suis utile le plus vite : le Customer Care et le support, les
-            plateformes et les outils internes, l’e-commerce et le checkout, la mesure et la data.
-          </p>
-          <p class="flex flex-wrap gap-x-10 gap-y-4 pt-1">
-            <a href={PORTER.ancre} class="door text-base">
-              <span>Comment je travaille en mission</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-            <a href={mailto('mission')} class="door text-base">
-              <span>Proposer une mission</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-        </article>
-
-        <p class="measure-wide font-serif text-xl italic leading-snug text-ink sm:text-2xl">
-          Parfois, vous avez surtout besoin de trancher une question avant d’engager l’équipe.
-        </p>
-
-        <article class="measure-wide space-y-4">
-          <h3 class="t-sub text-ink">La Mise au clair, un mois pour trancher une question.</h3>
-          <p class="text-lg leading-relaxed text-dim">
-            Un mois, avec vous et les personnes Produit, Tech ou Data utiles au sujet. On part
-            d’une question produit assez précise pour la trancher. À la fin, vous savez quoi
-            construire, pour qui, comment savoir si ça marche, et par quoi l’équipe commence sans
-            moi.
-          </p>
-          <p class="text-lg leading-relaxed text-dim">
-            Ce n’est pas un audit. Le document est la trace de la décision prise ensemble.
-            Parfois, la décision est d’arrêter le sujet.
-          </p>
-          <p class="text-lg leading-relaxed text-dim">
-            Pas si vous cherchez quelqu’un pour dérouler une roadmap déjà écrite.
-          </p>
-          <p class="pt-1">
-            <a href={MISE_AU_CLAIR.ancre} class="door text-base">
-              <span>Voir La Mise au clair</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-        </article>
-      </div>
-    </section>
-
-    {/* 4. Preuves. Trois cas courts, tous autorisés par CASES, sans chiffre. */}
-    <section class="px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-10 sm:space-y-12">
+    {/* 4. Preuves. Trois cas courts, tous autorisés par CASES, sans chiffre.
+         Le nom dans le rail, le récit dans la colonne de lecture. */}
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
+      <div class="shell space-y-10 sm:space-y-14">
         <h2 class="t-title text-ink">Trois décisions<span class="stop">.</span></h2>
 
-        <div class="measure-wide space-y-8 text-lg leading-relaxed text-dim">
-          <p>
-            <strong class="font-semibold text-ink">Heetch.</strong>
-            La note sur cinq étoiles en fin de course était le standard du secteur. Elle apprenait
-            peu sur ce qu’il fallait améliorer. On l’a remplacée par des compliments et des
-            signalements qualifiés, et on a sorti l’enquête du moment de fin de course. Les étoiles
-            sont toujours absentes de l’app. Vous pouvez l’ouvrir et vérifier.
-          </p>
-          <p>
-            <strong class="font-semibold text-ink">Waalaxy.</strong>
-            L’explication en place : le churn venait des plafonds LinkedIn et des crédits atteints
-            trop vite. Elle se tenait. Avec le data analyst, on a regardé la consommation réelle.
-            Ceux qui partaient étaient loin de saturer leur capacité. Beaucoup lançaient une
-            campagne, puis ne revenaient pas. Les comptes utilisés à plusieurs restaient davantage.
-            La priorité a changé : moins pousser la consommation des crédits, plus chercher la
-            rétention sur l’offre équipe, dès l’onboarding.
-          </p>
-          <p>
-            <strong class="font-semibold text-ink">The Other Store.</strong>
-            Un débat d’équipe sur le checkout : une page ou trois étapes. On l’a tranché par un A/B
-            test plutôt qu’en réunion. Une page a gagné. Le paiement en un clic a fait mieux encore.
-          </p>
+        <div class="space-y-10 sm:space-y-12">
+          {cas.map((c, i) => (
+            <div class="reveal split border-t border-line pt-6" style={`--index:${i}`}>
+              <h3 class="t-sub text-ink">{c.nom}</h3>
+              <p class="text-lg leading-relaxed text-dim">{c.texte}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    {/* 5. Parcours. Aucun ordre chronologique fixé entre WizVille et Waalaxy. */}
-    <section class="px-6 py-16 sm:px-10 sm:py-24">
+    {/* 5. Parcours. Le récit à gauche, le témoignage à droite sur grand
+         écran. Aucun ordre chronologique fixé entre WizVille et Waalaxy. */}
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-24">
       <div class="shell space-y-10 sm:space-y-12">
         <h2 class="t-title text-ink">Le parcours<span class="stop">.</span></h2>
 
-        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
-          <p>
-            J’ai commencé designer, puis développeur front-end. Ensuite Product Manager, Chief
-            Product Owner, Head of Product. Chez The Other Store, j’ai repris l’équipe produit à sa
-            création. Chez Heetch, j’ai créé l’équipe produit Care, puis j’ai été Head of Product.
-            Chez WizVille, Chief Product Officer : la fonction produit, le pôle data. Chez Waalaxy,
-            le churn et l’usage réel. Aujourd’hui, Product Lead freelance.
-          </p>
-          <p>
-            Une chose que j’ai vue partout : le Care et les outils internes sont les derniers sujets
-            à recevoir un responsable produit. C’est devenu un de mes terrains.
-          </p>
+        <div class="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:gap-20">
+          <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              J’ai commencé designer, puis développeur front-end. Le produit est venu ensuite :
+              j’ai repris l’équipe produit de The Other Store à sa création, créé celle du Care
+              chez Heetch avant d’en être Head of Product, tenu la fonction produit et la data chez
+              WizVille comme CPO, et cherché pourquoi les clients partaient chez Waalaxy.
+              Aujourd’hui, Product Lead freelance.
+            </p>
+            <p>
+              Partout où je suis passé, le support et les outils internes ont été les derniers à
+              avoir un responsable produit. C’est devenu un de mes terrains.
+            </p>
+            <p class="pt-2">
+              <a href="/a-propos" class="door text-base">
+                <span>Le parcours en détail</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </div>
+
+          <figure class="space-y-4 border-t border-line pt-6 lg:border-t-0 lg:border-l lg:pt-1 lg:pl-10">
+            <blockquote class="font-serif text-xl italic leading-snug text-ink sm:text-2xl">
+              «&nbsp;Il sait cerner quand un problème a besoin d’être investi davantage.&nbsp;»
+            </blockquote>
+            <figcaption class="text-sm text-dim">Elodie Mermet, Designer, Heetch</figcaption>
+          </figure>
         </div>
-
-        <figure class="measure-wide space-y-3">
-          <blockquote class="font-serif text-xl italic leading-snug text-ink sm:text-2xl">
-            «&nbsp;Il sait cerner quand un problème a besoin d’être investi davantage.&nbsp;»
-          </blockquote>
-          <figcaption class="text-sm text-dim">Elodie Mermet, Designer, Heetch</figcaption>
-        </figure>
-
-        <p>
-          <a href="/a-propos" class="door text-base">
-            <span>Le parcours en détail</span>
-            <span class="door-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </p>
       </div>
     </section>
 
     {/* 6. Produit Sans Filtre. En fin de page : il soutient, il ne remplace
-         pas la conversation. */}
-    <section class="px-6 py-16 sm:px-10 sm:py-24">
-      <div class="shell space-y-8">
-        <h2 class="t-sub text-ink">Produit Sans Filtre</h2>
-
-        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
-          <p>
-            Toutes les deux semaines, un problème réel d’une organisation produit, expliqué
-            jusqu’au bout : pourquoi il arrive, comment le repérer chez soi, ce que je fais quand
-            je le rencontre, et ce que ça ne règle pas.
-          </p>
-          <p>
-            Pour commencer : <a href={ON_ITERERA} rel="noopener" class="link-inline">«&nbsp;On itérera&nbsp;»</a>.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap items-baseline gap-x-10 gap-y-4">
-          <a href={SUBSTACK} rel="noopener" class="door text-base">
-            <span>Recevoir Produit Sans Filtre</span>
-            <span class="door-arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a href="/ecrits" class="link-inline text-base">Tous les écrits</a>
+         pas la conversation. Le nom dans le rail, comme un label. */}
+    <section class="border-t border-line px-6 py-16 sm:px-10 sm:py-20">
+      <div class="shell split">
+        <h2 class="eyebrow pt-1">Produit Sans Filtre</h2>
+        <div class="space-y-6">
+          <div class="space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              Toutes les deux semaines, un problème que j’ai vu en vrai, expliqué jusqu’au bout, y
+              compris ce que ma réponse ne règle pas.
+            </p>
+            <p>
+              Pour commencer : <a href={ON_ITERERA} rel="noopener" class="link-inline">«&nbsp;On itérera&nbsp;»</a>.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-baseline gap-x-10 gap-y-4">
+            <a href={SUBSTACK} rel="noopener" class="door text-base">
+              <span>Recevoir Produit Sans Filtre</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="/ecrits" class="link-inline text-base">Tous les écrits</a>
+          </div>
         </div>
       </div>
     </section>
 
-    {/* 7. Contact. */}
-    <section id="contact" class="px-6 py-20 pb-28 sm:px-10 sm:py-28 sm:pb-40">
-      <div class="shell space-y-8">
-        <h2 class="t-title text-ink">Comment ça commence<span class="stop">.</span></h2>
+    {/* 7. Contact. La porte principale à gauche, la mission longue à droite
+         sur grand écran, séparée par un filet. */}
+    <section id="contact" class="border-t border-line px-6 py-20 pb-28 sm:px-10 sm:py-28 sm:pb-40">
+      <div class="shell grid items-end gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:gap-20">
+        <div class="space-y-8">
+          <h2 class="t-title text-ink">Comment ça commence<span class="stop">.</span></h2>
 
-        <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
-          <p>
-            Écrivez-moi. Trois lignes suffisent : le sujet, l’explication qu’on en donne chez vous
-            aujourd’hui, et qui tranche.
-          </p>
-          <p>Je vous réponds, et je vous dis si c’est pour moi ou pas.</p>
+          <div class="measure-wide space-y-5 text-lg leading-relaxed text-dim">
+            <p>
+              Écrivez-moi. Trois lignes suffisent : le sujet, l’explication qu’on en donne chez vous
+              aujourd’hui, et qui tranche.
+            </p>
+            <p>Je vous réponds, et je vous dis si c’est pour moi ou pas.</p>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <p>
+              <a href={mailto()} class="door font-serif text-xl sm:text-2xl">
+                <span>M’écrire</span>
+                <span class="door-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+            <p class="text-sm text-dim">{EMAIL}</p>
+          </div>
         </div>
 
-        <div class="space-y-3 pt-2">
-          <p>
-            <a href={mailto()} class="door font-serif text-xl sm:text-2xl">
-              <span>M’écrire</span>
-              <span class="door-arrow" aria-hidden="true">&rarr;</span>
-            </a>
-          </p>
-          <p class="text-sm text-dim">{EMAIL}</p>
-        </div>
-
-        <div class="measure-wide space-y-3 pt-6">
+        <div class="space-y-4 border-t border-line pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
           <p class="text-lg leading-relaxed text-dim">
             Pour une mission de plusieurs mois, dites-moi le sujet, l’équipe et le rôle attendu.
           </p>
