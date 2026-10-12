@@ -39,7 +39,7 @@ const staticPages: Record<string, { title: string; description: string }> = {
     description: 'Julien Brionne, Product Lead freelance.',
   },
   'page-ce-que-je-fais': {
-    title: 'Porter le sujet avec vous, ou d’abord trancher ?',
+    title: 'Quelqu’un pour plusieurs mois, ou d’abord une décision ?',
     description: 'Deux manières de travailler avec moi : porter un sujet produit pendant plusieurs mois, ou trancher d’abord une question en un mois avec La Mise au clair.',
   },
   'page-a-propos': {

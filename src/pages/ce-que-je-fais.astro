@@ -1,6 +1,8 @@
 ---
-// Ce que je fais. Copy validée et figée le 11/10/2026 (refonte Product Lead
-// freelance). Ne pas reformuler : toute modification de texte passe par Julien.
+// Ce que je fais. Copy validée le 11/10/2026 (refonte Product Lead freelance),
+// reprise le 12/10/2026 sur la voix du « Infos » LinkedIn : copy de référence
+// dans 02_CONTENT/SORTIES/2026-10-12_Site-copy-voix-About.md.
+// Ne pas reformuler : toute modification de texte passe par Julien.
 //
 // La page répond à : « Dans ma situation, Julien doit-il porter le sujet avec
 // nous, ou a-t-on d'abord besoin de trancher ? »
@@ -24,9 +26,9 @@ const DESCRIPTION =
   'Deux manières de travailler avec moi : porter un sujet produit pendant plusieurs mois, ou trancher d’abord une question en un mois avec La Mise au clair.';
 
 const porterSi = [
-  'La direction est posée. Il manque quelqu’un pour la tenir jusqu’à l’exécution.',
+  'Vous savez où aller. Il manque quelqu’un pour tenir le sujet jusqu’au bout.',
   'Le sujet traverse plusieurs équipes, et chacune n’en voit qu’une partie.',
-  'Il faudra arbitrer chaque semaine, pas une seule fois.',
+  'Il faudra faire des choix chaque semaine, pas une seule fois.',
   'Vous voulez savoir si ça a marché, pas seulement que c’est sorti.',
 ];
 
@@ -34,27 +36,27 @@ const trancherSi = [
   'Plusieurs explications circulent pour le même problème.',
   'Une feature importante est livrée et peu utilisée, et personne ne sait dire pourquoi.',
   'La roadmap se remplit de demandes, et rien ne dit lesquelles comptent.',
-  'L’équipe ne sait plus quoi arrêter, poursuivre ou construire ensuite.',
+  'L’équipe livre, mais ne sait plus ce que ça change.',
 ];
 
 const dedans = [
   {
-    titre: 'Je commence par vérifier.',
+    titre: 'Je commence par creuser.',
     texte:
-      'Même en mission longue, le sujet arrive avec son explication. Je commence par la confronter à l’usage, aux données et aux gens qui vivent le sujet, avant de prendre les gros engagements.',
+      'Même en mission longue, le sujet arrive avec son explication déjà prête. Je regarde l’usage, la data, et je parle à ceux qui vivent le problème. Souvent, le vrai problème est hors de l’écran.',
   },
   {
-    titre: 'Je tiens les arbitrages.',
+    titre: 'Je fais les choix avec vous.',
     texte:
-      'Ce qui entre, ce qui attend, ce qu’on arrête. Avec les personnes qui ont le droit de décider, pour que la décision ne se rejoue pas à chaque réunion.',
+      'Ce qui entre, ce qui attend, ce qu’on arrête. Avec ceux qui ont le droit de décider, pour que la décision ne se rejoue pas à chaque réunion.',
   },
   {
-    titre: 'Je fais la discovery et le delivery avec l’équipe.',
+    titre: 'Je construis avec l’équipe.',
     texte:
-      'Avec Product, Design, Data et Engineering. Mon passé de développeur sert encore : quand le sujet le demande, je descends dans le modèle de données, l’architecture ou les contraintes d’intégration.',
+      'Avec le design, la tech et la data. J’ai été développeur : quand il faut, je descends dans le modèle de données ou l’architecture.',
   },
   {
-    titre: 'Je suis les résultats.',
+    titre: 'Je reviens voir si ça a marché.',
     texte:
       'Je ne quitte pas le sujet quand il sort. On regarde si l’usage a changé comme prévu, et on décide de la suite à partir de ça.',
   },
@@ -74,19 +76,19 @@ const pendantLeMois = [
       'Assez précise pour être tranchée. « Pourquoi on n’avance pas ? » ne se tranche pas. « Faut-il refaire l’onboarding, et pour qui ? » se tranche.',
   },
   {
-    titre: 'Je confronte l’explication en place aux faits disponibles.',
+    titre: 'Je regarde ce qui se passe vraiment.',
     texte:
       'L’usage, les données, les tickets, les décisions déjà prises. Et les personnes qui vivent le sujet, pas seulement celles qui le pilotent.',
   },
   {
-    titre: 'On tranche ensemble.',
+    titre: 'On décide ensemble.',
     texte:
       'Je mets sur la table ce que les faits montrent. La décision se prend avec vous, pendant le mois, pas dans un rapport après.',
   },
   {
-    titre: 'On la rend exploitable.',
+    titre: 'On prépare la suite.',
     texte:
-      'La cible est explicite. On écrit comment on saura si ça marche. Le premier incrément est assez cadré pour que l’équipe l’engage sans moi.',
+      'On écrit ce qu’on vise, comment on saura si ça marche, et par quoi l’équipe commence sans moi.',
   },
 ];
 
@@ -94,7 +96,7 @@ const aLaFin = [
   'Une décision explicite sur ce qu’on construit. Parfois sur ce qu’on arrête.',
   'Les personnes pour qui on le construit.',
   'La manière de savoir si ça marche.',
-  'Un premier incrément que l’équipe peut engager sans moi.',
+  'Par quoi l’équipe commence sans moi.',
 ];
 
 const pasCeci = [
@@ -109,7 +111,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
 <Layout
   title={TITLE}
   description={DESCRIPTION}
-  ogTitle="Porter le sujet avec vous, ou d’abord trancher ?"
+  ogTitle="Quelqu’un pour plusieurs mois, ou d’abord une décision ?"
   webPageSchema={getWebPageSchema('https://www.julien-brionne.fr/ce-que-je-fais', 'Ce que je fais', DESCRIPTION)}
   serviceSchemas={getServiceSchemas()}
   breadcrumbSchema={breadcrumbSchema}
@@ -123,16 +125,14 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
     <section class="px-6 pt-24 pb-20 sm:px-10 sm:pt-36 sm:pb-28">
       <div class="shell space-y-12 sm:space-y-16">
         <h1 class="reveal-load t-display max-w-[20ch] text-ink" style="--index:0">
-          Porter le sujet avec vous, ou d’abord trancher&nbsp;?
+          Quelqu’un pour plusieurs mois, ou d’abord une décision&nbsp;?
         </h1>
         <div class="reveal-load measure-wide space-y-5 text-lg leading-relaxed sm:text-xl" style="--index:1">
           <p class="text-ink">
-            Les deux partent du même travail : vérifier l’explication en place, trouver le vrai
-            problème, faire décider.
+            Dans les deux cas, le début est le même : comprendre ce qui se passe vraiment, parler aux utilisateurs et aux équipes qui vivent le problème, regarder l’usage et la data, puis choisir une direction.
           </p>
           <p class="text-dim">
-            La différence tient à ce dont votre sujet a besoin maintenant. Quelqu’un qui le tient
-            pendant plusieurs mois. Ou d’abord une décision.
+            La différence, c’est la suite. Soit je reste plusieurs mois, jusqu’à savoir si ça a marché. Soit vous avez d’abord besoin de savoir quoi faire, et je m’arrête là.
           </p>
         </div>
       </div>
@@ -151,7 +151,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
 
           <div class="schema-branch">
             <div class="schema-branch-inner space-y-5">
-              <h2 class="t-sub text-ink">Vous avez besoin que je porte le sujet si&nbsp;:</h2>
+              <h2 class="t-sub text-ink">Il vous faut quelqu’un pour plusieurs mois si&nbsp;:</h2>
               <ul class="space-y-3 text-lg leading-relaxed text-dim">
                 {porterSi.map((ligne) => (
                   <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
@@ -171,7 +171,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
 
           <div class="schema-branch mt-12 lg:mt-0">
             <div class="schema-branch-inner space-y-5">
-              <h2 class="t-sub text-ink">Vous avez d’abord besoin de trancher si&nbsp;:</h2>
+              <h2 class="t-sub text-ink">Il vous faut d’abord une décision si&nbsp;:</h2>
               <ul class="space-y-3 text-lg leading-relaxed text-dim">
                 {trancherSi.map((ligne) => (
                   <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
@@ -208,8 +208,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
         <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
           <p class="text-lg leading-relaxed text-ink sm:text-xl">
-            C’est l’essentiel de mon activité, et le format de ma mission actuelle chez Back Market.
-            Plusieurs mois, au rythme que demande le sujet.
+            C’est l’essentiel de mon travail. Aujourd’hui chez Back Market, je porte le Sales Customer Care, après plusieurs mois sur la Care Platform.
           </p>
         </div>
 
@@ -226,7 +225,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
         </div>
 
         <div class="split">
-          <h3 class="split-aside font-semibold text-ink">Les sujets où je suis utile le plus vite</h3>
+          <h3 class="split-aside font-semibold text-ink">Mes terrains</h3>
           <ul class="space-y-3 text-lg leading-relaxed text-dim">
             {terrains.map((t) => (
               <li class="grid grid-cols-[1rem_minmax(0,1fr)] gap-2">
@@ -242,9 +241,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
           <p class="text-lg leading-relaxed text-dim">
             Chez Heetch, le Care n’avait pas d’équipe produit. Deux personnes, des outils éparpillés
             côté Ops. L’admin interne servait chaque jour au Produit, aux Ops et au Support, et
-            n’appartenait à personne. J’ai créé l’équipe produit Care, avec sa mission, son
-            périmètre et ses KPI, puis refondu l’admin en une plateforme unique que chaque équipe
-            alimente.
+            n’appartenait à personne. J’ai créé l’équipe produit Care, puis on a refait l’admin pour en faire un outil commun, alimenté par les différentes équipes.
           </p>
         </div>
 
@@ -282,8 +279,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
         <div class="split">
           <div class="split-aside" aria-hidden="true"></div>
           <p class="text-lg leading-relaxed text-ink sm:text-xl">
-            Je propose La Mise au clair quand le sujet a d’abord besoin d’une décision. Un mois,
-            avec vous et les personnes Produit, Tech ou Data utiles au sujet.
+            Parfois, une équipe livre mais ne sait plus ce que ça change. Elle n’a pas besoin d’un Product Lead pendant six mois, elle a besoin de savoir quoi faire ensuite. Pour ça, je propose La Mise au clair : un mois avec vous et les personnes Produit, Tech ou Data utiles.
           </p>
         </div>
 
@@ -291,9 +287,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
           <h3 class="split-aside font-semibold text-ink">Quand elle sert</h3>
           <div class="space-y-5 text-lg leading-relaxed text-dim">
             <p>
-              Votre équipe livre. Mais le lien entre ce qu’elle construit, l’usage et la valeur est
-              devenu flou. Personne ne sait dire avec certitude ce qui marche, ce qu’il faut
-              arrêter, ni ce qu’on construit ensuite.
+              Votre équipe livre, mais plus personne ne sait dire ce qui marche, ce qu’il faut arrêter, ni ce qu’on construit ensuite.
             </p>
             <p>
               Elle est surtout utile quand une équipe Produit et Tech existe déjà. Sans équipe en
@@ -334,8 +328,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
         <div class="split">
           <h3 class="split-aside font-semibold text-ink">Ce qui fait tenir une décision</h3>
           <p class="text-lg leading-relaxed text-dim">
-            Une décision qui ne tient pas n’est pas vraiment une décision. Pendant le mois, on se
-            demande aussi qui la défendra quand un client demandera l’inverse, ce qui pourrait
+            Pendant le mois, on se demande aussi qui défendra la décision quand un client demandera l’inverse, ce qui pourrait
             légitimement la rouvrir, et quels signes montreraient qu’elle se défait.
           </p>
         </div>
@@ -371,9 +364,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
         <div class="space-y-8">
           <h2 class="t-title text-ink">Vous hésitez entre les deux&nbsp;?</h2>
           <p class="text-lg leading-relaxed text-dim">
-            Écrivez-moi quand même. Décrivez le sujet et l’explication qu’on en donne chez vous.
-            Savoir s’il faut le porter ou d’abord le trancher fait partie de la première
-            conversation.
+            Écrivez-moi quand même : le sujet, l’explication qu’on en donne chez vous, et qui tranche. On verra ensemble ce qu’il lui faut.
           </p>
           <div class="space-y-3 pt-2">
             <p>
