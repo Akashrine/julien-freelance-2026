@@ -34,7 +34,8 @@ const FONTS = [
 const staticPages: Record<string, { title: string; description: string }> = {
   'page-home': {
     // Le H1 réel de la page : le logotype est déjà dans la carte.
-    title: '« Qu’est-ce qui vous fait dire que c’est ça, le problème ? »',
+    // Espaces insécables : la coupure tombe après la virgule, comme sur le site.
+    title: 'Je prends en charge un sujet produit, de\u00a0la\u00a0décision au suivi des résultats.',
     description: 'Julien Brionne, Product Lead freelance.',
   },
   'page-ce-que-je-fais': {

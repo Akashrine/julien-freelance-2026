@@ -1,9 +1,13 @@
 ---
-// Accueil. Copy validée le 11/10/2026 (refonte Product Lead freelance).
+// Accueil. Copy validée le 11/10/2026, révisée et validée le 12/10/2026.
 // Ne pas reformuler : toute modification de texte passe par Julien.
-// Ordre validé : Hero → Mon geste → Porter / Décider → Preuves → Parcours
-// → Produit Sans Filtre → Contact. Le visiteur comprend ce qu'il peut
-// confier avant de lire les cas.
+// Ordre validé : Hero → Où je suis utile → Deux façons de travailler
+// → Preuves → Parcours → Produit Sans Filtre → Contact. Le visiteur
+// reconnaît sa situation, puis comprend ce qu'il peut confier.
+//
+// La question « Qu'est-ce qui vous fait dire que c'est ça, le problème ? »
+// est une signature de travail : un seul endroit sur la page (section 2).
+// Les situations décrivent un problème, pas la prestation.
 //
 // Preuves : 04_CASES.md. Back Market reste au niveau public de LinkedIn
 // (mission en cours, côté Care) : aucun cas, aucun projet, aucune métrique.
@@ -17,25 +21,26 @@ import { PORTER, MISE_AU_CLAIR } from '../utils/offres';
 const SUBSTACK = 'https://produitsansfiltre.substack.com';
 const ON_ITERERA = 'https://produitsansfiltre.substack.com/p/on-iterera';
 
-const geste = [
+// Sources : 04_CASES (Heetch, l'admin sans responsable), 02_MARKET (signaux
+// d'usage et de mesure, formulés sans attribution), copy validée du 11/10.
+const situations = [
   {
-    titre: 'Je vérifie si l’explication tient.',
+    titre: 'Un sujet que plusieurs équipes touchent, et que personne ne porte.',
     texte:
-      'Je pars de ce que vous pensez être le problème et de ce que vous avez déjà essayé. Puis je le confronte à l’usage, aux données et aux gens qui vivent le sujet.',
+      'Un outil interne, un parcours, un chantier entre deux équipes. Chacun en dépend, personne n’en a la responsabilité.',
   },
   {
-    titre: 'Je cherche le vrai problème.',
-    texte:
-      'Je vous ramène ce que les faits montrent, y compris quand ce n’est pas là que vous pensiez que ça coinçait.',
+    titre: 'Une feature importante que peu de gens utilisent.',
+    texte: 'L’équipe l’a livrée. L’usage ne suit pas, et chacun a son explication.',
   },
   {
-    titre: 'Je fais trancher.',
-    texte:
-      'Les bonnes personnes autour de la table, une décision explicite : ce qu’on construit, pour qui, et ce qu’on arrête.',
+    titre: 'Personne ne sait dire ce qu’une livraison a changé.',
+    texte: 'On sait ce qui est sorti. Pas ce que ça a changé pour ceux qui s’en servent.',
   },
   {
-    titre: 'On décide comment savoir si ça marche.',
-    texte: 'Avant de construire. Ce qui doit changer dans l’usage, et ce qu’on fera si ça ne change pas.',
+    titre: 'Plusieurs explications pour le même problème.',
+    texte:
+      '« Les devs sont trop lents. » « Il faut une refonte. » « On manque d’alignement. » Chacune se défend. Reste à vérifier laquelle tient.',
   },
 ];
 ---
@@ -52,8 +57,9 @@ const geste = [
   <Navbar current="accueil" />
 
   <main id="contenu" tabindex="-1">
-    {/* 1. Hero. Identité, puis le réflexe. Le paysage reste un fond
-         décoratif, aria-hidden, posé en CSS. */}
+    {/* 1. Hero. Identité, puis ce qu'on peut me confier, exécution
+         comprise. Un seul CTA. Le paysage reste un fond décoratif,
+         aria-hidden, posé en CSS. */}
     <section class="hero px-6 pt-24 pb-24 sm:px-10 sm:pt-36 sm:pb-36">
       <div class="hero-scene" aria-hidden="true"></div>
       <div class="shell relative grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] lg:gap-20">
@@ -63,13 +69,13 @@ const geste = [
           </p>
 
           <h1 class="reveal-load mise-au-point t-display max-w-[22ch] text-ink" style="--index:1">
-            «&nbsp;Qu’est-ce qui vous fait dire que c’est ça, le problème&nbsp;?&nbsp;»
+            Je prends en charge un sujet produit, de la décision au suivi des résultats<span class="stop">.</span>
           </h1>
 
           <div class="reveal-load measure-wide space-y-5 text-lg leading-relaxed sm:text-xl" style="--index:2">
             <p class="text-ink">
-              C’est la première question que je pose quand un sujet produit coince. Avant de
-              construire, avant de recruter, avant de lancer la refonte.
+              Je rejoins votre équipe pour cadrer le sujet, faire trancher et livrer, avec Product,
+              Design, Data et Engineering.
             </p>
             <p class="text-dim">Aujourd’hui en mission chez Back Market, côté Care.</p>
           </div>
@@ -94,78 +100,79 @@ const geste = [
       </div>
     </section>
 
-    {/* 2. Mon geste. */}
+    {/* 2. Où je suis utile. Quatre situations, puis la signature. */}
     <section class="px-6 py-16 sm:px-10 sm:py-24">
       <div class="shell space-y-10 sm:space-y-12">
-        <h2 class="t-title max-w-[22ch] text-ink">Quand j’arrive, il y a déjà une explication<span class="stop">.</span></h2>
+        <h2 class="t-title max-w-[22ch] text-ink">Où je suis utile<span class="stop">.</span></h2>
 
-        <div class="measure-wide space-y-6">
-          <p class="font-serif text-xl leading-snug text-ink sm:text-2xl">
-            Les devs sont trop lents. Il faut une refonte. On manque d’alignement. La feature ne
-            décolle pas parce que les clients ne l’ont pas comprise.
-          </p>
-          <p class="text-lg leading-relaxed text-dim">
-            Ces explications ne sont pas absurdes. Elles ont un défaut commun : on a commencé à
-            les traiter avant de les vérifier. Et le sujet revient en réunion trois mois plus
-            tard, avec une nouvelle explication.
-          </p>
-        </div>
-
-        <div class="measure-wide space-y-7 pt-2">
-          {geste.map((g, i) => (
+        <div class="measure-wide space-y-7">
+          {situations.map((s, i) => (
             <div class="reveal space-y-1.5" style={`--index:${i}`}>
-              <h3 class="font-semibold text-ink">{g.titre}</h3>
-              <p class="text-lg leading-relaxed text-dim">{g.texte}</p>
+              <h3 class="font-semibold text-ink">{s.titre}</h3>
+              <p class="text-lg leading-relaxed text-dim">{s.texte}</p>
             </div>
           ))}
+        </div>
+
+        <div class="measure-wide space-y-6 pt-4">
+          <p class="text-lg leading-relaxed text-dim">
+            Avant de partir sur une solution, je pose une question :
+          </p>
+          <p class="font-serif text-2xl leading-snug text-ink sm:text-3xl">
+            «&nbsp;Qu’est-ce qui vous fait dire que c’est ça, le problème&nbsp;?&nbsp;»
+          </p>
+          <p class="text-lg leading-relaxed text-dim">
+            Ensuite, je confronte l’explication à l’usage, aux données et aux gens qui vivent le
+            sujet. Je fais trancher. Et avant de construire, on décide comment savoir si ça marche.
+          </p>
         </div>
       </div>
     </section>
 
-    {/* 3. Porter, puis Décider. La mission longue d'abord, sans nom
-         d'offre. La Mise au clair ensuite, par le pont validé. */}
+    {/* 3. Deux façons de travailler. La mission longue d'abord, sans nom
+         d'offre, avec son propre CTA. La Mise au clair ensuite. */}
     <section class="px-6 py-16 sm:px-10 sm:py-24">
       <div class="shell space-y-12 sm:space-y-14">
-        <h2 class="t-title text-ink">Ce que vous pouvez me confier<span class="stop">.</span></h2>
+        <h2 class="t-title text-ink">Deux façons de travailler ensemble<span class="stop">.</span></h2>
 
         <article class="measure-wide space-y-4">
-          <h3 class="t-sub text-ink">Un sujet, pendant plusieurs mois.</h3>
+          <h3 class="t-sub text-ink">Rejoindre votre équipe, pendant plusieurs mois.</h3>
           <p class="text-lg leading-relaxed text-dim">
-            C’est l’essentiel de mon travail. On me confie un sujet produit et je ne m’arrête pas
-            à la décision. Je reste pour les arbitrages, la discovery et le delivery, avec Product,
-            Design, Data et Engineering, jusqu’à savoir si ça a marché.
+            C’est l’essentiel de mon travail. Vous me confiez un sujet produit et je le porte :
+            discovery, arbitrages, delivery. Je ne m’arrête pas à la décision. Je reste jusqu’à
+            savoir si ça a marché.
           </p>
           <p class="text-lg leading-relaxed text-dim">
             Les sujets où je suis utile le plus vite : le Customer Care et le support, les
             plateformes et les outils internes, l’e-commerce et le checkout, la mesure et la data.
           </p>
-          <p class="pt-1">
+          <p class="flex flex-wrap gap-x-10 gap-y-4 pt-1">
             <a href={PORTER.ancre} class="door text-base">
               <span>Comment je travaille en mission</span>
+              <span class="door-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a href={mailto('mission')} class="door text-base">
+              <span>Proposer une mission</span>
               <span class="door-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </p>
         </article>
 
         <p class="measure-wide font-serif text-xl italic leading-snug text-ink sm:text-2xl">
-          Parfois, le problème n’a pas besoin d’un Product Lead pendant six mois. Il a d’abord
-          besoin d’une décision.
+          Parfois, vous avez surtout besoin de trancher une question avant d’engager l’équipe.
         </p>
 
         <article class="measure-wide space-y-4">
-          <h3 class="t-sub text-ink">La Mise au clair.</h3>
+          <h3 class="t-sub text-ink">La Mise au clair, un mois pour trancher une question.</h3>
           <p class="text-lg leading-relaxed text-dim">
-            Pour ça, je propose La Mise au clair. Un mois, avec vous et les personnes Produit, Tech
-            ou Data utiles au sujet. On part d’une question produit assez précise pour pouvoir la
-            trancher. À la fin, vous savez quoi construire, pour qui, comment savoir si ça marche,
-            et par quoi l’équipe commence sans moi.
+            Un mois, avec vous et les personnes Produit, Tech ou Data utiles au sujet. On part
+            d’une question produit assez précise pour la trancher. À la fin, vous savez quoi
+            construire, pour qui, comment savoir si ça marche, et par quoi l’équipe commence sans
+            moi.
           </p>
           <p class="text-lg leading-relaxed text-dim">
-            Ce n’est pas un audit. Vous ne recevez pas soixante slides un mois plus tard. Le
-            document est la trace de la décision prise ensemble.
-          </p>
-          <p class="text-lg leading-relaxed text-dim">
-            Parfois, la décision est d’arrêter le sujet. C’est une issue, pas un échec.
+            Ce n’est pas un audit. Le document est la trace de la décision prise ensemble.
+            Parfois, la décision est d’arrêter le sujet.
           </p>
           <p class="text-lg leading-relaxed text-dim">
             Pas si vous cherchez quelqu’un pour dérouler une roadmap déjà écrite.
