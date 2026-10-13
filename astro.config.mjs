@@ -95,6 +95,17 @@ const typographieFrancaise = {
   },
 };
 
+// Dates de dernière modification des quatre pages de présentation, pour le
+// sitemap. Ce sont les dates de mise en ligne d'un changement de copy ou de
+// métadonnées, pas des dates de build : Google ignore un lastmod qui bouge à
+// chaque déploiement. À mettre à jour quand une page change réellement.
+const datesPages = {
+  '': '2026-10-13',
+  'ce-que-je-fais': '2026-10-13',
+  'a-propos': '2026-10-13',
+  'ecrits': '2026-10-11',
+};
+
 // https://astro.build/config
 export default defineConfig({
   // Hôte canonique : www, arbitré le 30/08. C'est le domaine primaire servi
@@ -169,7 +180,8 @@ export default defineConfig({
     // moteur lui évite de redécouvrir douze textes à chaque passage.
     serialize: (item) => {
       const slug = item.url.replace(/^https?:\/\/[^/]+\//, '').replace(/\/$/, '');
-      const lastmod = datesArticles[slug];
+      const date = datesArticles[slug] ?? datesPages[slug];
+      const lastmod = date ? new Date(date).toISOString() : undefined;
       return lastmod ? { ...item, lastmod } : item;
     },
   })],
