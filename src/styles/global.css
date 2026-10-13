@@ -398,71 +398,68 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
    ========================================================= */
 
 @layer components {
-  /* Le logotype. Le point est le seul endroit où l'ocre est permanent. */
-  /* Le logotype. Serif, petit, une seule graisse — il parle la langue du
-     site au lieu de la sienne. Le point ocre reste la signature, à taille
-     de texte. */
+  /* Le logotype. Le tracé du logo dessiné (13/10/2026), en SVG : le nom
+     suit la couleur du texte, le point final reste vermillon. Composant :
+     src/components/Logo.astro. */
   .wordmark {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    letter-spacing: -0.025em;
+    display: inline-block;
     color: var(--color-ink);
+    line-height: 0;
   }
-  .wordmark .wordmark-given,
-  .wordmark .wordmark-family { font-weight: 500; color: var(--color-ink); }
+  .wordmark svg {
+    --h: 1.375rem;
+    display: block;
+    height: var(--h);
+    width: auto;
+    /* Le bas du dessin est la queue du J, pas la ligne de base : on la fait
+       descendre sous la ligne (10 % de la hauteur), pour que les lettres
+       s'alignent sur le texte du menu. */
+    margin-bottom: calc(var(--h) * -0.1);
+    /* Le trait du survol passe sous la ligne, hors du viewBox. */
+    overflow: visible;
+  }
+  @media (min-width: 640px) {
+    .wordmark svg { --h: 1.625rem; }
+  }
+  .wordmark-pied svg { --h: 1.25rem; }
+
   /* =========================================================
-     LE POINT, AU SURVOL — 18/09/2026
-     Le point ocre est la seule marque qui revienne sur tout le site : il
-     ferme les titres de section. C'est une ponctuation, pas un ornement,
-     un point final.
+     LE POINT, AU SURVOL — 18/09/2026, repris en SVG le 13/10/2026
+     Le point vermillon est la seule marque qui revienne sur tout le site :
+     il ferme les titres de section. C'est une ponctuation, pas un ornement.
 
      Au survol du logotype, un filet part du J et court jusqu'à lui, puis
      s'arrête. Le point, atteint, prend l'appui de l'encre. Le trait s'arrête
-     AU point et pas après : c'est ce qui en fait une destination, et c'est
-     pourquoi il est porté par le nom seul, jamais par le lien entier.
+     AU point et pas après : c'est ce qui en fait une destination.
 
-     Deux gestes disparaissent au passage. Le `scale(1.2)`, qui est le
-     « grossir au survol » que fait tout le monde. Et le `hover:opacity-70`
-     du markup, qui faisait reculer la signature au moment où on la touchait.
-
-     Le logotype du pied de page n'est pas un lien : il ne porte pas
-     `.wordmark-nom` et ne réagit à rien. Ces règles visent `a.wordmark`. */
-  .wordmark-nom { position: relative; }
-
-  .wordmark-nom::after {
-    content: '';
-    position: absolute;
-    inset: auto 0 -0.24em 0;
-    height: 1px;
-    background-color: var(--color-ochre);
+     Le logotype du pied de page n'est pas un lien et ne réagit à rien. */
+  .wordmark-dot {
+    fill: var(--color-ochre);
+    /* Le délai vaut la course du trait : l'encre s'appuie à l'instant où
+       il arrive, pas avant. */
+    transition: fill 160ms ease 200ms;
+  }
+  .wordmark-trait {
+    fill: var(--color-ochre);
     transform: scaleX(0);
+    transform-box: fill-box;
     transform-origin: left center;
     transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
   }
+  a.wordmark:hover .wordmark-trait,
+  a.wordmark:focus-visible .wordmark-trait { transform: scaleX(1); }
 
-  a.wordmark:hover .wordmark-nom::after,
-  a.wordmark:focus-visible .wordmark-nom::after { transform: scaleX(1); }
-
-  .wordmark .wordmark-dot {
-    display: inline-block;
-    color: var(--color-ochre);
-    /* Le délai vaut la course du trait : l'encre s'appuie à l'instant où
-       il arrive, pas avant. */
-    transition: color 160ms ease 200ms;
-  }
-
-  /* `color-mix` vers l'encre tient dans les deux thèmes : sur le crème elle
-     fonce le vermillon, sur la nuit elle l'éclaire. Dans les deux cas le
-     contraste monte — c'est un appui, pas un changement de couleur. */
+  /* `color-mix` vers l'encre tient dans les deux thèmes : sur le papier elle
+     fonce le vermillon, sur la nuit elle l'éclaire. */
   a.wordmark:hover .wordmark-dot,
   a.wordmark:focus-visible .wordmark-dot {
-    color: color-mix(in srgb, var(--color-ochre) 82%, var(--color-ink));
+    fill: color-mix(in srgb, var(--color-ochre) 82%, var(--color-ink));
   }
 
   /* Mouvement réduit : le trait est là, il n'a simplement pas couru. */
   @media (prefers-reduced-motion: reduce) {
-    .wordmark-nom::after,
-    .wordmark .wordmark-dot { transition: none; }
+    .wordmark-trait,
+    .wordmark-dot { transition: none; }
   }
 
   /* Lien de navigation : sobre, souligné à l'ocre au survol. */
@@ -1224,8 +1221,7 @@ time {
 
 /* Ligatures et crénage soignés sur les grands corps serif. */
 .t-display, .t-title, .t-quote, .t-sub,
-.article-content h2, .article-content h3,
-.wordmark {
+.article-content h2, .article-content h3 {
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1, "liga" 1;
 }

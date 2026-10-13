@@ -51,7 +51,7 @@ Deux profondeurs du même travail :
 
 ## Brand Commitments
 
-- **Nom et signature :** Julien Brionne, wordmark suivi d'un point. « Product Lead freelance » dans les titres et les métadonnées.
+- **Nom et signature :** Julien Brionne. Logo dessiné (13/10/2026), vectorisé dans `public/logo/` : `julien-brionne.svg` (une ligne), `julien-brionne-pile.svg` (deux lignes), `jb.svg` (monogramme), tous avec le point final vermillon pour le nom. Dans le site, composant `src/components/Logo.astro`. Favicon : le monogramme JB en papier sur tuile encre (`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`). « Product Lead freelance » dans les titres et les métadonnées.
 - **Voix :** première personne, phrases courtes, sérieux sur le fond, détendu dans la manière. Pas de vocabulaire de cabinet, pas de landing page SaaS, pas de tiret long.
 - **Actifs :** portrait `/public/portrait-640.webp` ; Newsreader et Instrument Sans auto-hébergées ; palette papier et encre du 13/10/2026 (papier `#F3F1EC`, encre `#151515`, gris `#5A5A57`, filet `#D6D3CC`, vermillon `#E4472B`), l'accent restant rare ; images OG générées par `src/pages/og/[...slug].ts`.
 
