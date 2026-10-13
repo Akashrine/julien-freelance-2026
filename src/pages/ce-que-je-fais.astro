@@ -21,9 +21,9 @@ import { getWebPageSchema, getServiceSchemas, getBreadcrumbSchema, BreadcrumbIte
 import { EMAIL, mailto } from '../utils/mail';
 import { PORTER, MISE_AU_CLAIR } from '../utils/offres';
 
-const TITLE = 'Porter un sujet produit, ou d’abord trancher · Julien Brionne';
+const TITLE = 'Product Lead freelance : mission longue ou décision produit · Julien Brionne';
 const DESCRIPTION =
-  'Deux manières de travailler avec moi : porter un sujet produit pendant plusieurs mois, ou trancher d’abord une question en un mois avec La Mise au clair.';
+  'Besoin de quelqu’un pour porter un sujet produit pendant plusieurs mois, ou d’abord de trancher une question ? Voici comment je travaille.';
 
 const porterSi = [
   'Vous savez où aller. Il manque quelqu’un pour tenir le sujet jusqu’au bout.',
@@ -111,7 +111,7 @@ const breadcrumbSchema = getBreadcrumbSchema([BreadcrumbItems.home, BreadcrumbIt
 <Layout
   title={TITLE}
   description={DESCRIPTION}
-  ogTitle="Quelqu’un pour plusieurs mois, ou d’abord une décision ?"
+  ogTitle="Product Lead freelance : mission longue ou décision produit"
   webPageSchema={getWebPageSchema('https://www.julien-brionne.fr/ce-que-je-fais', 'Ce que je fais', DESCRIPTION)}
   serviceSchemas={getServiceSchemas()}
   breadcrumbSchema={breadcrumbSchema}

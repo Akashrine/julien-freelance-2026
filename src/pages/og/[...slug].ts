@@ -40,7 +40,7 @@ const staticPages: Record<string, { title: string; description: string }> = {
   },
   'page-ce-que-je-fais': {
     title: 'Quelqu’un pour plusieurs mois, ou d’abord une décision ?',
-    description: 'Deux manières de travailler avec moi : porter un sujet produit pendant plusieurs mois, ou trancher d’abord une question en un mois avec La Mise au clair.',
+    description: 'Besoin de quelqu’un pour porter un sujet produit pendant plusieurs mois, ou d’abord de trancher une question ? Voici comment je travaille.',
   },
   'page-a-propos': {
     title: 'Ce que j’ai déjà porté',

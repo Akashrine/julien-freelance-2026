@@ -12,7 +12,7 @@ import { MISE_AU_CLAIR } from './offres';
 const AUTHOR_NAME = 'Julien Brionne';
 export const AUTHOR_JOB_TITLE = 'Product Lead freelance';
 export const AUTHOR_DESCRIPTION =
-  "Product Lead freelance, quinze ans dans le produit. Stratégie, discovery, delivery et mesure, de la compréhension du problème jusqu’aux résultats.";
+  "Product Lead freelance, quinze ans dans le produit. Stratégie, discovery, delivery et mesure, de la compréhension du problème jusqu’à la mesure de l’impact.";
 
 /**
  * Person schema for the author.
