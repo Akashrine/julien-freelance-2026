@@ -37,6 +37,8 @@ export function getPersonSchema(): object {
       'E-commerce et checkout',
       'Mesure produit et data',
     ],
+    // Le portrait du site : il relie la fiche aux profils qui portent la même photo.
+    image: `${SITE_URL}/portrait-640.webp`,
     knowsLanguage: 'fr-FR',
     areaServed: { '@type': 'Country', name: 'France' },
     sameAs: [
@@ -100,10 +102,9 @@ export function getWebPageSchema(
     url,
     name: title,
     description,
-    author: {
-      '@type': 'Person',
-      name: AUTHOR_NAME,
-    },
+    // Même @id que la fiche Person de l'accueil, avec le nom : la fiche n'est
+    // pas sur cette page, la référence seule pourrait ne pas être résolue.
+    author: { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: AUTHOR_NAME, url: SITE_URL },
     inLanguage: 'fr',
     isPartOf: {
       '@type': 'WebSite',
@@ -149,13 +150,11 @@ export function getArticleSchema(
     url,
     author: {
       '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
       name: AUTHOR_NAME,
       url: SITE_URL,
     },
-    publisher: {
-      '@type': 'Person',
-      name: AUTHOR_NAME,
-    },
+    publisher: { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: AUTHOR_NAME, url: SITE_URL },
     datePublished,
     dateModified: dateModified || datePublished,
     mainEntityOfPage: {
