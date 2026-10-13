@@ -7,7 +7,8 @@
  *
  * Trois objets, et seulement trois. Ils servent de mesure : on sait d'où
  * vient chaque mail sans formulaire ni traceur. Ne pas les banaliser.
- * Libellés validés le 11/10/2026 (site-architecture.md, section Contact).
+ * Libellés validés le 11/10/2026, lettre Mission longue complétée le 13/10/2026
+ * (site-architecture.md, section Contact).
  */
 export const EMAIL = 'julien.brionne@gmail.com';
 
@@ -20,7 +21,9 @@ const PORTES: Record<Porte, { sujet: string; lignes: string[] }> = {
   },
   mission: {
     sujet: 'Mission longue',
-    lignes: ['Le sujet :', 'L’équipe :', 'Le rôle attendu :'],
+    // Démarrage et rythme (13/10/2026) : la ligne « en mission chez Back Market »
+    // peut se lire comme une indisponibilité. On demande plutôt que d'afficher une date.
+    lignes: ['Le sujet :', 'L’équipe :', 'Le rôle attendu :', 'Démarrage souhaité :', 'Rythme envisagé :'],
   },
   miseAuClair: {
     sujet: 'La Mise au clair',
