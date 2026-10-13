@@ -81,7 +81,9 @@ const articleSchema = getArticleSchema(
   article.data.date,
   article.data.updated ?? article.data.date,
   undefined, // about - can be added per article if needed
-  article.data.thumbnail
+  // L'image de partage de l'article, générée pour chacun : Google demande une
+  // image pour l'Article. La vignette éditoriale passe en premier si elle existe.
+  article.data.thumbnail ?? ogImage
 );
 
 // Generate extra schemas (FAQ, HowTo) for specific articles

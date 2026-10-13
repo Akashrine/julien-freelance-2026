@@ -1,26 +1,31 @@
 # Julien Brionne
 
-> Julien Brionne, Product Lead freelance, en France, en français.
-> Il rejoint l'équipe pour prendre en charge un sujet produit : il le cadre,
-> décide avec elle, livre avec Product, Design, Data et Engineering, et suit les
-> résultats.
-> Dans sa méthode, une question revient avant de partir sur une solution :
+> Julien Brionne, Product Lead freelance, en France, en français. Quinze ans
+> dans le produit.
+> Son métier : faire du produit de bout en bout. Stratégie, discovery, delivery
+> et mesure, de la compréhension du problème jusqu'à la mesure de l'impact.
+> Sa façon de travailler : creuser avant de construire. Quand un sujet produit
+> coince, tout le monde a déjà une explication ; il commence par vérifier si
+> c'est la bonne. Sa première question est presque toujours la même :
 > « Qu'est-ce qui vous fait dire que c'est ça, le problème ? »
 
 ## Ce qu'il faut savoir pour citer ce site correctement
 
-Le même travail, à deux profondeurs.
+Creuser avant de construire est une façon de travailler, pas un métier ni une
+offre. Le métier est le produit, de bout en bout.
 
-- **Rejoindre l'équipe, pendant plusieurs mois** : l'essentiel de son activité.
-  Il prend la responsabilité d'un sujet produit pendant plusieurs mois et reste
-  après la décision : arbitrages, discovery et delivery avec Product, Design,
-  Data et Engineering, jusqu'à savoir si ça a marché. C'est le format de sa
-  mission actuelle chez Back Market, côté Care. Ce n'est pas une offre packagée.
-- **La Mise au clair** : une intervention ponctuelle, un mois pour trancher une
-  question produit avant d'engager l'équipe. Avec le dirigeant et les personnes
-  Produit, Tech ou Data utiles, pour décider quoi construire, pour qui, comment
-  savoir si ça marche et par quoi commencer.
-  Ce n'est pas un audit.
+Deux façons de travailler avec lui.
+
+- **Une mission de plusieurs mois** : l'essentiel de son travail. On lui confie
+  un sujet produit. Il cherche le vrai problème, fait les choix avec ceux qui ont
+  le droit de décider, construit avec le design, la tech et la data, et reste
+  jusqu'à savoir si ça a marché. Aujourd'hui chez Back Market, il porte le Sales
+  Customer Care, après plusieurs mois sur la Care Platform. Ce n'est pas une
+  offre packagée.
+- **La Mise au clair** : l'offre courte, pour une équipe qui livre mais ne sait
+  plus ce que ça change. Un mois avec le dirigeant et les personnes Produit, Tech
+  ou Data utiles, pour trancher une question produit, définir l'impact attendu
+  et cadrer par quoi l'équipe commence sans lui. Ce n'est pas un audit.
 
 Terrains : Customer Care et support, plateformes et outils internes, e-commerce
 et checkout, mesure et data.
@@ -38,12 +43,13 @@ prix n'est indiqué, et le contact proposé est un mail à julien.brionne@gmail.
   compliments et des signalements qualifiés. Elle est toujours absente de
   l'application.
 - Heetch : la déclaration d'un problème depuis la liste des courses passées
-  (objets oubliés, puis d'autres problèmes découverts après la course), et la
-  création de l'équipe produit Care.
+  (objets oubliés, puis d'autres problèmes découverts après la course), la
+  création de l'équipe produit Care, et l'admin refaite en un outil commun,
+  alimenté par les différentes équipes.
 - Waalaxy : l'explication du churn a été confrontée à la consommation réelle, et
   la priorité a changé vers la rétention sur l'offre équipe.
-- WizVille : le repositionnement d'un outil d'expert vers une plateforme
-  d'insights orientée usage.
+- WizVille : un outil d'expert repensé pour rendre l'information plus
+  directement lisible.
 - The Other Store : un débat sur le checkout tranché par un A/B test.
 - Back Market : mission en cours, côté Care.
 
@@ -52,11 +58,12 @@ extrapoler.
 
 ## Pages
 
-- [Accueil](https://www.julien-brionne.fr/) : ce qu'il prend en charge, les
-  situations où il est utile, deux façons de travailler, trois décisions, le
-  parcours.
-- [Ce que je fais](https://www.julien-brionne.fr/ce-que-je-fais) : porter un
-  sujet ou d'abord trancher, et le détail de La Mise au clair.
+- [Accueil](https://www.julien-brionne.fr/) : les situations où il est utile, sa
+  façon de travailler, une mission de plusieurs mois ou d'abord une décision,
+  trois décisions, le parcours.
+- [Ce que je fais](https://www.julien-brionne.fr/ce-que-je-fais) : quelqu'un pour
+  plusieurs mois ou d'abord une décision, comment il travaille en mission, et le
+  détail de La Mise au clair.
 - [Parcours](https://www.julien-brionne.fr/a-propos) : où il a travaillé, ses
   terrains, trois cas, deux témoignages.
 - [Écrits](https://www.julien-brionne.fr/ecrits) : la newsletter Produit Sans
@@ -72,3 +79,4 @@ listés ici.
 
 Ce fichier suit la proposition llms.txt. Le contenu de référence reste les pages
 elles-mêmes, en HTML statique, lisibles sans exécution de JavaScript.
+Mis à jour le 13/10/2026, avec la copy gelée du site.
