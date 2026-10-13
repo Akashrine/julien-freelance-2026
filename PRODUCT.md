@@ -53,7 +53,7 @@ Deux profondeurs du même travail :
 
 - **Nom et signature :** Julien Brionne, wordmark suivi d'un point. « Product Lead freelance » dans les titres et les métadonnées.
 - **Voix :** première personne, phrases courtes, sérieux sur le fond, détendu dans la manière. Pas de vocabulaire de cabinet, pas de landing page SaaS, pas de tiret long.
-- **Actifs :** portrait `/public/portrait-640.webp` ; Newsreader et Instrument Sans auto-hébergées ; ivoire, encre, gris chaud, vermillon, l'accent restant rare ; images OG générées par `src/pages/og/[...slug].ts`.
+- **Actifs :** portrait `/public/portrait-640.webp` ; Newsreader et Instrument Sans auto-hébergées ; palette papier et encre du 13/10/2026 (papier `#F3F1EC`, encre `#151515`, gris `#5A5A57`, filet `#D6D3CC`, vermillon `#E4472B`), l'accent restant rare ; images OG générées par `src/pages/og/[...slug].ts`.
 
 ## Evidence on Hand
 
@@ -71,5 +71,5 @@ Uniquement ce que `04_CASES.md` autorise. Aujourd'hui sur le site : Heetch (les 
 - Lien d'évitement vers `#contenu`, qui reçoit le focus (`tabindex="-1"`) sur chaque page.
 - Le sélecteur de thème annonce où il emmène : `aria-pressed` et `aria-label` se mettent à jour à chaque bascule.
 - Tout ornement est décoratif et `aria-hidden` : le paysage du hero, les traits du schéma, les flèches de lien.
-- **Le vermillon `#E84A2A` mesure 3,61:1 sur le crème.** Grands caractères, flèches et états seulement, jamais de texte courant.
+- **Le vermillon `#E4472B` mesure 3,55:1 sur le papier `#F3F1EC`.** Grands caractères, flèches et états seulement, jamais de texte courant.
 - Les pages restent lisibles à l'impression.

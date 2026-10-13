@@ -12,10 +12,10 @@ import { getCategoryLabel } from '../../utils/articles';
 // crème, encre, Newsreader pour le titre, Instrument Sans pour le reste, le point
 // du logotype en vermillon. Les TTF de src/og-fonts/ ne servent qu'au build.
 const COLORS = {
-  canvas: '#FBF7F1',
-  ink: '#121316',
-  dim: '#5E5C56',
-  ochre: '#E84A2A',
+  canvas: '#F3F1EC',
+  ink: '#151515',
+  dim: '#5A5A57',
+  ochre: '#E4472B',
 };
 
 // Chemin depuis la racine du projet : le module bundlé ne vit plus dans

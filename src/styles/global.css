@@ -66,22 +66,22 @@
 
 @theme {
   /* Palette */
-  --color-canvas: #FBF7F1;
-  --color-ink: #121316;
-  --color-dim: #5E5C56;
-  --color-line: #E3DFD5;
-  /* À l'essai depuis le 30/08 : vermillon #E84A2A à la place de l'ocre.
-     3,61:1 sur le crème — grands caractères, flèches et états seulement,
+  --color-canvas: #F3F1EC;
+  --color-ink: #151515;
+  --color-dim: #5A5A57;
+  --color-line: #D6D3CC;
+  /* Palette papier et encre (13/10/2026), vermillon #E4472B.
+     3,55:1 sur le papier — grands caractères, flèches et états seulement,
      jamais du texte courant. Extrêmement rare : le point du logo, quelques
      flèches, les soulignés au survol. */
-  --color-ochre: #E84A2A;
+  --color-ochre: #E4472B;
 
   /* Alias conservés pour les composants d'articles, à retirer au lot 4 */
-  --color-background: #FBF7F1;
-  --color-bg-light: #FBF7F1;
-  --color-text-primary: #121316;
+  --color-background: #F3F1EC;
+  --color-bg-light: #F3F1EC;
+  --color-text-primary: #151515;
   --color-text-code: #D4D4D4;
-  --color-rule: #E3DFD5;
+  --color-rule: #D6D3CC;
   --color-sand: #F1EBE2;
   --color-sand-light: rgba(241, 235, 226, 0.4);
   --color-sage-blue: #DFE4E2;
@@ -101,8 +101,8 @@
 
 @layer base {
   :root {
-    --color-accent: #E84A2A;
-    --color-secondary: #5E5C56;
+    --color-accent: #E4472B;
+    --color-secondary: #5A5A57;
   }
 
   html {
@@ -180,8 +180,8 @@
   }
 
   .btn-cta {
-    background-color: #121316;
-    color: #FBF7F1;
+    background-color: #151515;
+    color: #F3F1EC;
     padding: 1.1rem 2.2rem;
     min-height: 48px;
     display: inline-block;
@@ -1048,16 +1048,16 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
    Trois états : clair forcé, sombre forcé, sinon le système.
    ========================================================= */
 :root[data-theme="dark"] {
-  --color-canvas: #141518;
-  --color-ink: #F3F0EA;
-  --color-dim: #A5A19A;
-  --color-line: #2C2D31;
-  --color-ochre: #F05B33;
-  --color-accent: #F05B33;
-  --color-background: #141518;
-  --color-bg-light: #141518;
-  --color-text-primary: #F3F0EA;
-  --color-rule: #2C2D31;
+  --color-canvas: #151515;
+  --color-ink: #F3F1EC;
+  --color-dim: #A3A19B;
+  --color-line: #33332F;
+  --color-ochre: #E4472B;
+  --color-accent: #E4472B;
+  --color-background: #151515;
+  --color-bg-light: #151515;
+  --color-text-primary: #F3F1EC;
+  --color-rule: #33332F;
   --color-sand: #262320;
   --color-sand-light: rgba(38, 35, 32, 0.5);
   --color-sage-blue: #202527;
@@ -1079,16 +1079,16 @@ details[open] > summary ~ * { animation: fade-in-up 0.2s ease-out; }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-canvas: #141518;
-    --color-ink: #F3F0EA;
-    --color-dim: #A5A19A;
-    --color-line: #2C2D31;
-    --color-ochre: #F05B33;
-    --color-accent: #F05B33;
-    --color-background: #141518;
-    --color-bg-light: #141518;
-    --color-text-primary: #F3F0EA;
-    --color-rule: #2C2D31;
+    --color-canvas: #151515;
+    --color-ink: #F3F1EC;
+    --color-dim: #A3A19B;
+    --color-line: #33332F;
+    --color-ochre: #E4472B;
+    --color-accent: #E4472B;
+    --color-background: #151515;
+    --color-bg-light: #151515;
+    --color-text-primary: #F3F1EC;
+    --color-rule: #33332F;
     --color-sand: #262320;
     --color-sand-light: rgba(38, 35, 32, 0.5);
     --color-sage-blue: #202527;
