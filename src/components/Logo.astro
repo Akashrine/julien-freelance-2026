@@ -9,11 +9,16 @@
 // prendre la couleur d'accent.
 //
 // `lien` : dans la navigation, le logo est le lien vers l'accueil et porte
-// le geste du survol. Dans le pied de page, il ne réagit à rien.
+// le geste du survol, « le tracé, lettre à lettre » : chaque lettre trace
+// son contour puis se remplit d'encre, de gauche à droite, et le point se
+// pose en dernier. Il faut pour cela le nom découpé en lettres, écrit dans
+// la page (logo-lettres.ts). Dans le pied de page, le logo ne réagit à rien
+// et garde la version légère, appelée par <use>.
 interface Props {
   lien?: boolean;
   class?: string;
 }
+import { LETTRES } from './logo-lettres';
 const { lien = false, class: classe = '' } = Astro.props;
 
 // Repères du tracé (unités du viewBox) : nom de x 143 à 2858, ligne de base
@@ -24,8 +29,11 @@ const VIEWBOX = '143 75 2803 427';
 {lien ? (
   <a href="/" class:list={['wordmark', classe]} aria-label="Julien Brionne, accueil">
     <svg viewBox={VIEWBOX} aria-hidden="true" focusable="false">
-      <rect class="wordmark-trait" x="143" y="540" width="2729" height="18" />
-      <use href="/logo/julien-brionne-nom.svg#nom" />
+      <g fill="currentColor">
+        {LETTRES.map((d, i) => (
+          <path class="wordmark-lettre" pathLength="1" fill-rule="evenodd" style={`--i:${i}`} d={d} />
+        ))}
+      </g>
       <circle class="wordmark-dot" cx="2909" cy="422" r="37" />
     </svg>
   </a>
