@@ -75,7 +75,10 @@ const finalTwitterDescription = twitterDescription || finalOgDescription;
       } catch (e) {}
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    {/* Le monogramme JB, tuile encre (13/10/2026). SVG pour les navigateurs
+         récents, .ico (16, 32, 48) pour les autres. */}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     

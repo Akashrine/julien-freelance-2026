@@ -1,6 +1,7 @@
 ---
 // Menu : Ce que je fais · Parcours · Écrits. Le nom renvoie à /.
 // Aucune autre entrée. site-architecture.md, section Pages.
+import Logo from './Logo.astro';
 interface Props {
   current?: 'accueil' | 'ce-que-je-fais' | 'a-propos' | 'ecrits' | null;
 }
@@ -15,9 +16,7 @@ const links = [
 
 <header class="site-header w-full px-6 pt-10 sm:px-10 sm:pt-14">
   <div class="shell flex flex-wrap items-baseline justify-between gap-x-6 gap-y-5">
-    <a href="/" class="wordmark whitespace-nowrap text-lg sm:text-xl" aria-label="Julien Brionne, accueil">
-      <span class="wordmark-nom"><span class="wordmark-given">Julien</span> <span class="wordmark-family">Brionne</span></span><span class="wordmark-dot">.</span>
-    </a>
+    <Logo lien />
 
     <nav aria-label="Navigation principale">
       <ul class="flex items-center gap-4 text-sm sm:gap-10">

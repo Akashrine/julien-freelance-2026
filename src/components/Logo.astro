@@ -1,0 +1,47 @@
+---
+// Le logotype « Julien Brionne. » — tracé vectoriel du logo dessiné
+// (public/logo/), point final vermillon. 13/10/2026.
+//
+// Le nom vit dans un fichier externe, appelé par <use> : le navigateur le
+// télécharge une fois et le garde en cache, au lieu de répéter 27 Ko de
+// tracé dans chaque page. Il hérite de la couleur du texte (currentColor),
+// donc du thème. Le point et le trait du survol restent dans la page pour
+// prendre la couleur d'accent.
+//
+// `lien` : dans la navigation, le logo est le lien vers l'accueil et porte
+// le geste du survol, « le tracé, lettre à lettre » : chaque lettre trace
+// son contour puis se remplit d'encre, de gauche à droite, et le point se
+// pose en dernier. Il faut pour cela le nom découpé en lettres, écrit dans
+// la page (logo-lettres.ts). Dans le pied de page, le logo ne réagit à rien
+// et garde la version légère, appelée par <use>.
+interface Props {
+  lien?: boolean;
+  class?: string;
+}
+import { LETTRES } from './logo-lettres';
+const { lien = false, class: classe = '' } = Astro.props;
+
+// Repères du tracé (unités du viewBox) : nom de x 143 à 2858, ligne de base
+// à y 459, point de 74 unités de diamètre — celui du i de « Julien ».
+const VIEWBOX = '143 75 2803 427';
+---
+
+{lien ? (
+  <a href="/" class:list={['wordmark', classe]} aria-label="Julien Brionne, accueil">
+    <svg viewBox={VIEWBOX} aria-hidden="true" focusable="false">
+      <g fill="currentColor">
+        {LETTRES.map((d, i) => (
+          <path class="wordmark-lettre" pathLength="1" fill-rule="evenodd" style={`--i:${i}`} d={d} />
+        ))}
+      </g>
+      <circle class="wordmark-dot" cx="2909" cy="422" r="37" />
+    </svg>
+  </a>
+) : (
+  <p class:list={['wordmark', classe]}>
+    <svg viewBox={VIEWBOX} role="img" aria-label="Julien Brionne">
+      <use href="/logo/julien-brionne-nom.svg#nom" />
+      <circle class="wordmark-dot" cx="2909" cy="422" r="37" />
+    </svg>
+  </p>
+)}

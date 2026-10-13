@@ -23,6 +23,10 @@ const COLORS = {
 // qu'au build, où cwd est la racine du dépôt.
 const font = (file: string) => readFileSync(`${process.cwd()}/src/og-fonts/${file}`);
 
+// Le logotype, lu au build et embarqué en data URI : satori ne charge rien
+// par le réseau. Ratio du viewBox : 2803 × 427.
+const LOGO = `data:image/svg+xml;base64,${readFileSync(`${process.cwd()}/public/logo/julien-brionne.svg`).toString('base64')}`;
+
 const FONTS = [
   { name: 'Newsreader', data: font('Newsreader-Medium.ttf'), weight: 500 as const, style: 'normal' as const },
   { name: 'Instrument Sans', data: font('InstrumentSans-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
@@ -34,8 +38,7 @@ const FONTS = [
 const staticPages: Record<string, { title: string; description: string }> = {
   'page-home': {
     // Le H1 réel de la page : le logotype est déjà dans la carte.
-    // Espaces insécables : la coupure tombe après la virgule, comme sur le site.
-    title: 'Je prends en charge un sujet produit, de\u00a0la\u00a0décision au suivi des résultats.',
+    title: 'Quand un sujet produit coince, tout le monde a déjà une explication.',
     description: 'Julien Brionne, Product Lead freelance.',
   },
   'page-ce-que-je-fais': {
@@ -89,11 +92,8 @@ function carte(title: string, description: string, meta?: string) {
       fontFamily: 'Instrument Sans',
     },
     [
-      // Le logotype, point vermillon compris.
-      el('div', { display: 'flex', fontFamily: 'Newsreader', fontSize: 34, letterSpacing: '-0.5px' }, [
-        el('span', { color: COLORS.ink }, 'Julien Brionne'),
-        el('span', { color: COLORS.ochre }, '.'),
-      ]),
+      // Le logotype dessiné (public/logo/julien-brionne.svg), point vermillon compris.
+      { type: 'img', props: { src: LOGO, width: 276, height: 42, style: { display: 'flex' } } },
 
       // Le cœur : méta éventuelle, titre serif, description.
       el(
